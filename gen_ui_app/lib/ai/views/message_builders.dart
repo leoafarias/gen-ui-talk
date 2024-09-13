@@ -6,7 +6,3 @@ typedef MessageBuilder = Widget Function(
   BuildContext context,
   Message response,
 );
-
-typedef FunctionResponseBuilder = Widget Function(
-  LlmFunctionResponse response,
-);

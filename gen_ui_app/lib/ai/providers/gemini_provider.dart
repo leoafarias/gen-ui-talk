@@ -2,10 +2,12 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/widgets.dart';
+import 'dart:async';
+
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../models/llm_function.dart';
+import '../models/llm_runnable_ui.dart';
 import '../models/message.dart';
 import 'llm_provider_interface.dart';
 
@@ -20,7 +22,7 @@ class GeminiProvider extends LlmProvider {
     ToolConfig? toolConfig,
   }) {
     _functionCallHandlers = functions.toFunctionHandlers();
-    _functionUiHandlers = functions.toUiHandlers();
+    _functionUiRenderers = functions.toUiRenderers();
     final llm = GenerativeModel(
       model: model,
       apiKey: apiKey,
@@ -37,22 +39,28 @@ class GeminiProvider extends LlmProvider {
 
   late final ChatSession _chat;
   late final Map<String, FunctionCallHandler> _functionCallHandlers;
-  late final Map<String, FunctionUiHandler> _functionUiHandlers;
+  late final Map<String, LLmUiRenderer> _functionUiRenderers;
 
-  FunctionResponse dispatchFunctionCall(FunctionCall call) {
+  FutureOr<LlmFunctionResponse> _dispatchFunctionCall(FunctionCall call) async {
     final function = _functionCallHandlers[call.name]!;
-    final result = function(call.args);
-    return FunctionResponse(call.name, result);
+    final result = await function(call.args);
+    final functionResponse = FunctionResponse(call.name, result);
+
+    final renderer = _functionUiRenderers[call.name];
+
+    if (renderer != null) {
+      return LlmRunnableUiResponse(
+        name: functionResponse.name,
+        args: functionResponse.response,
+        renderer: renderer,
+      );
+    }
+
+    return LlmFunctionResponse(
+      name: functionResponse.name,
+      args: functionResponse.response,
+    );
   }
-
-  Widget? renderFunctionUi(FunctionResponse response) {
-    final render = _functionUiHandlers[response.name];
-    if (render == null) return null;
-
-    return render(response.response ?? {});
-  }
-
-  @override
 
   /// Generates a stream of text based on the given prompt and attachments.
   ///
@@ -60,6 +68,7 @@ class GeminiProvider extends LlmProvider {
   /// optional iterable of [Attachment] objects to include with the prompt.
   ///
   /// Returns a [Stream] of [String] containing the generated text chunks.
+  @override
   Stream<LlmResponse> generateStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
@@ -73,12 +82,7 @@ class GeminiProvider extends LlmProvider {
       final functionCalls = chunk.functionCalls.toList();
       if (functionCalls.isNotEmpty) {
         for (final call in chunk.functionCalls) {
-          final response = dispatchFunctionCall(call);
-
-          yield LlmFunctionResponse(
-            name: response.name,
-            args: response.response,
-          );
+          yield await _dispatchFunctionCall(call);
         }
       }
       final text = chunk.text;

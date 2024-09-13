@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import 'ai/models/message.dart';
 import 'ai/providers/gemini_provider.dart';
 import 'ai/views/llm_chat_view.dart';
-import 'functions/set_light_values.dart';
+import 'functions/set_light.dart';
 
 void main(List<String> args) async {
   await dotenv.load(fileName: ".env");
@@ -33,10 +32,6 @@ final safetySettings = [
   SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
 ];
 
-Widget functionResponseBuilder(LlmFunctionResponse response) {
-  return const Text('Function response');
-}
-
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
 
@@ -46,7 +41,7 @@ class ChatPage extends StatelessWidget {
         body: LlmChatView(
           provider: GeminiProvider(
             safetySettings: safetySettings,
-            functions: [setLightValuesFunction],
+            functions: [setLightValuesUi],
             model: GeminiModel.flash15Latest.model,
             toolConfig: ToolConfig(
               functionCallingConfig: FunctionCallingConfig(

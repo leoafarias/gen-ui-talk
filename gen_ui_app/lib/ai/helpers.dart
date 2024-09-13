@@ -11,3 +11,5 @@ extension BuildContextX on BuildContext {
 
   TextTheme get primaryTextTheme => theme.primaryTextTheme;
 }
+
+typedef JSON = Map<String, Object?>;
