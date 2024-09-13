@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../models/message.dart';
-import '../../views/message_builders.dart';
 import '../atoms/markdown_view.dart';
 import 'base_message_view.dart';
 
@@ -9,25 +8,22 @@ class LlmMessageView extends MessageView<LlmMessage> {
   const LlmMessageView(
     super.message, {
     super.key,
-    this.functionResponseBuilder,
     super.onSelected,
   });
 
-  final FunctionResponseBuilder? functionResponseBuilder;
-
   Widget _llmResponseBuilder(LlmResponse response) {
     return switch (response) {
-      (LlmTextResponse message) => _LlmTextPartView(message),
+      (LlmTextResponse message) => _LlmTextResponseView(message),
       (LlmFunctionResponse message) => _functionResponseBuilder(message),
     };
   }
 
   Widget _functionResponseBuilder(LlmFunctionResponse response) {
-    if (functionResponseBuilder == null) {
-      return _LlmFunctionPartView(response);
+    if (response is LlmRunnableUiResponse) {
+      return response.renderer;
     }
 
-    return functionResponseBuilder!(response);
+    return _LlmFunctionResponseView(response);
   }
 
   @override
@@ -46,8 +42,10 @@ class LlmMessageView extends MessageView<LlmMessage> {
   }
 }
 
-class _LlmFunctionPartView extends StatelessWidget {
-  const _LlmFunctionPartView(this.message);
+class _LlmFunctionResponseView extends StatelessWidget {
+  const _LlmFunctionResponseView(
+    this.message,
+  );
   final LlmFunctionResponse message;
 
   @override
@@ -56,8 +54,8 @@ class _LlmFunctionPartView extends StatelessWidget {
   }
 }
 
-class _LlmTextPartView extends StatelessWidget {
-  const _LlmTextPartView(this.message);
+class _LlmTextResponseView extends StatelessWidget {
+  const _LlmTextResponseView(this.message);
   final LlmTextResponse message;
 
   @override

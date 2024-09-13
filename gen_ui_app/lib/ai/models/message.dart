@@ -1,6 +1,7 @@
 import 'package:uuid/uuid.dart';
 
 import '../providers/llm_provider_interface.dart';
+import 'llm_runnable_ui.dart';
 
 sealed class Message {
   late final String id;
@@ -24,6 +25,17 @@ class UserMessage extends Message {
     required this.prompt,
     required this.attachments,
   }) : super(origin: MessageOrigin.user);
+
+  @override
+  String toClipboardText() => prompt;
+}
+
+class SystemMesssage extends Message {
+  final String prompt;
+  SystemMesssage({
+    super.id,
+    required this.prompt,
+  }) : super(origin: MessageOrigin.system);
 
   @override
   String toClipboardText() => prompt;
@@ -88,6 +100,16 @@ class LlmFunctionResponse extends LlmResponse {
   String toClipboardText() => '$name(${args?.toString() ?? ''})';
 }
 
+class LlmRunnableUiResponse<T> extends LlmFunctionResponse {
+  final LLmUiRenderer<T> renderer;
+
+  LlmRunnableUiResponse({
+    required super.name,
+    required super.args,
+    required this.renderer,
+  });
+}
+
 enum LlmMessageStatus {
   inProgress,
   success,
@@ -97,10 +119,12 @@ enum LlmMessageStatus {
 
 enum MessageOrigin {
   user,
+  system,
 
   llm;
 
   bool get isUser => this == MessageOrigin.user;
+  bool get isSystem => this == MessageOrigin.system;
 
   bool get isLlm => this == MessageOrigin.llm;
 }

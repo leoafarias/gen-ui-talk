@@ -5,6 +5,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../components/molecules/llm_message_view.dart';
+import '../components/molecules/system_message_view.dart';
 import '../components/molecules/user_message_view.dart';
 import '../models/message.dart';
 import 'message_builders.dart';
@@ -14,7 +15,6 @@ class ChatMessageList extends StatefulWidget {
     required this.transcript,
     this.onEditMessage,
     this.messageBuilder,
-    this.functionResponseBuilder,
     super.key,
   });
 
@@ -23,7 +23,6 @@ class ChatMessageList extends StatefulWidget {
   final void Function(Message message)? onEditMessage;
 
   final MessageBuilder? messageBuilder;
-  final FunctionResponseBuilder? functionResponseBuilder;
 
   @override
   State<ChatMessageList> createState() => _ChatMessageListState();
@@ -37,6 +36,10 @@ class _ChatMessageListState extends State<ChatMessageList> {
 
     final messageKey = Key('message-${message.id}');
     return switch (message) {
+      (SystemMesssage message) => SystemMessageView(
+          message,
+          key: messageKey,
+        ),
       (UserMessage message) => UserMessageView(
           message,
           key: messageKey,
@@ -44,7 +47,6 @@ class _ChatMessageListState extends State<ChatMessageList> {
       (LlmMessage message) => LlmMessageView(
           message,
           key: messageKey,
-          functionResponseBuilder: widget.functionResponseBuilder,
         )
     };
   }

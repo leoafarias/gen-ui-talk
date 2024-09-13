@@ -28,7 +28,6 @@ class LlmChatView extends StatefulWidget {
   const LlmChatView({
     required this.provider,
     this.messageBuilder,
-    this.functionResponseBuilder,
     super.key,
   });
 
@@ -36,7 +35,6 @@ class LlmChatView extends StatefulWidget {
   final LlmProvider provider;
 
   final MessageBuilder? messageBuilder;
-  final FunctionResponseBuilder? functionResponseBuilder;
 
   @override
   State<LlmChatView> createState() => _LlmChatViewState();
@@ -103,7 +101,6 @@ class _LlmChatViewState extends State<LlmChatView> {
                 transcript: _transcript,
                 onEditMessage: _current == null ? _onEditMessage : null,
                 messageBuilder: widget.messageBuilder,
-                functionResponseBuilder: widget.functionResponseBuilder,
               ),
             ),
             ChatInput(
