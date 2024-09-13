@@ -5,21 +5,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../helpers.dart';
-import '../providers/llm_provider_interface.dart';
+import '../../helpers.dart';
+import '../../providers/llm_provider_interface.dart';
 
-/// A widget that displays an attachment based on its type.
-///
-/// This widget determines the appropriate view for the given [attachment]
-/// and renders it accordingly. It supports file attachments and image
-/// attachments, but throws an exception for link attachments.
 class AttachmentView extends StatelessWidget {
-  /// Creates an AttachmentView.
-  ///
-  /// The [attachment] parameter must not be null.
   const AttachmentView(this.attachment, {super.key});
 
-  /// The attachment to be displayed.
   final Attachment attachment;
 
   @override

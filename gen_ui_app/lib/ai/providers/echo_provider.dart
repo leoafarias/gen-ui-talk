@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import '../models/message.dart';
 import 'llm_provider_interface.dart';
 
 /// A simple LLM provider that echoes the input prompt and attachment
@@ -19,16 +20,16 @@ class EchoProvider extends LlmProvider {
   ///
   /// [prompt] The input prompt to be echoed. [attachments] An optional iterable
   /// of attachments to be processed and included in the response.
-  Stream<LlmProviderResponse> generateStream(
+  Stream<LlmResponse> generateStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async* {
     await Future.delayed(const Duration(milliseconds: 1000));
-    yield LlmTextResponse('echo: ');
+    yield LlmTextResponse(text: 'echo: ');
     await Future.delayed(const Duration(milliseconds: 500));
-    yield LlmTextResponse(prompt);
+    yield LlmTextResponse(text: prompt);
     final strings = attachments.map(_stringFrom);
-    yield LlmTextResponse('\n\nattachments: $strings');
+    yield LlmTextResponse(text: '\n\nattachments: $strings');
   }
 
   String _stringFrom(Attachment attachment) => switch (attachment) {

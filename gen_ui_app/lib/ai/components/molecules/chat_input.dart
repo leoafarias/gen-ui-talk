@@ -9,10 +9,10 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-import '../models/chat_message.dart';
-import '../providers/llm_provider_interface.dart';
+import '../../models/message.dart';
+import '../../providers/llm_provider_interface.dart';
+import '../../views/circle_button.dart';
 import 'attachment_view.dart';
-import 'circle_button.dart';
 
 /// A widget that provides an input field for chat messages with attachment
 /// support.
@@ -35,7 +35,7 @@ class ChatInput extends StatefulWidget {
   final bool submitting;
 
   /// The initial message to populate the input field, if any.
-  final ChatMessage? initialMessage;
+  final UserMessage? initialMessage;
 
   /// Callback function called when a message is submitted.
   ///
@@ -72,7 +72,7 @@ class _ChatInputState extends State<ChatInput> {
   void didUpdateWidget(covariant ChatInput oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.initialMessage != null) {
-      _controller.text = widget.initialMessage!.text;
+      _controller.text = widget.initialMessage!.prompt;
       _attachments.addAll(widget.initialMessage!.attachments);
     }
     _focusNode.requestFocus();

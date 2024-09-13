@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import 'ai/models/message.dart';
 import 'ai/providers/gemini_provider.dart';
 import 'ai/views/llm_chat_view.dart';
+import 'functions/set_light_values.dart';
 
 void main(List<String> args) async {
   await dotenv.load(fileName: ".env");
@@ -31,23 +33,9 @@ final safetySettings = [
   SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
 ];
 
-Map<String, Object?> setLightValues(Map<String, Object?> args) {
-  return args;
+Widget functionResponseBuilder(LlmFunctionResponse response) {
+  return const Text('Function response');
 }
-
-final controlLightFunction = FunctionDeclaration(
-    'controlLight',
-    'Set the brightness and color temperature of a room light.',
-    Schema.object(properties: {
-      'brightness': Schema.number(
-          description:
-              'Light level from 0 to 100. Zero is off and 100 is full brightness.',
-          nullable: false),
-      'colorTemperatur': Schema.string(
-          description:
-              'Color temperature of the light fixture which can be `daylight`, `cool`, or `warm`',
-          nullable: false),
-    }));
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -58,15 +46,12 @@ class ChatPage extends StatelessWidget {
         body: LlmChatView(
           provider: GeminiProvider(
             safetySettings: safetySettings,
-            functionHandlers: {controlLightFunction.name: setLightValues},
+            functions: [setLightValuesFunction],
             model: GeminiModel.flash15Latest.model,
-            tools: [
-              Tool(functionDeclarations: [controlLightFunction]),
-            ],
             toolConfig: ToolConfig(
               functionCallingConfig: FunctionCallingConfig(
-                mode: FunctionCallingMode.any,
-                allowedFunctionNames: {controlLightFunction.name},
+                mode: FunctionCallingMode.auto,
+                // allowedFunctionNames: functions.toAllowedFunctionNames(),
               ),
             ),
             systemInstruction: 'You are a friendly assistant.',
