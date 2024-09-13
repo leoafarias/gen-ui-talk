@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../helpers.dart';
+import '../../helpers.dart';
 
 class _JumpingDot extends AnimatedWidget {
   final double fontSize;

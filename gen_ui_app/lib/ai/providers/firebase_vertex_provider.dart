@@ -4,6 +4,7 @@
 
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 
+import '../models/message.dart';
 import 'llm_provider_interface.dart';
 
 /// A provider class for interacting with Firebase Vertex AI's language model.
@@ -41,7 +42,7 @@ class FirebaseVertexProvider extends LlmProvider {
   /// optional iterable of [Attachment] objects to include with the prompt.
   ///
   /// Returns a [Stream] of [String] containing the generated text chunks.
-  Stream<LlmProviderResponse> generateStream(
+  Stream<LlmResponse> generateStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async* {
@@ -52,7 +53,7 @@ class FirebaseVertexProvider extends LlmProvider {
     final response = _chat.sendMessageStream(content);
     await for (final chunk in response) {
       final text = chunk.text;
-      if (text != null) yield LlmTextResponse(text);
+      if (text != null) yield LlmTextResponse(text: text);
     }
   }
 

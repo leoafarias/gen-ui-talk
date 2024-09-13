@@ -75,12 +75,14 @@ mixin _$ProductCardSpec on Spec<ProductCardSpec> {
   /// The interpolation is performed on each property of the [ProductCardSpec] using the appropriate
   /// interpolation method:
   ///
+  /// - [CardSpec.lerp] for [card].
   /// - [ImageSpec.lerp] for [image].
   /// - [TextSpec.lerp] for [title] and [subtitle] and [description] and [price].
+  /// - [ButtonSpec.lerp] for [button].
   /// - [BoxSpec.lerp] for [bottomContainer] and [topContainer] and [contentContainer].
   /// - [FlexSpec.lerp] for [bottomFlex] and [topFlex] and [contentFlex].
 
-  /// For [card] and [button], the interpolation is performed using a step function.
+  /// For , the interpolation is performed using a step function.
   /// If [t] is less than 0.5, the value from the current [ProductCardSpec] is used. Otherwise, the value
   /// from the [other] [ProductCardSpec] is used.
   ///
