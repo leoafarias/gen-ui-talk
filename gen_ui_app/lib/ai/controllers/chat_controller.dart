@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart'; // For ChangeNotifier
+import 'package:flutter/widgets.dart';
 
 import '../models/message.dart';
 import '../providers/llm_provider_interface.dart';
@@ -17,6 +17,10 @@ class ChatController extends ChangeNotifier {
 
   ChatController({required this.provider});
 
+  static ChatController of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<ChatControllerProvider>()!
+      .notifier!;
+
   UserMessage? get initialMessage => _initialMessage;
 
   set initialMessage(UserMessage? message) {
@@ -24,8 +28,8 @@ class ChatController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> submitMessage(
-      String prompt, Iterable<Attachment> attachments) async {
+  Future<void> submitMessage(String prompt,
+      {Iterable<Attachment> attachments = const []}) async {
     _initialMessage = null;
 
     final userMessage = UserMessage(prompt: prompt, attachments: attachments);
@@ -119,4 +123,12 @@ class _LlmResponse {
     message.updateStatus(status);
     onDone?.call();
   }
+}
+
+class ChatControllerProvider extends InheritedNotifier<ChatController> {
+  const ChatControllerProvider({
+    super.key,
+    required super.notifier,
+    required super.child,
+  });
 }

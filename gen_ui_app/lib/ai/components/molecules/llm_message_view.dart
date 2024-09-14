@@ -20,7 +20,7 @@ class LlmMessageView extends MessageView<LlmMessage> {
 
   Widget _functionResponseBuilder(LlmFunctionResponse response) {
     if (response is LlmRunnableUiResponse) {
-      return response.renderer;
+      return response.render();
     }
 
     return _LlmFunctionResponseView(response);

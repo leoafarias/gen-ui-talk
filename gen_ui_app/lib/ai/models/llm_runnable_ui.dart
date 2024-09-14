@@ -37,12 +37,7 @@ class LLmUiRenderer<T> {
   })  : _parser = parser,
         _builder = builder;
 
-  RunnableUi<T> build(JSON args, FunctionCallHandler handler,
-          Future<void> Function(String) notifier) =>
-      _builder(_parser.decode(args), (T change) async {
-        final result = await handler(_parser.encode(change));
-        return notifier('I have changed to $result');
-      });
+  RunnableUi<T> build(JSON args) => _builder(_parser.decode(args));
 }
 
 class RunnableUiState<T> extends ChangeNotifier {
@@ -62,7 +57,6 @@ typedef LlmRunnableChangeNotifier<T> = Future<void> Function(T change);
 
 typedef RunnableUiBuilder<T> = RunnableUi<T> Function(
   T value,
-  LlmRunnableChangeNotifier<T> notifier,
 );
 
 class RunnableUiParser<T> {
@@ -79,16 +73,14 @@ class RunnableUiParser<T> {
 }
 
 abstract class RunnableUi<T> extends StatefulWidget {
-  final LlmRunnableChangeNotifier<T> notifier;
   const RunnableUi({
     super.key,
     required this.value,
-    required this.notifier,
   });
 
   final T value;
 
-  Widget build(RunnableUiState<T> state);
+  Widget build(BuildContext context, RunnableUiState<T> state);
 
   @override
   State<RunnableUi> createState() => _RunnableUiState<T>();
@@ -121,7 +113,7 @@ class _RunnableUiState<T> extends State<RunnableUi<T>> {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: _state,
-      builder: (context, _) => widget.build(_state),
+      builder: (context, _) => widget.build(context, _state),
     );
   }
 }
