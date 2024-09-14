@@ -2,6 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../ai/controllers/chat_controller.dart';
 import '../ai/models/llm_function.dart';
 import '../ai/models/llm_runnable_ui.dart';
 
@@ -51,9 +52,8 @@ final setLightValuesFunction = LlmFunction(
 final setLightValuesUi = LlmUiFunction<SetLightDto>(
   setLightValuesFunction,
   renderer: LLmUiRenderer(
-    builder: (value, notifier) => _SetLightWidget(
+    builder: (value) => _SetLightWidget(
       value: value,
-      notifier: notifier,
     ),
     parser: RunnableUiParser(
       decoder: SetLightDtoMapper.fromMap,
@@ -63,12 +63,13 @@ final setLightValuesUi = LlmUiFunction<SetLightDto>(
 );
 
 class _SetLightWidget extends RunnableUi<SetLightDto> {
-  const _SetLightWidget({required super.value, required super.notifier});
+  const _SetLightWidget({required super.value});
 
   @override
-  Widget build(RunnableUiState<SetLightDto> state) {
+  Widget build(context, RunnableUiState<SetLightDto> state) {
     final brightness = state.value.brightness ?? 50;
 
+    final chatController = ChatController.of(context);
     SetLightDto updateState({int? brightness, LightStatus? status}) {
       return state.value = value.copyWith(
         brightness: brightness,
@@ -86,8 +87,8 @@ class _SetLightWidget extends RunnableUi<SetLightDto> {
           min: 0,
           max: 100,
           onChanged: (value) => updateState(brightness: value.toInt()),
-          onChangeEnd: (value) =>
-              notifier(updateState(brightness: value.toInt())),
+          onChangeEnd: (value) => chatController
+              .submitMessage('I have updated to ${state.value.toMap()}'),
         ),
       ],
     );

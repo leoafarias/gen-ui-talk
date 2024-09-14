@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:uuid/uuid.dart';
 
 import '../providers/llm_provider_interface.dart';
@@ -101,13 +102,15 @@ class LlmFunctionResponse extends LlmResponse {
 }
 
 class LlmRunnableUiResponse<T> extends LlmFunctionResponse {
-  final LLmUiRenderer<T> renderer;
+  final LLmUiRenderer<T> _renderer;
 
   LlmRunnableUiResponse({
     required super.name,
     required super.args,
-    required this.renderer,
-  });
+    required LLmUiRenderer<T> renderer,
+  }) : _renderer = renderer;
+
+  Widget render() => _renderer.build(args!);
 }
 
 enum LlmMessageStatus {

@@ -40,7 +40,8 @@ class ChatInput extends StatefulWidget {
   /// Callback function called when a message is submitted.
   ///
   /// It takes two parameters: the message text and a collection of attachments.
-  final void Function(String, Iterable<Attachment>) onSubmit;
+  final void Function(String, {required Iterable<Attachment> attachments})
+      onSubmit;
 
   /// Callback function called when the input is cancelled.
   final void Function() onCancel;
@@ -170,7 +171,7 @@ class _ChatInputState extends State<ChatInput> {
     if (_controller.text.isEmpty) return;
 
     assert(_inputState == _InputState.enabled);
-    widget.onSubmit(prompt, List.from(_attachments));
+    widget.onSubmit(prompt, attachments: List.from(_attachments));
     _attachments.clear();
     _controller.clear();
     _focusNode.requestFocus();

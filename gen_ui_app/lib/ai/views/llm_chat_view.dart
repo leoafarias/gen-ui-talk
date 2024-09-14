@@ -25,7 +25,7 @@ class LlmChatView extends StatefulWidget {
 }
 
 class _LlmChatViewState extends State<LlmChatView> {
-  late ChatController _controller;
+  late final ChatController _controller;
 
   @override
   void initState() {
@@ -35,33 +35,36 @@ class _LlmChatViewState extends State<LlmChatView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: _controller,
-      builder: (context, _) {
-        return Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Expanded(
-                child: ChatMessageList(
-                  transcript: _controller.transcript,
-                  onEditMessage: !_controller.isProcessing
-                      ? _controller.editMessage
-                      : null,
-                  messageBuilder: widget.messageBuilder,
+    return ChatControllerProvider(
+      notifier: _controller,
+      child: ListenableBuilder(
+        listenable: _controller,
+        builder: (context, _) {
+          return Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ChatMessageList(
+                    transcript: _controller.transcript,
+                    onEditMessage: !_controller.isProcessing
+                        ? _controller.editMessage
+                        : null,
+                    messageBuilder: widget.messageBuilder,
+                  ),
                 ),
-              ),
-              ChatInput(
-                initialMessage: _controller.initialMessage,
-                submitting: _controller.isProcessing,
-                onSubmit: _controller.submitMessage,
-                onCancel: _controller.cancelMessage,
-              ),
-            ],
-          ),
-        );
-      },
+                ChatInput(
+                  initialMessage: _controller.initialMessage,
+                  submitting: _controller.isProcessing,
+                  onSubmit: _controller.submitMessage,
+                  onCancel: _controller.cancelMessage,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
