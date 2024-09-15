@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/llm_runnable_ui.dart';
 import '../../models/message.dart';
 import '../atoms/markdown_view.dart';
 import 'base_message_view.dart';
@@ -26,8 +27,11 @@ class LlmMessageView extends MessageView<ILlmMessage> {
     LlmFunctionResponsePart response,
   ) {
     final widget = response.getRunnableUi();
-    if (widget != null && active) {
-      return widget;
+    if (widget != null) {
+      return RunnableUiDataProvider(
+        isRunning: active,
+        child: widget,
+      );
     }
 
     return _LlmFunctionResponseView(response);

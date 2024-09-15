@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../helpers.dart';
-import 'llm_runnable_ui.dart';
 
 class LlmFunctionDeclaration {
   final String name;
@@ -19,10 +19,12 @@ class LlmFunctionDeclaration {
 
 typedef FunctionCallHandler = FutureOr<JSON> Function(JSON args);
 
+typedef FunctionUiHandler = Widget Function(JSON);
+
 class LlmFunction {
   final LlmFunctionDeclaration function;
   final FunctionCallHandler handler;
-  final RunnableUiHandler? uiHandler;
+  final FunctionUiHandler? uiHandler;
   const LlmFunction({
     required this.function,
     required this.handler,
@@ -31,13 +33,19 @@ class LlmFunction {
 
   String get name => function.name;
 
-  RunnableUi? render(JSON value) => uiHandler?.call(value);
+  Widget? render(JSON value) => uiHandler?.call(value);
 
-  RunnableUi<dynamic> uiHandlerDeclaration(dynamic value) {
+  Widget uiHandlerDeclaration(dynamic value) {
     return uiHandler!.call(value);
   }
 
   dynamic handlerDeclaration(Map<String, Object?> args) {
     return handler.call(args);
   }
+
+  FunctionDeclaration get declaration => FunctionDeclaration(
+        function.name,
+        function.description,
+        function.parameters,
+      );
 }

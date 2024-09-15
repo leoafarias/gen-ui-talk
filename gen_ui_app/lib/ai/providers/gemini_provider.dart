@@ -17,6 +17,7 @@ class GeminiProvider extends LlmProvider {
     String? systemInstruction,
     GenerationConfig? config,
     List<LlmFunction> functions = const [],
+    List<Tool> tools = const [],
     List<SafetySetting> safetySettings = const [],
     ToolConfig? toolConfig,
   }) {
@@ -139,46 +140,11 @@ class GeminiProvider extends LlmProvider {
 }
 
 List<Tool> _llmFunctionsToTools(List<LlmFunction> functions) {
-  return functions
-      .map((e) => Tool(functionDeclarations: [
-            FunctionDeclaration(
-              e.function.name,
-              e.function.description,
-              e.function.parameters,
-            )
-          ]))
-      .toList();
+  return [
+    Tool(functionDeclarations: functions.map((e) => e.declaration).toList())
+  ];
 }
 
 Map<String, LlmFunction> _llmFunctionsToHandlers(List<LlmFunction> functions) {
   return {for (final function in functions) function.function.name: function};
 }
-
-
-// Content _buildContent(Message message) {
-//   return switch (message) {
-//     (UserMessage message) => Content('user', [
-//         TextPart(message.prompt),
-//         ...message.attachments.map(_partFrom),
-//       ]),
-//     (LlmMessage message) => Content.model(_llmPartsFrom(message.parts)),
-    
-//   };
-// }
-
-// Part _partFrom(Attachment attachment) => switch (attachment) {
-//       (FileAttachment a) => DataPart(a.mimeType, a.bytes),
-//       (ImageAttachment a) => DataPart(a.mimeType, a.bytes),
-//       (LinkAttachment a) => FilePart(a.url),
-//     };
-
-// List<Part> _llmPartsFrom(Iterable<LlmMessagePart> parts) {
-//   return switch (parts) {
-//     (LlmTextPart part) => [TextPart(part.text)],
-//     (LlmFunctionResponsePart part) => [
-//         TextPart(part.function.name),
-//         TextPart(part.result.toString()),
-//       ],
-//     _ => throw UnimplementedError(),
-//   };
-// }

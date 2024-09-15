@@ -1,59 +1,29 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../helpers.dart';
+class RunnableUiDataProvider extends InheritedWidget {
+  final bool isRunning;
 
-class RunnableUiState<T> extends ChangeNotifier {
-  RunnableUiState(this._value);
-  T _value;
-
-  T get value => _value;
-
-  set value(T newValue) {
-    if (const DeepCollectionEquality().equals(_value, newValue)) return;
-    _value = newValue;
-    notifyListeners();
-  }
-}
-
-// typedef LlmRunnableChangeNotifier<T> = Future<void> Function(T change);
-
-typedef RunnableUiHandler = RunnableUi Function(JSON);
-
-abstract class RunnableUi<T> extends StatefulWidget {
-  const RunnableUi(
-    this.data, {
+  const RunnableUiDataProvider({
     super.key,
+    required this.isRunning,
+    required super.child,
   });
 
-  final T data;
-
-  Widget build(BuildContext context, RunnableUiState<T> state);
+  static RunnableUiDataProvider of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<RunnableUiDataProvider>()!;
 
   @override
-  State<RunnableUi<T>> createState() => _RunnableUiState<T>();
+  bool updateShouldNotify(RunnableUiDataProvider oldWidget) =>
+      oldWidget.isRunning != isRunning;
 }
 
-class _RunnableUiState<T> extends State<RunnableUi<T>> {
-  late final RunnableUiState<T> _state;
+RunnableUiDataProvider useRunnableUiResponseProvider() {
+  final context = useContext();
+  return RunnableUiDataProvider.of(context);
+}
 
-  @override
-  void initState() {
-    super.initState();
-    _state = RunnableUiState(widget.data);
-  }
-
-  @override
-  void dispose() {
-    _state.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: _state,
-      builder: (context, _) => widget.build(context, _state),
-    );
-  }
+bool useIsRunning() {
+  final provider = useRunnableUiResponseProvider();
+  return provider.isRunning;
 }

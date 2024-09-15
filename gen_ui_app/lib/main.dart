@@ -41,12 +41,15 @@ class ChatPage extends StatelessWidget {
         body: LlmChatView(
           provider: GeminiProvider(
             safetySettings: safetySettings,
-            functions: [controlLightFunction],
+            functions: [controlLightFunction, currentlightControlStateFunction],
             model: GeminiModel.flash15Latest.model,
             toolConfig: ToolConfig(
               functionCallingConfig: FunctionCallingConfig(
                 mode: FunctionCallingMode.auto,
-                // allowedFunctionNames: functions.toAllowedFunctionNames(),
+                // allowedFunctionNames: {
+                //   controlLightFunction.name,
+                //   getControlLightStatusFunction.name
+                // },
               ),
             ),
             systemInstruction: 'You are a friendly assistant.',
