@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class RunnableUiDataProvider extends InheritedWidget {
+class WidgetResponseProvider extends InheritedWidget {
   final bool isRunning;
 
-  const RunnableUiDataProvider({
+  const WidgetResponseProvider({
     super.key,
     required this.isRunning,
     required super.child,
   });
 
-  static RunnableUiDataProvider of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<RunnableUiDataProvider>()!;
+  static WidgetResponseProvider of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<WidgetResponseProvider>()!;
 
   @override
-  bool updateShouldNotify(RunnableUiDataProvider oldWidget) =>
+  bool updateShouldNotify(WidgetResponseProvider oldWidget) =>
       oldWidget.isRunning != isRunning;
 }
 
-RunnableUiDataProvider useRunnableUiResponseProvider() {
+WidgetResponseProvider useRunnableUiResponseProvider() {
   final context = useContext();
-  return RunnableUiDataProvider.of(context);
+  return WidgetResponseProvider.of(context);
 }
 
-bool useIsRunning() {
+bool isActiveWidget() {
   final provider = useRunnableUiResponseProvider();
   return provider.isRunning;
 }

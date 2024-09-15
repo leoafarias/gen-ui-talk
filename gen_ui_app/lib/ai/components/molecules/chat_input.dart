@@ -1,7 +1,3 @@
-// Copyright 2024 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +7,10 @@ import 'package:universal_platform/universal_platform.dart';
 
 import '../../models/message.dart';
 import '../../providers/llm_provider_interface.dart';
-import '../../views/circle_button.dart';
+import '../../style.dart';
 import 'attachment_view.dart';
 
-/// A widget that provides an input field for chat messages with attachment
-/// support.
-///
-/// This widget allows users to enter text messages and add attachments. It also
-/// handles the submission of messages and provides a way to cancel the input.
 class ChatInput extends StatefulWidget {
-  /// Creates a ChatInput widget.
-  ///
-  /// The [submitting], [onSubmit], and [onCancel] parameters are required.
   const ChatInput({
     required this.submitting,
     required this.onSubmit,
@@ -31,19 +19,13 @@ class ChatInput extends StatefulWidget {
     super.key,
   });
 
-  /// Indicates whether a message is currently being submitted.
   final bool submitting;
 
-  /// The initial message to populate the input field, if any.
   final UserMessage? initialMessage;
 
-  /// Callback function called when a message is submitted.
-  ///
-  /// It takes two parameters: the message text and a collection of attachments.
   final void Function(String, {required Iterable<Attachment> attachments})
       onSubmit;
 
-  /// Callback function called when the input is cancelled.
   final void Function() onCancel;
 
   @override
@@ -57,17 +39,6 @@ class _ChatInputState extends State<ChatInput> {
   final _focusNode = FocusNode();
   final _attachments = <Attachment>[];
   final _isMobile = UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
-
-  late final OutlineInputBorder _border;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _border = OutlineInputBorder(
-      borderSide: BorderSide(width: 1, color: Theme.of(context).dividerColor),
-      borderRadius: BorderRadius.circular(24),
-    );
-  }
 
   @override
   void didUpdateWidget(covariant ChatInput oldWidget) {
@@ -124,34 +95,37 @@ class _ChatInputState extends State<ChatInput> {
                       controller: _controller,
                       focusNode: _focusNode,
                       autofocus: true,
-                      // on mobile, pressing enter should add a new line
-                      // on web+desktop, pressing enter should submit the prompt
                       textInputAction: _isMobile
                           ? TextInputAction.newline
                           : TextInputAction.done,
                       onSubmitted: (value) => _onSubmit(value),
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: chatTheme.textStyle.copyWith(
+                        color: chatTheme.onAccentColor,
+                      ),
                       decoration: InputDecoration(
-                        // need to set all four xxxBorder args (but not
-                        // border itself) to override Material styles
-                        errorBorder: _border,
-                        focusedBorder: _border,
-                        enabledBorder: _border,
-                        disabledBorder: _border,
                         hintText: "Ask me anything...",
-                        hintStyle:
-                            Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Theme.of(context).hintColor,
-                                ),
+                        hintStyle: chatTheme.textStyle.copyWith(
+                          color: chatTheme.onAccentColor,
+                        ),
+                        filled: true,
+                        fillColor: chatTheme.accentColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        suffixIcon: _SubmitButton(
+                          text: _controller.text,
+                          inputState: _inputState,
+                          onSubmit: _onSubmit,
+                          onCancel: _onCancel,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 12.0,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                _SubmitButton(
-                  text: _controller.text,
-                  inputState: _inputState,
-                  onSubmit: _onSubmit,
-                  onCancel: _onCancel,
                 ),
               ],
             ),
@@ -217,29 +191,29 @@ class _AttachmentActionBarState extends State<_AttachmentActionBar> {
 
   @override
   Widget build(BuildContext context) => _expanded
-      ? CircleButtonBar([
-          CircleButton(
+      ? Row(children: [
+          IconButton(
             onPressed: _onToggleMenu,
-            icon: Icons.close,
+            icon: const Icon(Icons.close),
           ),
           if (_canCamera)
-            CircleButton(
+            IconButton(
               onPressed: _onCamera,
-              icon: Icons.camera_alt,
+              icon: const Icon(Icons.camera_alt),
             ),
-          CircleButton(
+          IconButton(
             onPressed: _onGallery,
-            icon: Icons.image,
+            icon: const Icon(Icons.image),
           ),
           if (_canFile)
-            CircleButton(
+            IconButton(
               onPressed: _onFile,
-              icon: Icons.attach_file,
+              icon: const Icon(Icons.attach_file),
             ),
         ])
-      : CircleButton(
+      : IconButton(
           onPressed: _onToggleMenu,
-          icon: Icons.add,
+          icon: const Icon(Icons.add),
         );
 
   void _onToggleMenu() => setState(() => _expanded = !_expanded);
@@ -297,9 +271,11 @@ class _RemoveableAttachment extends StatelessWidget {
             height: 80,
             child: AttachmentView(attachment),
           ),
-          CircleButton(
-            icon: Icons.close,
-            size: 20,
+          IconButton(
+            icon: const Icon(
+              Icons.close,
+              size: 20,
+            ),
             onPressed: () => onRemove(attachment),
           ),
         ],
@@ -320,18 +296,52 @@ class _SubmitButton extends StatelessWidget {
   final void Function() onCancel;
 
   @override
-  Widget build(BuildContext context) => switch (inputState) {
-        // disabled Send button
-        _InputState.disabled => const SizedBox(),
-        // enabled Send button
-        _InputState.enabled => CircleButton(
-            onPressed: () => onSubmit(text),
-            icon: Icons.send,
-          ),
-        // enabled Stop button
-        _InputState.submitting => CircleButton(
-            onPressed: onCancel,
-            icon: Icons.stop,
-          ),
-      };
+  Widget build(BuildContext context) {
+    final isSubmitting = inputState == _InputState.submitting;
+    return AnimatedScale(
+      duration: Durations.short3,
+      scale: inputState == _InputState.disabled ? 0.0 : 1,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Stack(
+          children: [
+            Container(
+                decoration: BoxDecoration(
+                  color: chatTheme.onAccentColor,
+                  shape: BoxShape.circle,
+                ),
+                child: switch (inputState) {
+                  _InputState.submitting => SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: IconButton(
+                          onPressed: onCancel,
+                          color: chatTheme.accentColor,
+                          icon: const Icon(Icons.stop),
+                        ),
+                      ),
+                    ),
+                  _InputState.enabled => IconButton(
+                      onPressed: () => onSubmit(text),
+                      color: chatTheme.accentColor,
+                      icon: const Icon(Icons.play_arrow),
+                    ),
+                  _InputState.disabled => const SizedBox(),
+                }),
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: isSubmitting
+                  ? CircularProgressIndicator(
+                      strokeWidth: 5,
+                      strokeAlign: BorderSide.strokeAlignInside,
+                      color: chatTheme.accentColor.withOpacity(0.3),
+                    )
+                  : const SizedBox(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
