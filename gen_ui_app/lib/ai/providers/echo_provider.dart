@@ -20,16 +20,27 @@ class EchoProvider extends LlmProvider {
   ///
   /// [prompt] The input prompt to be echoed. [attachments] An optional iterable
   /// of attachments to be processed and included in the response.
-  Stream<LlmResponse> generateStream(
+  Stream<LlmMessagePart> sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async* {
     await Future.delayed(const Duration(milliseconds: 1000));
-    yield LlmTextResponse(text: 'echo: ');
+    yield LlmTextPart(text: 'echo: ');
     await Future.delayed(const Duration(milliseconds: 500));
-    yield LlmTextResponse(text: prompt);
+    yield LlmTextPart(text: prompt);
     final strings = attachments.map(_stringFrom);
-    yield LlmTextResponse(text: '\n\nattachments: $strings');
+    yield LlmTextPart(text: '\n\nattachments: $strings');
+  }
+
+  @override
+  Future<LlmMessage> sendMessage(
+    String prompt, {
+    Iterable<Attachment> attachments = const [],
+  }) async {
+    final strings = attachments.map(_stringFrom);
+    return LlmMessage(
+      parts: [LlmTextPart(text: 'echo: $prompt\n\nattachments: $strings')],
+    );
   }
 
   String _stringFrom(Attachment attachment) => switch (attachment) {

@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:uuid/uuid.dart';
 
+import '../helpers.dart';
 import '../providers/llm_provider_interface.dart';
-import 'llm_runnable_ui.dart';
+import 'llm_function.dart';
 
 sealed class Message {
   late final String id;
@@ -42,46 +43,68 @@ class SystemMesssage extends Message {
   String toClipboardText() => prompt;
 }
 
-class LlmMessage extends Message {
-  LlmMessageStatus _status;
-  final List<LlmResponse> parts = List.empty(growable: true);
+sealed class ILlmMessage extends Message {
+  List<LlmMessagePart> get parts;
+
+  ILlmMessage({
+    super.id,
+  }) : super(origin: MessageOrigin.llm);
+
+  @override
+  String toClipboardText() => parts.map((e) => e.toClipboardText()).join();
+}
+
+class LlmMessage extends ILlmMessage {
+  @override
+  final List<LlmMessagePart> parts;
 
   LlmMessage({
     super.id,
-    LlmMessageStatus status = LlmMessageStatus.inProgress,
-  })  : _status = status,
-        super(origin: MessageOrigin.llm);
+    required this.parts,
+  });
 
-  void append(LlmResponse part) {
+  factory LlmMessage.text(String text) {
+    return LlmMessage(parts: [LlmTextPart(text: text)]);
+  }
+
+  List<LlmFunctionResponsePart> get functionResponses =>
+      parts.whereType<LlmFunctionResponsePart>().toList();
+}
+
+class LlmStreamMessage extends ILlmMessage {
+  @override
+  final List<LlmMessagePart> parts = List.empty(growable: true);
+
+  LlmMessage finalize() {
+    return LlmMessage(
+      id: id,
+      parts: parts,
+    );
+  }
+
+  LlmStreamMessage({
+    super.id,
+  });
+
+  void append(LlmMessagePart part) {
     // If last message part is LlmTextPartMessage, append to it
-    if (parts.isNotEmpty &&
-        parts.last is LlmTextResponse &&
-        part is LlmTextResponse) {
-      (parts.last as LlmTextResponse).text += part.text;
+    if (parts.isNotEmpty && parts.last is LlmTextPart && part is LlmTextPart) {
+      (parts.last as LlmTextPart).text += part.text;
       return;
     }
     parts.add(part);
   }
-
-  void updateStatus(LlmMessageStatus status) => _status = status;
-
-  bool get isDone => _status != LlmMessageStatus.inProgress;
-
-  @override
-  String toClipboardText() {
-    return parts.map((part) => part.toClipboardText()).join('\n');
-  }
 }
 
-sealed class LlmResponse {
-  const LlmResponse();
+sealed class LlmMessagePart {
+  const LlmMessagePart();
 
   String toClipboardText();
 }
 
-class LlmTextResponse extends LlmResponse {
+class LlmTextPart extends LlmMessagePart {
   String text;
-  LlmTextResponse({
+  LlmTextPart({
     required this.text,
   });
 
@@ -89,28 +112,19 @@ class LlmTextResponse extends LlmResponse {
   String toClipboardText() => text;
 }
 
-class LlmFunctionResponse extends LlmResponse {
-  final String name;
-  final Map<String, Object?>? args;
-  LlmFunctionResponse({
-    required this.name,
-    required this.args,
+class LlmFunctionResponsePart extends LlmMessagePart {
+  final LlmFunction function;
+  final JSON result;
+
+  LlmFunctionResponsePart({
+    required this.function,
+    required this.result,
   });
 
+  Widget? getRunnableUi() => function.render(result);
+
   @override
-  String toClipboardText() => '$name(${args?.toString() ?? ''})';
-}
-
-class LlmRunnableUiResponse<T> extends LlmFunctionResponse {
-  final LLmUiRenderer<T> _renderer;
-
-  LlmRunnableUiResponse({
-    required super.name,
-    required super.args,
-    required LLmUiRenderer<T> renderer,
-  }) : _renderer = renderer;
-
-  Widget render() => _renderer.build(args!);
+  String toClipboardText() => '${function.name}(${result.toString()})';
 }
 
 enum LlmMessageStatus {

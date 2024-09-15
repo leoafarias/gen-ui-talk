@@ -3,77 +3,66 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../ai/controllers/chat_controller.dart';
+import '../ai/helpers.dart';
 import '../ai/models/llm_function.dart';
 import '../ai/models/llm_runnable_ui.dart';
 
-part 'set_light.mapper.dart';
-
-@MappableEnum()
-enum LightStatus {
-  off,
-  on;
-
-  static List<String> get enumString => values.map((e) => e.name).toList();
-}
+part 'control_light.mapper.dart';
 
 @MappableClass()
-class SetLightDto with SetLightDtoMappable {
+class ControlLightDto with ControlLightDtoMappable {
   int? brightness;
-  LightStatus? status;
 
-  SetLightDto({
+  ControlLightDto({
     required this.brightness,
-    required this.status,
   });
+
+  static const fromMap = ControlLightDtoMapper.fromMap;
 
   static final schema = Schema.object(
     properties: {
       'brightness': Schema.number(
         description:
             'Light level from 0 to 100. Zero is off and 100 is full brightness.',
-        nullable: true,
-      ),
-      'status': Schema.enumString(
-        enumValues: LightStatus.enumString,
-        description:
-            'Status of the light fixture which can be `on` or `off`. Default: `on`',
-        nullable: true,
+        nullable: false,
       ),
     },
   );
 }
 
-final setLightValuesFunction = LlmFunction(
+final _controlLightDeclaration = LlmFunctionDeclaration(
   name: 'controlLight',
-  description: 'Set the brightness of a room light. ',
-  parameters: SetLightDto.schema,
+  description: 'Control lighting in the room and sets brightness level.',
+  parameters: ControlLightDto.schema,
 );
 
-final setLightValuesUi = LlmUiFunction<SetLightDto>(
-  setLightValuesFunction,
-  renderer: LLmUiRenderer(
-    builder: (value) => _SetLightWidget(
-      value: value,
-    ),
-    parser: RunnableUiParser(
-      decoder: SetLightDtoMapper.fromMap,
-      encoder: (SetLightDto value) => value.toMap(),
-    ),
-  ),
+JSON _controlLightHandler(JSON parameters) {
+  return parameters;
+}
+
+ControlLightRunnableUi _controlLightUiHandler(
+  JSON value,
+) {
+  return ControlLightRunnableUi(ControlLightDto.fromMap(value));
+}
+
+final controlLightFunction = LlmFunction(
+  function: _controlLightDeclaration,
+  handler: _controlLightHandler,
+  uiHandler: _controlLightUiHandler,
 );
 
-class _SetLightWidget extends RunnableUi<SetLightDto> {
-  const _SetLightWidget({required super.value});
+class ControlLightRunnableUi extends RunnableUi<ControlLightDto> {
+  const ControlLightRunnableUi(super.data, {super.key});
 
   @override
-  Widget build(context, RunnableUiState<SetLightDto> state) {
+  Widget build(context, RunnableUiState<ControlLightDto> state) {
     final brightness = state.value.brightness ?? 50;
 
     final chatController = ChatController.of(context);
-    SetLightDto updateState({int? brightness, LightStatus? status}) {
-      return state.value = value.copyWith(
+    ControlLightDto updateState(int brightness) {
+      return state.value = state.value.copyWith(
         brightness: brightness,
-        status: status,
       );
     }
 
@@ -86,9 +75,10 @@ class _SetLightWidget extends RunnableUi<SetLightDto> {
           value: brightness.toDouble(),
           min: 0,
           max: 100,
-          onChanged: (value) => updateState(brightness: value.toInt()),
-          onChangeEnd: (value) => chatController
-              .submitMessage('I have updated to ${state.value.toMap()}'),
+          onChanged: (value) => updateState(value.toInt()),
+          onChangeEnd: (value) => chatController.submitMessage(
+            'Ok I have made the change!',
+          ),
         ),
       ],
     );
