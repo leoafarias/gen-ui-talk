@@ -30,6 +30,7 @@ dependencies:
   meta: ^1.15.0
   dart_mappable: ^4.2.2
   collection: ^1.18.0
+  flutter_hooks: ^0.20.5
 
 dev_dependencies:
   flutter_test:

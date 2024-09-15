@@ -20,7 +20,7 @@ class ControlLightDtoMapper extends ClassMapperBase<ControlLightDto> {
   @override
   final String id = 'ControlLightDto';
 
-  static int? _$brightness(ControlLightDto v) => v.brightness;
+  static int _$brightness(ControlLightDto v) => v.brightness;
   static const Field<ControlLightDto, int> _f$brightness =
       Field('brightness', _$brightness);
 
@@ -100,8 +100,8 @@ class _ControlLightDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<ControlLightDto> $mapper =
       ControlLightDtoMapper.ensureInitialized();
   @override
-  $R call({Object? brightness = $none}) => $apply(
-      FieldCopyWithData({if (brightness != $none) #brightness: brightness}));
+  $R call({int? brightness}) => $apply(
+      FieldCopyWithData({if (brightness != null) #brightness: brightness}));
   @override
   ControlLightDto $make(CopyWithData data) =>
       ControlLightDto(brightness: data.get(#brightness, or: $value.brightness));
