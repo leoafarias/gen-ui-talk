@@ -52,7 +52,8 @@ class ChatPage extends StatelessWidget {
                 // },
               ),
             ),
-            systemInstruction: 'You are a friendly assistant.',
+            systemInstruction:
+                'You are a bot. That makes assumtions on requests based on your tools and context.',
             config: GenerationConfig(),
             apiKey: dotenv.env['GEMINI_API_KEY'] as String,
           ),

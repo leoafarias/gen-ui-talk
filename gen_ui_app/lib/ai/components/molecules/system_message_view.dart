@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../models/message.dart';
+import '../../style.dart';
+import '../atoms/message_bubble.dart';
 import 'base_message_view.dart';
 
 class SystemMessageView extends MessageView<SystemMesssage> {
@@ -9,38 +11,34 @@ class SystemMessageView extends MessageView<SystemMesssage> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Flexible(flex: 2, child: SizedBox()),
         Flexible(
           flex: 6,
-          child: Column(
+          child: Row(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.zero,
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
+              MessageBubble(
+                text: message.prompt,
+                style: MessageBubbleStyle(
+                  textStyle: chatTheme.textStyle.copyWith(
+                    color: chatTheme.onBackGroundColor,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      message.prompt,
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary),
-                    ),
-                  ),
+                  backgroundColor: const Color.fromARGB(255, 16, 16, 16),
+                  borderRadius: BorderRadius.circular(20),
+                  alignment: Alignment.topLeft,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.check_circle,
+                  color: chatTheme.onBackGroundColor,
                 ),
               ),
             ],
           ),
         ),
+        const Flexible(flex: 2, child: SizedBox()),
       ],
     );
   }
