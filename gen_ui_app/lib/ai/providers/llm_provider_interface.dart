@@ -110,7 +110,12 @@ final class LinkAttachment extends Attachment {
 }
 
 abstract class LlmProvider {
-  Stream<LlmResponse> generateStream(
+  Stream<LlmMessagePart> sendMessageStream(
+    String prompt, {
+    Iterable<Attachment> attachments,
+  });
+
+  Future<LlmMessage> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments,
   });

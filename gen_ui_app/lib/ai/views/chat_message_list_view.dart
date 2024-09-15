@@ -29,42 +29,44 @@ class ChatMessageList extends StatefulWidget {
 }
 
 class _ChatMessageListState extends State<ChatMessageList> {
-  Widget _messageBuilder(BuildContext context, Message message) {
+  Widget _messageBuilder(BuildContext context, Message message, bool active) {
     if (widget.messageBuilder != null) {
       return widget.messageBuilder!(context, message);
     }
 
     final messageKey = Key('message-${message.id}');
+
     return switch (message) {
-      (SystemMesssage message) => SystemMessageView(
+      (SystemMesssage message) => SystemMessageView(message, key: messageKey),
+      (UserMessage message) => UserMessageView(message, key: messageKey),
+      (ILlmMessage message) => LlmMessageView(
           message,
           key: messageKey,
-        ),
-      (UserMessage message) => UserMessageView(
-          message,
-          key: messageKey,
-        ),
-      (LlmMessage message) => LlmMessageView(
-          message,
-          key: messageKey,
+          active: active,
         )
     };
   }
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, constraints) => ListView.builder(
+  Widget build(BuildContext context) {
+    final transcript = widget.transcript;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ListView.builder(
           reverse: true,
           itemCount: widget.transcript.length,
           itemBuilder: (context, index) {
-            final messageIndex = widget.transcript.length - index - 1;
-            final message = widget.transcript[messageIndex];
+            final messageIndex = transcript.length - index - 1;
+            final message = transcript[messageIndex];
+            final isLast = transcript.lastOrNull == message;
 
             return Padding(
               padding: const EdgeInsets.only(top: 6),
-              child: _messageBuilder(context, message),
+              child: _messageBuilder(context, message, isLast),
             );
           },
-        ),
-      );
+        );
+      },
+    );
+  }
 }

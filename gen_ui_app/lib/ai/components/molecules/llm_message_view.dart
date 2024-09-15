@@ -4,23 +4,30 @@ import '../../models/message.dart';
 import '../atoms/markdown_view.dart';
 import 'base_message_view.dart';
 
-class LlmMessageView extends MessageView<LlmMessage> {
+class LlmMessageView extends MessageView<ILlmMessage> {
   const LlmMessageView(
     super.message, {
     super.key,
     super.onSelected,
+    required this.active,
   });
 
-  Widget _llmResponseBuilder(LlmResponse response) {
+  // Message is the active one in the chat.
+  final bool active;
+
+  Widget _llmResponseBuilder(LlmMessagePart response) {
     return switch (response) {
-      (LlmTextResponse message) => _LlmTextResponseView(message),
-      (LlmFunctionResponse message) => _functionResponseBuilder(message),
+      (LlmTextPart message) => _LlmTextResponseView(message),
+      (LlmFunctionResponsePart message) => _functionResponseBuilder(message),
     };
   }
 
-  Widget _functionResponseBuilder(LlmFunctionResponse response) {
-    if (response is LlmRunnableUiResponse) {
-      return response.render();
+  Widget _functionResponseBuilder(
+    LlmFunctionResponsePart response,
+  ) {
+    final widget = response.getRunnableUi();
+    if (widget != null && active) {
+      return widget;
     }
 
     return _LlmFunctionResponseView(response);
@@ -46,17 +53,17 @@ class _LlmFunctionResponseView extends StatelessWidget {
   const _LlmFunctionResponseView(
     this.message,
   );
-  final LlmFunctionResponse message;
+  final LlmFunctionResponsePart message;
 
   @override
   Widget build(BuildContext context) {
-    return MarkdownView(data: '```json\n${message.args.toString()}\n```');
+    return MarkdownView(data: '```json\n${message.result.toString()}\n```');
   }
 }
 
 class _LlmTextResponseView extends StatelessWidget {
   const _LlmTextResponseView(this.message);
-  final LlmTextResponse message;
+  final LlmTextPart message;
 
   @override
   Widget build(BuildContext context) {

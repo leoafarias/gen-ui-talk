@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 
 import '../models/message.dart';
+import '../providers/gemini_provider.dart';
 import '../providers/llm_provider_interface.dart';
 
 class ChatController extends ChangeNotifier {
   final LlmProvider provider;
   final List<Message> _transcript = [];
-  _LlmResponse? _currentResponse;
+  _LlmResponseListener? _currentResponse;
   UserMessage? _initialMessage;
   Timer? _updateTimer;
 
@@ -28,18 +29,22 @@ class ChatController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> submitMessage(String prompt,
-      {Iterable<Attachment> attachments = const []}) async {
+  GeminiProvider get geminiProvider => provider as GeminiProvider;
+
+  Future<void> submitMessage(
+    String prompt, {
+    Iterable<Attachment> attachments = const [],
+  }) async {
     _initialMessage = null;
 
     final userMessage = UserMessage(prompt: prompt, attachments: attachments);
-    final llmMessage = LlmMessage();
+    final llmMessage = LlmStreamMessage();
 
     _transcript.addAll([userMessage, llmMessage]);
     notifyListeners();
 
-    _currentResponse = _LlmResponse(
-      stream: provider.generateStream(prompt, attachments: attachments),
+    _currentResponse = _LlmResponseListener(
+      stream: provider.sendMessageStream(prompt, attachments: attachments),
       message: llmMessage,
       onDone: _onDone,
       onUpdate: _onUpdate,
@@ -53,8 +58,14 @@ class ChatController extends ChangeNotifier {
     });
   }
 
-  void _onDone() {
+  void _onDone(LlmStreamMessage message) {
     _currentResponse = null;
+
+    final llmMessage = message.finalize();
+
+    // finalize in place the last item int he list
+    _transcript[_transcript.length - 1] = llmMessage;
+
     notifyListeners();
   }
 
@@ -80,14 +91,14 @@ class ChatController extends ChangeNotifier {
   }
 }
 
-class _LlmResponse {
-  final LlmMessage message;
-  final void Function()? onDone;
-  StreamSubscription<LlmResponse>? _subscription;
+class _LlmResponseListener {
+  final LlmStreamMessage message;
+  final void Function(LlmStreamMessage)? onDone;
+  StreamSubscription<LlmMessagePart>? _subscription;
   final void Function()? onUpdate;
 
-  _LlmResponse({
-    required Stream<LlmResponse> stream,
+  _LlmResponseListener({
+    required Stream<LlmMessagePart> stream,
     required this.message,
     this.onDone,
     this.onUpdate,
@@ -102,26 +113,25 @@ class _LlmResponse {
 
   void cancel() => _handleClose(LlmMessageStatus.canceled);
   void _handleOnError(dynamic err) {
-    message.append(LlmTextResponse(text: 'ERROR: $err'));
+    message.append(LlmTextPart(text: 'ERROR: $err'));
     _handleClose(LlmMessageStatus.error);
   }
 
   void _handleOnDone() {
-    message.updateStatus(LlmMessageStatus.success);
-    onDone?.call();
+    onDone?.call(message);
   }
 
-  void _handleOnData(LlmResponse part) {
+  void _handleOnData(LlmMessagePart part) {
     message.append(part);
-    onDone?.call();
+    onUpdate?.call();
   }
 
   void _handleClose(LlmMessageStatus status) {
     assert(_subscription != null);
     _subscription!.cancel();
     _subscription = null;
-    message.updateStatus(status);
-    onDone?.call();
+
+    onDone?.call(message);
   }
 }
 
