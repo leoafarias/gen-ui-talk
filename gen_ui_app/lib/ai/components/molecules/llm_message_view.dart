@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../models/llm_runnable_ui.dart';
 import '../../models/message.dart';
+import '../../style.dart';
 import '../atoms/markdown_view.dart';
+import '../atoms/message_bubble.dart';
 import 'base_message_view.dart';
 
 class LlmMessageView extends MessageView<ILlmMessage> {
@@ -26,15 +28,27 @@ class LlmMessageView extends MessageView<ILlmMessage> {
   Widget _functionResponseBuilder(
     LlmFunctionResponsePart response,
   ) {
+    final isFinalizedMessage = message is LlmMessage;
     final widget = response.getRunnableUi();
     if (widget != null) {
-      return RunnableUiDataProvider(
-        isRunning: active,
+      return WidgetResponseProvider(
+        isRunning: active && isFinalizedMessage,
         child: widget,
       );
     }
 
     return _LlmFunctionResponseView(response);
+  }
+
+  List<LlmMessagePart> get _orderedParts {
+    final functionParts =
+        message.parts.whereType<LlmFunctionResponsePart>().toList();
+    final textParts = message.parts.whereType<LlmTextPart>().toList();
+
+    return [
+      ...textParts,
+      ...functionParts,
+    ];
   }
 
   @override
@@ -44,7 +58,13 @@ class LlmMessageView extends MessageView<ILlmMessage> {
         Flexible(
           flex: 3,
           child: Column(
-            children: message.parts.map(_llmResponseBuilder).toList(),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: _orderedParts
+                .map((e) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: _llmResponseBuilder(e),
+                    ))
+                .toList(),
           ),
         ),
         const Flexible(flex: 1, child: SizedBox()),
@@ -71,24 +91,29 @@ class _LlmTextResponseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            Icons.bolt,
-            color: Theme.of(context).colorScheme.onSurface,
+        Flexible(
+          flex: 6,
+          child: MessageBubble(
+            text: message.text.trim(),
+            style: MessageBubbleStyle(
+              textStyle: chatTheme.textStyle.copyWith(
+                color: chatTheme.onBackGroundColor,
+              ),
+              backgroundColor: const Color.fromARGB(255, 26, 26, 26),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.zero,
+                topRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              alignment: Alignment.topLeft,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 28),
-          child: MarkdownView(data: message.text),
-        ),
+        const Flexible(flex: 2, child: SizedBox()),
       ],
     );
   }

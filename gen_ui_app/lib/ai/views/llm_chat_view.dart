@@ -10,6 +10,14 @@ import '../providers/llm_provider_interface.dart';
 import 'chat_message_list_view.dart';
 import 'message_builders.dart';
 
+class LlmChatViewStyle {
+  final Color backgroundColor;
+
+  const LlmChatViewStyle({
+    required this.backgroundColor,
+  });
+}
+
 class LlmChatView extends StatefulWidget {
   final LlmProvider provider;
   final MessageBuilder? messageBuilder;
@@ -18,7 +26,10 @@ class LlmChatView extends StatefulWidget {
     required this.provider,
     this.messageBuilder,
     super.key,
+    this.style = const LlmChatViewStyle(backgroundColor: Colors.black),
   });
+
+  final LlmChatViewStyle style;
 
   @override
   State<LlmChatView> createState() => _LlmChatViewState();
@@ -41,7 +52,7 @@ class _LlmChatViewState extends State<LlmChatView> {
         listenable: _controller,
         builder: (context, _) {
           return Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: widget.style.backgroundColor,
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [

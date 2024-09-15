@@ -52,6 +52,11 @@ class ChatController extends ChangeNotifier {
     );
   }
 
+  void addSystemMessage(String prompt) {
+    _transcript.add(SystemMesssage(prompt: prompt));
+    notifyListeners();
+  }
+
   void _onUpdate() {
     if (_updateTimer?.isActive ?? false) return;
     _updateTimer = Timer(const Duration(milliseconds: 150), () {

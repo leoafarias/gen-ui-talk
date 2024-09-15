@@ -7,6 +7,7 @@ import '../ai/controllers/chat_controller.dart';
 import '../ai/helpers.dart';
 import '../ai/models/llm_function.dart';
 import '../ai/models/llm_runnable_ui.dart';
+import '../ai/style.dart';
 
 part 'control_light.mapper.dart';
 
@@ -82,139 +83,253 @@ class ControlLightWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final brightness = useState(data.brightness);
-    final editingValue = useState(false);
-    final isRunning = useIsRunning();
+    final previousBrightness = usePrevious(brightness.value);
     final chatController = useChatController();
 
-    final isOff = brightness.value == 0;
+    final active = isActiveWidget();
 
-    final canEdit = isRunning && editingValue.value;
+    final isOn = brightness.value != 0;
 
-    Widget buildSideButton() {
-      Color backgroundColor;
-      if (!isRunning) {
-        return const SizedBox.shrink();
-      }
-      Widget current;
-      if (!editingValue.value) {
-        backgroundColor = Colors.white10;
-        current = IconButton(
-          color: Colors.black,
-          icon: const Icon(Icons.edit),
-          onPressed: () {
-            editingValue.value = true;
-          },
-        );
-      } else {
-        backgroundColor = Colors.green;
-        current = IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.check),
-          onPressed: () {
-            chatController.submitMessage(
-              'Change the brightness to ${brightness.value}%',
-            );
-          },
-        );
-      }
-
-      return Container(
-        height: 100,
-        margin: const EdgeInsets.all(8),
-        width: 60,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: backgroundColor,
-        ),
-        child: current,
-      );
+    if (!active) {
+      return const SizedBox.shrink();
     }
 
     Widget buildDisplay() {
       return Row(
         children: [
-          const Icon(
+          Icon(
             Icons.light_mode_outlined,
             size: 30,
-            color: Colors.white,
+            color: chatTheme.backgroundColor,
           ),
           Expanded(
             child: SliderTheme(
               data: SliderTheme.of(context).copyWith(
-                activeTrackColor: Colors.white,
-                inactiveTrackColor: Colors.grey[600],
+                activeTrackColor: chatTheme.backgroundColor,
+                inactiveTrackColor: chatTheme.backgroundColor.withOpacity(0.5),
                 trackHeight: 8.0,
-                thumbColor: Colors.white,
-
+                thumbColor: chatTheme.backgroundColor,
                 overlayShape: SliderComponentShape.noOverlay,
-
-                // minThumbSeparation: 10,
-                // tickMarkShape: const RoundSliderTickMarkShape(),
                 activeTickMarkColor: Colors.white,
                 inactiveTickMarkColor: Colors.grey,
               ),
               child: Slider(
-                min: 0,
-                max: 100,
-                value: brightness.value.toDouble(),
-                onChanged: canEdit
-                    ? (value) => brightness.value = value.toInt()
-                    : null,
-              ),
+                  min: 0,
+                  max: 100,
+                  value: brightness.value.toDouble(),
+                  onChanged: (value) => brightness.value = value.toInt()),
             ),
           ),
-          const Icon(Icons.light_mode, size: 30, color: Colors.white),
+          Icon(
+            Icons.light_mode,
+            size: 30,
+            color: chatTheme.backgroundColor,
+          ),
         ],
       );
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Lights",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+    return Row(
+      children: [
+        Expanded(
+          flex: 2,
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: chatTheme.onBackGroundColor,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Lights",
+                              style: chatTheme.textStyle.copyWith(
+                                fontSize: 22,
+                                color: chatTheme.backgroundColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4.0),
+                              constraints: const BoxConstraints(minWidth: 45),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: chatTheme.backgroundColor,
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: Text(isOn ? '${brightness.value}%' : 'Off',
+                                  style: chatTheme.textStyle.copyWith(
+                                    color: chatTheme.accentColor,
+                                  )),
+                            ),
+                          ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          constraints: const BoxConstraints(minWidth: 45),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Text(
-                            isOff ? 'off' : '${brightness.value}%',
-                            style: const TextStyle(
-                                fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                      ],
+                      ),
+                      buildDisplay(),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: RotatedBox(
+                    quarterTurns: 3,
+                    child: LightSwitch(
+                      value: isOn,
+                      onChanged: (value) {
+                        brightness.value =
+                            value ? (previousBrightness ?? 100) : 0;
+                      },
                     ),
                   ),
-                  buildDisplay(),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          buildSideButton(),
-        ],
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 10.0),
+          decoration: BoxDecoration(
+            color: chatTheme.accentColor,
+            shape: BoxShape.circle,
+          ),
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+            color: chatTheme.onAccentColor,
+            onPressed: () => chatController.addSystemMessage('thanks!'),
+            icon: const Icon(Icons.check),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class LightSwitch extends StatefulWidget {
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  const LightSwitch({
+    super.key,
+    required this.value,
+    required this.onChanged,
+  });
+
+  @override
+  _LightSwitchState createState() => _LightSwitchState();
+}
+
+class _LightSwitchState extends State<LightSwitch>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late Animation<Color?> _colorAnimation;
+  late Animation<Color?> _thumbColorAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+
+    _colorAnimation = ColorTween(
+      begin: Colors.grey[700],
+      end: chatTheme.backgroundColor,
+    ).animate(_animation);
+
+    _thumbColorAnimation = ColorTween(
+      begin: Colors.grey[300],
+      end: chatTheme.onBackGroundColor,
+    ).animate(_animation);
+
+    // Set the initial animation state based on the initial value
+    if (widget.value) {
+      _controller.value = 1.0;
+    } else {
+      _controller.value = 0.0;
+    }
+  }
+
+  @override
+  void didUpdateWidget(LightSwitch oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update the animation when the value changes externally
+    if (oldWidget.value != widget.value) {
+      if (widget.value) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void toggleSwitch() {
+    widget.onChanged(!widget.value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const switchWidth = 100.0;
+    const switchHeight = 50.0;
+    const borderRadius = switchHeight / 2;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: toggleSwitch,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return Container(
+              width: switchWidth,
+              height: switchHeight,
+              decoration: BoxDecoration(
+                color: _colorAnimation.value,
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                    left: 10 + (switchWidth - switchHeight) * _animation.value,
+                    child: Container(
+                      width: switchHeight - 20,
+                      height: switchHeight - 20,
+                      decoration: BoxDecoration(
+                        color: _thumbColorAnimation.value,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
