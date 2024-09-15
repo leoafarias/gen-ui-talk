@@ -86,6 +86,25 @@ class ControlLightWidget extends HookWidget {
     final previousBrightness = usePrevious(brightness.value);
     final chatController = useChatController();
 
+    void handleConfirmation() {
+      var message = 'Confirmed';
+      if (brightness.value != data.brightness) {
+        if (brightness.value == 0.0) {
+          message = 'Light turned off';
+        } else {
+          message = 'Light level updated to ${brightness.value}%';
+        }
+      }
+
+      chatController.addSystemMessage(message);
+    }
+
+    void onChangeUpdate(double value) {
+      _controlLightHandler({
+        'brightness': value.toInt(),
+      });
+    }
+
     final active = isActiveWidget();
 
     final isOn = brightness.value != 0;
@@ -114,10 +133,12 @@ class ControlLightWidget extends HookWidget {
                 inactiveTickMarkColor: Colors.grey,
               ),
               child: Slider(
-                  min: 0,
-                  max: 100,
-                  value: brightness.value.toDouble(),
-                  onChanged: (value) => brightness.value = value.toInt()),
+                min: 0,
+                max: 100,
+                value: brightness.value.toDouble(),
+                onChangeEnd: (value) => onChangeUpdate(value),
+                onChanged: (value) => brightness.value = value.toInt(),
+              ),
             ),
           ),
           Icon(
@@ -189,6 +210,9 @@ class ControlLightWidget extends HookWidget {
                       onChanged: (value) {
                         brightness.value =
                             value ? (previousBrightness ?? 100) : 0;
+                        _controlLightHandler({
+                          'brightness': brightness.value,
+                        });
                       },
                     ),
                   ),
@@ -206,7 +230,7 @@ class ControlLightWidget extends HookWidget {
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
             color: chatTheme.onAccentColor,
-            onPressed: () => chatController.addSystemMessage('thanks!'),
+            onPressed: handleConfirmation,
             icon: const Icon(Icons.check),
           ),
         ),
