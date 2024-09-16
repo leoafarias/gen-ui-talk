@@ -187,6 +187,8 @@ class _PosterDesignerDto {
     ),
     'topLeftColor': Schema.string(
       description: 'The hex color value top left corner of the poster.',
+      nullable: false,
+    ),
     'posterTextFontWeight': Schema.enumString(
       enumValues: _PosterTextFontWeight.enumString,
       description: 'The font weight of the poster text.',
@@ -194,6 +196,8 @@ class _PosterDesignerDto {
     ),
     'topRightColor': Schema.string(
       description: 'The hex color value top right corner of the poster.',
+      nullable: false,
+    ),
     'posterTextShadowColor': Schema.string(
       description: 'The hex color value of the poster text shadow.',
       nullable: false,

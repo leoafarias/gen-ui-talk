@@ -42,12 +42,6 @@ final _history = [
   ]),
 ];
 
-final _posterDesignerToolConfig = ToolConfig(
-  functionCallingConfig: FunctionCallingConfig(
-    mode: FunctionCallingMode.none,
-  ),
-);
-
 final posterDesignerProvider = GeminiProvider(
   model: GeminiModel.flash15Latest.model,
   apiKey: kGeminiApiKey,
@@ -65,7 +59,7 @@ You are a professional poster designer. Your job is to ensure that all design el
 
 A poster can have the following elements:
 
-- **posterText**: Central message on the poster.
+- **posterText**: Inspirational quote of the poster.
 - **posterFont**: Font style for the text, defining the tone.
 - **posterTextColor**: Hex color for the text, ensuring readability.
 - **topLeftColor**: Hex color for the top-left corner, part of a mesh gradient.

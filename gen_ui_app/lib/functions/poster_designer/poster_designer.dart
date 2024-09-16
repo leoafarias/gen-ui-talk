@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -37,6 +35,29 @@ class PosterPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theDarkestColor = [
+      data.topLeftColor,
+      data.topRightColor,
+      data.bottomLeftColor,
+      data.bottomRightColor
+    ].reduce((value, element) =>
+        value.computeLuminance() < element.computeLuminance()
+            ? value
+            : element);
+
+    final topBlendColor =
+        Color.lerp(data.topLeftColor, data.topRightColor, 0.5)!;
+
+    final lightestColor = [
+      data.topLeftColor,
+      data.topRightColor,
+      data.bottomLeftColor,
+      data.bottomRightColor
+    ].reduce((value, element) =>
+        value.computeLuminance() > element.computeLuminance()
+            ? value
+            : element);
+
     final meshRect = OMeshRect(
       width: 2,
       height: 2,
@@ -51,33 +72,111 @@ class PosterPreviewWidget extends StatelessWidget {
         data.bottomLeftColor, data.bottomRightColor, // Row 2
       ],
     );
+
+    // final iconList = [
+    //   Icons.star,
+    //   Icons.favorite,
+    //   Icons.check_circle,
+    //   Icons.access_alarm,
+    // ];
+
     return Container(
       width: 300, // Increased size for better visibility
       height: 450,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: 2),
-        borderRadius: BorderRadius.circular(12),
+      clipBehavior: Clip.hardEdge,
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
       child: Stack(
         children: [
           Expanded(child: OMeshGradient(mesh: meshRect)),
-          Center(
-            child: Text(
-              data.posterText,
-              style: TextStyle(
-                fontFamily: data.posterFont.fontFamily,
-                color: data.posterTextColor,
-                shadows: [
-                  Shadow(
-                    color: data.posterTextShadowColor,
-                    offset: const Offset(2, 2),
-                    blurRadius: 2,
+          // Positioned.fill(
+          //   child: Opacity(
+          //     opacity: 0.2, // Adjust opacity for subtlety
+          //     child: GridView.builder(
+          //       itemCount: 100, // Adjust to control density
+          //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //         crossAxisCount: 8, // Number of icons per row
+          //         crossAxisSpacing: 20, // Space between icons
+          //         mainAxisSpacing: 20, // Space between rows
+          //       ),
+          //       itemBuilder: (context, index) {
+          //         final icon = iconList[index % iconList.length];
+
+          //         // Randomize size and rotation
+          //         final random = Random();
+          //         final size =
+          //             30 + random.nextInt(30); // Random size between 30 and 60
+          //         final rotationAngle =
+          //             random.nextDouble() * 2 * pi; // Random rotation angle
+
+          //         return Transform.rotate(
+          //           angle: rotationAngle, // Apply random rotation
+          //           child: Icon(
+          //             icon,
+          //             size: size.toDouble(), // Apply random size
+          //             color: theDarkestColor
+          //                 .withOpacity(0.8), // Adjust color and opacity
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ),
+          // ),
+          Positioned.fill(
+            child: FractionallySizedBox(
+              widthFactor: 1.5,
+              heightFactor: 1.5,
+              alignment: Alignment.center,
+              child: ClipRect(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    data.posterText,
+                    style: TextStyle(
+                      fontFamily: data.posterFont.fontFamily,
+                      height: 0.8,
+                      color: lightestColor,
+                      fontSize: 120,
+                      fontWeight: data.posterTextFontWeight.fontWeight,
+                      shadows: [
+                        Shadow(
+                          color: lightestColor,
+                          // offset: const Offset(40, 10),
+                          blurRadius: 20,
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.clip,
                   ),
-                ],
-                fontSize: 46,
-                fontWeight: data.posterTextFontWeight.fontWeight,
+                ),
               ),
-              textAlign: TextAlign.center,
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                data.posterText,
+                style: TextStyle(
+                  height: 1.5,
+                  fontFamily: data.posterFont.fontFamily,
+                  color: data.posterTextColor,
+                  shadows: [
+                    Shadow(
+                      color: theDarkestColor,
+                      offset: const Offset(2, 2),
+                      blurRadius: 2,
+                    ),
+                  ],
+                  fontSize: 26,
+                  fontWeight: data.posterTextFontWeight.fontWeight,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],
