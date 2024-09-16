@@ -1,4 +1,4 @@
-part of 'poster_designer.dart';
+import 'package:flutter/material.dart';
 
 Color colorFromHex(String hexString) {
   hexString = hexString.trim();

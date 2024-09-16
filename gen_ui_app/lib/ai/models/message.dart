@@ -75,7 +75,7 @@ class LlmMessage extends ILlmMessage {
   String get text => textParts.map((e) => e.text).join();
 }
 
-class LlmStreamMessage extends ILlmMessage {
+class LlmStreamableMessage extends ILlmMessage {
   @override
   final List<LlmMessagePart> parts = List.empty(growable: true);
 
@@ -86,7 +86,7 @@ class LlmStreamMessage extends ILlmMessage {
     );
   }
 
-  LlmStreamMessage({
+  LlmStreamableMessage({
     super.id,
   });
 

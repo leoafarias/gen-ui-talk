@@ -1,97 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../ai/controllers/chat_controller.dart';
-import '../ai/helpers.dart';
-import '../ai/models/llm_function.dart';
-import '../ai/models/llm_runnable_ui.dart';
-import '../ai/style.dart';
+import '../../ai/controllers/chat_controller.dart';
+import '../../ai/models/llm_function.dart';
+import '../../ai/models/llm_runnable_ui.dart';
+import '../../ai/style.dart';
+import 'light_control_dto.dart';
+import 'light_control_mock_api.dart';
 
-class ControlLightDto {
-  final int brightness;
-
-  ControlLightDto({
-    required this.brightness,
-  });
-
-  static ControlLightDto fromMap(Map<String, dynamic> map) {
-    return ControlLightDto(
-      brightness: map['brightness'] as int,
-    );
-  }
-
-  Map<String, Object?> toMap() {
-    return {
-      'brightness': brightness,
-    };
-  }
-
-  static final schema = Schema.object(properties: {
-    'brightness': Schema.number(
-      description:
-          'Light level from 0 to 100. Zero is off and 100 is full brightness.',
-      nullable: false,
-    ),
-  }, requiredProperties: [
-    'brightness'
-  ]);
-}
-
-final _controlLightDeclaration = LlmFunctionDeclaration(
-  name: 'controlLight',
+final _setsRoomBrightness = LlmFunctionDeclaration(
+  name: 'setsRoomBrightness',
   description: 'Control lighting in the room and sets brightness level.',
-  parameters: ControlLightDto.schema,
+  parameters: LightControlDto.schema,
 );
 
-final _currentLightState = LlmFunctionDeclaration(
-  name: 'currentRoomBrightness',
+const _getCurrentBrightness = LlmFunctionDeclaration(
+  name: 'getCurrentRoomBrightness',
   description: 'Returns the current brightness level of the room.',
-  parameters: ControlLightDto.schema,
 );
 
-int _brightness = 0;
+const _lightControlMockApi = LightControlMockApi();
 
-JSON _controlLightHandler(JSON parameters) {
-  _brightness = parameters['brightness'] as int;
-  return parameters;
-}
-
-JSON _currentLightStateHandler(JSON parameters) {
-  return {
-    'brightness': _brightness,
-  };
-}
-
-Widget _controlLightUiHandler(
-  JSON value,
-) {
-  return ControlLightWidget(ControlLightDto.fromMap(value));
-}
-
-final currentlightControlStateFunction = LlmFunction(
-  function: _currentLightState,
-  handler: _currentLightStateHandler,
-  uiHandler: _controlLightUiHandler,
+final getLightControlStateFunction = LlmFunction(
+  function: _getCurrentBrightness,
+  handler: (args) => _lightControlMockApi.get(),
+  uiHandler: (value) => LightControlExample(LightControlDto.fromMap(value)),
 );
 
-final controlLightFunction = LlmFunction(
-  function: _controlLightDeclaration,
-  handler: _controlLightHandler,
-  uiHandler: _controlLightUiHandler,
+final setLightControlStateFunction = LlmFunction(
+  function: _setsRoomBrightness,
+  handler: (value) => _lightControlMockApi.post(value),
+  uiHandler: (value) => LightControlExample(LightControlDto.fromMap(value)),
 );
-final controlLightToolConfig = ToolConfig(
-  functionCallingConfig: FunctionCallingConfig(
-    mode: FunctionCallingMode.auto,
-  ),
-);
-const controlLightInstructions =
-    'You are a lighting control system. You will use the functions below to control the lighting in the room.';
 
-class ControlLightWidget extends HookWidget {
-  const ControlLightWidget(this.data, {super.key});
+class LightControlExample extends HookWidget {
+  const LightControlExample(this.data, {super.key});
 
-  final ControlLightDto data;
+  final LightControlDto data;
+
+  void _updateBrightness(num value) {
+    _lightControlMockApi.setBrightness(value.toInt());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +59,6 @@ class ControlLightWidget extends HookWidget {
       }
 
       chatController.addSystemMessage(message);
-    }
-
-    void onChangeUpdate(double value) {
-      final dto = ControlLightDto(brightness: value.toInt());
-      _controlLightHandler(dto.toMap());
     }
 
     final active = isActiveWidget();
@@ -148,7 +92,7 @@ class ControlLightWidget extends HookWidget {
                 min: 0,
                 max: 100,
                 value: brightness.value.toDouble(),
-                onChangeEnd: (value) => onChangeUpdate(value),
+                onChangeEnd: _updateBrightness,
                 onChanged: (value) => brightness.value = value.toInt(),
               ),
             ),
@@ -222,9 +166,7 @@ class ControlLightWidget extends HookWidget {
                       onChanged: (value) {
                         brightness.value =
                             value ? (previousBrightness ?? 100) : 0;
-                        _controlLightHandler({
-                          'brightness': brightness.value,
-                        });
+                        _updateBrightness(brightness.value.toDouble());
                       },
                     ),
                   ),
@@ -267,40 +209,40 @@ class LightSwitch extends StatefulWidget {
 
 class _LightSwitchState extends State<LightSwitch>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-  late Animation<Color?> _colorAnimation;
-  late Animation<Color?> _thumbColorAnimation;
+  late AnimationController controller;
+  late Animation<double> animation;
+  late Animation<Color?> colorAnimation;
+  late Animation<Color?> thumbColorAnimation;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
 
-    _animation = CurvedAnimation(
-      parent: _controller,
+    animation = CurvedAnimation(
+      parent: controller,
       curve: Curves.easeInOut,
     );
 
-    _colorAnimation = ColorTween(
+    colorAnimation = ColorTween(
       begin: Colors.grey[700],
       end: chatTheme.backgroundColor,
-    ).animate(_animation);
+    ).animate(animation);
 
-    _thumbColorAnimation = ColorTween(
+    thumbColorAnimation = ColorTween(
       begin: Colors.grey[300],
       end: chatTheme.onBackGroundColor,
-    ).animate(_animation);
+    ).animate(animation);
 
     // Set the initial animation state based on the initial value
     if (widget.value) {
-      _controller.value = 1.0;
+      controller.value = 1.0;
     } else {
-      _controller.value = 0.0;
+      controller.value = 0.0;
     }
   }
 
@@ -310,16 +252,16 @@ class _LightSwitchState extends State<LightSwitch>
     // Update the animation when the value changes externally
     if (oldWidget.value != widget.value) {
       if (widget.value) {
-        _controller.forward();
+        controller.forward();
       } else {
-        _controller.reverse();
+        controller.reverse();
       }
     }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -338,25 +280,25 @@ class _LightSwitchState extends State<LightSwitch>
       child: GestureDetector(
         onTap: toggleSwitch,
         child: AnimatedBuilder(
-          animation: _controller,
+          animation: controller,
           builder: (context, child) {
             return Container(
               width: switchWidth,
               height: switchHeight,
               decoration: BoxDecoration(
-                color: _colorAnimation.value,
+                color: colorAnimation.value,
                 borderRadius: BorderRadius.circular(borderRadius),
               ),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   Positioned(
-                    left: 10 + (switchWidth - switchHeight) * _animation.value,
+                    left: 10 + (switchWidth - switchHeight) * animation.value,
                     child: Container(
                       width: switchHeight - 20,
                       height: switchHeight - 20,
                       decoration: BoxDecoration(
-                        color: _thumbColorAnimation.value,
+                        color: thumbColorAnimation.value,
                         shape: BoxShape.circle,
                       ),
                     ),

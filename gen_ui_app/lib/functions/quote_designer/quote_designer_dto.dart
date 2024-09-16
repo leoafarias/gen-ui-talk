@@ -1,31 +1,21 @@
-part of 'poster_designer.dart';
+import 'dart:convert';
 
-enum _PosterFont {
-  /// Bebas Neue - Bold, impactful, modern. Great for headlines or titles.
+import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
+
+import '../../ai/helpers/color_helpers.dart';
+import 'quote_designer_example.dart';
+
+enum QuoteTextFontFamily {
   bebasNeue,
-
-  /// Poppins - Clean, geometric, versatile. Good for professional and modern designs.
   poppins,
-
-  /// Raleway - Elegant, thin, futuristic. Perfect for minimal and stylish looks.
   raleway,
-
-  /// Lobster - Playful, handwritten, with a retro feel. Adds a fun and whimsical element.
   lobster,
-
-  /// Orbitron - Futuristic and tech-inspired. Ideal for sci-fi or technology-themed posters.
   orbitron,
-
-  /// Montserrat - Bold, modern, and professional. Works well for titles or body text.
   montserrat,
-
-  /// Pacifico - Casual, handwritten, and hip. Great for a laid-back, friendly aesthetic.
   pacifico,
-
-  /// Bungee - Bold, urban, and playful. Adds a street-style feel to the design.
   bungee,
-
-  /// Anton - Strong, impactful, condensed. Eye-catching for headlines and main text.
   anton;
 
   String get fontFamily => switch (this) {
@@ -42,146 +32,150 @@ enum _PosterFont {
 
   static List<String> get enumString => values.map((e) => e.name).toList();
 
-  static _PosterFont fromString(String value) {
-    return _PosterFont.values.firstWhere(
+  static QuoteTextFontFamily fromString(String value) {
+    return QuoteTextFontFamily.values.firstWhere(
       (e) => e.name == value,
-      orElse: () => _PosterFont.bebasNeue,
+      orElse: () => QuoteTextFontFamily.bebasNeue,
     );
   }
 }
 
-class _PosterDesignerDto {
-  final _PosterFont posterFont;
-  final String posterText;
-  final Color posterTextColor;
+class QuoteDesignDto {
+  final String quote;
+  final QuoteTextFontFamily quoteTextFont;
+  final Color quoteTextColor;
+  final Color quoteTextShadowColor;
   final Color topLeftColor;
   final Color topRightColor;
   final Color bottomLeftColor;
   final Color bottomRightColor;
-  final Color posterTextShadowColor;
-  final _PosterTextFontWeight posterTextFontWeight;
+  final QuoteTextFontWeight quoteTextFontWeight;
 
-  _PosterDesignerDto({
-    required this.posterFont,
+  QuoteDesignDto({
+    required this.quoteTextFont,
     required this.topLeftColor,
     required this.topRightColor,
     required this.bottomLeftColor,
     required this.bottomRightColor,
-    required this.posterText,
-    required this.posterTextColor,
-    required this.posterTextShadowColor,
-    required this.posterTextFontWeight,
+    required this.quote,
+    required this.quoteTextColor,
+    required this.quoteTextShadowColor,
+    required this.quoteTextFontWeight,
   });
 
-  _PosterDesignerDto copyWith({
-    _PosterFont? posterFont,
-    String? posterText,
+  QuoteDesignDto copyWith({
+    String? quote,
+    QuoteTextFontFamily? quoteTextFont,
+    Color? quoteTextColor,
+    Color? quoteTextShadowColor,
     Color? topLeftColor,
     Color? topRightColor,
     Color? bottomLeftColor,
     Color? bottomRightColor,
-    Color? posterTextColor,
-    Color? posterTextShadowColor,
-    _PosterTextFontWeight? posterTextFontWeight,
+    QuoteTextFontWeight? quoteTextFontWeight,
   }) {
-    return _PosterDesignerDto(
-      posterTextColor: posterTextColor ?? this.posterTextColor,
-      posterFont: posterFont ?? this.posterFont,
-      posterText: posterText ?? this.posterText,
+    return QuoteDesignDto(
+      quote: quote ?? this.quote,
+      quoteTextFont: quoteTextFont ?? this.quoteTextFont,
+      quoteTextColor: quoteTextColor ?? this.quoteTextColor,
+      quoteTextShadowColor: quoteTextShadowColor ?? this.quoteTextShadowColor,
       topLeftColor: topLeftColor ?? this.topLeftColor,
       topRightColor: topRightColor ?? this.topRightColor,
       bottomLeftColor: bottomLeftColor ?? this.bottomLeftColor,
       bottomRightColor: bottomRightColor ?? this.bottomRightColor,
-      posterTextShadowColor:
-          posterTextShadowColor ?? this.posterTextShadowColor,
-      posterTextFontWeight: posterTextFontWeight ?? this.posterTextFontWeight,
+      quoteTextFontWeight: quoteTextFontWeight ?? this.quoteTextFontWeight,
     );
   }
 
-  Color getColor(PosterCorner corner) {
+  Color getColor(ColorCorner corner) {
     return switch (corner) {
-      PosterCorner.topLeft => topLeftColor,
-      PosterCorner.topRight => topRightColor,
-      PosterCorner.bottomLeft => bottomLeftColor,
-      PosterCorner.bottomRight => bottomRightColor,
+      ColorCorner.topLeft => topLeftColor,
+      ColorCorner.topRight => topRightColor,
+      ColorCorner.bottomLeft => bottomLeftColor,
+      ColorCorner.bottomRight => bottomRightColor,
     };
   }
 
   @override
   operator ==(Object other) {
-    return other is _PosterDesignerDto &&
-        other.posterFont == posterFont &&
+    return other is QuoteDesignDto &&
+        other.quoteTextFont == quoteTextFont &&
         other.topLeftColor == topLeftColor &&
         other.topRightColor == topRightColor &&
         other.bottomLeftColor == bottomLeftColor &&
         other.bottomRightColor == bottomRightColor &&
-        other.posterText == posterText &&
-        other.posterTextShadowColor == posterTextShadowColor &&
-        other.posterTextFontWeight == posterTextFontWeight &&
-        other.posterTextColor == posterTextColor;
+        other.quote == quote &&
+        other.quoteTextShadowColor == quoteTextShadowColor &&
+        other.quoteTextFontWeight == quoteTextFontWeight &&
+        other.quoteTextColor == quoteTextColor;
   }
 
   // hash
   @override
   int get hashCode {
-    return posterFont.hashCode ^
+    return quoteTextFont.hashCode ^
         topLeftColor.hashCode ^
         topRightColor.hashCode ^
         bottomLeftColor.hashCode ^
         bottomRightColor.hashCode ^
-        posterText.hashCode ^
-        posterTextShadowColor.hashCode ^
-        posterTextFontWeight.hashCode ^
-        posterTextColor.hashCode;
+        quote.hashCode ^
+        quoteTextShadowColor.hashCode ^
+        quoteTextFontWeight.hashCode ^
+        quoteTextColor.hashCode;
   }
 
-  static _PosterDesignerDto fromMap(Map<String, dynamic> map) {
-    return _PosterDesignerDto(
-      posterFont: _PosterFont.fromString(map['posterFont'] as String),
+  String toJson() {
+    return jsonEncode(toMap());
+  }
+
+  static QuoteDesignDto fromMap(Map<String, dynamic> map) {
+    return QuoteDesignDto(
+      quoteTextFont:
+          QuoteTextFontFamily.fromString(map['quoteTextFont'] as String),
       topLeftColor: colorFromHex(map['topLeftColor'] as String),
       topRightColor: colorFromHex(map['topRightColor'] as String),
       bottomLeftColor: colorFromHex(map['bottomLeftColor'] as String),
       bottomRightColor: colorFromHex(map['bottomRightColor'] as String),
-      posterText: map['posterText'] as String,
-      posterTextColor: colorFromHex(map['posterTextColor'] as String),
-      posterTextShadowColor: colorFromHex(
-        map['posterTextShadowColor'] as String,
+      quote: map['quote'] as String,
+      quoteTextColor: colorFromHex(map['quoteTextColor'] as String),
+      quoteTextShadowColor: colorFromHex(
+        map['quoteTextShadowColor'] as String,
       ),
-      posterTextFontWeight: _PosterTextFontWeight.fromString(
-        map['posterTextFontWeight'] as String,
+      quoteTextFontWeight: QuoteTextFontWeight.fromString(
+        map['quoteTextFontWeight'] as String,
       ),
     );
   }
 
-  static _PosterDesignerDto fromJson(String json) {
+  static QuoteDesignDto fromJson(String json) {
     return fromMap(jsonDecode(json) as Map<String, dynamic>);
   }
 
   Map<String, Object?> toMap() {
     return {
-      'posterText': posterText,
-      'posterTextColor': posterTextColor.toHex(),
-      'posterFont': posterFont.name,
+      'quote': quote,
+      'quoteTextColor': quoteTextColor.toHex(),
+      'quoteTextFont': quoteTextFont.name,
       'topLeftColor': topLeftColor.toHex(),
       'topRightColor': topRightColor.toHex(),
       'bottomLeftColor': bottomLeftColor.toHex(),
       'bottomRightColor': bottomRightColor.toHex(),
-      'posterTextShadowColor': posterTextShadowColor.toHex(),
-      'posterTextFontWeight': posterTextFontWeight.name,
+      'quoteTextShadowColor': quoteTextShadowColor.toHex(),
+      'quoteTextFontWeight': quoteTextFontWeight.name,
     };
   }
 
   static final schema = Schema.object(properties: {
-    'posterText': Schema.string(
+    'quote': Schema.string(
       description: 'The text content to display on the poster.',
       nullable: false,
     ),
-    'posterFont': Schema.enumString(
-      enumValues: _PosterFont.enumString,
+    'quoteTextFont': Schema.enumString(
+      enumValues: QuoteTextFontFamily.enumString,
       description: 'The font to use for the poster text.',
       nullable: false,
     ),
-    'posterTextColor': Schema.string(
+    'quoteTextColor': Schema.string(
       description: 'The hex color value of the poster text.',
       nullable: false,
     ),
@@ -189,8 +183,8 @@ class _PosterDesignerDto {
       description: 'The hex color value top left corner of the poster.',
       nullable: false,
     ),
-    'posterTextFontWeight': Schema.enumString(
-      enumValues: _PosterTextFontWeight.enumString,
+    'quoteTextFontWeight': Schema.enumString(
+      enumValues: QuoteTextFontWeight.enumString,
       description: 'The font weight of the poster text.',
       nullable: false,
     ),
@@ -198,7 +192,7 @@ class _PosterDesignerDto {
       description: 'The hex color value top right corner of the poster.',
       nullable: false,
     ),
-    'posterTextShadowColor': Schema.string(
+    'quoteTextShadowColor': Schema.string(
       description: 'The hex color value of the poster text shadow.',
       nullable: false,
     ),
@@ -211,19 +205,19 @@ class _PosterDesignerDto {
       nullable: false,
     )
   }, requiredProperties: [
-    'posterText',
-    'posterFont',
-    'posterTextColor',
+    'quote',
+    'quoteTextFont',
+    'quoteTextColor',
+    'quoteTextShadowColor',
+    'quoteTextFontWeight',
     'topLeftColor',
     'topRightColor',
     'bottomLeftColor',
     'bottomRightColor',
-    'posterTextFontWeight',
-    'posterTextShadowColor',
   ]);
 }
 
-enum _PosterTextFontWeight {
+enum QuoteTextFontWeight {
   normal,
   bold,
   bolder,
@@ -240,13 +234,13 @@ enum _PosterTextFontWeight {
 
   static List<String> get enumString => values.map((e) => e.name).toList();
 
-  static _PosterTextFontWeight fromString(String fontWeightName) {
+  static QuoteTextFontWeight fromString(String fontWeightName) {
     try {
-      return _PosterTextFontWeight.values.firstWhere(
+      return QuoteTextFontWeight.values.firstWhere(
         (element) => element.name == fontWeightName,
       );
     } catch (e) {
-      return _PosterTextFontWeight.normal;
+      return QuoteTextFontWeight.normal;
     }
   }
 }

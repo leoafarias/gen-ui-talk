@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -9,7 +8,7 @@ import '../providers/llm_provider_interface.dart';
 
 class ChatController extends ChangeNotifier {
   final LlmProvider provider;
-  final List<Message> _transcript = [];
+  final List<Message> _transcript = List.empty(growable: true);
   _LlmResponseListener? _currentResponse;
   UserMessage? _initialMessage;
   Timer? _updateTimer;
@@ -30,70 +29,60 @@ class ChatController extends ChangeNotifier {
     notifyListeners();
   }
 
-  LlmMessage? get lastLlmResponse {
-    if (_transcript.isEmpty) {
-      return null;
-    }
-
-    // get the last message from the transcript
-    // that is an LlmMessage
-    final lastMessage = _transcript.reversed.firstWhereOrNull(
-      (element) => element is LlmMessage,
-    ) as LlmMessage?;
-
-    return lastMessage;
-  }
-
-  Future<LlmMessage> submitMessage(
+  Future<LlmMessage> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
+    bool stream = false,
   }) async {
     try {
       _initialMessage = null;
       isProcessing = true;
       final userMessage = UserMessage(prompt: prompt, attachments: attachments);
 
+      final llmStreamableMessage = LlmStreamableMessage();
       _transcript.add(userMessage);
-      notifyListeners();
 
-      final llmMessage = await provider.sendMessage(userMessage.prompt,
-          attachments: userMessage.attachments);
+      if (stream) {
+        _transcript.add(llmStreamableMessage);
+        notifyListeners();
+        _currentResponse = _LlmResponseListener(
+          stream: provider.sendMessageStream(userMessage.prompt,
+              attachments: userMessage.attachments),
+          message: llmStreamableMessage,
+          onDone: (payload) {
+            // _transcript[_transcript.length - 1] = payload.finalize();
+          },
+          onUpdate: (payload) {
+            if (_updateTimer?.isActive ?? false) return;
+            _updateTimer = Timer(const Duration(milliseconds: 150), () {
+              notifyListeners();
+            });
+          },
+        );
 
-      _transcript.add(llmMessage);
-      return llmMessage;
+        final result = await _currentResponse!.wait();
+
+        _transcript[_transcript.length - 1] = result;
+
+        return result;
+      } else {
+        final result = await provider.sendMessage(
+          userMessage.prompt,
+          attachments: userMessage.attachments,
+        );
+        _transcript.add(result);
+
+        return result;
+      }
     } finally {
       isProcessing = false;
+      _currentResponse = null;
       notifyListeners();
     }
-
-    // _currentResponse = _LlmResponseListener(
-    //   stream: provider.sendMessageStream(prompt, attachments: attachments),
-    //   message: llmMessage,
-    //   onDone: _onDone,
-    //   onUpdate: _onUpdate,
-    // );
   }
 
   void addSystemMessage(String prompt) {
     _transcript.add(SystemMesssage(prompt: prompt));
-    notifyListeners();
-  }
-
-  void _onUpdate() {
-    if (_updateTimer?.isActive ?? false) return;
-    _updateTimer = Timer(const Duration(milliseconds: 150), () {
-      notifyListeners();
-    });
-  }
-
-  void _onDone(LlmStreamMessage message) {
-    _currentResponse = null;
-
-    final llmMessage = message.finalize();
-
-    // finalize in place the last item int he list
-    _transcript[_transcript.length - 1] = llmMessage;
-
     notifyListeners();
   }
 
@@ -120,10 +109,12 @@ class ChatController extends ChangeNotifier {
 }
 
 class _LlmResponseListener {
-  final LlmStreamMessage message;
-  final void Function(LlmStreamMessage)? onDone;
+  final LlmStreamableMessage message;
+  final void Function(LlmStreamableMessage)? onDone;
   StreamSubscription<LlmMessagePart>? _subscription;
-  final void Function()? onUpdate;
+  final void Function(LlmStreamableMessage)? onUpdate;
+  final Completer<LlmStreamableMessage> _completer =
+      Completer<LlmStreamableMessage>();
 
   _LlmResponseListener({
     required Stream<LlmMessagePart> stream,
@@ -139,19 +130,27 @@ class _LlmResponseListener {
     );
   }
 
+  Future<LlmMessage> wait() async {
+    final result = await _completer.future;
+    return result.finalize();
+  }
+
   void cancel() => _handleClose(LlmMessageStatus.canceled);
+
   void _handleOnError(dynamic err) {
     message.append(LlmTextPart(text: 'ERROR: $err'));
     _handleClose(LlmMessageStatus.error);
+    _completer.completeError(err);
   }
 
   void _handleOnDone() {
     onDone?.call(message);
+    _completer.complete(message);
   }
 
   void _handleOnData(LlmMessagePart part) {
     message.append(part);
-    onUpdate?.call();
+    onUpdate?.call(message);
   }
 
   void _handleClose(LlmMessageStatus status) {
@@ -170,99 +169,6 @@ class ChatControllerProvider extends InheritedNotifier<ChatController> {
     required super.child,
   });
 }
-
-// class _TextEditingControllerHookCreator {
-//   const _TextEditingControllerHookCreator();
-
-//   /// Creates a [TextEditingController] that will be disposed automatically.
-//   ///
-//   /// The [text] parameter can be used to set the initial value of the
-//   /// controller.
-//   TextEditingController call({String? text, List<Object?>? keys}) {
-//     return use(_TextEditingControllerHook(text, keys));
-//   }
-
-//   /// Creates a [TextEditingController] from the initial [value] that will
-//   /// be disposed automatically.
-//   TextEditingController fromValue(
-//     TextEditingValue value, [
-//     List<Object?>? keys,
-//   ]) {
-//     return use(_TextEditingControllerHook.fromValue(value, keys));
-//   }
-// }
-
-// /// Creates a [TextEditingController], either via an initial text or an initial
-// /// [TextEditingValue].
-// ///
-// /// To use a [TextEditingController] with an optional initial text, use:
-// /// ```dart
-// /// final controller = useTextEditingController(text: 'initial text');
-// /// ```
-// ///
-// /// To use a [TextEditingController] with an optional initial value, use:
-// /// ```dart
-// /// final controller = useTextEditingController
-// ///   .fromValue(TextEditingValue.empty);
-// /// ```
-// ///
-// /// Changing the text or initial value after the widget has been built has no
-// /// effect whatsoever. To update the value in a callback, for instance after a
-// /// button was pressed, use the [TextEditingController.text] or
-// /// [TextEditingController.value] setters. To have the [TextEditingController]
-// /// reflect changing values, you can use [useEffect]. This example will update
-// /// the [TextEditingController.text] whenever a provided [ValueListenable]
-// /// changes:
-// /// ```dart
-// /// final controller = useTextEditingController();
-// /// final update = useValueListenable(myTextControllerUpdates);
-// ///
-// /// useEffect(() {
-// ///   controller.text = update;
-// /// }, [update]);
-// /// ```
-// ///
-// /// See also:
-// /// - [TextEditingController], which this hook creates.
-// const useTextEditingController = _TextEditingControllerHookCreator();
-
-// class _TextEditingControllerHook extends Hook<TextEditingController> {
-//   const _TextEditingControllerHook(
-//     this.initialText, [
-//     List<Object?>? keys,
-//   ])  : initialValue = null,
-//         super(keys: keys);
-
-//   const _TextEditingControllerHook.fromValue(
-//     TextEditingValue this.initialValue, [
-//     List<Object?>? keys,
-//   ])  : initialText = null,
-//         super(keys: keys);
-
-//   final String? initialText;
-//   final TextEditingValue? initialValue;
-
-//   @override
-//   _TextEditingControllerHookState createState() {
-//     return _TextEditingControllerHookState();
-//   }
-// }
-
-// class _TextEditingControllerHookState
-//     extends HookState<TextEditingController, _TextEditingControllerHook> {
-//   late final _controller = hook.initialValue != null
-//       ? TextEditingController.fromValue(hook.initialValue)
-//       : TextEditingController(text: hook.initialText);
-
-//   @override
-//   TextEditingController build(BuildContext context) => _controller;
-
-//   @override
-//   void dispose() => _controller.dispose();
-
-//   @override
-//   String get debugLabel => 'useTextEditingController';
-// }
 
 ChatController useChatController(
   LlmProvider provider,

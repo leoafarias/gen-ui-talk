@@ -18,36 +18,27 @@ class LlmMessageView extends MessageView<ILlmMessage> {
   // Message is the active one in the chat.
   final bool active;
 
-  Widget _llmResponseBuilder(LlmMessagePart response) {
-    return switch (response) {
-      (LlmTextPart message) => _LlmTextResponseView(message),
-      (LlmFunctionResponsePart message) => _functionResponseBuilder(message),
-    };
-  }
+  List<Widget> _buildMessageParts() {
+    final functionParts = message.parts.whereType<LlmFunctionResponsePart>();
+    final textParts = message.parts.whereType<LlmTextPart>();
 
-  Widget _functionResponseBuilder(
-    LlmFunctionResponsePart response,
-  ) {
+    final renderableWidgets = <String, Widget>{};
+
     final isFinalizedMessage = message is LlmMessage;
-    final widget = response.getRunnableUi();
-    if (widget != null) {
-      return WidgetResponseProvider(
-        isRunning: active && isFinalizedMessage,
-        child: widget,
-      );
+
+    for (final functionPart in functionParts) {
+      final widget = functionPart.getRunnableUi();
+      if (widget != null) {
+        renderableWidgets[functionPart.function.name] = WidgetResponseProvider(
+          isRunning: active && isFinalizedMessage,
+          child: widget,
+        );
+      }
     }
 
-    return _LlmFunctionResponseView(response);
-  }
-
-  List<LlmMessagePart> get _orderedParts {
-    final functionParts =
-        message.parts.whereType<LlmFunctionResponsePart>().toList();
-    final textParts = message.parts.whereType<LlmTextPart>().toList();
-
     return [
-      ...textParts,
-      ...functionParts,
+      ...textParts.map((e) => _LlmTextResponseView(e)),
+      ...renderableWidgets.values,
     ];
   }
 
@@ -59,10 +50,10 @@ class LlmMessageView extends MessageView<ILlmMessage> {
           flex: 3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: _orderedParts
+            children: _buildMessageParts()
                 .map((e) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: _llmResponseBuilder(e),
+                      child: e,
                     ))
                 .toList(),
           ),
