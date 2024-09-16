@@ -58,6 +58,8 @@ class _PosterDesignerDto {
   final Color topRightColor;
   final Color bottomLeftColor;
   final Color bottomRightColor;
+  final Color posterTextShadowColor;
+  final _PosterTextFontWeight posterTextFontWeight;
 
   _PosterDesignerDto({
     required this.posterFont,
@@ -67,6 +69,8 @@ class _PosterDesignerDto {
     required this.bottomRightColor,
     required this.posterText,
     required this.posterTextColor,
+    required this.posterTextShadowColor,
+    required this.posterTextFontWeight,
   });
 
   _PosterDesignerDto copyWith({
@@ -77,6 +81,8 @@ class _PosterDesignerDto {
     Color? bottomLeftColor,
     Color? bottomRightColor,
     Color? posterTextColor,
+    Color? posterTextShadowColor,
+    _PosterTextFontWeight? posterTextFontWeight,
   }) {
     return _PosterDesignerDto(
       posterTextColor: posterTextColor ?? this.posterTextColor,
@@ -86,6 +92,9 @@ class _PosterDesignerDto {
       topRightColor: topRightColor ?? this.topRightColor,
       bottomLeftColor: bottomLeftColor ?? this.bottomLeftColor,
       bottomRightColor: bottomRightColor ?? this.bottomRightColor,
+      posterTextShadowColor:
+          posterTextShadowColor ?? this.posterTextShadowColor,
+      posterTextFontWeight: posterTextFontWeight ?? this.posterTextFontWeight,
     );
   }
 
@@ -107,6 +116,8 @@ class _PosterDesignerDto {
         other.bottomLeftColor == bottomLeftColor &&
         other.bottomRightColor == bottomRightColor &&
         other.posterText == posterText &&
+        other.posterTextShadowColor == posterTextShadowColor &&
+        other.posterTextFontWeight == posterTextFontWeight &&
         other.posterTextColor == posterTextColor;
   }
 
@@ -119,6 +130,8 @@ class _PosterDesignerDto {
         bottomLeftColor.hashCode ^
         bottomRightColor.hashCode ^
         posterText.hashCode ^
+        posterTextShadowColor.hashCode ^
+        posterTextFontWeight.hashCode ^
         posterTextColor.hashCode;
   }
 
@@ -131,6 +144,12 @@ class _PosterDesignerDto {
       bottomRightColor: colorFromHex(map['bottomRightColor'] as String),
       posterText: map['posterText'] as String,
       posterTextColor: colorFromHex(map['posterTextColor'] as String),
+      posterTextShadowColor: colorFromHex(
+        map['posterTextShadowColor'] as String,
+      ),
+      posterTextFontWeight: _PosterTextFontWeight.fromString(
+        map['posterTextFontWeight'] as String,
+      ),
     );
   }
 
@@ -147,6 +166,8 @@ class _PosterDesignerDto {
       'topRightColor': topRightColor.toHex(),
       'bottomLeftColor': bottomLeftColor.toHex(),
       'bottomRightColor': bottomRightColor.toHex(),
+      'posterTextShadowColor': posterTextShadowColor.toHex(),
+      'posterTextFontWeight': posterTextFontWeight.name,
     };
   }
 
@@ -166,10 +187,15 @@ class _PosterDesignerDto {
     ),
     'topLeftColor': Schema.string(
       description: 'The hex color value top left corner of the poster.',
+    'posterTextFontWeight': Schema.enumString(
+      enumValues: _PosterTextFontWeight.enumString,
+      description: 'The font weight of the poster text.',
       nullable: false,
     ),
     'topRightColor': Schema.string(
       description: 'The hex color value top right corner of the poster.',
+    'posterTextShadowColor': Schema.string(
+      description: 'The hex color value of the poster text shadow.',
       nullable: false,
     ),
     'bottomLeftColor': Schema.string(
@@ -188,5 +214,35 @@ class _PosterDesignerDto {
     'topRightColor',
     'bottomLeftColor',
     'bottomRightColor',
+    'posterTextFontWeight',
+    'posterTextShadowColor',
   ]);
+}
+
+enum _PosterTextFontWeight {
+  normal,
+  bold,
+  bolder,
+  lighter;
+
+  FontWeight get fontWeight {
+    return switch (this) {
+      normal => FontWeight.normal,
+      bold => FontWeight.bold,
+      bolder => FontWeight.w900,
+      lighter => FontWeight.w200,
+    };
+  }
+
+  static List<String> get enumString => values.map((e) => e.name).toList();
+
+  static _PosterTextFontWeight fromString(String fontWeightName) {
+    try {
+      return _PosterTextFontWeight.values.firstWhere(
+        (element) => element.name == fontWeightName,
+      );
+    } catch (e) {
+      return _PosterTextFontWeight.normal;
+    }
+  }
 }

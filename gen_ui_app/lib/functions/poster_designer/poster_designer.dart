@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -24,6 +26,8 @@ _PosterDesignerDto _posterDesign = _PosterDesignerDto(
   posterText: 'Poster Text',
   posterFont: _PosterFont.raleway,
   posterTextColor: Colors.white,
+  posterTextShadowColor: Colors.black,
+  posterTextFontWeight: _PosterTextFontWeight.normal,
 );
 
 class PosterPreviewWidget extends StatelessWidget {
@@ -63,8 +67,15 @@ class PosterPreviewWidget extends StatelessWidget {
               style: TextStyle(
                 fontFamily: data.posterFont.fontFamily,
                 color: data.posterTextColor,
+                shadows: [
+                  Shadow(
+                    color: data.posterTextShadowColor,
+                    offset: const Offset(2, 2),
+                    blurRadius: 2,
+                  ),
+                ],
                 fontSize: 46,
-                fontWeight: FontWeight.bold,
+                fontWeight: data.posterTextFontWeight.fontWeight,
               ),
               textAlign: TextAlign.center,
             ),
