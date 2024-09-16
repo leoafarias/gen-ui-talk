@@ -1,7 +1,5 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../../ai/helpers.dart';
-import '../../ai/models/llm_function.dart';
 import '../../ai/providers/providers.dart';
 import '../../main.dart';
 
@@ -56,58 +54,12 @@ final _chatHistory = [
   ]),
 ];
 
-class GeneratePosterDesignGuidelineDto {
-  final String prompt;
-
-  GeneratePosterDesignGuidelineDto({
-    required this.prompt,
-  });
-
-  factory GeneratePosterDesignGuidelineDto.fromMap(Map<String, dynamic> json) {
-    return GeneratePosterDesignGuidelineDto(
-      prompt: json['prompt'] as String,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'prompt': prompt,
-    };
-  }
-
-  static final schema = Schema.object(
-    properties: {
-      'prompt': Schema.string(
-        description: 'The prompt for the poster design guideline.',
-      ),
-    },
-    requiredProperties: ['prompt'],
-  );
-}
-
-Future<JSON> _createPosterDesignHandler(JSON value) async {
+Future<String> generateDesignGuideline(String prompt) async {
   final chat = _model.startChat(history: _chatHistory);
 
-  final dto = GeneratePosterDesignGuidelineDto.fromMap(value);
-
-  final content = Content.text(dto.prompt);
+  final content = Content.text(prompt);
 
   final response = await chat.sendMessage(content);
 
-  print('here');
-
-  return {
-    'guideline': response.text,
-  };
+  return response.text ?? '';
 }
-
-final _createPosterDesign = LlmFunctionDeclaration(
-  name: 'createPosterDesign',
-  description: 'Create a new poster design',
-  parameters: GeneratePosterDesignGuidelineDto.schema,
-);
-
-final createPosterDesignFunction = LlmFunction(
-  function: _createPosterDesign,
-  handler: _createPosterDesignHandler,
-);
