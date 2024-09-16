@@ -1,4 +1,3 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -9,17 +8,24 @@ import '../ai/models/llm_function.dart';
 import '../ai/models/llm_runnable_ui.dart';
 import '../ai/style.dart';
 
-part 'control_light.mapper.dart';
-
-@MappableClass()
-class ControlLightDto with ControlLightDtoMappable {
-  int brightness;
+class ControlLightDto {
+  final int brightness;
 
   ControlLightDto({
     required this.brightness,
   });
 
-  static const fromMap = ControlLightDtoMapper.fromMap;
+  static ControlLightDto fromMap(Map<String, dynamic> map) {
+    return ControlLightDto(
+      brightness: map['brightness'] as int,
+    );
+  }
+
+  Map<String, Object?> toMap() {
+    return {
+      'brightness': brightness,
+    };
+  }
 
   static final schema = Schema.object(properties: {
     'brightness': Schema.number(
@@ -74,6 +80,13 @@ final controlLightFunction = LlmFunction(
   handler: _controlLightHandler,
   uiHandler: _controlLightUiHandler,
 );
+final controlLightToolConfig = ToolConfig(
+  functionCallingConfig: FunctionCallingConfig(
+    mode: FunctionCallingMode.auto,
+  ),
+);
+const controlLightInstructions =
+    'You are a lighting control system. You will use the functions below to control the lighting in the room.';
 
 class ControlLightWidget extends HookWidget {
   const ControlLightWidget(this.data, {super.key});
@@ -100,9 +113,8 @@ class ControlLightWidget extends HookWidget {
     }
 
     void onChangeUpdate(double value) {
-      _controlLightHandler({
-        'brightness': value.toInt(),
-      });
+      final dto = ControlLightDto(brightness: value.toInt());
+      _controlLightHandler(dto.toMap());
     }
 
     final active = isActiveWidget();
