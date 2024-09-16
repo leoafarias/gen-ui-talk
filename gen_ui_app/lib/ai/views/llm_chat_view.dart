@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../components/molecules/chat_input.dart';
 import '../controllers/chat_controller.dart';
+import '../providers/llm_provider_interface.dart';
 import 'chat_message_list_view.dart';
 import 'message_builders.dart';
 
@@ -18,11 +19,11 @@ class LlmChatViewStyle {
 }
 
 class LlmChatView extends StatefulWidget {
-  final ChatController controller;
+  final LlmProvider provider;
   final MessageBuilder? messageBuilder;
 
   const LlmChatView({
-    required this.controller,
+    required this.provider,
     this.messageBuilder,
     super.key,
     this.style = const LlmChatViewStyle(backgroundColor: Colors.black),
@@ -40,7 +41,7 @@ class _LlmChatViewState extends State<LlmChatView> {
   @override
   void initState() {
     super.initState();
-    _controller = widget.controller;
+    _controller = ChatController(provider: widget.provider);
   }
 
   @override
@@ -67,7 +68,7 @@ class _LlmChatViewState extends State<LlmChatView> {
                 ChatInput(
                   initialMessage: _controller.initialMessage,
                   submitting: _controller.isProcessing,
-                  onSubmit: _controller.submitMessage,
+                  onSubmit: _controller.sendMessage,
                   onCancel: _controller.cancelMessage,
                 ),
               ],

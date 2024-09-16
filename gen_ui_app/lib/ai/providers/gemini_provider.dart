@@ -41,7 +41,7 @@ class GeminiProvider extends LlmProvider {
     List<Tool> tools = const [],
     List<SafetySetting>? safetySettings,
     ToolConfig? toolConfig,
-    List<Content> history = const [],
+    List<Content>? history,
   }) {
     _functionHandlers = _llmFunctionsToHandlers(functions);
 
@@ -139,22 +139,37 @@ class GeminiProvider extends LlmProvider {
   }) async {
     final content = _buildUserMessage(prompt, attachments);
     final response = await chat.sendMessage(content);
+    final parts = await _getPartsFromResponse(response);
+    return LlmMessage(parts: parts);
+  }
+
+  Future<List<LlmMessagePart>> _getPartsFromResponse(
+    GenerateContentResponse response,
+  ) async {
     final functionCalls = response.functionCalls.toList();
-    final functionParts = <FunctionResponse>[];
-    if (functionCalls.isNotEmpty) {
-      for (final call in functionCalls) {
-        functionParts.add(await _dispatchFunctionCall(call));
-      }
+    final functionResponses = <FunctionResponse>[];
+
+    if (functionCalls.isEmpty) {
+      return [
+        LlmTextPart(text: response.text ?? ''),
+      ];
+    }
+    for (final call in functionCalls) {
+      functionResponses.add(await _dispatchFunctionCall(call));
     }
 
-    final textPart = response.text;
-
     final parts = [
-      ...functionParts.map(_buildFunctionResponse),
-      if (textPart != null) LlmTextPart(text: textPart)
+      ...functionResponses.map(_buildFunctionResponse),
+      if (response.text != null) LlmTextPart(text: response.text ?? ''),
     ];
 
-    return LlmMessage(parts: parts);
+    final functionCallback = await chat.sendMessage(
+      Content.functionResponses(functionResponses),
+    );
+
+    parts.addAll(await _getPartsFromResponse(functionCallback));
+
+    return parts;
   }
 
   Part _partFrom(Attachment attachment) => switch (attachment) {

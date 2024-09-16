@@ -1,37 +1,31 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mesh/mesh.dart';
 
 import '../../ai/components/molecules/chat_input.dart';
 import '../../ai/controllers/chat_controller.dart';
+import '../../ai/helpers/color_helpers.dart';
 import '../../ai/providers/providers.dart';
-import '../../main.dart';
+import 'quote_designer_dto.dart';
+import 'quote_designer_provider.dart';
 
-part 'poster_designer_dto.dart';
-part 'poster_designer_provider.dart';
-part 'poster_designer_utils.dart';
-
-_PosterDesignerDto _posterDesign = _PosterDesignerDto(
+final _defaultPosterDesign = QuoteDesignDto(
   topLeftColor: Colors.black,
   topRightColor: Colors.black,
   bottomLeftColor: Colors.black,
   bottomRightColor: Colors.black,
-  posterText: 'Poster Text',
-  posterFont: _PosterFont.raleway,
-  posterTextColor: Colors.white,
-  posterTextShadowColor: Colors.black,
-  posterTextFontWeight: _PosterTextFontWeight.normal,
+  quote: 'Quote goes here',
+  quoteTextFont: QuoteTextFontFamily.raleway,
+  quoteTextColor: Colors.white,
+  quoteTextShadowColor: Colors.black,
+  quoteTextFontWeight: QuoteTextFontWeight.normal,
 );
 
-class PosterPreviewWidget extends StatelessWidget {
-  final _PosterDesignerDto data;
+class QuotePreview extends StatelessWidget {
+  final QuoteDesignDto data;
 
-  const PosterPreviewWidget(this.data, {super.key});
+  const QuotePreview(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +38,6 @@ class PosterPreviewWidget extends StatelessWidget {
         value.computeLuminance() < element.computeLuminance()
             ? value
             : element);
-
-    final topBlendColor =
-        Color.lerp(data.topLeftColor, data.topRightColor, 0.5)!;
 
     final lightestColor = [
       data.topLeftColor,
@@ -73,13 +64,6 @@ class PosterPreviewWidget extends StatelessWidget {
       ],
     );
 
-    // final iconList = [
-    //   Icons.star,
-    //   Icons.favorite,
-    //   Icons.check_circle,
-    //   Icons.access_alarm,
-    // ];
-
     return Container(
       width: 300, // Increased size for better visibility
       height: 450,
@@ -92,39 +76,6 @@ class PosterPreviewWidget extends StatelessWidget {
       child: Stack(
         children: [
           Expanded(child: OMeshGradient(mesh: meshRect)),
-          // Positioned.fill(
-          //   child: Opacity(
-          //     opacity: 0.2, // Adjust opacity for subtlety
-          //     child: GridView.builder(
-          //       itemCount: 100, // Adjust to control density
-          //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //         crossAxisCount: 8, // Number of icons per row
-          //         crossAxisSpacing: 20, // Space between icons
-          //         mainAxisSpacing: 20, // Space between rows
-          //       ),
-          //       itemBuilder: (context, index) {
-          //         final icon = iconList[index % iconList.length];
-
-          //         // Randomize size and rotation
-          //         final random = Random();
-          //         final size =
-          //             30 + random.nextInt(30); // Random size between 30 and 60
-          //         final rotationAngle =
-          //             random.nextDouble() * 2 * pi; // Random rotation angle
-
-          //         return Transform.rotate(
-          //           angle: rotationAngle, // Apply random rotation
-          //           child: Icon(
-          //             icon,
-          //             size: size.toDouble(), // Apply random size
-          //             color: theDarkestColor
-          //                 .withOpacity(0.8), // Adjust color and opacity
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
           Positioned.fill(
             child: FractionallySizedBox(
               widthFactor: 1.5,
@@ -134,13 +85,13 @@ class PosterPreviewWidget extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    data.posterText,
+                    data.quote,
                     style: TextStyle(
-                      fontFamily: data.posterFont.fontFamily,
+                      fontFamily: data.quoteTextFont.fontFamily,
                       height: 0.8,
                       color: lightestColor,
                       fontSize: 120,
-                      fontWeight: data.posterTextFontWeight.fontWeight,
+                      fontWeight: data.quoteTextFontWeight.fontWeight,
                       shadows: [
                         Shadow(
                           color: lightestColor,
@@ -160,11 +111,11 @@ class PosterPreviewWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                data.posterText,
+                data.quote,
                 style: TextStyle(
                   height: 1.5,
-                  fontFamily: data.posterFont.fontFamily,
-                  color: data.posterTextColor,
+                  fontFamily: data.quoteTextFont.fontFamily,
+                  color: data.quoteTextColor,
                   shadows: [
                     Shadow(
                       color: theDarkestColor,
@@ -173,7 +124,7 @@ class PosterPreviewWidget extends StatelessWidget {
                     ),
                   ],
                   fontSize: 26,
-                  fontWeight: data.posterTextFontWeight.fontWeight,
+                  fontWeight: data.quoteTextFontWeight.fontWeight,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -185,29 +136,29 @@ class PosterPreviewWidget extends StatelessWidget {
   }
 }
 
-class PosterDesignerWidget extends HookWidget {
-  const PosterDesignerWidget({super.key});
+class QuoteDesignerExample extends HookWidget {
+  const QuoteDesignerExample({super.key});
 
   @override
   Widget build(BuildContext context) {
     // Initialize poster design state with default values.
-    final posterDesign = useState(_posterDesign);
+    final posterDesign = useState(_defaultPosterDesign);
     final isProcessing = useState(false);
     // State to manage which color picker is active.
-    final activeColorCorner = useState(PosterCorner.topLeft);
+    final activeColorCorner = useState(ColorCorner.topLeft);
     // Available fonts list.
 
     final textController = useTextEditingController(
-      text: posterDesign.value.posterText,
+      text: posterDesign.value.quote,
     );
 
-    final controller = useChatController(posterDesignerProvider);
+    final controller = useChatController(quoteDesignProvider);
 
     final onChangeFont = useCallback((String? fontName) {
       if (fontName != null) {
-        final selectedFont = _PosterFont.fromString(fontName);
+        final selectedFont = QuoteTextFontFamily.fromString(fontName);
         posterDesign.value =
-            posterDesign.value.copyWith(posterFont: selectedFont);
+            posterDesign.value.copyWith(quoteTextFont: selectedFont);
       }
     }, [posterDesign]);
 
@@ -215,10 +166,10 @@ class PosterDesignerWidget extends HookWidget {
         {Iterable<Attachment>? attachments}) async {
       isProcessing.value = true;
       try {
-        final response = await controller.submitMessage(message);
+        final response = await controller.sendMessage(message);
 
-        posterDesign.value = _PosterDesignerDto.fromJson(response.text);
-        textController.text = posterDesign.value.posterText;
+        posterDesign.value = QuoteDesignDto.fromJson(response.text);
+        textController.text = posterDesign.value.quote;
       } finally {
         isProcessing.value = false;
       }
@@ -226,7 +177,7 @@ class PosterDesignerWidget extends HookWidget {
 
     // Handler to change poster text.
     final onChangeText = useCallback((String text) {
-      posterDesign.value = posterDesign.value.copyWith(posterText: text);
+      posterDesign.value = posterDesign.value.copyWith(quote: text);
     }, [posterDesign]);
 
     return Column(
@@ -238,8 +189,8 @@ class PosterDesignerWidget extends HookWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      PosterPreviewWidget(posterDesign.value),
-                      _PosterTextSelection(
+                      QuotePreview(posterDesign.value),
+                      _QuoteTextSelection(
                         posterDesign: posterDesign.value,
                         textController: textController,
                         onChangeText: onChangeText,
@@ -272,15 +223,15 @@ class PosterDesignerWidget extends HookWidget {
   }
 }
 
-class _PosterTextSelection extends HookWidget {
-  const _PosterTextSelection({
+class _QuoteTextSelection extends HookWidget {
+  const _QuoteTextSelection({
     required this.posterDesign,
     required this.textController,
     required this.onChangeText,
     required this.onChangeFont,
   });
 
-  final _PosterDesignerDto posterDesign;
+  final QuoteDesignDto posterDesign;
   final TextEditingController textController;
   final ValueChanged<String> onChangeText;
   final ValueChanged<String?> onChangeFont;
@@ -303,8 +254,8 @@ class _PosterTextSelection extends HookWidget {
           labelText: 'Select Font',
           border: OutlineInputBorder(),
         ),
-        value: posterDesign.posterFont.name,
-        items: _PosterFont.enumString
+        value: posterDesign.quoteTextFont.name,
+        items: QuoteTextFontFamily.enumString
             .map(
               (font) => DropdownMenuItem(
                 value: font,
@@ -330,20 +281,20 @@ class _ColorSelectionGrid extends StatelessWidget {
     required this.onCornerChange,
   });
 
-  final _PosterDesignerDto posterDesign;
-  final PosterCorner activeColorCorner;
-  final void Function(_PosterDesignerDto) applyColors;
-  final void Function(PosterCorner) onCornerChange;
+  final QuoteDesignDto posterDesign;
+  final ColorCorner activeColorCorner;
+  final void Function(QuoteDesignDto) applyColors;
+  final void Function(ColorCorner) onCornerChange;
 
   @override
   Widget build(context) {
     void applyColor(Color color) {
       final corner = activeColorCorner;
       final updatedDto = posterDesign.copyWith(
-        topLeftColor: corner == PosterCorner.topLeft ? color : null,
-        topRightColor: corner == PosterCorner.topRight ? color : null,
-        bottomLeftColor: corner == PosterCorner.bottomLeft ? color : null,
-        bottomRightColor: corner == PosterCorner.bottomRight ? color : null,
+        topLeftColor: corner == ColorCorner.topLeft ? color : null,
+        topRightColor: corner == ColorCorner.topRight ? color : null,
+        bottomLeftColor: corner == ColorCorner.bottomLeft ? color : null,
+        bottomRightColor: corner == ColorCorner.bottomRight ? color : null,
       );
       applyColors(updatedDto);
     }
@@ -351,7 +302,7 @@ class _ColorSelectionGrid extends StatelessWidget {
     final currentColor = posterDesign.getColor(activeColorCorner);
 
     // Handler to open color picker.
-    void openColorPicker(PosterCorner corner) {
+    void openColorPicker(ColorCorner corner) {
       onCornerChange(corner);
 
       showDialogColorPicker(context, currentColor, applyColor);
@@ -368,7 +319,7 @@ class _ColorSelectionGrid extends StatelessWidget {
           crossAxisCount: 2,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          children: PosterCorner.values.map((corner) {
+          children: ColorCorner.values.map((corner) {
             final currentColor = posterDesign.getColor(corner);
 
             final label = corner.getLabel();
@@ -399,17 +350,17 @@ class _ColorSelectionGrid extends StatelessWidget {
 }
 
 /// Enum to represent poster corners for color selection.
-enum PosterCorner {
+enum ColorCorner {
   topLeft,
   topRight,
   bottomLeft,
   bottomRight;
 
   String getLabel() => switch (this) {
-        PosterCorner.topLeft => 'Top Left',
-        PosterCorner.topRight => 'Top Right',
-        PosterCorner.bottomLeft => 'Bottom Left',
-        PosterCorner.bottomRight => 'Bottom Right',
+        ColorCorner.topLeft => 'Top Left',
+        ColorCorner.topRight => 'Top Right',
+        ColorCorner.bottomLeft => 'Bottom Left',
+        ColorCorner.bottomRight => 'Bottom Right',
       };
 }
 

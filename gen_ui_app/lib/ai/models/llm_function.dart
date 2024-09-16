@@ -17,7 +17,7 @@ class LlmFunctionDeclaration {
   });
 }
 
-typedef FunctionCallHandler = FutureOr<JSON> Function(JSON args);
+typedef FunctionCallHandler = Future<JSON> Function(JSON args);
 
 typedef FunctionUiHandler = Widget Function(JSON);
 
