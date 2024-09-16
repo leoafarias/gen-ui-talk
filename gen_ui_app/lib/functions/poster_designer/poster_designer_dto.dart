@@ -51,13 +51,13 @@ enum _PosterFont {
 }
 
 class _PosterDesignerDto {
-  _PosterFont posterFont;
-  String posterText;
-  Color posterTextColor;
-  Color topLeftColor;
-  Color topRightColor;
-  Color bottomLeftColor;
-  Color bottomRightColor;
+  final _PosterFont posterFont;
+  final String posterText;
+  final Color posterTextColor;
+  final Color topLeftColor;
+  final Color topRightColor;
+  final Color bottomLeftColor;
+  final Color bottomRightColor;
 
   _PosterDesignerDto({
     required this.posterFont,
@@ -132,6 +132,10 @@ class _PosterDesignerDto {
       posterText: map['posterText'] as String,
       posterTextColor: colorFromHex(map['posterTextColor'] as String),
     );
+  }
+
+  static _PosterDesignerDto fromJson(String json) {
+    return fromMap(jsonDecode(json) as Map<String, dynamic>);
   }
 
   Map<String, Object?> toMap() {

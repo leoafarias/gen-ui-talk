@@ -1,10 +1,15 @@
 part of 'poster_designer.dart';
 
 Color colorFromHex(String hexString) {
-  final buffer = StringBuffer();
-  if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-  buffer.write(hexString.replaceFirst('#', ''));
-  return Color(int.parse(buffer.toString(), radix: 16));
+  hexString = hexString.trim();
+  if (hexString.isEmpty) {
+    return Colors.black; // Default color if null or empty
+  }
+  hexString = hexString.replaceAll('#', '');
+  if (hexString.length == 6) {
+    hexString = 'FF$hexString'; // Add opacity if not provided
+  }
+  return Color(int.parse(hexString, radix: 16));
 }
 
 extension ColorX on Color {

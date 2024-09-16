@@ -10,6 +10,19 @@ import '../models/llm_function.dart';
 import '../models/message.dart';
 import 'llm_provider_interface.dart';
 
+enum GeminiModel {
+  flash15('gemini-1.5-flash'),
+  pro1('gemini-1.0-pro'),
+  pro1001('gemini-1.0-pro-001'),
+  pro15('gemini-1.5-pro'),
+  flash15Latest('gemini-1.5-flash-latest'),
+  pro15Latest('gemini-1.5-pro-latest');
+
+  const GeminiModel(this.model);
+
+  final String model;
+}
+
 final _safetySettings = [
   SafetySetting(HarmCategory.harassment, HarmBlockThreshold.none),
   SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.none),
@@ -28,6 +41,7 @@ class GeminiProvider extends LlmProvider {
     List<Tool> tools = const [],
     List<SafetySetting>? safetySettings,
     ToolConfig? toolConfig,
+    List<Content> history = const [],
   }) {
     _functionHandlers = _llmFunctionsToHandlers(functions);
 
@@ -42,7 +56,10 @@ class GeminiProvider extends LlmProvider {
           systemInstruction != null ? Content.system(systemInstruction) : null,
     );
 
-    chat = llm.startChat(safetySettings: safetySettings);
+    chat = llm.startChat(
+      safetySettings: safetySettings,
+      history: history,
+    );
   }
 
   late final ChatSession chat;

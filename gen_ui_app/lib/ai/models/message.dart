@@ -69,6 +69,10 @@ class LlmMessage extends ILlmMessage {
 
   List<LlmFunctionResponsePart> get functionResponses =>
       parts.whereType<LlmFunctionResponsePart>().toList();
+
+  List<LlmTextPart> get textParts => parts.whereType<LlmTextPart>().toList();
+
+  String get text => textParts.map((e) => e.text).join();
 }
 
 class LlmStreamMessage extends ILlmMessage {
