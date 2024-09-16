@@ -4,7 +4,10 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 
 import 'ai/providers/gemini_provider.dart';
 import 'ai/views/llm_chat_view.dart';
-import 'functions/control_light.dart';
+import 'functions/poster_design/poster_design_guidelines.dart';
+import 'functions/poster_design/poster_designer.dart';
+
+final kGeminiApiKey = dotenv.env['GEMINI_API_KEY'] as String;
 
 void main(List<String> args) async {
   await dotenv.load(fileName: ".env");
@@ -24,41 +27,29 @@ class App extends StatelessWidget {
       );
 }
 
-final safetySettings = [
-  SafetySetting(HarmCategory.harassment, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
-];
-
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text(App.title)),
-        body: LlmChatView(
-          provider: GeminiProvider(
-            safetySettings: safetySettings,
-            functions: [controlLightFunction, currentlightControlStateFunction],
-            model: GeminiModel.flash15Latest.model,
-            toolConfig: ToolConfig(
-              functionCallingConfig: FunctionCallingConfig(
-                mode: FunctionCallingMode.auto,
-                // allowedFunctionNames: {
-                //   controlLightFunction.name,
-                //   getControlLightStatusFunction.name
-                // },
-              ),
-            ),
-            systemInstruction:
-                'You are a bot. That makes assumtions on requests based on your tools and context.',
-            config: GenerationConfig(),
-            apiKey: dotenv.env['GEMINI_API_KEY'] as String,
-          ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text(App.title)),
+      body: LlmChatView(
+        provider: GeminiProvider(
+          functions: [
+            updatePosterDesignFunction,
+            getCurrentPosterDesignFunction,
+            getPosterDesignGuidelineFunction,
+          ],
+          model: GeminiModel.flash15Latest.model,
+          toolConfig: posterDesignerToolConfig,
+          systemInstruction: posterDesignerInstructions,
+          config: GenerationConfig(),
+          apiKey: kGeminiApiKey,
         ),
-      );
+      ),
+    );
+  }
 }
 
 enum GeminiModel {

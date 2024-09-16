@@ -10,6 +10,14 @@ import '../models/llm_function.dart';
 import '../models/message.dart';
 import 'llm_provider_interface.dart';
 
+final _safetySettings = [
+  SafetySetting(HarmCategory.harassment, HarmBlockThreshold.none),
+  SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.none),
+  SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
+  SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.none),
+  SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
+];
+
 class GeminiProvider extends LlmProvider {
   GeminiProvider({
     required String model,
@@ -18,7 +26,7 @@ class GeminiProvider extends LlmProvider {
     GenerationConfig? config,
     List<LlmFunction> functions = const [],
     List<Tool> tools = const [],
-    List<SafetySetting> safetySettings = const [],
+    List<SafetySetting>? safetySettings,
     ToolConfig? toolConfig,
   }) {
     _functionHandlers = _llmFunctionsToHandlers(functions);
@@ -29,7 +37,7 @@ class GeminiProvider extends LlmProvider {
       tools: _llmFunctionsToTools(functions),
       toolConfig: toolConfig,
       generationConfig: config,
-      safetySettings: safetySettings,
+      safetySettings: safetySettings ?? _safetySettings,
       systemInstruction:
           systemInstruction != null ? Content.system(systemInstruction) : null,
     );

@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../models/message.dart';
-import '../providers/gemini_provider.dart';
 import '../providers/llm_provider_interface.dart';
 
 class ChatController extends ChangeNotifier {
@@ -15,7 +14,7 @@ class ChatController extends ChangeNotifier {
   Timer? _updateTimer;
 
   List<Message> get transcript => List.unmodifiable(_transcript);
-  bool get isProcessing => _currentResponse != null;
+  bool isProcessing = false;
 
   ChatController({required this.provider});
 
@@ -30,26 +29,33 @@ class ChatController extends ChangeNotifier {
     notifyListeners();
   }
 
-  GeminiProvider get geminiProvider => provider as GeminiProvider;
-
   Future<void> submitMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
-    _initialMessage = null;
+    try {
+      _initialMessage = null;
+      isProcessing = true;
+      final userMessage = UserMessage(prompt: prompt, attachments: attachments);
 
-    final userMessage = UserMessage(prompt: prompt, attachments: attachments);
-    final llmMessage = LlmStreamMessage();
+      _transcript.add(userMessage);
+      notifyListeners();
 
-    _transcript.addAll([userMessage, llmMessage]);
-    notifyListeners();
+      final llmMessage = await provider.sendMessage(userMessage.prompt,
+          attachments: userMessage.attachments);
 
-    _currentResponse = _LlmResponseListener(
-      stream: provider.sendMessageStream(prompt, attachments: attachments),
-      message: llmMessage,
-      onDone: _onDone,
-      onUpdate: _onUpdate,
-    );
+      _transcript.add(llmMessage);
+    } finally {
+      isProcessing = false;
+      notifyListeners();
+    }
+
+    // _currentResponse = _LlmResponseListener(
+    //   stream: provider.sendMessageStream(prompt, attachments: attachments),
+    //   message: llmMessage,
+    //   onDone: _onDone,
+    //   onUpdate: _onUpdate,
+    // );
   }
 
   void addSystemMessage(String prompt) {
