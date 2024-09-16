@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'ai/providers/gemini_provider.dart';
+import 'ai/controllers/chat_controller.dart';
 import 'ai/views/llm_chat_view.dart';
-import 'functions/poster_design/poster_design_guidelines.dart';
-import 'functions/poster_design/poster_designer.dart';
+import 'functions/poster_designer/poster_designer.dart';
 
 final kGeminiApiKey = dotenv.env['GEMINI_API_KEY'] as String;
 
@@ -23,44 +22,31 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         theme: ThemeData.dark(),
         title: title,
-        home: const ChatPage(),
+        home: const PosterDesignPage(),
       );
 }
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends HookWidget {
   const ChatPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useChatController(posterDesignerProvider);
+    return Scaffold(
+      appBar: AppBar(title: const Text(App.title)),
+      body: LlmChatView(controller: controller),
+    );
+  }
+}
+
+class PosterDesignPage extends StatelessWidget {
+  const PosterDesignPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(App.title)),
-      body: LlmChatView(
-        provider: GeminiProvider(
-          functions: [
-            updatePosterDesignFunction,
-            getCurrentPosterDesignFunction,
-            getPosterDesignGuidelineFunction,
-          ],
-          model: GeminiModel.flash15Latest.model,
-          toolConfig: posterDesignerToolConfig,
-          systemInstruction: posterDesignerInstructions,
-          config: GenerationConfig(),
-          apiKey: kGeminiApiKey,
-        ),
-      ),
+      body: const PosterDesignerWidget(),
     );
   }
-}
-
-enum GeminiModel {
-  flash15('gemini-1.5-flash'),
-  pro1('gemini-1.0-pro'),
-  pro1001('gemini-1.0-pro-001'),
-  pro15('gemini-1.5-pro'),
-  flash15Latest('gemini-1.5-flash-latest'),
-  pro15Latest('gemini-1.5-pro-latest');
-
-  const GeminiModel(this.model);
-
-  final String model;
 }

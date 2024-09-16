@@ -2,6 +2,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../../ai/helpers.dart';
 import '../../ai/models/llm_function.dart';
+import '../../ai/providers/providers.dart';
 import '../../main.dart';
 
 final _model = GenerativeModel(
@@ -84,7 +85,7 @@ class GeneratePosterDesignGuidelineDto {
   );
 }
 
-Future<JSON> _generatePosterDesignGuideline(JSON value) async {
+Future<JSON> _createPosterDesignHandler(JSON value) async {
   final chat = _model.startChat(history: _chatHistory);
 
   final dto = GeneratePosterDesignGuidelineDto.fromMap(value);
@@ -100,13 +101,13 @@ Future<JSON> _generatePosterDesignGuideline(JSON value) async {
   };
 }
 
-final _getPosterDesignGuidelines = LlmFunctionDeclaration(
-  name: 'getPosterDesignGuidelines',
-  description: 'Generate design guidelines for the poster',
+final _createPosterDesign = LlmFunctionDeclaration(
+  name: 'createPosterDesign',
+  description: 'Create a new poster design',
   parameters: GeneratePosterDesignGuidelineDto.schema,
 );
 
-final getPosterDesignGuidelineFunction = LlmFunction(
-  function: _getPosterDesignGuidelines,
-  handler: _generatePosterDesignGuideline,
+final createPosterDesignFunction = LlmFunction(
+  function: _createPosterDesign,
+  handler: _createPosterDesignHandler,
 );

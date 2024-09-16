@@ -97,7 +97,7 @@ class ControlLightWidget extends HookWidget {
   Widget build(BuildContext context) {
     final brightness = useState(data.brightness);
     final previousBrightness = usePrevious(brightness.value);
-    final chatController = useChatController();
+    final chatController = ChatController.of(context);
 
     void handleConfirmation() {
       var message = 'Confirmed';
