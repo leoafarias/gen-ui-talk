@@ -29,7 +29,9 @@ class ExampleApp extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : const LightControlPage(),
+                : const LightControlPage(
+                    schemaOnly: true,
+                  ),
           );
         });
   }

@@ -20,25 +20,24 @@ class LlmMessageView extends MessageView<ILlmMessage> {
 
   List<Widget> _buildMessageParts() {
     final functionParts = message.parts.whereType<LlmFunctionResponsePart>();
-    final textParts = message.parts.whereType<LlmTextPart>();
 
     final renderableWidgets = <String, Widget>{};
-
-    final isFinalizedMessage = message is LlmMessage;
 
     for (final functionPart in functionParts) {
       final widget = functionPart.getRunnableUi();
       if (widget != null) {
         renderableWidgets[functionPart.function.name] = WidgetResponseProvider(
-          isRunning: active && isFinalizedMessage,
+          isRunning: active,
           child: widget,
         );
       }
     }
 
+    final shouldRenderText = message.text.trim().isNotEmpty;
+
     return [
-      ...textParts.map((e) => _LlmTextResponseView(e)),
       ...renderableWidgets.values,
+      if (shouldRenderText) _LlmTextResponseView(message.text),
     ];
   }
 
@@ -64,10 +63,8 @@ class LlmMessageView extends MessageView<ILlmMessage> {
   }
 }
 
-class _LlmFunctionResponseView extends StatelessWidget {
-  const _LlmFunctionResponseView(
-    this.message,
-  );
+class SchemaDisplayView extends StatelessWidget {
+  const SchemaDisplayView(this.message, {super.key});
   final LlmFunctionResponsePart message;
 
   @override
@@ -78,7 +75,7 @@ class _LlmFunctionResponseView extends StatelessWidget {
 
 class _LlmTextResponseView extends StatelessWidget {
   const _LlmTextResponseView(this.message);
-  final LlmTextPart message;
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +85,7 @@ class _LlmTextResponseView extends StatelessWidget {
         Flexible(
           flex: 6,
           child: MessageBubble(
-            text: message.text.trim(),
+            text: message.trim(),
             style: MessageBubbleStyle(
               textStyle: chatTheme.textStyle.copyWith(
                 color: chatTheme.onBackGroundColor,

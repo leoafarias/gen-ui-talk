@@ -3,7 +3,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../ai/providers/gemini_provider.dart';
 import '../../main.dart';
 import 'light_control_dto.dart';
-import 'light_control_example.dart';
+import 'light_control_widget.dart';
 
 final _whatIsBrightnessLevel = [
   Content.text('What is the brightness level?'),
@@ -73,7 +73,11 @@ List<Content> get _history => [
 
 final _controlLightToolConfig = ToolConfig(
   functionCallingConfig: FunctionCallingConfig(
-    mode: FunctionCallingMode.auto,
+    mode: FunctionCallingMode.any,
+    allowedFunctionNames: {
+      getLightControlStateFunction.name,
+      setLightControlStateFunction.name,
+    },
   ),
 );
 final controlLightProvider = GeminiProvider(
@@ -88,4 +92,14 @@ You are a light control system. You can adjust the brightness of the light in a 
 You can set the brightness of the light to a value between 0 and 100. Zero is off and 100 is full brightness.
 ''',
   history: _history,
+);
+
+final controlLightSchemaProvider = GeminiProvider(
+  model: GeminiModel.flash15Latest.model,
+  apiKey: kGeminiApiKey,
+  config: GenerationConfig(
+    responseSchema: LightControlDto.schema,
+  ),
+  functions: [getLightControlStateFunction, setLightControlStateFunction],
+  toolConfig: _controlLightToolConfig,
 );

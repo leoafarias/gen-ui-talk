@@ -29,6 +29,13 @@ class ChatController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<LlmMessage> sendMessageStream(
+    String prompt, {
+    Iterable<Attachment> attachments = const [],
+  }) {
+    return sendMessage(prompt, attachments: attachments, stream: true);
+  }
+
   Future<LlmMessage> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
@@ -54,7 +61,7 @@ class ChatController extends ChangeNotifier {
           },
           onUpdate: (payload) {
             if (_updateTimer?.isActive ?? false) return;
-            _updateTimer = Timer(const Duration(milliseconds: 150), () {
+            _updateTimer = Timer(const Duration(milliseconds: 10), () {
               notifyListeners();
             });
           },

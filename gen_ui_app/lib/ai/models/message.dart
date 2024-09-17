@@ -16,6 +16,15 @@ sealed class Message {
     this.id = id ?? const Uuid().v4();
   }
 
+  @override
+  operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Message && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
+
   String toClipboardText();
 }
 
@@ -52,6 +61,13 @@ sealed class ILlmMessage extends Message {
 
   @override
   String toClipboardText() => parts.map((e) => e.toClipboardText()).join();
+
+  List<LlmFunctionResponsePart> get functionResponses =>
+      parts.whereType<LlmFunctionResponsePart>().toList();
+
+  List<LlmTextPart> get _textParts => parts.whereType<LlmTextPart>().toList();
+
+  String get text => _textParts.map((e) => e.text).join();
 }
 
 class LlmMessage extends ILlmMessage {
@@ -66,13 +82,6 @@ class LlmMessage extends ILlmMessage {
   factory LlmMessage.text(String text) {
     return LlmMessage(parts: [LlmTextPart(text: text)]);
   }
-
-  List<LlmFunctionResponsePart> get functionResponses =>
-      parts.whereType<LlmFunctionResponsePart>().toList();
-
-  List<LlmTextPart> get textParts => parts.whereType<LlmTextPart>().toList();
-
-  String get text => textParts.map((e) => e.text).join();
 }
 
 class LlmStreamableMessage extends ILlmMessage {

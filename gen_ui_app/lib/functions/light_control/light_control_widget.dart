@@ -19,17 +19,14 @@ const _getCurrentBrightness = LlmFunctionDeclaration(
   description: 'Returns the current brightness level of the room.',
 );
 
-const _lightControlMockApi = LightControlMockApi();
-
 final getLightControlStateFunction = LlmFunction(
   function: _getCurrentBrightness,
-  handler: (args) => _lightControlMockApi.get(),
-  uiHandler: (value) => LightControlExample(LightControlDto.fromMap(value)),
+  handler: (args) => lightControlController.get(),
 );
 
 final setLightControlStateFunction = LlmFunction(
   function: _setsRoomBrightness,
-  handler: (value) => _lightControlMockApi.post(value),
+  handler: (value) => lightControlController.post(value),
   uiHandler: (value) => LightControlExample(LightControlDto.fromMap(value)),
 );
 
@@ -39,7 +36,7 @@ class LightControlExample extends HookWidget {
   final LightControlDto data;
 
   void _updateBrightness(num value) {
-    _lightControlMockApi.setBrightness(value.toInt());
+    lightControlController.setBrightness(value.toInt());
   }
 
   @override
@@ -164,8 +161,12 @@ class LightControlExample extends HookWidget {
                     child: LightSwitch(
                       value: isOn,
                       onChanged: (value) {
-                        brightness.value =
-                            value ? (previousBrightness ?? 100) : 0;
+                        final previousValue = previousBrightness == null ||
+                                previousBrightness == 0
+                            ? 100
+                            : previousBrightness;
+
+                        brightness.value = value ? previousValue : 0;
                         _updateBrightness(brightness.value.toDouble());
                       },
                     ),
