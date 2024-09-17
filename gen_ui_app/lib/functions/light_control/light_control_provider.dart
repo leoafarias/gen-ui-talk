@@ -1,27 +1,29 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../../ai/models/llm_function.dart';
 import '../../ai/providers/gemini_provider.dart';
 import '../../main.dart';
+import 'light_control_controller.dart';
 import 'light_control_dto.dart';
 import 'light_control_widget.dart';
 
 final _whatIsBrightnessLevel = [
   Content.text('What is the brightness level?'),
-  Content.model([FunctionCall(getLightControlStateFunction.name, {})]),
-  Content.functionResponse(getLightControlStateFunction.name,
+  Content.model([FunctionCall(_getLightControlStateFunction.name, {})]),
+  Content.functionResponse(_getLightControlStateFunction.name,
       LightControlDto(brightness: 0).toMap()),
   Content.model([TextPart('The light is currently off.')]),
 ];
 
 final _testConstraints = [
   Content.text('increase brightness by 30'),
-  Content.model([FunctionCall(getLightControlStateFunction.name, {})]),
-  Content.functionResponse(getLightControlStateFunction.name,
+  Content.model([FunctionCall(_getLightControlStateFunction.name, {})]),
+  Content.functionResponse(_getLightControlStateFunction.name,
       LightControlDto(brightness: 90).toMap()),
   Content.model([
-    FunctionCall(setLightControlStateFunction.name, {'brightness': 100}),
+    FunctionCall(_setLightControlStateFunction.name, {'brightness': 100}),
   ]),
-  Content.functionResponse(setLightControlStateFunction.name,
+  Content.functionResponse(_setLightControlStateFunction.name,
       LightControlDto(brightness: 100).toMap()),
   Content.model([
     TextPart(
@@ -32,26 +34,26 @@ final _testConstraints = [
 
 final List<Content> _increaseBrightnessBy20 = [
   Content.text('Increase the brightness of the light by 20%'),
-  Content.model([FunctionCall(getLightControlStateFunction.name, {})]),
-  Content.functionResponse(getLightControlStateFunction.name,
+  Content.model([FunctionCall(_getLightControlStateFunction.name, {})]),
+  Content.functionResponse(_getLightControlStateFunction.name,
       LightControlDto(brightness: 35).toMap()),
   Content.model([
-    FunctionCall(setLightControlStateFunction.name, {'brightness': 35 + 20})
+    FunctionCall(_setLightControlStateFunction.name, {'brightness': 35 + 20})
   ]),
-  Content.functionResponse(setLightControlStateFunction.name,
+  Content.functionResponse(_setLightControlStateFunction.name,
       LightControlDto(brightness: 35 + 20).toMap()),
   Content.model([TextPart('I have changed the brightness to 55%')]),
 ];
 
 final _dimLightBy50 = [
   Content.text('Dim the light by 50%'),
-  Content.model([FunctionCall(getLightControlStateFunction.name, {})]),
-  Content.functionResponse(getLightControlStateFunction.name,
+  Content.model([FunctionCall(_getLightControlStateFunction.name, {})]),
+  Content.functionResponse(_getLightControlStateFunction.name,
       LightControlDto(brightness: 85).toMap()),
   Content.model([
-    FunctionCall(setLightControlStateFunction.name, {'brightness': 35})
+    FunctionCall(_setLightControlStateFunction.name, {'brightness': 35})
   ]),
-  Content.functionResponse(setLightControlStateFunction.name,
+  Content.functionResponse(_setLightControlStateFunction.name,
       LightControlDto(brightness: 35).toMap()),
   Content.model([TextPart('I have dimmed the light to 35%')]),
 ];
@@ -75,22 +77,24 @@ final _controlLightToolConfig = ToolConfig(
   functionCallingConfig: FunctionCallingConfig(
     mode: FunctionCallingMode.any,
     allowedFunctionNames: {
-      getLightControlStateFunction.name,
-      setLightControlStateFunction.name,
+      _getLightControlStateFunction.name,
+      _setLightControlStateFunction.name,
     },
   ),
 );
+
+const _systemInstructions = '''
+You are a light control system. You can adjust the brightness of the light in a room.
+
+You can set the brightness of the light to a value between 0 and 100. Zero is off and 100 is full brightness.
+''';
 final controlLightProvider = GeminiProvider(
   model: GeminiModel.flash15Latest.model,
   apiKey: kGeminiApiKey,
   config: GenerationConfig(),
-  functions: [getLightControlStateFunction, setLightControlStateFunction],
+  functions: [_getLightControlStateFunction, _setLightControlStateFunction],
   toolConfig: _controlLightToolConfig,
-  systemInstruction: '''
-You are a light control system. You can adjust the brightness of the light in a room.
-
-You can set the brightness of the light to a value between 0 and 100. Zero is off and 100 is full brightness.
-''',
+  systemInstruction: _systemInstructions,
   history: _history,
 );
 
@@ -100,6 +104,30 @@ final controlLightSchemaProvider = GeminiProvider(
   config: GenerationConfig(
     responseSchema: LightControlDto.schema,
   ),
-  functions: [getLightControlStateFunction, setLightControlStateFunction],
+  functions: [_getLightControlStateFunction, _setLightControlStateFunction],
   toolConfig: _controlLightToolConfig,
+  systemInstruction: _systemInstructions,
+);
+
+final _setsRoomBrightness = LlmFunctionDeclaration(
+  name: 'setsRoomBrightness',
+  description: 'Control lighting in the room and sets brightness level.',
+  parameters: LightControlDto.schema,
+);
+
+const _getCurrentBrightness = LlmFunctionDeclaration(
+  name: 'getCurrentRoomBrightness',
+  description: 'Returns the current brightness level of the room.',
+);
+
+final _getLightControlStateFunction = LlmFunction(
+  function: _getCurrentBrightness,
+  handler: (args) => lightControlController.get(),
+);
+
+final _setLightControlStateFunction = LlmFunction(
+  function: _setsRoomBrightness,
+  handler: (value) => lightControlController.post(value),
+  uiHandler: (value) =>
+      LightControlWidgetResponse(LightControlDto.fromMap(value)),
 );

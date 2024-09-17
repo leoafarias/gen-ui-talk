@@ -2,36 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../ai/controllers/chat_controller.dart';
-import '../../ai/models/llm_function.dart';
 import '../../ai/models/llm_runnable_ui.dart';
 import '../../ai/style.dart';
+import 'light_control_controller.dart';
 import 'light_control_dto.dart';
-import 'light_control_mock_api.dart';
 
-final _setsRoomBrightness = LlmFunctionDeclaration(
-  name: 'setsRoomBrightness',
-  description: 'Control lighting in the room and sets brightness level.',
-  parameters: LightControlDto.schema,
-);
-
-const _getCurrentBrightness = LlmFunctionDeclaration(
-  name: 'getCurrentRoomBrightness',
-  description: 'Returns the current brightness level of the room.',
-);
-
-final getLightControlStateFunction = LlmFunction(
-  function: _getCurrentBrightness,
-  handler: (args) => lightControlController.get(),
-);
-
-final setLightControlStateFunction = LlmFunction(
-  function: _setsRoomBrightness,
-  handler: (value) => lightControlController.post(value),
-  uiHandler: (value) => LightControlExample(LightControlDto.fromMap(value)),
-);
-
-class LightControlExample extends HookWidget {
-  const LightControlExample(this.data, {super.key});
+class LightControlWidgetResponse extends HookWidget {
+  const LightControlWidgetResponse(this.data, {super.key});
 
   final LightControlDto data;
 

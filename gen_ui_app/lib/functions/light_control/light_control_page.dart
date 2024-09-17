@@ -3,19 +3,21 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../ai/views/llm_chat_view.dart';
-import 'light_control_mock_api.dart';
+import '../../ai/components/molecules/playground.dart';
+import 'light_control_controller.dart';
 import 'light_control_provider.dart';
 
 class LightControlPage extends HookWidget {
-  const LightControlPage({super.key, required this.schemaOnly});
+  const LightControlPage({super.key, this.schema = false});
 
-// If should display only schema
-  final bool schemaOnly;
+  // If should display only schema
+  final bool schema;
 
   @override
   Widget build(BuildContext context) {
     final lightControl = useListenable(lightControlController);
+
+    final provider = schema ? controlLightSchemaProvider : controlLightProvider;
 
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 500),
@@ -32,38 +34,25 @@ class LightControlPage extends HookWidget {
       return null;
     }, [lightControl.brightness]);
 
-    return Scaffold(
-      body: Row(
+    return PlaygroundPage(
+      provider: provider,
+      body: Column(
         children: [
           Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: AnimatedBuilder(
-                        animation: animationController,
-                        builder: (context, _) {
-                          return CustomPaint(
-                            size: const Size(647, 457),
-                            painter: RPSCustomPainter(
-                              brightness: animationController.value.toInt(),
-                            ),
-                          );
-                        }),
-                  ),
-                ),
-              ],
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: AnimatedBuilder(
+                  animation: animationController,
+                  builder: (context, _) {
+                    return CustomPaint(
+                      size: const Size(647, 457),
+                      painter: RPSCustomPainter(
+                        brightness: animationController.value.toInt(),
+                      ),
+                    );
+                  }),
             ),
           ),
-          Expanded(
-            child: LlmChatView(
-              provider: schemaOnly
-                  ? controlLightSchemaProvider
-                  : controlLightProvider,
-              stream: true,
-            ),
-          )
         ],
       ),
     );
