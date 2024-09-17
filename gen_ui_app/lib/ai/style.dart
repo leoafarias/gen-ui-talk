@@ -25,6 +25,6 @@ const chatTheme = _ChatStyleTheme(
   backgroundColor: Colors.black,
   onBackGroundColor: Colors.white,
   textStyle: _textStyle,
-  accentColor: Color(0xFFE1FF41),
+  accentColor: Color.fromARGB(255, 255, 255, 255),
   onAccentColor: Colors.black,
 );

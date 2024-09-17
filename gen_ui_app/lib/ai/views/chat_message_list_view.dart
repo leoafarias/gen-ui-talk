@@ -134,7 +134,13 @@ class _ChatMessageListState extends State<ChatMessageList> {
 
   Widget _messageBuilder(BuildContext context, Message message, bool active) {
     if (widget.messageBuilder != null) {
-      return widget.messageBuilder!(context, message);
+      // Use the custom message builder if provided
+      final messageWidget = widget.messageBuilder!(context, message);
+
+      // Return the custom widget if it's not null
+      if (messageWidget != null) {
+        return messageWidget;
+      }
     }
 
     final messageKey = Key('message-${message.id}');

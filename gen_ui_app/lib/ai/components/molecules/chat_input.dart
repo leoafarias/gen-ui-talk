@@ -93,7 +93,6 @@ class _ChatInputState extends State<ChatInput> {
           valueListenable: _controller,
           builder: (context, value, child) => Row(
             children: [
-              _AttachmentActionBar(onAttachment: _onAttachment),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(

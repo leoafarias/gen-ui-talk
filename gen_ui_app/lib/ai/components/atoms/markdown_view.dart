@@ -135,3 +135,24 @@ class ZeroPaddingBuilder extends MarkdownPaddingBuilder {
     return EdgeInsets.zero;
   }
 }
+
+Widget buildCodeHighlighter(
+  String content,
+  String language, {
+  String? themeName,
+  TextStyle? textStyle,
+}) {
+  final result = _highlight.highlight(code: content, language: language);
+
+  final theme = builtinAllThemes[themeName ?? 'monokai']!;
+
+  final renderer = TextSpanRenderer(textStyle, theme);
+
+  result.render(renderer);
+  return Container(
+    padding: const EdgeInsets.all(16),
+    child: RichText(
+      text: renderer.span ?? const TextSpan(),
+    ),
+  );
+}

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'functions/light_control/light_control_page.dart';
-import 'functions/quote_designer/quote_designer_example.dart';
+import 'functions/color_palette/color_palette_page.dart';
 
 String get kGeminiApiKey => dotenv.env['GEMINI_API_KEY'] as String;
 
@@ -29,9 +28,7 @@ class ExampleApp extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : const LightControlPage(
-                    schemaOnly: true,
-                  ),
+                : const ColorPalettePage(),
           );
         });
   }
@@ -44,7 +41,7 @@ class PosterDesignPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(ExampleApp.title)),
-      body: const QuoteDesignerExample(),
+      body: const ColorPalettePage(),
     );
   }
 }
