@@ -93,12 +93,6 @@ class GeminiProvider extends LlmProvider {
     ]);
   }
 
-  /// Generates a stream of text based on the given prompt and attachments.
-  ///
-  /// [prompt] is the input text to generate a response for. [attachments] is an
-  /// optional iterable of [Attachment] objects to include with the prompt.
-  ///
-  /// Returns a [Stream] of [String] containing the generated text chunks.
   @override
   Stream<LlmMessagePart> sendMessageStream(
     String prompt, {
@@ -117,17 +111,17 @@ class GeminiProvider extends LlmProvider {
           yield _buildFunctionResponse(response);
         }
       }
-      final text = chunk.text;
+      final text = chunk.text ?? '';
 
-      if (text != null) yield LlmTextPart(text: text);
+      if (text.isNotEmpty) yield LlmTextPart(text: text);
     }
 
     if (functionResponses.isNotEmpty) {
       final response =
           chat.sendMessageStream(Content.functionResponses(functionResponses));
       await for (final chunk in response) {
-        final text = chunk.text;
-        if (text != null) yield LlmTextPart(text: text);
+        final text = chunk.text ?? '';
+        if (text.isNotEmpty) yield LlmTextPart(text: text);
       }
     }
   }
@@ -149,25 +143,24 @@ class GeminiProvider extends LlmProvider {
     final functionCalls = response.functionCalls.toList();
     final functionResponses = <FunctionResponse>[];
 
-    if (functionCalls.isEmpty) {
-      return [
-        LlmTextPart(text: response.text ?? ''),
-      ];
-    }
+    final textPart = response.text ?? '';
+
     for (final call in functionCalls) {
       functionResponses.add(await _dispatchFunctionCall(call));
     }
 
     final parts = [
       ...functionResponses.map(_buildFunctionResponse),
-      if (response.text != null) LlmTextPart(text: response.text ?? ''),
+      if (textPart.isNotEmpty) LlmTextPart(text: textPart),
     ];
 
-    final functionCallback = await chat.sendMessage(
-      Content.functionResponses(functionResponses),
-    );
+    if (functionResponses.isNotEmpty) {
+      final functionCallback = await chat.sendMessage(
+        Content.functionResponses(functionResponses),
+      );
 
-    parts.addAll(await _getPartsFromResponse(functionCallback));
+      parts.addAll(await _getPartsFromResponse(functionCallback));
+    }
 
     return parts;
   }

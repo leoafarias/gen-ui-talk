@@ -16,12 +16,14 @@ class ChatInput extends StatefulWidget {
     required this.onSubmit,
     required this.onCancel,
     this.initialMessage,
+    this.focusNode,
     super.key,
   });
 
   final bool submitting;
 
   final UserMessage? initialMessage;
+  final FocusNode? focusNode;
 
   final void Function(String, {required Iterable<Attachment> attachments})
       onSubmit;
@@ -36,9 +38,15 @@ enum _InputState { disabled, enabled, submitting }
 
 class _ChatInputState extends State<ChatInput> {
   final _controller = TextEditingController();
-  final _focusNode = FocusNode();
+  late final FocusNode _focusNode;
   final _attachments = <Attachment>[];
   final _isMobile = UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = widget.focusNode ?? FocusNode();
+  }
 
   @override
   void didUpdateWidget(covariant ChatInput oldWidget) {
@@ -53,85 +61,90 @@ class _ChatInputState extends State<ChatInput> {
   @override
   void dispose() {
     _controller.dispose();
-    _focusNode.dispose();
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Container(
-            height: _attachments.isNotEmpty ? 104 : 0,
-            padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
-            child: _attachments.isNotEmpty
-                ? ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      for (final a in _attachments)
-                        _RemoveableAttachment(
-                          attachment: a,
-                          onRemove: _onRemoveAttachment,
-                        ),
-                    ],
-                  )
-                : const SizedBox(),
-          ),
-          const Gap(6),
-          ValueListenableBuilder(
-            valueListenable: _controller,
-            builder: (context, value, child) => Row(
-              children: [
-                _AttachmentActionBar(onAttachment: _onAttachment),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
+  Widget build(BuildContext context) {
+    final isSubmitting = _inputState == _InputState.submitting;
+    return Column(
+      children: [
+        Container(
+          height: _attachments.isNotEmpty ? 104 : 0,
+          padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
+          child: _attachments.isNotEmpty
+              ? ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    for (final a in _attachments)
+                      _RemoveableAttachment(
+                        attachment: a,
+                        onRemove: _onRemoveAttachment,
+                      ),
+                  ],
+                )
+              : const SizedBox(),
+        ),
+        const Gap(6),
+        ValueListenableBuilder(
+          valueListenable: _controller,
+          builder: (context, value, child) => Row(
+            children: [
+              _AttachmentActionBar(onAttachment: _onAttachment),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: TextField(
+                    enabled: _inputState != _InputState.submitting,
+                    minLines: 1,
+                    maxLines: 1024,
+                    controller: _controller,
+                    focusNode: _focusNode,
+                    autofocus: true,
+                    textInputAction: _isMobile
+                        ? TextInputAction.newline
+                        : TextInputAction.done,
+                    onSubmitted: (value) => _onSubmit(value),
+                    style: chatTheme.textStyle.copyWith(
+                      color: chatTheme.onAccentColor,
                     ),
-                    child: TextField(
-                      enabled: _inputState != _InputState.submitting,
-                      minLines: 1,
-                      maxLines: 1024,
-                      controller: _controller,
-                      focusNode: _focusNode,
-                      autofocus: true,
-                      textInputAction: _isMobile
-                          ? TextInputAction.newline
-                          : TextInputAction.done,
-                      onSubmitted: (value) => _onSubmit(value),
-                      style: chatTheme.textStyle.copyWith(
+                    decoration: InputDecoration(
+                      hintText: isSubmitting ? '' : 'Ask me anything...',
+                      hintStyle: chatTheme.textStyle.copyWith(
                         color: chatTheme.onAccentColor,
                       ),
-                      decoration: InputDecoration(
-                        hintText: "Ask me anything...",
-                        hintStyle: chatTheme.textStyle.copyWith(
-                          color: chatTheme.onAccentColor,
-                        ),
-                        filled: true,
-                        fillColor: chatTheme.accentColor,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                          borderSide: BorderSide.none,
-                        ),
-                        suffixIcon: _SubmitButton(
-                          text: _controller.text,
-                          inputState: _inputState,
-                          onSubmit: _onSubmit,
-                          onCancel: _onCancel,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 12.0,
-                        ),
+                      filled: true,
+                      fillColor: chatTheme.accentColor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: _SubmitButton(
+                        text: _controller.text,
+                        inputState: _inputState,
+                        onSubmit: _onSubmit,
+                        onCancel: _onCancel,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 12.0,
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      );
+        ),
+      ],
+    );
+  }
 
   _InputState get _inputState {
     if (widget.submitting) return _InputState.submitting;
@@ -148,6 +161,7 @@ class _ChatInputState extends State<ChatInput> {
     widget.onSubmit(prompt, attachments: List.from(_attachments));
     _attachments.clear();
     _controller.clear();
+
     _focusNode.requestFocus();
   }
 

@@ -1,46 +1,110 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../ai/views/llm_chat_view.dart';
+import 'light_control_mock_api.dart';
 import 'light_control_provider.dart';
 
-class LightControlPage extends StatelessWidget {
-  const LightControlPage({super.key});
+class LightControlPage extends HookWidget {
+  const LightControlPage({super.key, required this.schemaOnly});
+
+// If should display only schema
+  final bool schemaOnly;
+
   @override
   Widget build(BuildContext context) {
+    final lightControl = useListenable(lightControlController);
+
+    final animationController = useAnimationController(
+      duration: const Duration(milliseconds: 500),
+      initialValue: lightControl.brightness.toDouble(),
+      lowerBound: 0,
+      upperBound: 100,
+    );
+
+    useEffect(() {
+      animationController.animateTo(
+        lightControl.brightness.toDouble(),
+        curve: Curves.easeInOut,
+      );
+      return null;
+    }, [lightControl.brightness]);
+
     return Scaffold(
       body: Row(
         children: [
-          CustomPaint(
-            size: const Size(647, 457),
-            painter: RPSCustomPainter(),
+          Expanded(
+            child: Column(
+              children: [
+                Expanded(
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: AnimatedBuilder(
+                        animation: animationController,
+                        builder: (context, _) {
+                          return CustomPaint(
+                            size: const Size(647, 457),
+                            painter: RPSCustomPainter(
+                              brightness: animationController.value.toInt(),
+                            ),
+                          );
+                        }),
+                  ),
+                ),
+              ],
+            ),
           ),
-          Expanded(child: LlmChatView(provider: controlLightProvider))
+          Expanded(
+            child: LlmChatView(
+              provider: schemaOnly
+                  ? controlLightSchemaProvider
+                  : controlLightProvider,
+              stream: true,
+            ),
+          )
         ],
       ),
     );
   }
 }
 
-//Add this CustomPaint widget to the Widget Tree
-
-//Copy this CustomPainter code to the Bottom of the File
 class RPSCustomPainter extends CustomPainter {
+  final int brightness;
+  const RPSCustomPainter({
+    required this.brightness,
+    super.repaint,
+  });
   @override
   void paint(Canvas canvas, Size size) {
-    Path path_0 = Path();
-    path_0.moveTo(size.width * 1.245000, 0);
-    path_0.lineTo(size.width * -0.2450000, 0);
-    path_0.lineTo(size.width * -0.2450000, size.height);
-    path_0.lineTo(size.width * 1.245000, size.height);
-    path_0.lineTo(size.width * 1.245000, size.height * 0.5000000);
-    path_0.lineTo(size.width * 1.245000, 0);
-    path_0.close();
+    final isOff = brightness < 1;
+    final lightColor =
+        Color.lerp(Colors.black, Colors.white, brightness / 100)!;
+    final floorColor = Color.lerp(Colors.black,
+        const ui.Color.fromARGB(255, 44, 44, 44), brightness / 100)!;
+    final reflectionColor =
+        Color.lerp(Colors.black, Colors.white, brightness / 100)!;
 
-    Paint paint0Fill = Paint()..style = PaintingStyle.fill;
-    paint0Fill.color = const Color(0xff192A41).withOpacity(1.0);
-    canvas.drawPath(path_0, paint0Fill);
+    const foreGround = ui.Color.fromARGB(255, 6, 6, 6);
+    const background = ui.Color.fromARGB(255, 9, 9, 9);
+
+    Path floorPath = Path();
+    floorPath.moveTo(size.width, 0);
+    floorPath.lineTo(0, 0);
+    floorPath.lineTo(0, size.height);
+    floorPath.lineTo(size.width, size.height);
+    floorPath.lineTo(size.width, 0);
+    floorPath.close();
+
+    Paint floorFill = Paint()..style = PaintingStyle.fill;
+    floorFill.shader =
+        ui.Gradient.linear(const Offset(0, 0), Offset(0, size.height), [
+      isOff ? background : floorColor,
+    ], [
+      1
+    ]);
+    canvas.drawPath(floorPath, floorFill);
 
     Path wallPath = Path();
     wallPath.moveTo(size.width, 0);
@@ -51,28 +115,9 @@ class RPSCustomPainter extends CustomPainter {
     wallPath.close();
 
     Paint wallFill = Paint()..style = PaintingStyle.fill;
-    wallFill.shader = ui.Gradient.linear(
-        const Offset(0, 0), Offset(0, size.height * 58.86214), [
-      Colors.black,
-      Colors.transparent,
-    ], [
-      0,
-      1
-    ]);
+    wallFill.shader = ui.Gradient.linear(const Offset(0, 0),
+        Offset(0, size.height), [isOff ? foreGround : Colors.black], [1]);
     canvas.drawPath(wallPath, wallFill);
-
-    Path doorGapPath = Path();
-    doorGapPath.moveTo(size.width * 0.5641422, size.height * 0.2516411);
-    doorGapPath.lineTo(size.width * 0.4204019, size.height * 0.2516411);
-    doorGapPath.lineTo(size.width * 0.4204019, size.height * 0.5886214);
-    doorGapPath.lineTo(size.width * 0.5641422, size.height * 0.5886214);
-    doorGapPath.lineTo(size.width * 0.5641422, size.height * 0.2516411);
-    doorGapPath.close();
-
-    Paint doorGapFill = Paint()..style = PaintingStyle.fill;
-    doorGapFill.color =
-        const ui.Color.fromARGB(255, 255, 104, 23).withOpacity(1.0);
-    canvas.drawPath(doorGapPath, doorGapFill);
 
     Path lightReflectionPath = Path();
     lightReflectionPath.moveTo(size.width * 0.5641422, size.height * 0.5886214);
@@ -87,14 +132,69 @@ class RPSCustomPainter extends CustomPainter {
     lightReflectionFill.shader = ui.Gradient.linear(
         Offset(size.width * 0.4204019, size.height * 0.5886214),
         Offset(size.width * 0.4204019, size.height * 0.9956236), [
-      const Color(0xffFF00BF).withOpacity(1),
-      Colors.transparent.withOpacity(1)
+      isOff ? Colors.transparent : reflectionColor,
+      isOff ? Colors.transparent : Colors.transparent,
     ], [
       0,
-      0.8
+      0.8,
     ]);
     canvas.drawPath(lightReflectionPath, lightReflectionFill);
 
+    if (isOff) {
+      Path darkLightReflectionPath = Path();
+      darkLightReflectionPath.moveTo(
+          size.width * 0.5641422, size.height * 0.5886214);
+      darkLightReflectionPath.lineTo(size.width * 0.2, size.height * 0.5886214);
+      darkLightReflectionPath.lineTo(
+          size.width * -0.003091190, size.height * 0.9956236);
+      darkLightReflectionPath.lineTo(
+          size.width * 1.001546, size.height * 0.9956236);
+      darkLightReflectionPath.lineTo(
+          size.width * 0.5641422, size.height * 0.5886214);
+      darkLightReflectionPath.close();
+
+      Paint darkLightReflection = Paint()..style = PaintingStyle.fill;
+      darkLightReflection.shader = ui.Gradient.linear(
+          Offset(size.width * 0.2, size.height * 0.5886214),
+          Offset(size.width * 0.2, size.height * 0.9956236), [
+        isOff ? foreGround : Colors.transparent,
+        isOff ? background : Colors.transparent,
+      ], [
+        0,
+        0.8,
+      ]);
+      canvas.drawPath(darkLightReflectionPath, darkLightReflection);
+    }
+
+    Path doorGapPath = Path();
+    doorGapPath.moveTo(size.width * 0.5641422, size.height * 0.2516411);
+    doorGapPath.lineTo(size.width * 0.4204019, size.height * 0.2516411);
+    doorGapPath.lineTo(size.width * 0.4204019, size.height * 0.5886214);
+    doorGapPath.lineTo(size.width * 0.5641422, size.height * 0.5886214);
+    doorGapPath.lineTo(size.width * 0.5641422, size.height * 0.2516411);
+    doorGapPath.close();
+
+    Paint doorGapFill = Paint()..style = PaintingStyle.fill;
+    doorGapFill.color = isOff ? Colors.transparent : lightColor;
+    canvas.drawPath(doorGapPath, doorGapFill);
+
+    Path doorDarkGapPath = Path();
+    doorDarkGapPath.moveTo(size.width * 0.5641422, size.height * 0.2516411);
+    doorDarkGapPath.lineTo(size.width * 0.4204019, size.height * 0.2516411);
+    doorDarkGapPath.lineTo(size.width * 0.4204019, size.height * 0.5886214);
+    doorDarkGapPath.lineTo(size.width * 0.5641422, size.height * 0.5886214);
+    doorDarkGapPath.lineTo(size.width * 0.5641422, size.height * 0.2516411);
+    doorDarkGapPath.close();
+
+    if (isOff) {
+      Paint doorDarkGapFill = Paint()..style = PaintingStyle.fill;
+      doorDarkGapFill.shader = ui.Gradient.linear(
+          Offset(size.width * 0.4204019, size.height * 0.2516411),
+          Offset(size.width * 0.4204019, size.height * 0.5886214),
+          [Colors.black.withOpacity(0.7), Colors.black.withOpacity(0.1)],
+          [0, 1]);
+      canvas.drawPath(doorDarkGapPath, doorDarkGapFill);
+    }
     Path doorPath = Path();
     doorPath.moveTo(size.width * 0.4204019, size.height * 0.2516411);
     doorPath.lineTo(size.width * 0.3663060, size.height * 0.1903720);
@@ -107,13 +207,23 @@ class RPSCustomPainter extends CustomPainter {
     doorFill.shader = ui.Gradient.linear(
         Offset(size.width * 0.3663060, size.height * 0.4168490),
         Offset(size.width * 0.4204019, size.height * 0.4168490), [
-      const Color(0xffFF5500).withOpacity(1),
-      const Color(0xffFF1100).withOpacity(1)
+      isOff ? Colors.transparent : lightColor,
     ], [
-      0,
-      1
+      1,
     ]);
     canvas.drawPath(doorPath, doorFill);
+
+    // Glow effect around the door with intensity based on brightness
+    double glowIntensity = brightness / 100;
+    double glowStrokeWidth = 30 * glowIntensity;
+    double glowBlurRadius = 30 * glowIntensity;
+    Paint glowPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = glowStrokeWidth
+      ..color = lightColor.withOpacity(0.7 * glowIntensity)
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, glowBlurRadius);
+
+    canvas.drawPath(doorGapPath, glowPaint);
   }
 
   @override

@@ -1,9 +1,12 @@
+import 'package:flutter/widgets.dart';
+
 import '../../ai/helpers.dart';
 
-int _brightness = 0;
+final lightControlController = _LightControlMockController();
 
-class LightControlMockApi {
-  const LightControlMockApi();
+class _LightControlMockController extends ChangeNotifier {
+  int _brightness = 90;
+  _LightControlMockController();
 
   Future<JSON> post(JSON parameters) {
     setBrightness(parameters['brightness'] as int);
@@ -24,7 +27,8 @@ class LightControlMockApi {
       brightness = 0;
     }
     _brightness = brightness;
+    notifyListeners();
   }
 
-  int getBrightness() => _brightness;
+  int get brightness => _brightness;
 }
