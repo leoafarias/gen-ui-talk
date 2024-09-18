@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-import '../../style.dart';
 import 'markdown_view.dart';
 
 class JsonSyntax extends StatelessWidget {
@@ -10,7 +9,9 @@ class JsonSyntax extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildCodeHighlighter(content, 'json',
-        textStyle: chatTheme.textStyle);
+    return buildCodeHighlighter(
+      content,
+      'json',
+    );
   }
 }

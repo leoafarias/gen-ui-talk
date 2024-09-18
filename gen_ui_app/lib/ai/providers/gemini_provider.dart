@@ -68,8 +68,8 @@ class GeminiProvider extends AiProvider<GenerativeModel> {
   late final ChatSession chat;
   late final Map<String, AiFunctionDeclaration> _functionHandlers;
 
-  AiFunctionElement _getFunctionCall(FunctionCall call) {
-    return AiFunctionElement(_functionHandlers[call.name]!);
+  AiFunctionDeclaration _getFunctionCall(FunctionCall call) {
+    return _functionHandlers[call.name]!;
   }
 
   Content _buildUserMessage(String prompt, Iterable<Attachment> attachments) {
@@ -87,25 +87,37 @@ class GeminiProvider extends AiProvider<GenerativeModel> {
     final content = _buildUserMessage(prompt, attachments);
     final response = chat.sendMessageStream(content);
 
-    final functionResponses = <FunctionResponse>[];
+    final functionParts = <AiFunctionElement>[];
     await for (final chunk in response) {
       final functionCalls = chunk.functionCalls.toList();
       if (functionCalls.isNotEmpty) {
         for (final call in chunk.functionCalls) {
-          final functionPart = _getFunctionCall(call);
+          final functionPart = _getFunctionCall(call).toElement();
           yield functionPart;
 
           await functionPart.exec(call.args);
+          functionParts.add(functionPart);
         }
       }
       final text = chunk.text ?? '';
       if (text.isNotEmpty) yield AiTextElement(text: text);
     }
 
-    if (functionResponses.isNotEmpty) {
-      final response =
-          chat.sendMessageStream(Content.functionResponses(functionResponses));
+    if (functionParts.isNotEmpty) {
+      final response = chat.sendMessageStream(Content.functionResponses(
+        functionParts.map((e) => FunctionResponse(e.name, e.response)),
+      ));
       await for (final chunk in response) {
+        final functionCalls = chunk.functionCalls.toList();
+
+        if (functionCalls.isNotEmpty) {
+          for (final call in chunk.functionCalls) {
+            final functionPart = _getFunctionCall(call).toElement();
+            yield functionPart;
+            await functionPart.exec(call.args);
+          }
+        }
+
         final text = chunk.text ?? '';
         if (text.isNotEmpty) yield AiTextElement(text: text);
       }
@@ -133,7 +145,7 @@ class GeminiProvider extends AiProvider<GenerativeModel> {
     final functionParts = <AiFunctionElement>[];
 
     for (final call in functionCalls) {
-      final functionPart = _getFunctionCall(call);
+      final functionPart = _getFunctionCall(call).toElement();
       await functionPart.exec(call.args);
       functionParts.add(functionPart);
     }

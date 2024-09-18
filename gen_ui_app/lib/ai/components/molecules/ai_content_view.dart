@@ -28,7 +28,7 @@ class AiContentView<T extends AiContentBase> extends ContentView<T> {
     return parts.mapIndexed((index, part) {
       return switch (part) {
         (AiTextElement p) => AiTextElementView(p, builder: textBuilder),
-        (AiWidgetElement p) => AiWidgetElementView(p, builder: widgetBuilder),
+        (AiWidgetElement p) => p.render(),
         (AiFunctionElement p) =>
           AiFunctionElementView(p, builder: functionBuilder),
       };

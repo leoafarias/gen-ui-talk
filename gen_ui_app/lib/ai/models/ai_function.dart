@@ -23,6 +23,9 @@ class AiFunctionDeclaration {
     this.parameters,
     required this.handler,
   });
+
+  AiFunctionElement<AiFunctionDeclaration> toElement() =>
+      AiFunctionElement(this);
 }
 
 class AiWidgetDeclaration<T> extends AiFunctionDeclaration {
@@ -36,6 +39,9 @@ class AiWidgetDeclaration<T> extends AiFunctionDeclaration {
     required super.handler,
     required this.parser,
   }) : _builder = builder;
+
+  @override
+  AiWidgetElement<T> toElement() => AiWidgetElement(this);
 
   Widget build(AiWidgetElement<T> element) => _builder(element);
 }
