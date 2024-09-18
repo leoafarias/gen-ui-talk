@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../ai/components/molecules/ai_content_view.dart';
 import '../../ai/components/molecules/ai_element_view.dart';
 import '../../ai/controllers/chat_controller.dart';
+import '../../ai/models/ai_response.dart';
 import '../../ai/style.dart';
 import 'light_control_controller.dart';
 import 'light_control_dto.dart';
 
 class _LightControlWidgetResponse extends HookWidget {
-  const _LightControlWidgetResponse(this.data, {super.key});
+  const _LightControlWidgetResponse(this.element);
 
-  final LightControlDto data;
+  final AiWidgetElement<LightControlDto> element;
 
   void _updateBrightness(num value) {
     lightControlController.setBrightness(value.toInt());
@@ -18,14 +20,14 @@ class _LightControlWidgetResponse extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = useState(data.brightness);
+    final brightness = useState(element.requiredData.brightness);
     final previousBrightness = usePrevious(brightness.value);
 
     final chatController = ChatController.of(context);
 
     void handleConfirmation() {
       var message = 'Confirmed';
-      if (brightness.value != data.brightness) {
+      if (brightness.value != element.requiredData.brightness) {
         if (brightness.value == 0.0) {
           message = 'Light turned off';
         } else {
@@ -171,7 +173,15 @@ class LightControlWidgetResponse extends AiWidgetElementView<LightControlDto> {
 
   @override
   Widget build(BuildContext context) {
-    return _LightControlWidgetResponse(element.requiredData);
+    final provider = AiContentViewProvider.of(context);
+    if (!provider.active) {
+      return const SizedBox.shrink();
+    }
+
+    if (!element.isComplete) {
+      return const _LightControlWidgetSkeleton();
+    }
+    return _LightControlWidgetResponse(element);
   }
 }
 
@@ -290,6 +300,77 @@ class _LightSwitchState extends State<LightSwitch>
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _LightControlWidgetSkeleton extends StatefulWidget {
+  const _LightControlWidgetSkeleton({super.key});
+
+  @override
+  _LightControlWidgetSkeletonState createState() =>
+      _LightControlWidgetSkeletonState();
+}
+
+class _LightControlWidgetSkeletonState
+    extends State<_LightControlWidgetSkeleton> {
+  double _opacity = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 20), () {
+      setState(() {
+        _opacity = 1.0;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 500),
+      opacity: _opacity,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+              constraints: const BoxConstraints(minHeight: 125),
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white.withOpacity(0.2),
+                    Colors.white.withOpacity(0.4),
+                    Colors.white.withOpacity(0.2),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [
+                  Colors.white.withOpacity(0.2),
+                  Colors.white.withOpacity(0.4),
+                  Colors.white.withOpacity(0.2),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -76,7 +76,7 @@ class ChatController extends ChangeNotifier {
     Iterable<Attachment> attachments = const [],
   }) async {
     try {
-      // return _sendMessageStream(prompt, attachments: attachments);
+      return _sendMessageStream(prompt, attachments: attachments);
       _initialMessage = null;
       isProcessing = true;
       final userMessage = UserContent(prompt: prompt, attachments: attachments);
