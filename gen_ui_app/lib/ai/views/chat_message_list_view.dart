@@ -1,25 +1,32 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../components/molecules/llm_message_view.dart';
-import '../components/molecules/system_message_view.dart';
-import '../components/molecules/user_message_view.dart';
-import '../models/message.dart';
-import 'message_builders.dart';
+import '../components/molecules/ai_content_view.dart';
+import '../components/molecules/system_content_view.dart';
+import '../components/molecules/user_content_view.dart';
+import '../models/ai_response.dart';
+import '../models/content.dart';
+import 'builder_types.dart';
 
 class ChatMessageList extends StatefulWidget {
   const ChatMessageList({
     required this.transcript,
     this.onEditMessage,
-    this.messageBuilder,
+    this.userContentBuilder,
+    this.textElementBuilder,
+    this.widgetElementBuilder,
+    this.functionElementBuilder,
     super.key,
   });
 
-  final List<Message> transcript;
+  final List<ContentBase> transcript;
 
-  final void Function(Message message)? onEditMessage;
+  final void Function(ContentBase message)? onEditMessage;
 
-  final MessageBuilder? messageBuilder;
+  final UserContentViewBuilder? userContentBuilder;
+  final WidgetElementViewBuilder<AiWidgetElement>? widgetElementBuilder;
+  final WidgetElementViewBuilder<AiTextElement>? textElementBuilder;
+  final WidgetElementViewBuilder<AiFunctionElement>? functionElementBuilder;
 
   @override
   State<ChatMessageList> createState() => _ChatMessageListState();
@@ -28,7 +35,7 @@ class ChatMessageList extends StatefulWidget {
 class _ChatMessageListState extends State<ChatMessageList> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   final ScrollController _scrollController = ScrollController();
-  List<Message> _messages = [];
+  List<ContentBase> _messages = [];
 
   @override
   void initState() {
@@ -52,7 +59,7 @@ class _ChatMessageListState extends State<ChatMessageList> {
     _updateMessages(oldWidget.transcript);
   }
 
-  void _updateMessages(List<Message> oldMessages) {
+  void _updateMessages(List<ContentBase> oldMessages) {
     final newMessages = widget.transcript;
     final messagesToRemove =
         oldMessages.where((message) => !newMessages.contains(message)).toList();
@@ -88,7 +95,7 @@ class _ChatMessageListState extends State<ChatMessageList> {
     );
   }
 
-  Widget _buildMessageItem(Message message, Animation<double> animation) {
+  Widget _buildMessageItem(ContentBase message, Animation<double> animation) {
     final isLast = _messages.lastOrNull == message;
 
     final scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
@@ -123,7 +130,7 @@ class _ChatMessageListState extends State<ChatMessageList> {
               offset: Offset(0.0, slideAnimation.value),
               child: Padding(
                 padding: const EdgeInsets.only(top: 6),
-                child: _messageBuilder(context, message, isLast),
+                child: _contentBuilder(context, message, isLast),
               ),
             ),
           ),
@@ -132,26 +139,27 @@ class _ChatMessageListState extends State<ChatMessageList> {
     );
   }
 
-  Widget _messageBuilder(BuildContext context, Message message, bool active) {
-    if (widget.messageBuilder != null) {
-      // Use the custom message builder if provided
-      final messageWidget = widget.messageBuilder!(context, message);
+  Widget _contentBuilder(
+      BuildContext context, ContentBase content, bool active) {
+    final messageKey = Key('content-${content.id}');
 
-      // Return the custom widget if it's not null
-      if (messageWidget != null) {
-        return messageWidget;
+    if (content is UserContent) {
+      final userContent = widget.userContentBuilder?.call(content);
+      if (userContent != null) {
+        return userContent;
       }
     }
 
-    final messageKey = Key('message-${message.id}');
-
-    return switch (message) {
-      (SystemMesssage message) => SystemMessageView(message, key: messageKey),
-      (UserMessage message) => UserMessageView(message, key: messageKey),
-      (ILlmMessage message) => LlmMessageView(
+    return switch (content) {
+      (SystemContent message) => SystemContentView(message, key: messageKey),
+      (UserContent message) => UserContentView(message, key: messageKey),
+      (AiContentBase message) => AiContentView(
           message,
           key: messageKey,
           active: active,
+          widgetBuilder: widget.widgetElementBuilder,
+          textBuilder: widget.textElementBuilder,
+          functionBuilder: widget.functionElementBuilder,
         )
     };
   }

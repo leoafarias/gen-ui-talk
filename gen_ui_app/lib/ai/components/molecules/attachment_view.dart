@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../helpers.dart';
-import '../../providers/llm_provider_interface.dart';
+import '../../providers/ai_provider_interface.dart';
 
 class AttachmentView extends StatelessWidget {
   const AttachmentView(this.attachment, {super.key});

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../ai/helpers.dart';
+import '../../ai/helpers/hooks.dart';
 import 'color_palette_dto.dart';
 
 final colorPaletteController = _ColorPaletteController();
@@ -30,3 +31,5 @@ class _ColorPaletteController extends ChangeNotifier {
 
   ColorPaletteDto? get colorPalette => _colorPalette;
 }
+
+final useColorPalette = buildHookSelector(colorPaletteController);

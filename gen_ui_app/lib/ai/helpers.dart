@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 extension BuildContextX on BuildContext {
@@ -13,3 +15,7 @@ extension BuildContextX on BuildContext {
 }
 
 typedef JSON = Map<String, Object?>;
+
+String prettyJson(JSON json) {
+  return const JsonEncoder.withIndent('  ').convert(json);
+}

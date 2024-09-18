@@ -1,51 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mesh/mesh.dart';
 
-import '../../ai/components/atoms/markdown_view.dart';
 import '../../ai/components/molecules/playground.dart';
+import '../../ai/controllers/chat_controller.dart';
 import '../../ai/helpers/color_helpers.dart';
-import '../../ai/models/message.dart';
+import '../../ai/models/ai_response.dart';
+import '../../ai/models/content.dart';
+import '../../ai/views/chat_view.dart';
 import 'color_palette_controller.dart';
 import 'color_palette_dto.dart';
 import 'color_palette_provider.dart';
 import 'color_palette_widget.dart';
 
 class ColorPalettePage extends HookWidget {
-  const ColorPalettePage({super.key});
+  final bool schemaOnly;
+  const ColorPalettePage({super.key, this.schemaOnly = false});
+
+  Widget? _textElementBuilder(AiTextElement part) {
+    try {
+      return ColorPaletteResponseView(
+        key: ValueKey(part.text),
+        ColorPaletteDto.fromJson(part.text),
+      );
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Widget _userContentBuilder(UserContent content) {
+    return const SizedBox.shrink();
+  }
 
   @override
   Widget build(BuildContext context) {
     // Initialize poster design state with default values.
-    final controller = useListenable(colorPaletteController);
-    final colorPalette = controller.colorPalette;
-
-    final noColorSelected = colorPalette == null;
-
-    final messageBuilder = useCallback((BuildContext context, Message message) {
-      if (message is ILlmMessage) {
-        return ColorPaletteWidgetResponse(
-          key: ValueKey(message.id),
-          ColorPaletteDto.fromJson(message.text),
-        );
-      } else {
-        return const SizedBox();
-      }
-    }, []);
+    final controller = useChatController(colorPaletteProvider);
+    final palette = useColorPalette((c) => c.colorPalette);
 
     return PlaygroundPage(
-      provider: colorPaletteSchemaProvider,
-      stream: false,
-      bodyFlex: 6,
-      chatFlex: 4,
-      messageBuilder: messageBuilder,
-      body: noColorSelected
-          ? _ColorPaletteMesh(
-              _defaultPalette,
-            )
-          : _ColorPaletteMesh(colorPalette),
-    );
+        leftFlex: 6,
+        rightFlex: 4,
+        rightWidget: ChatView(
+          controller: controller,
+          textElementBuilder: _textElementBuilder,
+          userContentBuilder: _userContentBuilder,
+        ),
+        leftWidget: _ColorPaletteMesh(
+          palette ?? _defaultPalette,
+        ));
   }
 }
 
@@ -106,48 +109,6 @@ class _ColorPaletteMesh extends StatelessWidget {
             ),
           ),
         ),
-        // Addf a  button that when you tap it adds a modal with the snippet of the json
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      backgroundColor: Colors.black,
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 6),
-                      title: const Text('Color Palette JSON'),
-                      content: buildCodeHighlighter(
-                        data.toJson(),
-                        'json',
-                        textStyle: GoogleFonts.jetBrainsMono().copyWith(
-                          height: 1.4,
-                          fontSize: 22,
-                        ),
-                      ),
-                      actions: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: const Icon(Icons.close),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: const Icon(Icons.code),
-            ),
-          ),
-        )
       ],
     );
   }

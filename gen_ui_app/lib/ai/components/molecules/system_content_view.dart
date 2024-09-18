@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../models/message.dart';
+import '../../models/content.dart';
 import '../../style.dart';
 import '../atoms/message_bubble.dart';
-import 'base_message_view.dart';
+import 'base_content_view.dart';
 
-class SystemMessageView extends MessageView<SystemMesssage> {
-  const SystemMessageView(super.message, {super.key, super.onSelected});
+class SystemContentView extends ContentView<SystemContent> {
+  const SystemContentView(super.content, {super.key, super.onSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SystemMessageView extends MessageView<SystemMesssage> {
           child: Row(
             children: [
               MessageBubble(
-                text: message.prompt,
+                text: content.prompt,
                 style: MessageBubbleStyle(
                   textStyle: chatTheme.textStyle.copyWith(
                     color: chatTheme.onBackGroundColor,

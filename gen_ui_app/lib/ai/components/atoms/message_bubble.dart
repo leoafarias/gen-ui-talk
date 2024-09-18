@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../providers/llm_provider_interface.dart';
+import '../../providers/ai_provider_interface.dart';
 import '../molecules/attachment_view.dart';
 
 class MessageBubbleStyle {

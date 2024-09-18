@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'functions/color_palette/color_palette_page.dart';
+import 'functions/light_control/light_control_page.dart';
 
 String get kGeminiApiKey => dotenv.env['GEMINI_API_KEY'] as String;
 
@@ -22,26 +22,15 @@ class ExampleApp extends StatelessWidget {
           final isLoading = snapshot.connectionState == ConnectionState.waiting;
 
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: ThemeData.dark(),
             title: title,
             home: isLoading
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : const ColorPalettePage(),
+                : const LightControlPage(),
           );
         });
-  }
-}
-
-class PosterDesignPage extends StatelessWidget {
-  const PosterDesignPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(ExampleApp.title)),
-      body: const ColorPalettePage(),
-    );
   }
 }

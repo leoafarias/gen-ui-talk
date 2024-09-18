@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../ai/controllers/chat_controller.dart';
-import '../../ai/models/llm_runnable_ui.dart';
 import '../../ai/style.dart';
 import 'light_control_controller.dart';
 import 'light_control_dto.dart';
@@ -35,13 +34,7 @@ class LightControlWidgetResponse extends HookWidget {
       chatController.addSystemMessage(message);
     }
 
-    final active = isActiveWidget();
-
     final isOn = brightness.value != 0;
-
-    if (!active) {
-      return const SizedBox.shrink();
-    }
 
     Widget buildDisplay() {
       return Row(

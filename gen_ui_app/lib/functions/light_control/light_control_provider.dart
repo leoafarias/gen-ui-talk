@@ -1,6 +1,6 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../../ai/models/llm_function.dart';
+import '../../ai/models/ai_function.dart';
 import '../../ai/providers/gemini_provider.dart';
 import '../../main.dart';
 import 'light_control_controller.dart';
@@ -75,11 +75,7 @@ List<Content> get _history => [
 
 final _controlLightToolConfig = ToolConfig(
   functionCallingConfig: FunctionCallingConfig(
-    mode: FunctionCallingMode.any,
-    allowedFunctionNames: {
-      _getLightControlStateFunction.name,
-      _setLightControlStateFunction.name,
-    },
+    mode: FunctionCallingMode.auto,
   ),
 );
 
@@ -91,43 +87,24 @@ You can set the brightness of the light to a value between 0 and 100. Zero is of
 final controlLightProvider = GeminiProvider(
   model: GeminiModel.flash15Latest.model,
   apiKey: kGeminiApiKey,
-  config: GenerationConfig(),
   functions: [_getLightControlStateFunction, _setLightControlStateFunction],
   toolConfig: _controlLightToolConfig,
   systemInstruction: _systemInstructions,
   history: _history,
 );
 
-final controlLightSchemaProvider = GeminiProvider(
-  model: GeminiModel.flash15Latest.model,
-  apiKey: kGeminiApiKey,
-  config: GenerationConfig(
-    responseSchema: LightControlDto.schema,
-  ),
-  functions: [_getLightControlStateFunction, _setLightControlStateFunction],
-  toolConfig: _controlLightToolConfig,
-  systemInstruction: _systemInstructions,
-);
-
-final _setsRoomBrightness = LlmFunctionDeclaration(
-  name: 'setsRoomBrightness',
-  description: 'Control lighting in the room and sets brightness level.',
-  parameters: LightControlDto.schema,
-);
-
-const _getCurrentBrightness = LlmFunctionDeclaration(
+final _getLightControlStateFunction = AiFunctionDeclaration(
   name: 'getCurrentRoomBrightness',
   description: 'Returns the current brightness level of the room.',
-);
-
-final _getLightControlStateFunction = LlmFunction(
-  function: _getCurrentBrightness,
   handler: (args) => lightControlController.get(),
 );
 
-final _setLightControlStateFunction = LlmFunction(
-  function: _setsRoomBrightness,
+final _setLightControlStateFunction = AiWidgetDeclaration(
+  name: 'setsRoomBrightness',
+  description: 'Control lighting in the room and sets brightness level.',
+  parameters: LightControlDto.schema,
   handler: (value) => lightControlController.post(value),
-  uiHandler: (value) =>
-      LightControlWidgetResponse(LightControlDto.fromMap(value)),
+  builder: (context, value) => LightControlWidgetResponse(
+    LightControlDto.fromMap(value),
+  ),
 );

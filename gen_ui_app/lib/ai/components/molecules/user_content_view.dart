@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../models/message.dart';
+import '../../models/content.dart';
 import '../../style.dart';
 import '../atoms/message_bubble.dart';
 
-class UserMessageView extends StatelessWidget {
-  final UserMessage message;
+class UserContentView extends StatelessWidget {
+  final UserContent message;
 
-  const UserMessageView(
+  const UserContentView(
     this.message, {
     super.key,
   });
