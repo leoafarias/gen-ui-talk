@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../ai/controllers/chat_controller.dart';
+import '../../ai/models/ai_response.dart';
 import '../../ai/style.dart';
 import 'light_control_controller.dart';
 import 'light_control_dto.dart';
 
 class LightControlWidgetResponse extends HookWidget {
-  const LightControlWidgetResponse(this.data, {super.key});
+  const LightControlWidgetResponse(this.element, {super.key});
 
-  final LightControlDto data;
+  final AiWidgetElement<LightControlDto> element;
 
   void _updateBrightness(num value) {
     lightControlController.setBrightness(value.toInt());
@@ -17,13 +18,13 @@ class LightControlWidgetResponse extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = useState(data.brightness);
+    final brightness = useState(element.requiredData.brightness);
     final previousBrightness = usePrevious(brightness.value);
     final chatController = ChatController.of(context);
 
     void handleConfirmation() {
       var message = 'Confirmed';
-      if (brightness.value != data.brightness) {
+      if (brightness.value != element.requiredData.brightness) {
         if (brightness.value == 0.0) {
           message = 'Light turned off';
         } else {

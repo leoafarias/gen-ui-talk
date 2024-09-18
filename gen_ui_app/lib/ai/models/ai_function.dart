@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../helpers.dart';
+import 'ai_response.dart';
 
-typedef AiFunctionHandler = Future<JSON> Function(JSON args);
+typedef AiFunctionHandler<T> = Future<T> Function(JSON args);
 
-typedef AiWidgetBuilder = Widget Function(BuildContext, JSON);
+typedef AiWidgetBuilder<T> = Widget Function(T);
 
 class AiFunctionDeclaration {
   final String name;
   final String description;
   final Schema? parameters;
 
-  final AiFunctionHandler handler;
+  final AiFunctionHandler<JSON> handler;
 
   const AiFunctionDeclaration({
     required this.name,
@@ -24,15 +25,17 @@ class AiFunctionDeclaration {
   });
 }
 
-class AiWidgetDeclaration extends AiFunctionDeclaration {
-  final AiWidgetBuilder _builder;
+class AiWidgetDeclaration<T> extends AiFunctionDeclaration {
+  final AiWidgetBuilder<AiWidgetElement<T>> _builder;
+  final T Function(JSON args) parser;
   const AiWidgetDeclaration({
-    required AiWidgetBuilder builder,
+    required AiWidgetBuilder<AiWidgetElement<T>> builder,
     required super.name,
     required super.description,
     super.parameters,
     required super.handler,
+    required this.parser,
   }) : _builder = builder;
 
-  Widget build(BuildContext context, JSON value) => _builder(context, value);
+  Widget build(AiWidgetElement<T> element) => _builder(element);
 }
