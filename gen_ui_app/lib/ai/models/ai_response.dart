@@ -81,6 +81,8 @@ class AiWidgetElement<T> extends AiFunctionElement<AiWidgetDeclaration<T>> {
   }
 
   T get requiredData => data!;
+
+  Widget render() => function.build(this);
 }
 
 class AiFunctionElement<T extends AiFunctionDeclaration>

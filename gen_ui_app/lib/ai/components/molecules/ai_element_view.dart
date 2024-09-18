@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../helpers.dart';
 import '../../models/ai_response.dart';
 import '../../style.dart';
-import '../atoms/alert_dialog.dart';
 import '../atoms/message_bubble.dart';
 
 class AiTextElementView extends AiElementView<AiTextElement> {
@@ -15,6 +14,9 @@ class AiTextElementView extends AiElementView<AiTextElement> {
 
   @override
   Widget build(BuildContext context) {
+    if (element.text.trim().isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -43,9 +45,9 @@ class AiTextElementView extends AiElementView<AiTextElement> {
   }
 }
 
-abstract class AiWidgetElementView
-    extends AiStatefulElementElementView<AiWidgetElement>
-    with AiWidgetElementMixin {
+abstract class AiWidgetElementView<T>
+    extends AiStatefulElementElementView<AiWidgetElement<T>>
+    with AiWidgetElementMixin<T> {
   const AiWidgetElementView(
     super.element, {
     super.key,
@@ -56,7 +58,8 @@ abstract class AiWidgetElementView
   Widget build(BuildContext context);
 }
 
-mixin AiWidgetElementMixin on AiStatefulElementElementView<AiWidgetElement> {
+mixin AiWidgetElementMixin<T>
+    on AiStatefulElementElementView<AiWidgetElement<T>> {
   Future<void> exec(JSON args) async {
     await element.exec(args);
   }
@@ -84,61 +87,82 @@ class AiFunctionElementView
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Icon(
-                Icons.bolt,
-                color: Colors.green,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'function',
-                      style: chatTheme.textStyle.copyWith(
-                        color: Colors.green,
+    final emptyArgs = element.arguments.isEmpty;
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            element.isComplete
+                ? const Icon(
+                    Icons.bolt,
+                    size: 28,
+                    color: Colors.green,
+                  )
+                : const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 14,
+                      height: 14,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                       ),
                     ),
-                    Text(element.function.description),
-                    const SizedBox(height: 6),
-                    Text(
-                      '${element.function.name}(${prettyJson(element.arguments)})',
-                      style: chatTheme.textStyle
-                          .copyWith(color: chatTheme.accentColor),
+                  ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    element.function.name,
+                    style: chatTheme.textStyle.copyWith(
+                      color: Colors.green,
+                      fontSize: 22,
                     ),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.code),
-                      label: Text(
-                        'View response',
-                        style: chatTheme.textStyle
-                            .copyWith(color: chatTheme.accentColor),
-                      ),
-                      onPressed: () {
-                        showWidgetDetails(
-                          context,
-                          title: 'Response',
-                          contents: element.response,
+                  ),
+                  // Text(element.function.description),
+                  const SizedBox(height: 6),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (!emptyArgs)
+                        Text(
+                          'args:',
+                          style: chatTheme.textStyle.copyWith(
+                            color: chatTheme.accentColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ...element.arguments.entries.map((entry) {
+                        return Text(
+                          '${entry.key}: ${entry.value}',
+                          style: chatTheme.textStyle.copyWith(
+                            color: chatTheme.accentColor,
+                            fontSize: 18,
+                          ),
                         );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: chatTheme.accentColor,
-                        elevation: 0,
-                      ),
-                    )
-                  ],
-                ),
+                      }),
+                      element.isComplete
+                          ? Text(
+                              'result: ${element.response}',
+                              style: chatTheme.textStyle.copyWith(
+                                color: chatTheme.accentColor,
+                                fontSize: 18,
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  ),
+                ],
               ),
-              const SizedBox(width: 8),
-            ],
-          ),
-        ],
-      ),
+            ),
+            const SizedBox(width: 8),
+          ],
+        ),
+      ],
     );
   }
 }
