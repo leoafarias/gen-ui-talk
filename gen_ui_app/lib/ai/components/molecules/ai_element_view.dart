@@ -43,7 +43,8 @@ class AiTextElementView extends AiElementView<AiTextElement> {
   }
 }
 
-class AiWidgetElementView extends AiStatefulElementElementView<AiWidgetElement>
+abstract class AiWidgetElementView
+    extends AiStatefulElementElementView<AiWidgetElement>
     with AiWidgetElementMixin {
   const AiWidgetElementView(
     super.element, {
@@ -52,9 +53,7 @@ class AiWidgetElementView extends AiStatefulElementElementView<AiWidgetElement>
   });
 
   @override
-  Widget build(BuildContext context) {
-    return element.build(context);
-  }
+  Widget build(BuildContext context);
 }
 
 mixin AiWidgetElementMixin on AiStatefulElementElementView<AiWidgetElement> {

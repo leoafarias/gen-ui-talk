@@ -99,12 +99,13 @@ final _getLightControlStateFunction = AiFunctionDeclaration(
   handler: (args) => lightControlController.get(),
 );
 
-final _setLightControlStateFunction = AiWidgetDeclaration(
+final _setLightControlStateFunction = AiWidgetDeclaration<LightControlDto>(
   name: 'setsRoomBrightness',
   description: 'Control lighting in the room and sets brightness level.',
   parameters: LightControlDto.schema,
   handler: (value) => lightControlController.post(value),
-  builder: (context, value) => LightControlWidgetResponse(
-    LightControlDto.fromMap(value),
+  parser: (value) => LightControlDto.fromMap(value),
+  builder: (element) => LightControlWidgetResponse(
+    element,
   ),
 );

@@ -70,11 +70,17 @@ enum AiFunctionStatus {
   error,
 }
 
-class AiWidgetElement extends AiFunctionElement<AiWidgetDeclaration> {
-  AiWidgetElement(super.function);
+class AiWidgetElement<T> extends AiFunctionElement<AiWidgetDeclaration<T>> {
+  T? data;
+  AiWidgetElement(super.function) {
+    addListener(() {
+      if (status == AiFunctionStatus.done) {
+        data = function.parser(response);
+      }
+    });
+  }
 
-  Widget build(BuildContext context) =>
-      function.build(context, _response ?? {});
+  T get requiredData => data!;
 }
 
 class AiFunctionElement<T extends AiFunctionDeclaration>
