@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../ai/components/molecules/playground.dart';
+import '../../ai/controllers/chat_controller.dart';
+import '../../ai/views/chat_view.dart';
 import 'light_control_controller.dart';
 import 'light_control_provider.dart';
 
@@ -16,8 +18,9 @@ class LightControlPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final lightControl = useListenable(lightControlController);
-
-    final provider = schema ? controlLightSchemaProvider : controlLightProvider;
+    final controller = useChatController(
+      controlLightProvider,
+    );
 
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 500),
@@ -35,8 +38,7 @@ class LightControlPage extends HookWidget {
     }, [lightControl.brightness]);
 
     return PlaygroundPage(
-      provider: provider,
-      body: Column(
+      leftWidget: Column(
         children: [
           Expanded(
             child: FittedBox(
@@ -54,6 +56,9 @@ class LightControlPage extends HookWidget {
             ),
           ),
         ],
+      ),
+      rightWidget: ChatView(
+        controller: controller,
       ),
     );
   }

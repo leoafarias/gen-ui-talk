@@ -6,9 +6,9 @@ import 'dart:async';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../models/llm_function.dart';
-import '../models/message.dart';
-import 'llm_provider_interface.dart';
+import '../models/ai_function.dart';
+import '../models/ai_response.dart';
+import 'ai_provider_interface.dart';
 
 enum GeminiModel {
   flash15('gemini-1.5-flash'),
@@ -31,13 +31,16 @@ final _safetySettings = [
   SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
 ];
 
-class GeminiProvider extends LlmProvider {
+class GeminiProvider extends AiProvider<GenerativeModel> {
+  @override
+  late final GenerativeModel model;
+  final GenerationConfig? config;
   GeminiProvider({
     required String model,
     required String apiKey,
     String? systemInstruction,
-    GenerationConfig? config,
-    List<LlmFunction> functions = const [],
+    this.config,
+    List<AiFunctionDeclaration> functions = const [],
     List<Tool> tools = const [],
     List<SafetySetting>? safetySettings,
     ToolConfig? toolConfig,
@@ -45,7 +48,7 @@ class GeminiProvider extends LlmProvider {
   }) {
     _functionHandlers = _llmFunctionsToHandlers(functions);
 
-    final llm = GenerativeModel(
+    this.model = GenerativeModel(
       model: model,
       apiKey: apiKey,
       tools: _llmFunctionsToTools(functions),
@@ -56,34 +59,17 @@ class GeminiProvider extends LlmProvider {
           systemInstruction != null ? Content.system(systemInstruction) : null,
     );
 
-    chat = llm.startChat(
-      safetySettings: safetySettings,
-      history: history,
-    );
+    chat = this.model.startChat(
+          safetySettings: safetySettings,
+          history: history,
+        );
   }
 
   late final ChatSession chat;
-  late final Map<String, LlmFunction> _functionHandlers;
+  late final Map<String, AiFunctionDeclaration> _functionHandlers;
 
-  FutureOr<FunctionResponse> _dispatchFunctionCall(FunctionCall call) async {
-    final llmFunction = _functionHandlers[call.name]!;
-    final result = await llmFunction.handler(call.args);
-
-    return FunctionResponse(
-      call.name,
-      result,
-    );
-  }
-
-  LlmFunctionResponsePart _buildFunctionResponse(
-      FunctionResponse functionResponse) {
-    final result = functionResponse.response;
-    final llmFunction = _functionHandlers[functionResponse.name]!;
-
-    return LlmFunctionResponsePart(
-      function: llmFunction,
-      result: result ?? {},
-    );
+  AiFunctionElement _getFunctionCall(FunctionCall call) {
+    return AiFunctionElement(_functionHandlers[call.name]!);
   }
 
   Content _buildUserMessage(String prompt, Iterable<Attachment> attachments) {
@@ -94,7 +80,7 @@ class GeminiProvider extends LlmProvider {
   }
 
   @override
-  Stream<LlmMessagePart> sendMessageStream(
+  Stream<AiElement> sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async* {
@@ -106,14 +92,14 @@ class GeminiProvider extends LlmProvider {
       final functionCalls = chunk.functionCalls.toList();
       if (functionCalls.isNotEmpty) {
         for (final call in chunk.functionCalls) {
-          final response = await _dispatchFunctionCall(call);
-          functionResponses.add(response);
-          yield _buildFunctionResponse(response);
+          final functionPart = _getFunctionCall(call);
+          yield functionPart;
+
+          await functionPart.exec(call.args);
         }
       }
       final text = chunk.text ?? '';
-
-      if (text.isNotEmpty) yield LlmTextPart(text: text);
+      if (text.isNotEmpty) yield AiTextElement(text: text);
     }
 
     if (functionResponses.isNotEmpty) {
@@ -121,45 +107,54 @@ class GeminiProvider extends LlmProvider {
           chat.sendMessageStream(Content.functionResponses(functionResponses));
       await for (final chunk in response) {
         final text = chunk.text ?? '';
-        if (text.isNotEmpty) yield LlmTextPart(text: text);
+        if (text.isNotEmpty) yield AiTextElement(text: text);
       }
     }
   }
 
   @override
-  Future<LlmMessage> sendMessage(
+  Future<AiContent> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
     final content = _buildUserMessage(prompt, attachments);
     final response = await chat.sendMessage(content);
     final parts = await _getPartsFromResponse(response);
-    return LlmMessage(parts: parts);
+    return AiContent(parts: parts);
   }
 
-  Future<List<LlmMessagePart>> _getPartsFromResponse(
+  Future<List<AiElement>> _getPartsFromResponse(
     GenerateContentResponse response,
   ) async {
-    final functionCalls = response.functionCalls.toList();
-    final functionResponses = <FunctionResponse>[];
+    final content = response.candidates.first.content;
 
-    final textPart = response.text ?? '';
+    final functionCalls = content.parts.whereType<FunctionCall>().toList();
+
+    final functionParts = <AiFunctionElement>[];
 
     for (final call in functionCalls) {
-      functionResponses.add(await _dispatchFunctionCall(call));
+      final functionPart = _getFunctionCall(call);
+      await functionPart.exec(call.args);
+      functionParts.add(functionPart);
     }
 
     final parts = [
-      ...functionResponses.map(_buildFunctionResponse),
-      if (textPart.isNotEmpty) LlmTextPart(text: textPart),
+      ...functionParts,
+      ...content.parts
+          .whereType<TextPart>()
+          .map((e) => AiTextElement(text: e.text)),
     ];
 
-    if (functionResponses.isNotEmpty) {
-      final functionCallback = await chat.sendMessage(
-        Content.functionResponses(functionResponses),
+    if (functionParts.isNotEmpty) {
+      final textResponse = await chat.sendMessage(
+        Content.functionResponses(
+            functionParts.map((e) => FunctionResponse(e.name, e.response))),
       );
 
-      parts.addAll(await _getPartsFromResponse(functionCallback));
+      final textPart = textResponse.text ?? '';
+      if (textPart.isNotEmpty) {
+        parts.add(AiTextElement(text: textPart));
+      }
     }
 
     return parts;
@@ -172,12 +167,20 @@ class GeminiProvider extends LlmProvider {
       };
 }
 
-List<Tool> _llmFunctionsToTools(List<LlmFunction> functions) {
+List<Tool> _llmFunctionsToTools(List<AiFunctionDeclaration> functions) {
   return [
-    Tool(functionDeclarations: functions.map((e) => e.declaration).toList())
+    Tool(
+        functionDeclarations: functions
+            .map((e) => FunctionDeclaration(
+                  e.name,
+                  e.description,
+                  e.parameters,
+                ))
+            .toList())
   ];
 }
 
-Map<String, LlmFunction> _llmFunctionsToHandlers(List<LlmFunction> functions) {
-  return {for (final function in functions) function.function.name: function};
+Map<String, AiFunctionDeclaration> _llmFunctionsToHandlers(
+    List<AiFunctionDeclaration> functions) {
+  return {for (final function in functions) function.name: function};
 }

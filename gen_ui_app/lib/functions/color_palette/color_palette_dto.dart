@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../../ai/helpers.dart';
 import '../../ai/helpers/color_helpers.dart';
 
 enum ColorPaletteTextFontFamily {
@@ -114,9 +115,7 @@ class ColorPaletteDto {
         colorPaletteTextColor.hashCode;
   }
 
-  String toJson() {
-    return const JsonEncoder.withIndent('  ').convert(toMap());
-  }
+  String toJson() => prettyJson(toMap());
 
   static ColorPaletteDto fromMap(Map<String, dynamic> map) {
     return ColorPaletteDto(

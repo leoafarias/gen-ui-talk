@@ -1,88 +1,131 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-import '../../models/message.dart';
-import '../../providers/llm_provider_interface.dart';
+import '../../helpers/hooks.dart';
+import '../../models/content.dart';
+import '../../providers/ai_provider_interface.dart';
 import '../../style.dart';
 import 'attachment_view.dart';
 
-class ChatInput extends StatefulWidget {
+typedef SendFn = void Function(
+  String, {
+  required Iterable<Attachment> attachments,
+});
+
+enum _InputState {
+  disabled,
+  enabled,
+  sending;
+
+  bool get isSending => this == sending;
+  bool get isEnabled => this == enabled;
+  bool get isDisabled => this == disabled;
+}
+
+class ChatInput extends HookWidget {
   const ChatInput({
-    required this.submitting,
-    required this.onSubmit,
+    required this.sending,
+    required this.onSend,
     required this.onCancel,
     this.initialMessage,
     this.focusNode,
     super.key,
   });
 
-  final bool submitting;
+  final bool sending;
 
-  final UserMessage? initialMessage;
+  final UserContent? initialMessage;
   final FocusNode? focusNode;
 
-  final void Function(String, {required Iterable<Attachment> attachments})
-      onSubmit;
+  final SendFn onSend;
 
   final void Function() onCancel;
 
   @override
-  State<ChatInput> createState() => _ChatInputState();
-}
-
-enum _InputState { disabled, enabled, submitting }
-
-class _ChatInputState extends State<ChatInput> {
-  final _controller = TextEditingController();
-  late final FocusNode _focusNode;
-  final _attachments = <Attachment>[];
-  final _isMobile = UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNode = widget.focusNode ?? FocusNode();
-  }
-
-  @override
-  void didUpdateWidget(covariant ChatInput oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.initialMessage != null) {
-      _controller.text = widget.initialMessage!.prompt;
-      _attachments.addAll(widget.initialMessage!.attachments);
-    }
-    _focusNode.requestFocus();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    if (widget.focusNode == null) {
-      _focusNode.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final isSubmitting = _inputState == _InputState.submitting;
+    final controller = useTextEditingController();
+    final focusNode = useFocus(this.focusNode);
+
+    final text = useState('');
+
+    useEffectOnce(() {
+      controller.addListener(() => text.value = controller.text);
+    });
+
+    final attachments = useState(<Attachment>[]);
+    final isMobile = UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
+
+    final inputState = useMemoized(
+      () {
+        if (sending) return _InputState.sending;
+        if (text.value.isNotEmpty) return _InputState.enabled;
+        assert(!sending && text.value.isEmpty);
+        return _InputState.disabled;
+      },
+      [sending, text.value],
+    );
+
+    useEffectUpdate(() {
+      if (!inputState.isSending) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          focusNode.requestFocus();
+        });
+      }
+    }, [inputState]);
+
+    final handleSend = useCallback((String prompt) {
+      if (text.value.isEmpty) return;
+
+      assert(inputState.isEnabled);
+      onSend(
+        prompt,
+        attachments: List.from(attachments.value),
+      );
+      attachments.value.clear();
+      controller.clear();
+
+      focusNode.requestFocus();
+    }, [attachments.value, inputState]);
+
+    final handleOnCancel = useCallback(() {
+      assert(inputState.isSending);
+      onCancel();
+      controller.clear();
+      attachments.value.clear();
+      focusNode.requestFocus();
+    });
+
+    final onAttachment = useCallback(
+      (Attachment attachment) => attachments.value.add(attachment),
+    );
+
+    final onRemoveAttachment = useCallback(
+      (Attachment attachment) => attachments.value.remove(attachment),
+    );
+
+    final textStyle = chatTheme.textStyle.copyWith(
+      color: chatTheme.onAccentColor,
+      fontSize: 22,
+    );
+
     return Column(
       children: [
         Container(
-          height: _attachments.isNotEmpty ? 104 : 0,
+          height: attachments.value.isNotEmpty ? 104 : 0,
           padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
-          child: _attachments.isNotEmpty
+          child: attachments.value.isNotEmpty
               ? ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    for (final a in _attachments)
+                    for (final a in attachments.value)
                       _RemoveableAttachment(
                         attachment: a,
-                        onRemove: _onRemoveAttachment,
+                        onRemove: onRemoveAttachment,
                       ),
                   ],
                 )
@@ -90,7 +133,7 @@ class _ChatInputState extends State<ChatInput> {
         ),
         const Gap(6),
         ValueListenableBuilder(
-          valueListenable: _controller,
+          valueListenable: controller,
           builder: (context, value, child) => Row(
             children: [
               Expanded(
@@ -100,24 +143,20 @@ class _ChatInputState extends State<ChatInput> {
                     vertical: 8,
                   ),
                   child: TextField(
-                    enabled: _inputState != _InputState.submitting,
+                    enabled: !inputState.isSending,
                     minLines: 1,
                     maxLines: 1024,
-                    controller: _controller,
-                    focusNode: _focusNode,
+                    controller: controller,
+                    focusNode: focusNode,
                     autofocus: true,
-                    textInputAction: _isMobile
+                    textInputAction: isMobile
                         ? TextInputAction.newline
                         : TextInputAction.done,
-                    onSubmitted: (value) => _onSubmit(value),
-                    style: chatTheme.textStyle.copyWith(
-                      color: chatTheme.onAccentColor,
-                    ),
+                    onSubmitted: (value) => handleSend(value),
+                    style: textStyle,
                     decoration: InputDecoration(
-                      hintText: isSubmitting ? '' : 'Ask me anything...',
-                      hintStyle: chatTheme.textStyle.copyWith(
-                        color: chatTheme.onAccentColor,
-                      ),
+                      hintText: inputState.isSending ? '' : 'What do you need?',
+                      hintStyle: textStyle,
                       filled: true,
                       fillColor: chatTheme.accentColor,
                       border: OutlineInputBorder(
@@ -125,14 +164,14 @@ class _ChatInputState extends State<ChatInput> {
                         borderSide: BorderSide.none,
                       ),
                       suffixIcon: _SubmitButton(
-                        text: _controller.text,
-                        inputState: _inputState,
-                        onSubmit: _onSubmit,
-                        onCancel: _onCancel,
+                        text: controller.text,
+                        inputState: inputState,
+                        onSubmit: handleSend,
+                        onCancel: handleOnCancel,
                       ),
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16.0,
-                        vertical: 12.0,
+                        vertical: 16.0,
                       ),
                     ),
                   ),
@@ -144,39 +183,6 @@ class _ChatInputState extends State<ChatInput> {
       ],
     );
   }
-
-  _InputState get _inputState {
-    if (widget.submitting) return _InputState.submitting;
-    if (_controller.text.isNotEmpty) return _InputState.enabled;
-    assert(!widget.submitting && _controller.text.isEmpty);
-    return _InputState.disabled;
-  }
-
-  void _onSubmit(String prompt) {
-    // the mobile vkb can still cause a submission even if there is no text
-    if (_controller.text.isEmpty) return;
-
-    assert(_inputState == _InputState.enabled);
-    widget.onSubmit(prompt, attachments: List.from(_attachments));
-    _attachments.clear();
-    _controller.clear();
-
-    _focusNode.requestFocus();
-  }
-
-  void _onCancel() {
-    assert(_inputState == _InputState.submitting);
-    widget.onCancel();
-    _controller.clear();
-    _attachments.clear();
-    _focusNode.requestFocus();
-  }
-
-  void _onAttachment(Attachment attachment) =>
-      setState(() => _attachments.add(attachment));
-
-  _onRemoveAttachment(Attachment attachment) =>
-      setState(() => _attachments.remove(attachment));
 }
 
 class _AttachmentActionBar extends StatefulWidget {
@@ -188,53 +194,53 @@ class _AttachmentActionBar extends StatefulWidget {
 }
 
 class _AttachmentActionBarState extends State<_AttachmentActionBar> {
-  var _expanded = false;
-  late final bool _canCamera;
-  late final bool _canFile;
+  var expanded = false;
+  late final bool canCamera;
+  late final bool canFile;
 
   @override
   void initState() {
     super.initState();
-    _canCamera = ImagePicker().supportsImageSource(ImageSource.camera);
+    canCamera = ImagePicker().supportsImageSource(ImageSource.camera);
 
     // _canFile is a work around for this bug:
     // https://github.com/csells/flutter_ai_toolkit/issues/18
-    _canFile = !kIsWeb;
+    canFile = !kIsWeb;
   }
 
   @override
-  Widget build(BuildContext context) => _expanded
+  Widget build(BuildContext context) => expanded
       ? Row(children: [
           IconButton(
-            onPressed: _onToggleMenu,
+            onPressed: onToggleMenu,
             icon: const Icon(Icons.close),
           ),
-          if (_canCamera)
+          if (canCamera)
             IconButton(
-              onPressed: _onCamera,
+              onPressed: onCamera,
               icon: const Icon(Icons.camera_alt),
             ),
           IconButton(
-            onPressed: _onGallery,
+            onPressed: onGallery,
             icon: const Icon(Icons.image),
           ),
-          if (_canFile)
+          if (canFile)
             IconButton(
-              onPressed: _onFile,
+              onPressed: onFile,
               icon: const Icon(Icons.attach_file),
             ),
         ])
       : IconButton(
-          onPressed: _onToggleMenu,
+          onPressed: onToggleMenu,
           icon: const Icon(Icons.add),
         );
 
-  void _onToggleMenu() => setState(() => _expanded = !_expanded);
-  void _onCamera() => _pickImage(ImageSource.camera);
-  void _onGallery() => _pickImage(ImageSource.gallery);
+  void onToggleMenu() => setState(() => expanded = !expanded);
+  void onCamera() => pickImage(ImageSource.camera);
+  void onGallery() => pickImage(ImageSource.gallery);
 
-  void _pickImage(ImageSource source) async {
-    _onToggleMenu(); // close the menu
+  void pickImage(ImageSource source) async {
+    onToggleMenu(); // close the menu
 
     final picker = ImagePicker();
     try {
@@ -250,8 +256,8 @@ class _AttachmentActionBarState extends State<_AttachmentActionBar> {
     }
   }
 
-  void _onFile() async {
-    _onToggleMenu(); // close the menu
+  void onFile() async {
+    onToggleMenu(); // close the menu
 
     try {
       final file = await openFile();
@@ -310,7 +316,7 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSubmitting = inputState == _InputState.submitting;
+    final isSubmitting = inputState == _InputState.sending;
     return AnimatedScale(
       duration: Durations.short3,
       scale: inputState == _InputState.disabled ? 0.0 : 1,
@@ -324,7 +330,7 @@ class _SubmitButton extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: switch (inputState) {
-                  _InputState.submitting => SizedBox(
+                  _InputState.sending => SizedBox(
                       child: Padding(
                         padding: const EdgeInsets.all(0.0),
                         child: IconButton(

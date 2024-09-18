@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class _ChatStyleTheme {
   final Color backgroundColor;
@@ -16,15 +17,15 @@ class _ChatStyleTheme {
   });
 }
 
-const _textStyle = TextStyle(
+final _textStyle = GoogleFonts.firaCode().copyWith(
   fontSize: 16,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.w900,
 );
 
-const chatTheme = _ChatStyleTheme(
+final chatTheme = _ChatStyleTheme(
   backgroundColor: Colors.black,
   onBackGroundColor: Colors.white,
   textStyle: _textStyle,
-  accentColor: Color.fromARGB(255, 255, 255, 255),
+  accentColor: const Color.fromARGB(255, 255, 255, 255),
   onAccentColor: Colors.black,
 );
