@@ -18,16 +18,6 @@ final customCardProvider = GeminiProvider(
   history: _history,
 );
 
-// final colorPaletteProvider = GeminiProvider(
-//   model: GeminiModel.flash15Latest.model,
-//   apiKey: kGeminiApiKey,
-// config: GenerationConfig(
-//   responseMimeType: 'application/json',
-//   responseSchema: ColorPaletteDto.schema,
-// ),
-// systemInstruction: _systemInstructions,
-// history: _history,
-// );
 final _history = [
   Content.text('Bohemian Rhapsody'),
   Content.model([
@@ -44,6 +34,7 @@ final _history = [
         topRightColor: const Color(0xFFFFD700),
         bottomLeftColor: const Color(0xFFFFFFFF),
         bottomRightColor: const Color(0xFF808080),
+        iconEmotion: 'Sadness',
       ).toJson(),
     ),
   ]),
@@ -63,6 +54,7 @@ final _history = [
           topRightColor: const Color(0xFFC34A36),
           bottomLeftColor: const Color(0xFFBDBDBD),
           bottomRightColor: const Color(0xFF404040),
+          iconEmotion: 'Anger',
         ).toJson(),
       ),
     ],
@@ -82,6 +74,7 @@ final _history = [
         topRightColor: const Color(0xff9370db),
         bottomLeftColor: const Color(0xFF9400d3),
         bottomRightColor: const Color(0xFFFF69b4),
+        iconEmotion: 'Sadness',
       ).toJson(),
     ),
   ]),
@@ -99,6 +92,7 @@ final _history = [
       topRightColor: const Color(0xFFff669b4),
       bottomLeftColor: const Color(0xFF7cfc00),
       bottomRightColor: const Color(0xFFffc0cb),
+      iconEmotion: 'Fear',
     ).toJson()),
   ]),
   Content.text('Hotel California'),
@@ -109,12 +103,13 @@ final _history = [
       fontFamily: CustomCardTextFontFamily.raleway,
       backgroundColor: const Color.fromARGB(255, 83, 58, 38),
       accentColor: const Color.fromARGB(255, 255, 207, 48),
-      textColor: const Color(0xFF000000),
+      textColor: const Color.fromARGB(255, 255, 242, 242),
       borderRadius: 40.0,
       topLeftColor: const Color(0xFFFFFACD),
       topRightColor: const Color(0xFFFF8C00),
       bottomLeftColor: const Color(0xFFFF0000),
       bottomRightColor: const Color(0xFF000080),
+      iconEmotion: 'Fear',
     ).toJson()),
   ]),
   Content.text('Firework'),
@@ -131,6 +126,7 @@ final _history = [
       topRightColor: const Color(0xFF8A2BE2),
       bottomLeftColor: const Color(0xFF9370DB),
       bottomRightColor: const Color(0xFFBA55D3),
+      iconEmotion: 'Joy',
     ).toJson()),
   ]),
   Content.text('One Love'),
@@ -141,12 +137,13 @@ final _history = [
       fontFamily: CustomCardTextFontFamily.montserrat,
       backgroundColor: const Color.fromARGB(255, 216, 237, 229),
       accentColor: const Color(0xFFFFD700),
-      textColor: const Color(0xFFFFFFFF),
+      textColor: const Color.fromARGB(255, 0, 95, 16),
       borderRadius: 50.0,
       topLeftColor: const Color(0xFFFFD700),
       topRightColor: const Color(0xFFFFA500),
       bottomLeftColor: const Color(0xFF00FF7F),
       bottomRightColor: const Color(0xFFFF0000),
+      iconEmotion: 'Love',
     ).toJson()),
   ]),
 ];
@@ -155,11 +152,13 @@ const _systemInstructions = '''
 You are a UI designer creating custom music player cards. Each card should be visually appealing and have a unique design. 
 - You will receive the name of a music, and you need to generate a custom card design based on this information.
 - When you receive the name of the card, you should generate a custom music player for the song you don't need to reuse the last setting unless the user asks for it.
+- Based on the music genre, you should choose 4 colors that complement the background color and accent color.
 - You should always match the accent color with the left, right, top, and bottom colors.
 The cards should include the following properties:
 
 - name: The name of the custom card.
 - subtitle: based in your knowledge you should fill in with the music genre.
+- iconEmotion: The icon emotion for the card. This value should be suggested based on the song that the name of the card represents. The value need to be one of them: Joy, Sadness, Anger, Fear, Surprise, Love.
 - fontFamily: The font family for the card text.
 - backgroundColor: The background color of the card.
 - accentColor: The accent color for the card, used for highlights content over the background. This color should complement the backgroundColor and other colors used in the card design. Format the color as a hex code.

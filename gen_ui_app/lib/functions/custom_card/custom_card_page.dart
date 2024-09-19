@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:mesh/mesh.dart';
 import 'package:mix/mix.dart';
+import 'package:remix/remix.dart';
 
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
@@ -70,6 +73,7 @@ final _defaultDto = CustomCardDto(
   bottomRightColor: Colors.black,
   topLeftColor: Colors.redAccent,
   topRightColor: Colors.amber.shade900,
+  iconEmotion: 'Love',
 );
 
 class _CustomCardMesh extends StatelessWidget {
@@ -144,94 +148,124 @@ class MusicPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Box(
-      style: Style(
-        $box.chain
-          ..wrap.intrinsicWidth()
-          ..padding(24)
-          ..color(data.backgroundColor)
-          ..borderRadius(data.borderRadius),
-      ),
-      child: StyledColumn(
-        style: Style(
-          $flex.gap(16),
-          $flex.mainAxisSize.min(),
-          $flex.mainAxisAlignment.center(),
-          $flex.crossAxisAlignment.center(),
-        ),
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(data.borderRadius)),
-            child: AnimatedOMeshGradient(
-              duration: Durations.short1,
-              mesh: mesh,
-              size: Size(250, 250),
-            ),
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(data.borderRadius)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
+        child: Box(
+          style: Style(
+            $box.chain
+              ..width(400)
+              ..padding(8)
+              ..color(data.backgroundColor.withOpacity(0.3))
+              ..borderRadius(data.borderRadius),
           ),
-          StyledColumn(
-            style: Style(
-              $flex.mainAxisAlignment.center(),
-              $flex.crossAxisAlignment.center(),
-              $flex.mainAxisSize.min(),
-            ),
-            children: [
-              StyledText(
-                data.name,
-                style: Style(
-                  $text.chain
-                    ..style.color(data.textColor)
-                    ..style.fontSize(20)
-                    ..style.fontFamily(data.fontFamily.fontFamily)
-                    ..style.fontWeight.w700(),
-                ),
-              ),
-              StyledText(
-                data.subtitle,
-                style: Style(
-                  $text.chain
-                    ..style.color(data.textColor)
-                    ..style.fontSize(16)
-                    ..style.fontWeight.w300(),
-                ),
-              ),
-            ],
-          ),
-          Slider(
-            value: 0.5,
-            onChanged: (_) {},
-            activeColor: data.accentColor,
-          ),
-          StyledRow(
+          child: StyledRow(
             style: Style(
               $flex.chain
-                ..mainAxisAlignment.center()
-                ..gap(24)
-                ..wrap.padding.bottom(8),
-              $icon.chain
-                ..size(20)
-                ..color(data.textColor),
+                ..mainAxisSize.min()
+                ..mainAxisAlignment.start()
+                ..crossAxisAlignment.center(),
             ),
             children: [
-              StyledIcon(
-                CupertinoIcons.backward_end_fill,
-              ),
-              Box(
-                inherit: true,
-                style: Style(
-                  $box.chain
-                    ..borderRadius(data.borderRadius)
-                    ..height(50)
-                    ..width(50)
-                    ..color(data.accentColor),
+              ClipRRect(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(data.borderRadius)),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    AnimatedOMeshGradient(
+                      duration: Durations.short1,
+                      mesh: mesh,
+                      size: Size(180, 180),
+                    ),
+                    StyledIcon(
+                      EmotionIcons.getIcon(data.iconEmotion),
+                      style: Style(
+                        $icon.chain..size(70),
+                      ),
+                    ),
+                  ],
                 ),
-                child: StyledIcon(CupertinoIcons.play_fill),
               ),
-              StyledIcon(
-                CupertinoIcons.forward_end_fill,
+              Expanded(
+                child: StyledColumn(
+                  style: Style(
+                    $flex.chain
+                      ..wrap.padding.left(24)
+                      ..wrap.padding.right(16)
+                      ..mainAxisAlignment.start()
+                      ..crossAxisAlignment.start(),
+                  ),
+                  children: [
+                    StyledText(
+                      data.name,
+                      style: Style(
+                        $text.chain
+                          ..style.color(data.textColor)
+                          ..style.fontSize(20)
+                          ..style.fontFamily(data.fontFamily.fontFamily)
+                          ..style.fontWeight.w700(),
+                      ),
+                    ),
+                    StyledText(
+                      data.subtitle,
+                      style: Style(
+                        $text.chain
+                          ..style.color(data.textColor)
+                          ..style.color.withOpacity(0.8)
+                          ..style.fontSize(15)
+                          ..style.fontWeight.w300(),
+                      ),
+                    ),
+                    StyledRow(
+                      style: Style(
+                        $flex.chain
+                          ..wrap.padding.vertical(24)
+                          ..mainAxisAlignment.spaceAround()
+                          ..crossAxisAlignment.end(),
+                        $icon.chain
+                          ..size(25)
+                          ..color(data.textColor),
+                      ),
+                      children: [
+                        StyledIcon(
+                          CupertinoIcons.backward_fill,
+                        ),
+                        StyledIcon(CupertinoIcons.play_fill),
+                        StyledIcon(
+                          CupertinoIcons.forward_fill,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                      child: Stack(
+                        children: [
+                          LayoutBuilder(builder: (context, constraints) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: data.accentColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: constraints.maxWidth * 0.3,
+                            );
+                          }),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: data.accentColor.withOpacity(0.4),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

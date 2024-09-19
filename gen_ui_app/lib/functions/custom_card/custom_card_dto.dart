@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -40,6 +41,21 @@ enum CustomCardTextFontFamily {
   }
 }
 
+class EmotionIcons {
+  static const Map<String, IconData> emotionIconMap = {
+    'Joy': CupertinoIcons.smiley,
+    'Sadness': CupertinoIcons.cloud_drizzle,
+    'Anger': CupertinoIcons.flame,
+    'Fear': CupertinoIcons.exclamationmark_triangle,
+    'Surprise': CupertinoIcons.bolt,
+    'Love': CupertinoIcons.heart,
+  };
+
+  static IconData getIcon(String emotion) {
+    return emotionIconMap[emotion] ?? CupertinoIcons.question;
+  }
+}
+
 class CustomCardDto {
   final String name;
   final String subtitle;
@@ -52,6 +68,7 @@ class CustomCardDto {
   final Color topRightColor;
   final Color bottomLeftColor;
   final Color bottomRightColor;
+  final String iconEmotion;
 
   CustomCardDto({
     required this.name,
@@ -65,6 +82,7 @@ class CustomCardDto {
     required this.topRightColor,
     required this.bottomLeftColor,
     required this.bottomRightColor,
+    required this.iconEmotion,
   });
 
   CustomCardDto copyWith({
@@ -79,6 +97,7 @@ class CustomCardDto {
     Color? topRightColor,
     Color? bottomLeftColor,
     Color? bottomRightColor,
+    String? iconEmotion,
   }) {
     return CustomCardDto(
       name: name ?? this.name,
@@ -92,6 +111,7 @@ class CustomCardDto {
       topRightColor: topRightColor ?? this.topRightColor,
       bottomLeftColor: bottomLeftColor ?? this.bottomLeftColor,
       bottomRightColor: bottomRightColor ?? this.bottomRightColor,
+      iconEmotion: iconEmotion ?? this.iconEmotion,
     );
   }
 
@@ -108,7 +128,8 @@ class CustomCardDto {
         other.topLeftColor == topLeftColor &&
         other.topRightColor == topRightColor &&
         other.bottomLeftColor == bottomLeftColor &&
-        other.bottomRightColor == bottomRightColor;
+        other.bottomRightColor == bottomRightColor &&
+        other.iconEmotion == iconEmotion;
   }
 
   @override
@@ -123,7 +144,8 @@ class CustomCardDto {
         topLeftColor.hashCode ^
         topRightColor.hashCode ^
         bottomLeftColor.hashCode ^
-        bottomRightColor.hashCode;
+        bottomRightColor.hashCode ^
+        iconEmotion.hashCode;
   }
 
   String toJson() => prettyJson(toMap());
@@ -142,6 +164,7 @@ class CustomCardDto {
       topRightColor: colorFromHex(map['topRightColor'] as String),
       bottomLeftColor: colorFromHex(map['bottomLeftColor'] as String),
       bottomRightColor: colorFromHex(map['bottomRightColor'] as String),
+      iconEmotion: map['iconEmotion'] as String,
     );
   }
 
@@ -162,6 +185,7 @@ class CustomCardDto {
       'topRightColor': topRightColor.toHex(),
       'bottomLeftColor': bottomLeftColor.toHex(),
       'bottomRightColor': bottomRightColor.toHex(),
+      'iconEmotion': iconEmotion,
     };
   }
 
@@ -219,6 +243,11 @@ class CustomCardDto {
             'The hex color value of the bottom right corner of the banner. Format: #FF0000',
         nullable: false,
       ),
+      'iconEmotion': Schema.string(
+        description:
+            'the emotion expressed by the song. The value need to be one of them: Joy, Sadness, Anger, Fear, Surprise, Love',
+        nullable: false,
+      ),
     },
     requiredProperties: [
       'name',
@@ -232,6 +261,7 @@ class CustomCardDto {
       'topRightColor',
       'bottomLeftColor',
       'bottomRightColor',
+      'iconEmotion',
     ],
   );
 }
