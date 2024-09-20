@@ -1,53 +1,5 @@
 config: {}
 slides: 
-  - key: 'qi1PW622'
-    options: 
-      style: 'demo'
-    markdown: '{@widget name: lightControl type: schema}'
-    sections: 
-      - sub_sections: 
-          - options: 
-              name: 'lightControl'
-              type: 'schema'
-            content: ''
-            type: 'widget'
-    notes: []
-  - key: 'ToNaJnaL'
-    options: 
-      style: 'demo'
-    markdown: '{@widget name: lightControl type: widget}'
-    sections: 
-      - sub_sections: 
-          - options: 
-              name: 'lightControl'
-              type: 'widget'
-            content: ''
-            type: 'widget'
-    notes: []
-  - key: 'SqCCTn73'
-    options: 
-      style: 'demo'
-    markdown: '{@widget name: colorPalette type: schema}'
-    sections: 
-      - sub_sections: 
-          - options: 
-              name: 'colorPalette'
-              type: 'schema'
-            content: ''
-            type: 'widget'
-    notes: []
-  - key: 'lxoXHEfL'
-    options: 
-      style: 'demo'
-    markdown: '{@widget name: colorPalette type: widget}'
-    sections: 
-      - sub_sections: 
-          - options: 
-              name: 'colorPalette'
-              type: 'widget'
-            content: ''
-            type: 'widget'
-    notes: []
   - key: 'YXbqWFuU'
     options: {}
     markdown: |-
@@ -68,10 +20,10 @@ slides:
               tag: 'heading'
             type: 'column'
     notes: []
-  - key: 'tVUagqcf'
+  - key: '1bbmBfgU'
     options: {}
     markdown: |-
-      {@column align: center flex: 2}
+      {@column align: center flex: 1}
       #### Leo Farias
       @leoafarias
       
@@ -79,7 +31,7 @@ slides:
       - Founder/CEO/CTO
       - Open Source Contributor
       - Flutter & Dart GDE
-      - Passionate 
+      - Passionate about UI/UX/DX
       
       
       {@column}
@@ -90,7 +42,7 @@ slides:
               #### Leo Farias
               @leoafarias
             options: 
-              flex: 2
+              flex: 1
               align: 'center'
             type: 'column'
           - content: |
@@ -98,7 +50,7 @@ slides:
               - Founder/CEO/CTO
               - Open Source Contributor
               - Flutter & Dart GDE
-              - Passionate 
+              - Passionate about UI/UX/DX
               
             options: 
               align: 'center_right'
@@ -135,7 +87,384 @@ slides:
             options: null
             type: 'column'
     notes: []
-  - key: 'rufI4jNA'
+  - key: '0QyHrpiK'
+    options: {}
+    markdown: |-
+      {@column flex: 2 align: center_right}
+      ### Generative UI
+      {@column}
+      ## VS
+      {@column flex: 2}
+      ### AI Assisted Code Generation
+    sections: 
+      - sub_sections: 
+          - content: |-
+              
+              ### Generative UI
+            options: 
+              flex: 2
+              align: 'center_right'
+            type: 'column'
+          - content: |-
+              
+              ## VS
+            options: null
+            type: 'column'
+          - content: |-
+              
+              ### AI Assisted Code Generation
+            options: 
+              flex: 2
+            type: 'column'
+    notes: []
+  - key: '4E2GOMRu'
+    options: {}
+    markdown: |-
+      ### What is Generative UI?
+      
+      {@column}
+      
+      - LLMs are great at generating content based on context
+      - GUIs are great at providing structured, interactive interfaces for user input and navigation
+    sections: 
+      - sub_sections: 
+          - content: |
+              ### What is Generative UI?
+            type: 'column'
+          - content: |-
+              
+              
+              - LLMs are great at generating content based on context
+              - GUIs are great at providing structured, interactive interfaces for user input and navigation
+            options: null
+            type: 'column'
+    notes: []
+  - key: '7qVeHjc5'
+    options: {}
+    markdown: '# LLM ❤️ GUI'
+    sections: 
+      - sub_sections: 
+          - content: '# LLM ❤️ GUI'
+            type: 'column'
+    notes: []
+  - key: 'vzQklZSA'
+    options: {}
+    markdown: |-
+      {@column}
+      {@column flex: 2 align: center}
+      Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.
+      
+      {@column}
+    sections: 
+      - sub_sections: 
+          - content: ''
+            options: null
+            type: 'column'
+          - content: |
+              
+              Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.
+            options: 
+              flex: 2
+              align: 'center'
+            type: 'column'
+          - content: ''
+            options: null
+            type: 'column'
+    notes: []
+  - key: 'hHrCdu5G'
+    options: {}
+    markdown: |-
+      ### Benefits of UI over Chat
+      
+      - More intuitive and user-friendly, especially for complex tasks
+      - Faster feedback loop between users and LLMs
+      - Enhances efficiency and interaction
+    sections: 
+      - sub_sections: 
+          - content: |-
+              ### Benefits of UI over Chat
+              
+              - More intuitive and user-friendly, especially for complex tasks
+              - Faster feedback loop between users and LLMs
+              - Enhances efficiency and interaction
+            type: 'column'
+    notes: []
+  - key: 'AlUdXIbT'
+    options: {}
+    markdown: |-
+      {@column flex: 3 align: center}
+      ### Flutter is Well-Suited for Generative UI
+      Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
+      {@column}
+    sections: 
+      - sub_sections: 
+          - content: |-
+              
+              ### Flutter is Well-Suited for Generative UI
+              Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
+            options: 
+              flex: 3
+              align: 'center'
+            type: 'column'
+          - content: ''
+            options: null
+            type: 'column'
+    notes: []
+  - key: 'GDamh4hN'
+    options: {}
+    markdown: |-
+      ## How can LLMs Understtand Your UI?
+      
+      {@column tag: image}
+      ![structured_output](assets/structured_output.png)
+    sections: 
+      - sub_sections: 
+          - content: |
+              ## How can LLMs Understtand Your UI?
+            type: 'column'
+          - content: |-
+              
+              ![structured_output](assets/structured_output.png)
+            options: 
+              tag: 'image'
+            type: 'column'
+    notes: []
+  - key: 'hi7HztOa'
+    options: {}
+    markdown: |-
+      {@column}
+      
+      ## Structured Output
+      {@column}
+      
+      ```dart
+      final schema = Schema.array(
+        description: 'List of recipes',
+        items: Schema.object(
+          properties: {
+            'recipeName': Schema.string(
+              description: 'Name of the recipe.',
+              nullable: false,
+            ),
+          },
+          requiredProperties: ['recipeName'],
+        ),
+      );
+      
+      final model = GenerativeModel(
+        model: 'gemini-1.5-pro',
+        apiKey: apiKey,
+        generationConfig: GenerationConfig(
+          responseMimeType: 'application/json',
+          responseSchema: schema,
+        ),
+      );
+      
+      final prompt = 'List a few popular cookie recipes.';
+      final response = await model.generateContent([Content.text(prompt)]);
+      
+      ```
+    sections: 
+      - sub_sections: 
+          - content: |-
+              
+              
+              ## Structured Output
+            options: null
+            type: 'column'
+          - content: |-
+              
+              
+              ```dart
+              final schema = Schema.array(
+                description: 'List of recipes',
+                items: Schema.object(
+                  properties: {
+                    'recipeName': Schema.string(
+                      description: 'Name of the recipe.',
+                      nullable: false,
+                    ),
+                  },
+                  requiredProperties: ['recipeName'],
+                ),
+              );
+              
+              final model = GenerativeModel(
+                model: 'gemini-1.5-pro',
+                apiKey: apiKey,
+                generationConfig: GenerationConfig(
+                  responseMimeType: 'application/json',
+                  responseSchema: schema,
+                ),
+              );
+              
+              final prompt = 'List a few popular cookie recipes.';
+              final response = await model.generateContent([Content.text(prompt)]);
+              
+              ```
+            options: null
+            type: 'column'
+    notes: []
+  - key: 'RR2DoSsC'
+    options: {}
+    markdown: |-
+      {@column}
+      ### Color Palette Generator
+      
+      Generate a color palette based on a given text.
+      
+      - Name of the palette
+      - Font family
+      - Font color
+      - Color for each corner of the palette
+      
+      {@column}
+      ```dart
+      final schema = Schema.object(properties: {
+        'name': Schema.string(
+          description:
+              'The text content to display on color palette. Format: #FF0000',
+          nullable: false,
+        ),
+        'font': Schema.enumString(
+          enumValues: ColorPaletteFontFamily.enumString,
+          description: 'The font to use for the poster text.',
+          nullable: false,
+        ),
+        'fontColor': Schema.string(
+          description: 'The hex color value of the poster text. Format: #FF0000',
+          nullable: false,
+        ),
+        'topLeftColor': Schema.string(
+          description:
+              'The hex color value top left corner of color palette. Format: #FF0000',
+          nullable: false,
+        ),
+        'topRightColor': Schema.string(
+          description:
+              'The hex color value top right corner of color palette. Format: #FF0000',
+          nullable: false,
+        ),
+        'bottomLeftColor': Schema.string(
+          description:
+              'The hex color value bottom left corner of color palette. Format: #FF0000',
+          nullable: false,
+        ),
+        'bottomRightColor': Schema.string(
+          description:
+              'The hex color value bottom right corner of color palette. Format: #FF0000',
+          nullable: false,
+        )
+      }, requiredProperties: [
+        'name',
+        'font',
+        'fontColor',
+        'topLeftColor',
+        'topRightColor',
+        'bottomLeftColor',
+        'bottomRightColor',
+      ]);
+      
+      ```
+    sections: 
+      - sub_sections: 
+          - content: |
+              
+              ### Color Palette Generator
+              
+              Generate a color palette based on a given text.
+              
+              - Name of the palette
+              - Font family
+              - Font color
+              - Color for each corner of the palette
+            options: null
+            type: 'column'
+          - content: |-
+              
+              ```dart
+              final schema = Schema.object(properties: {
+                'name': Schema.string(
+                  description:
+                      'The text content to display on color palette. Format: #FF0000',
+                  nullable: false,
+                ),
+                'font': Schema.enumString(
+                  enumValues: ColorPaletteFontFamily.enumString,
+                  description: 'The font to use for the poster text.',
+                  nullable: false,
+                ),
+                'fontColor': Schema.string(
+                  description: 'The hex color value of the poster text. Format: #FF0000',
+                  nullable: false,
+                ),
+                'topLeftColor': Schema.string(
+                  description:
+                      'The hex color value top left corner of color palette. Format: #FF0000',
+                  nullable: false,
+                ),
+                'topRightColor': Schema.string(
+                  description:
+                      'The hex color value top right corner of color palette. Format: #FF0000',
+                  nullable: false,
+                ),
+                'bottomLeftColor': Schema.string(
+                  description:
+                      'The hex color value bottom left corner of color palette. Format: #FF0000',
+                  nullable: false,
+                ),
+                'bottomRightColor': Schema.string(
+                  description:
+                      'The hex color value bottom right corner of color palette. Format: #FF0000',
+                  nullable: false,
+                )
+              }, requiredProperties: [
+                'name',
+                'font',
+                'fontColor',
+                'topLeftColor',
+                'topRightColor',
+                'bottomLeftColor',
+                'bottomRightColor',
+              ]);
+              
+              ```
+            options: null
+            type: 'column'
+    notes: []
+  - key: 'SqCCTn73'
+    options: 
+      style: 'demo'
+    markdown: '{@widget name: colorPalette type: schema}'
+    sections: 
+      - sub_sections: 
+          - options: 
+              name: 'colorPalette'
+              type: 'schema'
+            content: ''
+            type: 'widget'
+    notes: []
+  - key: 'lxoXHEfL'
+    options: 
+      style: 'demo'
+    markdown: '{@widget name: colorPalette type: widget}'
+    sections: 
+      - sub_sections: 
+          - options: 
+              name: 'colorPalette'
+              type: 'widget'
+            content: ''
+            type: 'widget'
+    notes: []
+  - key: 'H0jUl8Aj'
+    options: {}
+    markdown: '## LLMs Orchestrate APIs'
+    sections: 
+      - sub_sections: 
+          - content: '## LLMs Orchestrate APIs'
+            type: 'column'
+    notes: []
+  - key: 'ykwnH1Sz'
     options: {}
     markdown: |-
       {@column align: center_right tag: heading flex: 3} 
@@ -162,7 +491,19 @@ slides:
           - content: '![llm tools](assets/llm_tools.png)'
             type: 'column'
     notes: []
-  - key: 'XqKFls2M'
+  - key: 'qi1PW622'
+    options: 
+      style: 'demo'
+    markdown: '{@widget name: lightControl type: schema}'
+    sections: 
+      - sub_sections: 
+          - options: 
+              name: 'lightControl'
+              type: 'schema'
+            content: ''
+            type: 'widget'
+    notes: []
+  - key: 'UT7eHcJb'
     options: {}
     markdown: |-
       {@column align: bottom_right tag: heading}
@@ -191,7 +532,7 @@ slides:
               tag: 'image'
             type: 'column'
     notes: []
-  - key: 'ltETqi6d'
+  - key: 'MHStZ9mJ'
     options: {}
     markdown: |-
       {@column align: center_left tag: heading}
@@ -216,50 +557,112 @@ slides:
               tag: 'image'
             type: 'column'
     notes: []
-  - key: 'P6mrYsxd'
-    options: {}
-    markdown: |-
-      ## Structured Output
-      
-      {@column tag: image}
-      ![structured_output](assets/structured_output.png)
+  - key: 'ToNaJnaL'
+    options: 
+      style: 'demo'
+    markdown: '{@widget name: lightControl type: widget}'
     sections: 
       - sub_sections: 
-          - content: |
-              ## Structured Output
-            type: 'column'
-          - content: |-
-              
-              ![structured_output](assets/structured_output.png)
-            options: 
-              tag: 'image'
+          - options: 
+              name: 'lightControl'
+              type: 'widget'
+            content: ''
+            type: 'widget'
+    notes: []
+  - key: 'pNxPyfLK'
+    options: {}
+    markdown: '## What if the tool to use is a widget schema?'
+    sections: 
+      - sub_sections: 
+          - content: '## What if the tool to use is a widget schema?'
             type: 'column'
     notes: []
-assets: 
-  - path: '.superdeck/generated/thumbnail_qi1PW622.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_ToNaJnaL.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_YXbqWFuU.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_tVUagqcf.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_eZmNG247.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_rufI4jNA.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_XqKFls2M.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_ltETqi6d.png'
-    width: 512
-    height: 288
-  - path: '.superdeck/generated/thumbnail_P6mrYsxd.png'
-    width: 512
-    height: 288
+  - key: 'fCc7I1oj'
+    options: {}
+    markdown: |-
+      ### Experimental
+      
+      ```dart
+      final schema = Schema.object(properties: {
+          'textFields': Schema.array(
+            description: 'A list of text fields',
+            items: TextFieldSchemaDto.schema,
+            nullable: true,
+          ),
+          'dropdowns': Schema.array(
+            description: 'A list of dropdowns',
+            items: DropdownSchemaDto.schema,
+            nullable: true,
+          ),
+          'colorPickers': Schema.array(
+            description: 'A list of colors pickers',
+            items: ColorPickerDtoSchema.schema,
+            nullable: true,
+          ),
+        });
+      ```
+    sections: 
+      - sub_sections: 
+          - content: |-
+              ### Experimental
+              
+              ```dart
+              final schema = Schema.object(properties: {
+                  'textFields': Schema.array(
+                    description: 'A list of text fields',
+                    items: TextFieldSchemaDto.schema,
+                    nullable: true,
+                  ),
+                  'dropdowns': Schema.array(
+                    description: 'A list of dropdowns',
+                    items: DropdownSchemaDto.schema,
+                    nullable: true,
+                  ),
+                  'colorPickers': Schema.array(
+                    description: 'A list of colors pickers',
+                    items: ColorPickerDtoSchema.schema,
+                    nullable: true,
+                  ),
+                });
+              ```
+            type: 'column'
+    notes: []
+  - key: 'wvMcrBUp'
+    options: 
+      style: 'demo'
+    markdown: '{@widget name: widgetSchema type: widget}'
+    sections: 
+      - sub_sections: 
+          - options: 
+              name: 'widgetSchema'
+              type: 'widget'
+            content: ''
+            type: 'widget'
+    notes: []
+  - key: '5vhbdeYH'
+    options: {}
+    markdown: '## The future of UI might be orchestrating user experiences than creating it.'
+    sections: 
+      - sub_sections: 
+          - content: '## The future of UI might be orchestrating user experiences than creating it.'
+            type: 'column'
+    notes: []
+  - key: 'UqCN11cB'
+    options: {}
+    markdown: |-
+      ### Thank you
+      
+      Leo Farias
+      @leoafarias
+      (GitHub, Twitter/X)
+    sections: 
+      - sub_sections: 
+          - content: |-
+              ### Thank you
+              
+              Leo Farias
+              @leoafarias
+              (GitHub, Twitter/X)
+            type: 'column'
+    notes: []
+assets: []

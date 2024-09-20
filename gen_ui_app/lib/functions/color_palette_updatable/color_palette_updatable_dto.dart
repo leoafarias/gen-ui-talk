@@ -102,14 +102,18 @@ class WidgetSchemaDto {
 
 class DropdownSchemaDto {
   final String label;
-  final String value;
+  final String currentValue;
+  final List<String> options;
 
-  DropdownSchemaDto({required this.label, required this.value});
+  DropdownSchemaDto(
+      {required this.label, required this.currentValue, required this.options});
 
   static DropdownSchemaDto fromMap(Map<String, dynamic> map) {
     return DropdownSchemaDto(
       label: map['label'] as String,
-      value: map['value'] as String,
+      currentValue: map['currentValue'] as String,
+      options:
+          (map['options'] as List<dynamic>).map((e) => e as String).toList(),
     );
   }
 
@@ -120,16 +124,25 @@ class DropdownSchemaDto {
       description: 'The label of the dropdown',
       nullable: false,
     ),
-    'value': Schema.string(
-      description: 'The value of the dropdown',
+    'currentValue': Schema.string(
+      description: 'The currentValue of the dropdown',
       nullable: false,
     ),
+    'options': Schema.array(
+      description: 'The options of the dropdown',
+      items: Schema.string(
+        description: 'The options of the dropdown',
+        nullable: false,
+      ),
+      nullable: false,
+    )
   });
 
   JSON toMap() {
     return {
       'label': label,
-      'value': value,
+      'currentValue': currentValue,
+      'options': options,
     };
   }
 }
