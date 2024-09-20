@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:superdeck/superdeck.dart';
 
 import 'functions/color_palette/color_palette_page.dart';
+import 'functions/color_palette_updatable/color_palette_updatable_page.dart';
 import 'functions/light_control/light_control_page.dart';
 import 'parts/background.dart';
 import 'parts/footer.dart';
@@ -46,6 +47,8 @@ void main() async {
               widgets: {
                 'lightControl': (context, options) => LightControlPage(options),
                 'colorPalette': (context, options) => ColorPalettePage(options),
+                'widgetSchema': (context, options) =>
+                    ColorPaletteUpdatablePage(options),
               },
             ),
           );

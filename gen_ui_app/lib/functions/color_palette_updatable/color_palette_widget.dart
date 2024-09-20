@@ -11,24 +11,7 @@ class ColorPaletteUpdatableResponseView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize text controllers and labels using hooks
-    final textControllers = <TextEditingController>[];
-    final textLabels = <String>[];
-    if (data.textFields != null) {
-      for (var textField in data.textFields!) {
-        final controller = useTextEditingController(text: textField.text);
-        textControllers.add(controller);
-        textLabels.add(textField.label);
-      }
-    }
-
-    // Initialize selected dropdown values and labels using hooks
-    final selectedDropdownValues = useState<List<String>>(
-      List.from(
-          data.dropdowns?.map((dropdown) => dropdown.value).toList() ?? []),
-    );
-    final dropdownLabels =
-        data.dropdowns?.map((dropdown) => dropdown.label).toList() ?? [];
+    // Helper functions
 
     // Initialize selected colors and labels using hooks
     final selectedColors = useState<List<Color>>(
@@ -43,38 +26,30 @@ class ColorPaletteUpdatableResponseView extends HookWidget {
     // Build the widgets list
     List<Widget> widgets = [];
 
-    // Render text fields with labels
-    for (int i = 0; i < textControllers.length; i++) {
-      widgets.add(
-        TextField(
-          controller: textControllers[i],
-          decoration: InputDecoration(labelText: textLabels[i]),
-        ),
-      );
-    }
-
     // Render dropdowns with labels
     if (data.dropdowns != null) {
       for (int i = 0; i < data.dropdowns!.length; i++) {
         final dropdownData = data.dropdowns![i];
         widgets.add(
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(dropdownData.label),
+              Text(dropdownData.label,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 24)),
+              const Spacer(),
               DropdownButton<String>(
-                value: selectedDropdownValues.value[i],
-                items: [
-                  DropdownMenuItem(
-                    value: dropdownData.value,
-                    child: Text(dropdownData.value),
-                  ),
-                  // Add more DropdownMenuItems here if needed
-                ],
-                onChanged: (newValue) {
-                  selectedDropdownValues.value =
-                      List.from(selectedDropdownValues.value)..[i] = newValue!;
-                },
+                style: const TextStyle(
+                  fontSize: 24,
+                ),
+                value: dropdownData.currentValue,
+                items: dropdownData.options.map((option) {
+                  return DropdownMenuItem<String>(
+                    value: option,
+                    child: Text(option),
+                  );
+                }).toList(),
+                onChanged: (newValue) {},
               ),
             ],
           ),
@@ -132,8 +107,14 @@ class ColorPaletteUpdatableResponseView extends HookWidget {
     }
 
     return SingleChildScrollView(
-      child: Column(
-        children: widgets,
+      child: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: widgets,
+          ),
+        ),
       ),
     );
   }
