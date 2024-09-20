@@ -9,7 +9,7 @@ class _LightControlMockController extends ChangeNotifier {
   _LightControlMockController();
 
   Future<JSON> post(JSON parameters) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     setBrightness(parameters['brightness'] as int);
     return Future.value(get());
   }

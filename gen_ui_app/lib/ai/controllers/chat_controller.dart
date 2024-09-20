@@ -9,10 +9,12 @@ import '../providers/ai_provider_interface.dart';
 
 class ChatController extends ChangeNotifier {
   final AiProvider provider;
+  final TextEditingController editingController = TextEditingController();
+  final bool streamResponse;
 
   final List<ContentBase> _transcript = List.empty(growable: true);
   _LlmResponseListener? _currentResponse;
-  UserContent? _initialMessage;
+
   Timer? _updateTimer;
 
   List<ContentBase> get transcript => List.unmodifiable(_transcript);
@@ -20,17 +22,21 @@ class ChatController extends ChangeNotifier {
 
   ChatController({
     required this.provider,
+    this.streamResponse = true,
   });
 
   static ChatController of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<ChatControllerProvider>()!
       .notifier!;
 
-  UserContent? get initialMessage => _initialMessage;
-
-  set initialMessage(UserContent? message) {
-    _initialMessage = message;
-    notifyListeners();
+  Future<AiContent> send(
+    String prompt, {
+    Iterable<Attachment> attachments = const [],
+  }) async {
+    if (streamResponse) {
+      return await _sendMessageStream(prompt, attachments: attachments);
+    }
+    return await _sendMessage(prompt, attachments: attachments);
   }
 
   Future<AiContent> _sendMessageStream(
@@ -38,8 +44,8 @@ class ChatController extends ChangeNotifier {
     Iterable<Attachment> attachments = const [],
   }) async {
     try {
-      _initialMessage = null;
       isProcessing = true;
+
       final userMessage = UserContent(prompt: prompt, attachments: attachments);
       final llmStreamableMessage = AiStreamableContent();
       _transcript.add(llmStreamableMessage);
@@ -63,21 +69,22 @@ class ChatController extends ChangeNotifier {
 
       _transcript[_transcript.length - 1] = result;
 
+      print(isProcessing);
+
       return result;
     } finally {
       isProcessing = false;
       _currentResponse = null;
+      print(isProcessing);
       notifyListeners();
     }
   }
 
-  Future<AiContent> sendMessage(
+  Future<AiContent> _sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
     try {
-      return _sendMessageStream(prompt, attachments: attachments);
-      _initialMessage = null;
       isProcessing = true;
       final userMessage = UserContent(prompt: prompt, attachments: attachments);
 
@@ -103,8 +110,21 @@ class ChatController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void cancelMessage() {
+  void cancel() {
     _currentResponse?.cancel();
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _transcript.clear();
+    editingController.dispose();
+
+    _currentResponse?.cancel();
+    _currentResponse = null;
+    _updateTimer?.cancel();
+    _updateTimer = null;
     notifyListeners();
   }
 
@@ -120,7 +140,7 @@ class ChatController extends ChangeNotifier {
     final userMessage = _transcript.removeLast() as UserContent?;
 
     // set the text of the controller to the last userMessage
-    _initialMessage = userMessage;
+
     notifyListeners();
   }
 }
@@ -187,18 +207,24 @@ class ChatControllerProvider extends InheritedNotifier<ChatController> {
   });
 }
 
-ChatController useChatController(AiProvider provider) {
+ChatController useChatController(
+  AiProvider provider, {
+  bool streamResponse = true,
+}) {
   return use(_ChatControllerHook(
     provider,
+    streamResponse: streamResponse,
   ));
 }
 
 class _ChatControllerHook extends Hook<ChatController> {
   final AiProvider provider;
+  final bool streamResponse;
 
   const _ChatControllerHook(
-    this.provider,
-  );
+    this.provider, {
+    required this.streamResponse,
+  });
 
   @override
   _ChatControllerHookState createState() {
@@ -210,6 +236,7 @@ class _ChatControllerHookState
     extends HookState<ChatController, _ChatControllerHook> {
   late final _controller = ChatController(
     provider: hook.provider,
+    streamResponse: hook.streamResponse,
   );
 
   @override

@@ -1,0 +1,337 @@
+{
+  "config": {},
+  "slides": [
+    {
+      "key": "qi1PW622",
+      "options": {
+        "style": "demo"
+      },
+      "markdown": "{@widget name: lightControl type: schema}",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "options": {
+                "name": "lightControl",
+                "type": "schema"
+              },
+              "content": "",
+              "type": "widget"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "ToNaJnaL",
+      "options": {
+        "style": "demo"
+      },
+      "markdown": "{@widget name: lightControl type: widget}",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "options": {
+                "name": "lightControl",
+                "type": "widget"
+              },
+              "content": "",
+              "type": "widget"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "SqCCTn73",
+      "options": {
+        "style": "demo"
+      },
+      "markdown": "{@widget name: colorPalette type: schema}",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "options": {
+                "name": "colorPalette",
+                "type": "schema"
+              },
+              "content": "",
+              "type": "widget"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "lxoXHEfL",
+      "options": {
+        "style": "demo"
+      },
+      "markdown": "{@widget name: colorPalette type: widget}",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "options": {
+                "name": "colorPalette",
+                "type": "widget"
+              },
+              "content": "",
+              "type": "widget"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "YXbqWFuU",
+      "options": {},
+      "markdown": "{@section flex: 2}\n{@column align: center tag: heading}\n# Generative UI\n# with Flutter",
+      "sections": [
+        {
+          "options": {
+            "flex": 2
+          },
+          "sub_sections": [
+            {
+              "content": "\n# Generative UI\n# with Flutter",
+              "options": {
+                "align": "center",
+                "tag": "heading"
+              },
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "tVUagqcf",
+      "options": {},
+      "markdown": "{@column align: center flex: 2}\n#### Leo Farias\n@leoafarias\n\n{@column align: center_right}\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate \n\n\n{@column}",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "content": "\n#### Leo Farias\n@leoafarias\n",
+              "options": {
+                "flex": 2,
+                "align": "center"
+              },
+              "type": "column"
+            },
+            {
+              "content": "\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate \n\n",
+              "options": {
+                "align": "center_right"
+              },
+              "type": "column"
+            },
+            {
+              "content": "",
+              "options": null,
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "eZmNG247",
+      "options": {},
+      "markdown": "{@column}\n\n{@column align: center_left flex: 2}\n> [!WARNING]  \n> This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.\n\n{@column}",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "content": "\n",
+              "options": null,
+              "type": "column"
+            },
+            {
+              "content": "\n> [!WARNING]  \n> This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.\n",
+              "options": {
+                "flex": 2,
+                "align": "center_left"
+              },
+              "type": "column"
+            },
+            {
+              "content": "",
+              "options": null,
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "rufI4jNA",
+      "options": {},
+      "markdown": "{@column align: center_right tag: heading flex: 3} \n### Gemini Function Calling\nThe Function Calling feature is in Beta release\n\n{@section flex: 4 tag: image}\n![llm tools](assets/llm_tools.png)",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "content": "\n### Gemini Function Calling\nThe Function Calling feature is in Beta release\n",
+              "options": {
+                "flex": 3,
+                "align": "center_right",
+                "tag": "heading"
+              },
+              "type": "column"
+            }
+          ]
+        },
+        {
+          "options": {
+            "flex": 4,
+            "tag": "image"
+          },
+          "sub_sections": [
+            {
+              "content": "![llm tools](assets/llm_tools.png)",
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "XqKFls2M",
+      "options": {},
+      "markdown": "{@column align: bottom_right tag: heading}\n\n### User Interaction\nNatural Language way to interact with an LLM\n\n{@column tag: image flex: 3}\n![llm response](assets/llm_interaction.png)",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "content": "\n\n### User Interaction\nNatural Language way to interact with an LLM\n",
+              "options": {
+                "align": "bottom_right",
+                "tag": "heading"
+              },
+              "type": "column"
+            },
+            {
+              "content": "\n![llm response](assets/llm_interaction.png)",
+              "options": {
+                "flex": 3,
+                "tag": "image"
+              },
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "ltETqi6d",
+      "options": {},
+      "markdown": "{@column align: center_left tag: heading}\n### Widget Response\n\n{@column flex: 3 tag: image}\n![widget_response](assets/widget_response.png)",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "content": "\n### Widget Response\n",
+              "options": {
+                "align": "center_left",
+                "tag": "heading"
+              },
+              "type": "column"
+            },
+            {
+              "content": "\n![widget_response](assets/widget_response.png)",
+              "options": {
+                "flex": 3,
+                "tag": "image"
+              },
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "P6mrYsxd",
+      "options": {},
+      "markdown": "## Structured Output\n\n{@column tag: image}\n![structured_output](assets/structured_output.png)",
+      "sections": [
+        {
+          "sub_sections": [
+            {
+              "content": "## Structured Output\n",
+              "type": "column"
+            },
+            {
+              "content": "\n![structured_output](assets/structured_output.png)",
+              "options": {
+                "tag": "image"
+              },
+              "type": "column"
+            }
+          ]
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "assets": [
+    {
+      "path": ".superdeck/generated/thumbnail_qi1PW622.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_ToNaJnaL.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_YXbqWFuU.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_tVUagqcf.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_eZmNG247.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_rufI4jNA.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_XqKFls2M.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_ltETqi6d.png",
+      "width": 512,
+      "height": 288
+    },
+    {
+      "path": ".superdeck/generated/thumbnail_P6mrYsxd.png",
+      "width": 512,
+      "height": 288
+    }
+  ]
+}

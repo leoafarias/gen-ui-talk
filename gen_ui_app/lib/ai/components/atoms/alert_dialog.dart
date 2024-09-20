@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers.dart';
+import '../../style.dart';
 import 'code_highlighter.dart';
 
 Future<void> showWidgetDetails(
@@ -33,9 +34,14 @@ Future<void> showWidgetDetails(
             horizontal: 20,
             vertical: 20,
           ),
-          title: Text(title),
-          content:
-              tryGenericResponse(contents) ?? JsonSyntax(contents.toString()),
+          title: Text(
+            title,
+            style: kMonoFont.copyWith(fontSize: 20),
+          ),
+          content: tryGenericResponse(contents) ??
+              JsonSyntax(
+                contents.toString(),
+              ),
           actions: [
             IconButton(
               onPressed: () {

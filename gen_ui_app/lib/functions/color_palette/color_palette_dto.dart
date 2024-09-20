@@ -7,7 +7,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../ai/helpers.dart';
 import '../../ai/helpers/color_helpers.dart';
 
-enum ColorPaletteTextFontFamily {
+enum ColorPaletteFontFamily {
   bebasNeue,
   poppins,
   raleway,
@@ -32,10 +32,10 @@ enum ColorPaletteTextFontFamily {
 
   static List<String> get enumString => values.map((e) => e.name).toList();
 
-  static ColorPaletteTextFontFamily fromString(String value) {
-    return ColorPaletteTextFontFamily.values.firstWhere(
+  static ColorPaletteFontFamily fromString(String value) {
+    return ColorPaletteFontFamily.values.firstWhere(
       (e) => e.name == value,
-      orElse: () => ColorPaletteTextFontFamily.bebasNeue,
+      orElse: () => ColorPaletteFontFamily.bebasNeue,
     );
   }
 }
@@ -43,8 +43,8 @@ enum ColorPaletteTextFontFamily {
 class ColorPaletteDto {
   final String name;
 
-  final ColorPaletteTextFontFamily colorPaletteTextFont;
-  final Color colorPaletteTextColor;
+  final ColorPaletteFontFamily font;
+  final Color fontColor;
 
   final Color topLeftColor;
   final Color topRightColor;
@@ -53,18 +53,18 @@ class ColorPaletteDto {
 
   ColorPaletteDto({
     required this.name,
-    required this.colorPaletteTextFont,
+    required this.font,
     required this.topLeftColor,
     required this.topRightColor,
     required this.bottomLeftColor,
     required this.bottomRightColor,
-    required this.colorPaletteTextColor,
+    required this.fontColor,
   });
 
   ColorPaletteDto copyWith({
     String? name,
-    ColorPaletteTextFontFamily? colorPaletteTextFont,
-    Color? colorPaletteTextColor,
+    ColorPaletteFontFamily? font,
+    Color? fontColor,
     Color? topLeftColor,
     Color? topRightColor,
     Color? bottomLeftColor,
@@ -72,9 +72,8 @@ class ColorPaletteDto {
   }) {
     return ColorPaletteDto(
       name: name ?? this.name,
-      colorPaletteTextFont: colorPaletteTextFont ?? this.colorPaletteTextFont,
-      colorPaletteTextColor:
-          colorPaletteTextColor ?? this.colorPaletteTextColor,
+      font: font ?? this.font,
+      fontColor: fontColor ?? this.fontColor,
       topLeftColor: topLeftColor ?? this.topLeftColor,
       topRightColor: topRightColor ?? this.topRightColor,
       bottomLeftColor: bottomLeftColor ?? this.bottomLeftColor,
@@ -91,43 +90,53 @@ class ColorPaletteDto {
     };
   }
 
+  ColorPaletteDto merge(ColorPaletteDto? other) {
+    return copyWith(
+      name: other?.name ?? name,
+      font: other?.font ?? font,
+      fontColor: other?.fontColor ?? fontColor,
+      topLeftColor: other?.topLeftColor ?? topLeftColor,
+      topRightColor: other?.topRightColor ?? topRightColor,
+      bottomLeftColor: other?.bottomLeftColor ?? bottomLeftColor,
+      bottomRightColor: other?.bottomRightColor ?? bottomRightColor,
+    );
+  }
+
   @override
   operator ==(Object other) {
     return other is ColorPaletteDto &&
-        other.colorPaletteTextFont == colorPaletteTextFont &&
+        other.font == font &&
         other.topLeftColor == topLeftColor &&
         other.topRightColor == topRightColor &&
         other.bottomLeftColor == bottomLeftColor &&
         other.bottomRightColor == bottomRightColor &&
         other.name == name &&
-        other.colorPaletteTextColor == colorPaletteTextColor;
+        other.fontColor == fontColor;
   }
 
   // hash
   @override
   int get hashCode {
-    return colorPaletteTextFont.hashCode ^
+    return font.hashCode ^
         topLeftColor.hashCode ^
         topRightColor.hashCode ^
         bottomLeftColor.hashCode ^
         bottomRightColor.hashCode ^
         name.hashCode ^
-        colorPaletteTextColor.hashCode;
+        fontColor.hashCode;
   }
 
   String toJson() => prettyJson(toMap());
 
   static ColorPaletteDto fromMap(Map<String, dynamic> map) {
     return ColorPaletteDto(
-      colorPaletteTextFont: ColorPaletteTextFontFamily.fromString(
-          map['colorPaletteTextFont'] as String),
+      font: ColorPaletteFontFamily.fromString(map['font'] as String),
       topLeftColor: colorFromHex(map['topLeftColor'] as String),
       topRightColor: colorFromHex(map['topRightColor'] as String),
       bottomLeftColor: colorFromHex(map['bottomLeftColor'] as String),
       bottomRightColor: colorFromHex(map['bottomRightColor'] as String),
       name: map['name'] as String,
-      colorPaletteTextColor:
-          colorFromHex(map['colorPaletteTextColor'] as String),
+      fontColor: colorFromHex(map['fontColor'] as String),
     );
   }
 
@@ -138,8 +147,8 @@ class ColorPaletteDto {
   Map<String, Object?> toMap() {
     return {
       'name': name,
-      'colorPaletteTextColor': colorPaletteTextColor.toHex(),
-      'colorPaletteTextFont': colorPaletteTextFont.name,
+      'fontColor': fontColor.toHex(),
+      'font': font.name,
       'topLeftColor': topLeftColor.toHex(),
       'topRightColor': topRightColor.toHex(),
       'bottomLeftColor': bottomLeftColor.toHex(),
@@ -153,12 +162,12 @@ class ColorPaletteDto {
           'The text content to display on color palette. Format: #FF0000',
       nullable: false,
     ),
-    'colorPaletteTextFont': Schema.enumString(
-      enumValues: ColorPaletteTextFontFamily.enumString,
+    'font': Schema.enumString(
+      enumValues: ColorPaletteFontFamily.enumString,
       description: 'The font to use for the poster text.',
       nullable: false,
     ),
-    'colorPaletteTextColor': Schema.string(
+    'fontColor': Schema.string(
       description: 'The hex color value of the poster text. Format: #FF0000',
       nullable: false,
     ),
@@ -184,8 +193,8 @@ class ColorPaletteDto {
     )
   }, requiredProperties: [
     'name',
-    'colorPaletteTextFont',
-    'colorPaletteTextColor',
+    'font',
+    'fontColor',
     'topLeftColor',
     'topRightColor',
     'bottomLeftColor',

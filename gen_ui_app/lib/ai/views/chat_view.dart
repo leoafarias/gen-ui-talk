@@ -50,11 +50,7 @@ class ChatView extends HookWidget {
     }
 
     return ChatInput(
-      focusNode: focusNode,
-      initialMessage: controller.initialMessage,
-      sending: controller.isProcessing,
-      onSend: controller.sendMessage,
-      onCancel: controller.cancelMessage,
+      controller: controller,
     );
   }
 

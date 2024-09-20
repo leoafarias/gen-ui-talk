@@ -25,10 +25,10 @@ class AiTextElementView extends AiElementView<AiTextElement> {
           child: MessageBubble(
             text: element.text.trim(),
             style: MessageBubbleStyle(
-              textStyle: chatTheme.textStyle.copyWith(
-                color: chatTheme.onBackGroundColor,
+              textStyle: kFont.copyWith(
+                color: Colors.black,
               ),
-              backgroundColor: const Color.fromARGB(255, 26, 26, 26),
+              backgroundColor: kSecondaryColor,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.zero,
                 topRight: Radius.circular(20),
@@ -88,75 +88,109 @@ class AiFunctionElementView
   @override
   Widget build(BuildContext context) {
     final emptyArgs = element.arguments.isEmpty;
+
+    final formattedArgs = prettyJson(element.arguments);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(
+          'Function',
+          style: kMonoFont.copyWith(
+            color: kSecondaryColor,
+          ),
+        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            element.isComplete
-                ? const Icon(
-                    Icons.bolt,
-                    size: 28,
-                    color: Colors.green,
-                  )
-                : const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: 14,
-                      height: 14,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: kSecondaryColor,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: kOnSecondaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 22,
+                        vertical: 22,
+                      ),
+                      child: Row(
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: element.function.name,
+                                  style: kMonoFont.copyWith(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                                const TextSpan(text: ' '),
+                                TextSpan(
+                                  text: emptyArgs ? '' : '($formattedArgs)',
+                                  style: kMonoFont.copyWith(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    element.function.name,
-                    style: chatTheme.textStyle.copyWith(
-                      color: Colors.green,
-                      fontSize: 22,
-                    ),
-                  ),
-                  // Text(element.function.description),
-                  const SizedBox(height: 6),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (!emptyArgs)
-                        Text(
-                          'args:',
-                          style: chatTheme.textStyle.copyWith(
-                            color: chatTheme.accentColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ...element.arguments.entries.map((entry) {
-                        return Text(
-                          '${entry.key}: ${entry.value}',
-                          style: chatTheme.textStyle.copyWith(
-                            color: chatTheme.accentColor,
-                            fontSize: 18,
-                          ),
-                        );
-                      }),
-                      element.isComplete
-                          ? Text(
-                              'result: ${element.response}',
-                              style: chatTheme.textStyle.copyWith(
-                                color: chatTheme.accentColor,
-                                fontSize: 18,
+                    // Text(element.function.description),
+                    const SizedBox(height: 6),
+                    Container(
+                      padding: const EdgeInsets.all(22),
+                      decoration: BoxDecoration(
+                        color: kOnSecondaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 200),
+                                child: element.isComplete
+                                    ? Text(
+                                        prettyJson(element.response),
+                                        style: kMonoFont.copyWith(
+                                            color: kSecondaryColor),
+                                      )
+                                    : const Padding(
+                                        padding: EdgeInsets.all(4.0),
+                                        child: SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 5,
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              kSecondaryColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                               ),
-                            )
-                          : const SizedBox(),
-                    ],
-                  ),
-                ],
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(width: 8),

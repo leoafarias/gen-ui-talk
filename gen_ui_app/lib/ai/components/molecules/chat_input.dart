@@ -6,16 +6,11 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:universal_platform/universal_platform.dart';
 
+import '../../controllers/chat_controller.dart';
 import '../../helpers/hooks.dart';
-import '../../models/content.dart';
 import '../../providers/ai_provider_interface.dart';
 import '../../style.dart';
 import 'attachment_view.dart';
-
-typedef SendFn = void Function(
-  String, {
-  required Iterable<Attachment> attachments,
-});
 
 enum _InputState {
   disabled,
@@ -29,45 +24,35 @@ enum _InputState {
 
 class ChatInput extends HookWidget {
   const ChatInput({
-    required this.sending,
-    required this.onSend,
-    required this.onCancel,
-    this.initialMessage,
-    this.focusNode,
+    required ChatController controller,
     super.key,
-  });
+  }) : _controller = controller;
 
-  final bool sending;
-
-  final UserContent? initialMessage;
-  final FocusNode? focusNode;
-
-  final SendFn onSend;
-
-  final void Function() onCancel;
+  final ChatController _controller;
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
-    final focusNode = useFocus(this.focusNode);
-
-    final text = useState('');
-
-    useEffectOnce(() {
-      controller.addListener(() => text.value = controller.text);
-    });
-
+    final controller = useListenable(_controller);
+    final focusNode = useFocusNode();
     final attachments = useState(<Attachment>[]);
+
+    useEffect(() {
+      if (!controller.isProcessing) {
+        focusNode.requestFocus();
+      }
+    }, [controller.isProcessing]);
+
     final isMobile = UniversalPlatform.isAndroid || UniversalPlatform.isIOS;
 
     final inputState = useMemoized(
       () {
-        if (sending) return _InputState.sending;
-        if (text.value.isNotEmpty) return _InputState.enabled;
-        assert(!sending && text.value.isEmpty);
+        final editingController = controller.editingController;
+        if (controller.isProcessing) return _InputState.sending;
+        if (editingController.text.isNotEmpty) return _InputState.enabled;
+        assert(!controller.isProcessing && editingController.text.isEmpty);
         return _InputState.disabled;
       },
-      [sending, text.value],
+      [controller.isProcessing],
     );
 
     useEffectUpdate(() {
@@ -79,23 +64,21 @@ class ChatInput extends HookWidget {
     }, [inputState]);
 
     final handleSend = useCallback((String prompt) {
-      if (text.value.isEmpty) return;
+      if (controller.editingController.text.isEmpty) return;
 
-      assert(inputState.isEnabled);
-      onSend(
+      controller.send(
         prompt,
         attachments: List.from(attachments.value),
       );
       attachments.value.clear();
-      controller.clear();
+      _controller.editingController.clear();
 
       focusNode.requestFocus();
     }, [attachments.value, inputState]);
 
     final handleOnCancel = useCallback(() {
-      assert(inputState.isSending);
-      onCancel();
-      controller.clear();
+      controller.cancel();
+
       attachments.value.clear();
       focusNode.requestFocus();
     });
@@ -132,53 +115,49 @@ class ChatInput extends HookWidget {
               : const SizedBox(),
         ),
         const Gap(6),
-        ValueListenableBuilder(
-          valueListenable: controller,
-          builder: (context, value, child) => Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: TextField(
-                    enabled: !inputState.isSending,
-                    minLines: 1,
-                    maxLines: 1024,
-                    controller: controller,
-                    focusNode: focusNode,
-                    autofocus: true,
-                    textInputAction: isMobile
-                        ? TextInputAction.newline
-                        : TextInputAction.done,
-                    onSubmitted: (value) => handleSend(value),
-                    style: textStyle,
-                    decoration: InputDecoration(
-                      hintText: inputState.isSending ? '' : 'What do you need?',
-                      hintStyle: textStyle,
-                      filled: true,
-                      fillColor: chatTheme.accentColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      suffixIcon: _SubmitButton(
-                        text: controller.text,
-                        inputState: inputState,
-                        onSubmit: handleSend,
-                        onCancel: handleOnCancel,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 16.0,
-                      ),
+        Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                child: TextField(
+                  enabled: !inputState.isSending,
+                  minLines: 1,
+                  autofillHints: null,
+                  maxLines: 1024,
+                  controller: _controller.editingController,
+                  // focusNode: focusNode,
+                  textInputAction:
+                      isMobile ? TextInputAction.newline : TextInputAction.done,
+                  onSubmitted: (value) => handleSend(value),
+                  style: textStyle,
+                  decoration: InputDecoration(
+                    hintText: inputState.isSending ? '' : 'What do you need?',
+                    hintStyle: textStyle,
+                    filled: true,
+                    fillColor: chatTheme.accentColor,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: _SubmitButton(
+                      text: _controller.editingController.text,
+                      inputState: inputState,
+                      onSubmit: handleSend,
+                      onCancel: handleOnCancel,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 16.0,
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );

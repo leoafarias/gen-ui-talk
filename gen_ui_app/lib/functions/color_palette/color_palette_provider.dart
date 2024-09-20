@@ -6,14 +6,14 @@ import '../../main.dart';
 import 'color_palette_dto.dart';
 
 final _history = [
-  Content.text('inspirational'),
+  Content.text('in`spirational'),
   Content.model(
     [
       TextPart(
         ColorPaletteDto(
-          colorPaletteTextColor: const Color(0xFF333333), // Dark Gray
+          fontColor: const Color(0xFF333333), // Dark Gray
           bottomLeftColor: const Color(0xFFFFFFFF), // White
-          colorPaletteTextFont: ColorPaletteTextFontFamily.pacifico,
+          font: ColorPaletteFontFamily.pacifico,
           name: 'Ocean Sunset',
           topLeftColor: const Color(0xFFFFD700), // Gold
           topRightColor: const Color(0xFFFF4500), // Orange Red
@@ -26,8 +26,8 @@ final _history = [
   Content.model([
     TextPart(ColorPaletteDto(
       name: 'Cosmic Horizon',
-      colorPaletteTextFont: ColorPaletteTextFontFamily.orbitron,
-      colorPaletteTextColor: const Color(0xFF333333),
+      font: ColorPaletteFontFamily.orbitron,
+      fontColor: const Color(0xFF333333),
       topLeftColor: const Color(0xFF0A2239),
       topRightColor: const Color(0xFF00FFFF),
       bottomLeftColor: const Color(0xFFFFFFFF),
@@ -38,8 +38,8 @@ final _history = [
   Content.model([
     TextPart(ColorPaletteDto(
       name: 'Sunlit Paradise',
-      colorPaletteTextFont: ColorPaletteTextFontFamily.pacifico,
-      colorPaletteTextColor: const Color(0xFF000080),
+      font: ColorPaletteFontFamily.pacifico,
+      fontColor: const Color(0xFF000080),
       topLeftColor: const Color(0xFFFFD700),
       topRightColor: const Color(0xFF00FF7F),
       bottomLeftColor: const Color(0xFF1E90FF),
@@ -50,8 +50,8 @@ final _history = [
   Content.model([
     TextPart(ColorPaletteDto(
       name: 'Sugary Bliss',
-      colorPaletteTextFont: ColorPaletteTextFontFamily.pacifico,
-      colorPaletteTextColor: const Color(0xFF5C3317),
+      font: ColorPaletteFontFamily.pacifico,
+      fontColor: const Color(0xFF5C3317),
       topLeftColor: const Color(0xFFFFB6C1),
       topRightColor: const Color(0xFFFFFACD),
       bottomLeftColor: const Color(0xFFCAAE7E),
@@ -62,8 +62,8 @@ final _history = [
   Content.model([
     TextPart(ColorPaletteDto(
       name: 'Vibrant Surge',
-      colorPaletteTextFont: ColorPaletteTextFontFamily.bungee,
-      colorPaletteTextColor: const Color(0xFFFFFFFF),
+      font: ColorPaletteFontFamily.bungee,
+      fontColor: const Color(0xFFFFFFFF),
       topLeftColor: const Color(0xFF3498DB),
       topRightColor: const Color(0xFFFF6F00),
       bottomLeftColor: const Color(0xFF32CD32),
@@ -74,8 +74,8 @@ final _history = [
   Content.model([
     TextPart(ColorPaletteDto(
       name: 'Paradise Oasis',
-      colorPaletteTextFont: ColorPaletteTextFontFamily.lobster,
-      colorPaletteTextColor: const Color(0xFF8B4513),
+      font: ColorPaletteFontFamily.lobster,
+      fontColor: const Color(0xFF8B4513),
       topLeftColor: const Color(0xFF006400),
       topRightColor: const Color(0xFFFFD700),
       bottomLeftColor: const Color(0xFFFF7F50),

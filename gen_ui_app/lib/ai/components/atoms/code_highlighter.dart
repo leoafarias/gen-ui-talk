@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../../style.dart';
 import 'markdown_view.dart';
 
 class JsonSyntax extends StatelessWidget {
@@ -12,6 +13,7 @@ class JsonSyntax extends StatelessWidget {
     return buildCodeHighlighter(
       content,
       'json',
+      textStyle: kMonoFont.copyWith(fontSize: 20),
     );
   }
 }
