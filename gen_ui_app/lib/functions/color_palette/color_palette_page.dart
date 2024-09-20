@@ -1,32 +1,29 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mesh/mesh.dart';
+import 'package:superdeck/superdeck.dart';
 
+import '../../ai/components/atoms/code_highlighter.dart';
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
+import '../../ai/helpers.dart';
 import '../../ai/helpers/color_helpers.dart';
 import '../../ai/models/ai_response.dart';
 import '../../ai/models/content.dart';
 import '../../ai/views/chat_view.dart';
+import '../light_control/light_control_page.dart';
 import 'color_palette_controller.dart';
 import 'color_palette_dto.dart';
 import 'color_palette_provider.dart';
 import 'color_palette_widget.dart';
 
 class ColorPalettePage extends HookWidget {
-  final bool schemaOnly;
-  const ColorPalettePage({super.key, this.schemaOnly = false});
+  const ColorPalettePage(this.options, {super.key});
 
-  Widget? _textElementBuilder(AiTextElement part) {
-    try {
-      return ColorPaletteResponseView(
-        key: ValueKey(part.text),
-        ColorPaletteDto.fromJson(part.text),
-      );
-    } catch (e) {
-      return null;
-    }
-  }
+  final WidgetOptions options;
 
   Widget _userContentBuilder(UserContent content) {
     return const SizedBox.shrink();
@@ -34,34 +31,77 @@ class ColorPalettePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final options = GenAiOptions.fromMap(this.options.args);
     // Initialize poster design state with default values.
-    final controller = useChatController(colorPaletteProvider);
-    final palette = useColorPalette((c) => c.colorPalette);
+    final controller =
+        useChatController(colorPaletteProvider, streamResponse: false);
+    final colorPaletteController = useColorPaletteController();
+    final palette = colorPaletteController.colorPalette;
+    final selectSample = useOnSelectSample(controller);
 
-    return PlaygroundPage(
-        leftFlex: 6,
-        rightFlex: 4,
-        rightWidget: ChatView(
-          controller: controller,
-          textElementBuilder: _textElementBuilder,
-          userContentBuilder: _userContentBuilder,
+    final isProcessing = useListenableSelector(
+      controller,
+      () => controller.isProcessing,
+    );
+
+    useEffect(() {
+      try {
+        if (!isProcessing) {
+          final lastResponse = controller.transcript.lastOrNull;
+
+          if (lastResponse is AiContent) {
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              colorPaletteController.setColorPalette(
+                ColorPaletteDto.fromJson(lastResponse.text),
+              );
+            });
+          }
+        }
+      } catch (e) {
+        print(e);
+      }
+    }, [isProcessing]);
+
+    final elementBuilder = useCallback((AiTextElement part) {
+      try {
+        if (options.isSchema) {
+          return JsonSyntax(prettyJson(jsonDecode(part.text)));
+        }
+        return ColorPaletteResponseView(
+          key: ValueKey(part.text),
+          controller: colorPaletteController,
+          ColorPaletteDto.fromJson(part.text),
+        );
+      } catch (e) {
+        return null;
+      }
+    }, [colorPaletteController]);
+
+    return Stack(
+      children: [
+        PlaygroundPage(
+          leftFlex: 6,
+          rightFlex: 4,
+          sampleInputs: const [
+            'tropical',
+            'vibrant',
+            'pastel',
+            'chocolatey pink unicorn',
+            'cyberpunk',
+          ],
+          onSampleSelected: selectSample,
+          rightWidget: ChatView(
+            controller: controller,
+            textElementBuilder: elementBuilder,
+            userContentBuilder: _userContentBuilder,
+          ),
+          leftWidget: _ColorPaletteMesh(palette),
         ),
-        leftWidget: _ColorPaletteMesh(
-          palette ?? _defaultPalette,
-        ));
+        renderOptionTypeWidget(options.type),
+      ],
+    );
   }
 }
-
-final _defaultPalette = ColorPaletteDto(
-  name: 'Build your own color palette',
-  colorPaletteTextFont: ColorPaletteTextFontFamily.bungee,
-  colorPaletteTextColor: const Color(
-      0xFF00D486), // Vibrant green to stand out against the cool colors
-  topLeftColor: const Color.fromARGB(255, 1, 157, 234),
-  topRightColor: const Color(0xFF4527A0),
-  bottomRightColor: const Color.fromARGB(255, 0, 169, 143),
-  bottomLeftColor: const Color.fromARGB(255, 0, 212, 134),
-);
 
 class _ColorPaletteMesh extends StatelessWidget {
   final ColorPaletteDto data;
@@ -100,7 +140,7 @@ class _ColorPaletteMesh extends StatelessWidget {
               textAlign: TextAlign.center,
               overflow: TextOverflow.clip,
               style: TextStyle(
-                fontFamily: data.colorPaletteTextFont.fontFamily,
+                fontFamily: data.font.fontFamily,
                 height: 1,
                 color: getContrastColorFromPalette(data),
                 fontSize: 90,

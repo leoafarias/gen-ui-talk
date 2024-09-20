@@ -5,6 +5,10 @@ dependency_overrides:
     path: ../../mix/packages/mix_generator
   mix_lint:
     path: ../../mix/packages/mix_lint
+  superdeck:
+    path: ../../superdeck/packages/superdeck
+  superdeck_core:
+    path: ../../superdeck/packages/superdeck_core
   mix_annotations:
     path: ../../mix/packages/mix_annotations
   remix:

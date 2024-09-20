@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:superdeck/superdeck.dart';
 
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
@@ -9,18 +10,82 @@ import '../../ai/views/chat_view.dart';
 import 'light_control_controller.dart';
 import 'light_control_provider.dart';
 
-class LightControlPage extends HookWidget {
-  const LightControlPage({super.key, this.schema = false});
+void Function(String) useOnSelectSample(ChatController controller) {
+  return useCallback((String sample) async {
+    // loop the stirng of the prompt and add to controller
+    for (var letter in sample.split('')) {
+      await Future.delayed(const Duration(milliseconds: 100));
+      controller.editingController.text += letter;
+    }
 
-  // If should display only schema
-  final bool schema;
+    await Future.delayed(const Duration(milliseconds: 1000));
+    try {
+      controller.editingController.clear();
+      await controller.send(sample);
+    } catch (e) {
+      print(e);
+    }
+  }, [controller]);
+}
+
+Widget renderOptionTypeWidget(GenAIOptionType type) {
+  return Align(
+    alignment: Alignment.topLeft,
+    child: Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      margin: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.all(10.0),
+      child: Text(type.name),
+    ),
+  );
+}
+
+enum GenAIOptionType {
+  schema,
+  widget,
+  chat;
+
+  static GenAIOptionType fromString(String? type) {
+    return GenAIOptionType.values.firstWhere(
+      (e) => e.name == type,
+      orElse: () => GenAIOptionType.chat,
+    );
+  }
+}
+
+class GenAiOptions {
+  final GenAIOptionType type;
+  const GenAiOptions({this.type = GenAIOptionType.chat});
+
+  static GenAiOptions fromMap(Map<String, dynamic> map) {
+    return GenAiOptions(
+      type: GenAIOptionType.fromString(map['type']),
+    );
+  }
+
+  bool get isSchema => type == GenAIOptionType.schema;
+  bool get isWidget => type == GenAIOptionType.widget;
+  bool get isChat => type == GenAIOptionType.chat;
+}
+
+class LightControlPage extends HookWidget {
+  const LightControlPage(this.options, {super.key});
+
+  final WidgetOptions options;
 
   @override
   Widget build(BuildContext context) {
+    final options = GenAiOptions.fromMap(this.options.args);
+
     final lightControl = useListenable(lightControlController);
     final controller = useChatController(
-      controlLightProvider,
+      options.isWidget ? controlLightProvider : controlLightSchemaProvider,
     );
+
+    final selectSample = useOnSelectSample(controller);
 
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 500),
@@ -38,27 +103,46 @@ class LightControlPage extends HookWidget {
     }, [lightControl.brightness]);
 
     return PlaygroundPage(
-      leftWidget: Column(
-        children: [
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: AnimatedBuilder(
-                  animation: animationController,
-                  builder: (context, _) {
-                    return CustomPaint(
-                      size: const Size(647, 457),
-                      painter: RPSCustomPainter(
-                        brightness: animationController.value.toInt(),
-                      ),
-                    );
-                  }),
-            ),
-          ),
-        ],
-      ),
+      leftFlex: 5,
+      onSampleSelected: selectSample,
+      rightFlex: 3,
+      sampleInputs: const [
+        'Dim the lights by 20',
+        'Increase by 35',
+        'Turn off the lights',
+        'Set it to 80',
+        'Lower by half',
+        'Max brightness'
+      ],
       rightWidget: ChatView(
         controller: controller,
+        style: const LlmChatViewStyle(
+          backgroundColor: ui.Color.fromARGB(247, 12, 5, 23),
+        ),
+      ),
+      leftWidget: Stack(
+        children: [
+          Column(
+            children: [
+              Expanded(
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: AnimatedBuilder(
+                      animation: animationController,
+                      builder: (context, _) {
+                        return CustomPaint(
+                          size: const Size(647, 457),
+                          painter: RPSCustomPainter(
+                            brightness: animationController.value.toInt(),
+                          ),
+                        );
+                      }),
+                ),
+              ),
+            ],
+          ),
+          renderOptionTypeWidget(options.type),
+        ],
       ),
     );
   }
@@ -80,8 +164,8 @@ class RPSCustomPainter extends CustomPainter {
     final reflectionColor =
         Color.lerp(Colors.black, Colors.white, brightness / 100)!;
 
-    const foreGround = ui.Color.fromARGB(255, 6, 6, 6);
-    const background = ui.Color.fromARGB(255, 9, 9, 9);
+    const foreGround = ui.Color.fromARGB(255, 20, 20, 20);
+    const background = ui.Color.fromARGB(255, 15, 15, 15);
 
     Path floorPath = Path();
     floorPath.moveTo(size.width, 0);
@@ -126,38 +210,36 @@ class RPSCustomPainter extends CustomPainter {
     lightReflectionFill.shader = ui.Gradient.linear(
         Offset(size.width * 0.4204019, size.height * 0.5886214),
         Offset(size.width * 0.4204019, size.height * 0.9956236), [
-      isOff ? Colors.transparent : reflectionColor,
-      isOff ? Colors.transparent : Colors.transparent,
+      reflectionColor,
+      Colors.transparent,
     ], [
       0,
       0.8,
     ]);
-    canvas.drawPath(lightReflectionPath, lightReflectionFill);
 
+    Path darkLightReflectionPath = Path();
+    darkLightReflectionPath.moveTo(size.width * 0, size.height * 0.5886214);
+    darkLightReflectionPath.lineTo(
+        size.width * 0.4241422, size.height * 0.5886214);
+    darkLightReflectionPath.lineTo(size.width * 1, size.height * 0.9956236);
+    darkLightReflectionPath.lineTo(size.width * 1, size.height * 0.9956236);
+    darkLightReflectionPath.lineTo(size.width * 0, size.height * 0.9956236);
+    darkLightReflectionPath.close();
+
+    Paint darkLightReflectionFill = Paint()..style = PaintingStyle.fill;
+    darkLightReflectionFill.shader = ui.Gradient.linear(
+        Offset(size.width * 0.2, size.height * 0.5886214),
+        Offset(size.width * 0.2, size.height * 0.9956236), [
+      background,
+      foreGround,
+    ], [
+      0,
+      0.5,
+    ]);
     if (isOff) {
-      Path darkLightReflectionPath = Path();
-      darkLightReflectionPath.moveTo(
-          size.width * 0.5641422, size.height * 0.5886214);
-      darkLightReflectionPath.lineTo(size.width * 0.2, size.height * 0.5886214);
-      darkLightReflectionPath.lineTo(
-          size.width * -0.003091190, size.height * 0.9956236);
-      darkLightReflectionPath.lineTo(
-          size.width * 1.001546, size.height * 0.9956236);
-      darkLightReflectionPath.lineTo(
-          size.width * 0.5641422, size.height * 0.5886214);
-      darkLightReflectionPath.close();
-
-      Paint darkLightReflection = Paint()..style = PaintingStyle.fill;
-      darkLightReflection.shader = ui.Gradient.linear(
-          Offset(size.width * 0.2, size.height * 0.5886214),
-          Offset(size.width * 0.2, size.height * 0.9956236), [
-        isOff ? foreGround : Colors.transparent,
-        isOff ? background : Colors.transparent,
-      ], [
-        0,
-        0.8,
-      ]);
-      canvas.drawPath(darkLightReflectionPath, darkLightReflection);
+      canvas.drawPath(darkLightReflectionPath, darkLightReflectionFill);
+    } else {
+      canvas.drawPath(lightReflectionPath, lightReflectionFill);
     }
 
     Path doorGapPath = Path();
@@ -169,8 +251,7 @@ class RPSCustomPainter extends CustomPainter {
     doorGapPath.close();
 
     Paint doorGapFill = Paint()..style = PaintingStyle.fill;
-    doorGapFill.color = isOff ? Colors.transparent : lightColor;
-    canvas.drawPath(doorGapPath, doorGapFill);
+    doorGapFill.color = lightColor;
 
     Path doorDarkGapPath = Path();
     doorDarkGapPath.moveTo(size.width * 0.5641422, size.height * 0.2516411);
@@ -180,14 +261,17 @@ class RPSCustomPainter extends CustomPainter {
     doorDarkGapPath.lineTo(size.width * 0.5641422, size.height * 0.2516411);
     doorDarkGapPath.close();
 
+    Paint doorDarkGapFill = Paint()..style = PaintingStyle.fill;
+    doorDarkGapFill.shader = ui.Gradient.linear(
+        Offset(size.width * 0.4204019, size.height * 0.2516411),
+        Offset(size.width * 0.4204019, size.height * 0.5886214),
+        [Colors.black.withOpacity(0.4), Colors.black.withOpacity(0.1)],
+        [0, 1]);
     if (isOff) {
-      Paint doorDarkGapFill = Paint()..style = PaintingStyle.fill;
-      doorDarkGapFill.shader = ui.Gradient.linear(
-          Offset(size.width * 0.4204019, size.height * 0.2516411),
-          Offset(size.width * 0.4204019, size.height * 0.5886214),
-          [Colors.black.withOpacity(0.7), Colors.black.withOpacity(0.1)],
-          [0, 1]);
       canvas.drawPath(doorDarkGapPath, doorDarkGapFill);
+    } else {
+      //light
+      canvas.drawPath(doorGapPath, doorGapFill);
     }
     Path doorPath = Path();
     doorPath.moveTo(size.width * 0.4204019, size.height * 0.2516411);

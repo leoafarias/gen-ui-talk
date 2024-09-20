@@ -7,10 +7,14 @@ class PlaygroundPage extends StatelessWidget {
     required this.rightWidget,
     this.leftFlex = 1,
     this.rightFlex = 1,
+    required this.sampleInputs,
+    required this.onSampleSelected,
   });
 
+  final void Function(String) onSampleSelected;
   final Widget leftWidget;
   final Widget rightWidget;
+  final List<String> sampleInputs;
 
   final int leftFlex;
   final int rightFlex;
@@ -30,6 +34,20 @@ class PlaygroundPage extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: true,
+          iconSize: 0,
+          showUnselectedLabels: true,
+          onTap: (value) {
+            onSampleSelected(sampleInputs[value]);
+          },
+          items: sampleInputs.map((e) {
+            return BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              label: e,
+              icon: const Icon(Icons.code),
+            );
+          }).toList()),
     );
   }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_selectionarea/flutter_markdown_selectionarea.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:re_highlight/languages/all.dart';
 import 'package:re_highlight/re_highlight.dart';
 import 'package:re_highlight/styles/all.dart';
 
 import '../../helpers.dart';
+import '../../style.dart';
 
 class MarkdownView extends StatelessWidget {
   final String data;
@@ -63,7 +63,7 @@ class CodeElementBuilder extends MarkdownElementBuilder {
     final result =
         _highlight.highlight(code: element.textContent, language: language);
 
-    final defaultStyle = GoogleFonts.jetBrainsMono();
+    final defaultStyle = kMonoFont;
     final theme = builtinAllThemes['github-dark']!;
 
     final renderer = TextSpanRenderer(defaultStyle, theme);
@@ -94,7 +94,7 @@ class PreElementBuilder extends MarkdownElementBuilder {
         ),
         child: Text(
           element.textContent,
-          style: GoogleFonts.jetBrainsMono(
+          style: kMonoFont.copyWith(
             fontSize: preferredStyle?.fontSize,
             fontWeight: preferredStyle?.fontWeight,
             color: context.colorScheme.surface,

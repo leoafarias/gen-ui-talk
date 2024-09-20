@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const kPrimaryColor = Color(0xff73F8FB);
+const kOnPrimaryColor = Color(0xff172840);
+
+const kSecondaryColor = Color(0xffC7ADF0);
+const kOnSecondaryColor = Color(0xff1D1034);
+
+final kFont = GoogleFonts.poppins().copyWith(fontSize: 22);
+final kMonoFont = GoogleFonts.jetBrainsMono().copyWith(fontSize: 26);
+
 class _ChatStyleTheme {
   final Color backgroundColor;
   final Color onBackGroundColor;

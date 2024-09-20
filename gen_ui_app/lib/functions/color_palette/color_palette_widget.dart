@@ -3,28 +3,28 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 
 import '../../ai/components/atoms/alert_dialog.dart';
-import '../../ai/helpers/color_helpers.dart';
 import 'color_palette_controller.dart';
 import 'color_palette_dto.dart';
 
 class ColorPaletteResponseView extends HookWidget {
-  const ColorPaletteResponseView(this.data, {super.key});
+  const ColorPaletteResponseView(this.data,
+      {required this.controller, super.key});
 
   final ColorPaletteDto data;
+  final ColorPaletteController controller;
 
   Widget _buildCorner(ColorCorner corner) {
-    final color = data.getColor(corner);
     return Expanded(
       child: Container(
         constraints: const BoxConstraints(minHeight: 60),
         color: data.getColor(corner),
         alignment: Alignment.center,
-        child: Text(
-          color.toHex(),
-          style: TextStyle(color: color.toContrastColor()).copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        // child: Text(
+        //   color.toHex(),
+        //   style: TextStyle(color: color.toContrastColor()).copyWith(
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
       ),
     );
   }
@@ -34,7 +34,7 @@ class ColorPaletteResponseView extends HookWidget {
     final isHovered = useState(false);
 
     final handleSelection = useCallback(() {
-      colorPaletteController.setColorPalette(data);
+      controller.setColorPalette(data);
     }, []);
 
     final showCodeSnippet = useCallback(() {
