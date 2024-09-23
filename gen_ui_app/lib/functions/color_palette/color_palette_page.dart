@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mesh/mesh.dart';
 import 'package:superdeck/superdeck.dart';
@@ -50,7 +49,7 @@ class ColorPalettePage extends HookWidget {
           final lastResponse = controller.transcript.lastOrNull;
 
           if (lastResponse is AiContent) {
-            SchedulerBinding.instance.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               colorPaletteController.setColorPalette(
                 ColorPaletteDto.fromJson(lastResponse.text),
               );

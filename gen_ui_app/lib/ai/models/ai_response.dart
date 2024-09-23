@@ -85,7 +85,7 @@ class AiWidgetElement<T> extends AiFunctionElement<AiWidgetDeclaration<T>> {
   Widget render() => function.build(this);
 }
 
-class AiFunctionElement<T extends AiFunctionDeclaration>
+class AiFunctionElement<T extends LlmFunctionDeclaration>
     extends AiStatefulElement {
   final T function;
   JSON? _arguments;

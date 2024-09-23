@@ -31,38 +31,18 @@ final _safetySettings = [
   SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
 ];
 
-class GeminiProvider extends AiProvider<GenerativeModel> {
-  @override
-  late final GenerativeModel model;
+class GeminiProvider {
+  final GenerativeModel model;
   final GenerationConfig? config;
+
   GeminiProvider({
-    required String model,
-    required String apiKey,
-    String? systemInstruction,
-    this.config,
-    List<AiFunctionDeclaration> functions = const [],
-    List<Tool> tools = const [],
-    List<SafetySetting>? safetySettings,
-    ToolConfig? toolConfig,
+    required this.model,
     List<Content>? history,
   }) {
-    _functionHandlers = _llmFunctionsToHandlers(functions);
-
-    this.model = GenerativeModel(
-      model: model,
-      apiKey: apiKey,
-      tools: _llmFunctionsToTools(functions),
-      toolConfig: toolConfig,
-      generationConfig: config,
-      safetySettings: safetySettings ?? _safetySettings,
-      systemInstruction:
-          systemInstruction != null ? Content.system(systemInstruction) : null,
+    chat = model.startChat(
+      safetySettings: _safetySettings,
+      history: history,
     );
-
-    chat = this.model.startChat(
-          safetySettings: safetySettings,
-          history: history,
-        );
   }
 
   late final ChatSession chat;
@@ -79,7 +59,6 @@ class GeminiProvider extends AiProvider<GenerativeModel> {
     ]);
   }
 
-  @override
   Stream<AiElement> sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
@@ -104,9 +83,11 @@ class GeminiProvider extends AiProvider<GenerativeModel> {
     }
 
     if (functionParts.isNotEmpty) {
-      final response = chat.sendMessageStream(Content.functionResponses(
-        functionParts.map((e) => FunctionResponse(e.name, e.response)),
-      ));
+      final response = chat.sendMessageStream(
+        Content.functionResponses(
+          functionParts.map((e) => FunctionResponse(e.name, e.response)),
+        ),
+      );
       await for (final chunk in response) {
         final functionCalls = chunk.functionCalls.toList();
 
@@ -124,7 +105,6 @@ class GeminiProvider extends AiProvider<GenerativeModel> {
     }
   }
 
-  @override
   Future<AiContent> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
@@ -190,9 +170,4 @@ List<Tool> _llmFunctionsToTools(List<AiFunctionDeclaration> functions) {
                 ))
             .toList())
   ];
-}
-
-Map<String, AiFunctionDeclaration> _llmFunctionsToHandlers(
-    List<AiFunctionDeclaration> functions) {
-  return {for (final function in functions) function.name: function};
 }

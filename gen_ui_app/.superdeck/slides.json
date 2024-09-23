@@ -272,19 +272,31 @@
       "notes": []
     },
     {
-      "key": "RR2DoSsC",
+      "key": "6EU2Xxrf",
       "options": {},
-      "markdown": "{@column}\n### Color Palette Generator\n\nGenerate a color palette based on a given text.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette\n\n{@column}\n```dart\nfinal schema = Schema.object(properties: {\n  'name': Schema.string(\n    description:\n        'The text content to display on color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'font': Schema.enumString(\n    enumValues: ColorPaletteFontFamily.enumString,\n    description: 'The font to use for the poster text.',\n    nullable: false,\n  ),\n  'fontColor': Schema.string(\n    description: 'The hex color value of the poster text. Format: #FF0000',\n    nullable: false,\n  ),\n  'topLeftColor': Schema.string(\n    description:\n        'The hex color value top left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'topRightColor': Schema.string(\n    description:\n        'The hex color value top right corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomLeftColor': Schema.string(\n    description:\n        'The hex color value bottom left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomRightColor': Schema.string(\n    description:\n        'The hex color value bottom right corner of color palette. Format: #FF0000',\n    nullable: false,\n  )\n}, requiredProperties: [\n  'name',\n  'font',\n  'fontColor',\n  'topLeftColor',\n  'topRightColor',\n  'bottomLeftColor',\n  'bottomRightColor',\n]);\n\n```",
+      "markdown": "{@column}\n### Color Palette Generator\n\nGenerate a color palette based on a given text.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette",
       "sections": [
         {
           "sub_sections": [
             {
-              "content": "\n### Color Palette Generator\n\nGenerate a color palette based on a given text.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette\n",
+              "content": "\n### Color Palette Generator\n\nGenerate a color palette based on a given text.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette",
               "options": null,
               "type": "column"
-            },
+            }
+          ]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "key": "8XvsaRmV",
+      "options": {},
+      "markdown": "{@column}\n```dart\nfinal schema = Schema.object(properties: {\n  'name': Schema.string(\n    description:'The text content to display on color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'font': Schema.enumString(\n    enumValues: ColorPaletteFontFamily.enumString,\n    description: 'The font to use for the poster text.',\n    nullable: false,\n  ),\n  'fontColor': Schema.string(\n    description: 'The hex color value of the poster text. Format: #FF0000',\n    nullable: false,\n  ),\n  'topLeftColor': Schema.string(\n    description:'The hex color value top left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'topRightColor': Schema.string(\n    description:'The hex color value top right corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomLeftColor': Schema.string(\n    description:'The hex color value bottom left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomRightColor': Schema.string(\n    description:'The hex color value bottom right corner of color palette. Format: #FF0000',\n    nullable: false,\n  )\n}, requiredProperties: [\n  'name',\n  'font',\n  'fontColor',\n  'topLeftColor',\n  'topRightColor',\n  'bottomLeftColor',\n  'bottomRightColor',\n]);\n\n```",
+      "sections": [
+        {
+          "sub_sections": [
             {
-              "content": "\n```dart\nfinal schema = Schema.object(properties: {\n  'name': Schema.string(\n    description:\n        'The text content to display on color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'font': Schema.enumString(\n    enumValues: ColorPaletteFontFamily.enumString,\n    description: 'The font to use for the poster text.',\n    nullable: false,\n  ),\n  'fontColor': Schema.string(\n    description: 'The hex color value of the poster text. Format: #FF0000',\n    nullable: false,\n  ),\n  'topLeftColor': Schema.string(\n    description:\n        'The hex color value top left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'topRightColor': Schema.string(\n    description:\n        'The hex color value top right corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomLeftColor': Schema.string(\n    description:\n        'The hex color value bottom left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomRightColor': Schema.string(\n    description:\n        'The hex color value bottom right corner of color palette. Format: #FF0000',\n    nullable: false,\n  )\n}, requiredProperties: [\n  'name',\n  'font',\n  'fontColor',\n  'topLeftColor',\n  'topRightColor',\n  'bottomLeftColor',\n  'bottomRightColor',\n]);\n\n```",
+              "content": "\n```dart\nfinal schema = Schema.object(properties: {\n  'name': Schema.string(\n    description:'The text content to display on color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'font': Schema.enumString(\n    enumValues: ColorPaletteFontFamily.enumString,\n    description: 'The font to use for the poster text.',\n    nullable: false,\n  ),\n  'fontColor': Schema.string(\n    description: 'The hex color value of the poster text. Format: #FF0000',\n    nullable: false,\n  ),\n  'topLeftColor': Schema.string(\n    description:'The hex color value top left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'topRightColor': Schema.string(\n    description:'The hex color value top right corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomLeftColor': Schema.string(\n    description:'The hex color value bottom left corner of color palette. Format: #FF0000',\n    nullable: false,\n  ),\n  'bottomRightColor': Schema.string(\n    description:'The hex color value bottom right corner of color palette. Format: #FF0000',\n    nullable: false,\n  )\n}, requiredProperties: [\n  'name',\n  'font',\n  'fontColor',\n  'topLeftColor',\n  'topRightColor',\n  'bottomLeftColor',\n  'bottomRightColor',\n]);\n\n```",
               "options": null,
               "type": "column"
             }
@@ -541,14 +553,14 @@
       "notes": []
     },
     {
-      "key": "5vhbdeYH",
+      "key": "3kW1wOHd",
       "options": {},
-      "markdown": "## The future of UI might be orchestrating user experiences than creating it.",
+      "markdown": "## The future of UI might be orchestrating user experiences rather than creating it.",
       "sections": [
         {
           "sub_sections": [
             {
-              "content": "## The future of UI might be orchestrating user experiences than creating it.",
+              "content": "## The future of UI might be orchestrating user experiences rather than creating it.",
               "type": "column"
             }
           ]
