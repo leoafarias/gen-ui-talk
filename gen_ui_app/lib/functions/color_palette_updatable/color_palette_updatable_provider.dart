@@ -170,7 +170,7 @@ final colorPaletteUpdatableProvider = GeminiProvider(
   history: _history,
 );
 
-final _getColorPalette = AiFunctionDeclaration(
+final _getColorPalette = LlmFunctionDeclaration(
   name: 'getColorPalette',
   description: 'Returns a color palette',
   handler: (args) => updatableColorPaletteController.get(),

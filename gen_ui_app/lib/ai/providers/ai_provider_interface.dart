@@ -110,7 +110,6 @@ final class LinkAttachment extends Attachment {
 }
 
 abstract class AiProvider<T> {
-  T get model;
   Stream<AiElement> sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments,

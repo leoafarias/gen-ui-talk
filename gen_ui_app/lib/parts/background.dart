@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:mesh/mesh.dart';
 import 'package:superdeck/superdeck.dart';
 
@@ -69,7 +68,7 @@ class _AnimatedSwitcherOMeshState extends State<_AnimatedSwitcherOMesh>
     _colors = previousColors;
 
     Future.delayed(const Duration(milliseconds: 300), () {
-      SchedulerBinding.instance.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!_hasStarted && widget.index == 0) {
           _hasStarted = true;
           _randomizeColors();

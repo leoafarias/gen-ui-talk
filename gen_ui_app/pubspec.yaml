@@ -33,6 +33,7 @@ dependencies:
   mesh: ^0.4.1
   flutter_colorpicker: ^1.1.0
   superdeck: ^0.0.4
+  firebase_vertexai: ^0.2.3+3
   
 
 dev_dependencies:

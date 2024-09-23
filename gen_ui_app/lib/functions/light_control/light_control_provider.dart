@@ -164,13 +164,13 @@ final controlLightProvider = GeminiProvider(
   history: _history,
 );
 
-final _getBrightness = AiFunctionDeclaration(
+final _getBrightness = LlmFunctionDeclaration(
   name: 'getBrightness',
   description: 'Returns the current brightness level of the room.',
   handler: (args) => lightControlController.get(),
 );
 
-final _updateBrightness = AiFunctionDeclaration(
+final _updateBrightness = LlmFunctionDeclaration(
   name: 'updateBrightness',
   description:
       'Update the brightness of the light. 0 is off and 100 is full brightness.',

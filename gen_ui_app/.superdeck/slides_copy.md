@@ -129,12 +129,13 @@ Generate a color palette based on a given text.
 - Font color
 - Color for each corner of the palette
 
+---
+---
 {@column}
 ```dart
 final schema = Schema.object(properties: {
   'name': Schema.string(
-    description:
-        'The text content to display on color palette. Format: #FF0000',
+    description:'The text content to display on color palette. Format: #FF0000',
     nullable: false,
   ),
   'font': Schema.enumString(
@@ -147,23 +148,19 @@ final schema = Schema.object(properties: {
     nullable: false,
   ),
   'topLeftColor': Schema.string(
-    description:
-        'The hex color value top left corner of color palette. Format: #FF0000',
+    description:'The hex color value top left corner of color palette. Format: #FF0000',
     nullable: false,
   ),
   'topRightColor': Schema.string(
-    description:
-        'The hex color value top right corner of color palette. Format: #FF0000',
+    description:'The hex color value top right corner of color palette. Format: #FF0000',
     nullable: false,
   ),
   'bottomLeftColor': Schema.string(
-    description:
-        'The hex color value bottom left corner of color palette. Format: #FF0000',
+    description:'The hex color value bottom left corner of color palette. Format: #FF0000',
     nullable: false,
   ),
   'bottomRightColor': Schema.string(
-    description:
-        'The hex color value bottom right corner of color palette. Format: #FF0000',
+    description:'The hex color value bottom right corner of color palette. Format: #FF0000',
     nullable: false,
   )
 }, requiredProperties: [
@@ -264,7 +261,7 @@ style: 'demo'
 
 ---
 ---
-## The future of UI might be orchestrating user experiences than creating it.
+## The future of UI might be orchestrating user experiences rather than creating it.
 
 ---
 ---
