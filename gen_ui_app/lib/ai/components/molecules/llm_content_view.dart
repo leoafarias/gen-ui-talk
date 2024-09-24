@@ -1,36 +1,35 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/ai_response.dart';
 import '../../models/content.dart';
+import '../../models/llm_response.dart';
 import '../../views/builder_types.dart';
-import 'ai_element_view.dart';
 import 'base_content_view.dart';
+import 'llm_element_view.dart';
 
-class AiContentView<T extends AiContentBase> extends ContentView<T> {
-  const AiContentView(
+class LlmContentView<T extends LlmContentBase> extends ContentView<T> {
+  const LlmContentView(
     super.content, {
     super.key,
     super.onSelected,
     required this.active,
-    this.widgetBuilder,
-    this.functionBuilder,
+    this.functionBuilders,
     this.textBuilder,
   });
 
-  final WidgetElementViewBuilder<AiWidgetElement>? widgetBuilder;
-  final WidgetElementViewBuilder<AiTextElement>? textBuilder;
-  final WidgetElementViewBuilder<AiFunctionElement>? functionBuilder;
+  final WidgetElementViewBuilder<LlmFunctionElement>? functionBuilders;
+  final WidgetElementViewBuilder<LlmTextElement>? textBuilder;
 
   // Message is the active one in the chat.
   final bool active;
-  Iterable<Widget> _buildResponseElements(List<AiElement> parts) {
+  Iterable<Widget> _buildResponseElements(List<LlmElement> parts) {
     return parts.mapIndexed((index, part) {
       return switch (part) {
-        (AiTextElement p) => AiTextElementView(p, builder: textBuilder),
-        (AiWidgetElement p) => p.render(),
-        (AiFunctionElement p) =>
-          AiFunctionElementView(p, builder: functionBuilder),
+        (LlmTextElement p) => LlmTextElementView(p, builder: textBuilder),
+        (LlmFunctionElement p) => LlmFunctionElementView(
+            p,
+            builder: functionBuilders,
+          ),
       };
     });
   }
@@ -47,7 +46,7 @@ class AiContentView<T extends AiContentBase> extends ContentView<T> {
     return Row(
       children: [
         Expanded(
-          child: AiContentViewProvider(
+          child: LlmContentViewProvider(
             active: active,
             child: Column(
               children: _buildResponseElements(content.parts)
@@ -61,17 +60,17 @@ class AiContentView<T extends AiContentBase> extends ContentView<T> {
   }
 }
 
-class AiContentViewProvider extends InheritedWidget {
+class LlmContentViewProvider extends InheritedWidget {
   final bool active;
-  const AiContentViewProvider({
+  const LlmContentViewProvider({
     required super.child,
     required this.active,
     super.key,
   });
 
-  static AiContentViewProvider of(BuildContext context) {
+  static LlmContentViewProvider of(BuildContext context) {
     final provider =
-        context.dependOnInheritedWidgetOfExactType<AiContentViewProvider>();
+        context.dependOnInheritedWidgetOfExactType<LlmContentViewProvider>();
 
     if (provider == null) {
       throw FlutterError('AiContentViewProvider not found in context');

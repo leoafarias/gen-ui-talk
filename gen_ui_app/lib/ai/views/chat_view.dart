@@ -7,7 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../components/molecules/chat_input.dart';
 import '../controllers/chat_controller.dart';
-import '../models/ai_response.dart';
+import '../models/llm_response.dart';
 import 'builder_types.dart';
 import 'chat_message_list_view.dart';
 
@@ -30,16 +30,14 @@ class ChatView extends HookWidget {
     super.key,
     this.inputBuilder,
     this.textElementBuilder,
-    this.widgetElementBuilder,
     this.functionElementBuilder,
     this.style = const LlmChatViewStyle(backgroundColor: Colors.black),
   });
 
   final LlmChatViewStyle style;
   final UserContentViewBuilder? userContentBuilder;
-  final WidgetElementViewBuilder<AiWidgetElement>? widgetElementBuilder;
-  final WidgetElementViewBuilder<AiTextElement>? textElementBuilder;
-  final WidgetElementViewBuilder<AiFunctionElement>? functionElementBuilder;
+  final WidgetElementViewBuilder<LlmFunctionElement>? functionElementBuilder;
+  final WidgetElementViewBuilder<LlmTextElement>? textElementBuilder;
 
   Widget _chatInputBuilder(
     ChatController controller,
@@ -72,7 +70,6 @@ class ChatView extends HookWidget {
                   child: ChatMessageList(
                     transcript: controller.transcript,
                     textElementBuilder: textElementBuilder,
-                    widgetElementBuilder: widgetElementBuilder,
                     functionElementBuilder: functionElementBuilder,
                     onEditMessage: !controller.isProcessing
                         ? controller.editMessage

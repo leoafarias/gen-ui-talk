@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../../ai/models/ai_function.dart';
-import '../../ai/providers/gemini_provider.dart';
-import '../../main.dart';
+import '../../ai/controllers/provider_helpers.dart';
+import '../../ai/models/llm_function.dart';
 import '../color_palette/color_palette_dto.dart';
 import 'color_palette_updatable_controller.dart';
 import 'color_palette_updatable_dto.dart';
@@ -154,27 +153,29 @@ const _systemInstructions = '''
 You are a widget schema generator. You will return a widget schema that will be rendered to the user, based on their prompts
 ''';
 
-final _toolConfig = ToolConfig(
-  functionCallingConfig: FunctionCallingConfig(
-    mode: FunctionCallingMode.auto,
-  ),
-);
-
-final colorPaletteUpdatableProvider = GeminiProvider(
-  model: GeminiModel.flash15Latest.model,
-  apiKey: kGeminiApiKey,
-  toolConfig: _toolConfig,
-  functions: [_getColorPalette],
-  config: GenerationConfig(responseSchema: WidgetSchemaDto.schema),
+final colorPaletteUpdatableProvider = buildGenerativeModel(
   systemInstruction: _systemInstructions,
   history: _history,
+  functions: [_getColorPalette],
+  config: GenerationConfig(responseSchema: WidgetSchemaDto.schema),
 );
 
 final _getColorPalette = LlmFunctionDeclaration(
   name: 'getColorPalette',
   description: 'Returns a color palette',
-  handler: (args) => updatableColorPaletteController.get(),
+  parameters: null,
+  handler: (params) => updatableColorPaletteController.get(),
 );
+
+// final _getColorPaletteResponse = WidgetResponse(
+//   builder: (data) => ColorPaletteUpdatableResponseView(data),
+//   name: _getColorPalette.name,
+//   description: _getColorPalette.description,
+//   parameters: _getColorPalette.parameters,
+//   handler: (args) => updatableColorPaletteController.get(),
+//   parser: (value) => WidgetSchemaDto.fromMap(value),
+// );
+  // handler: (args) => updatableColorPaletteController.get(),
 
 // final _renderWidget = AiWidgetDeclaration<WidgetSchemaDto>(
 //   name: 'renderWidget',

@@ -6,50 +6,37 @@ import 'dart:async';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../models/ai_function.dart';
-import '../models/ai_response.dart';
+import '../models/llm_function.dart';
+import '../models/llm_response.dart';
 import 'ai_provider_interface.dart';
 
-enum GeminiModel {
-  flash15('gemini-1.5-flash'),
-  pro1('gemini-1.0-pro'),
-  pro1001('gemini-1.0-pro-001'),
-  pro15('gemini-1.5-pro'),
-  flash15Latest('gemini-1.5-flash-latest'),
-  pro15Latest('gemini-1.5-pro-latest');
-
-  const GeminiModel(this.model);
-
-  final String model;
-}
-
-final _safetySettings = [
-  SafetySetting(HarmCategory.harassment, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.none),
-  SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.none),
-];
-
-class GeminiProvider {
-  final GenerativeModel model;
-  final GenerationConfig? config;
-
+class GeminiProvider extends LlmProvider {
   GeminiProvider({
-    required this.model,
+    required GenerativeModel model,
     List<Content>? history,
+    List<LlmFunctionDeclaration> functionDeclarations = const [],
   }) {
     chat = model.startChat(
-      safetySettings: _safetySettings,
       history: history,
     );
+
+    _functionHandlers = {
+      for (final response in functionDeclarations) response.name: response,
+    };
   }
 
   late final ChatSession chat;
-  late final Map<String, AiFunctionDeclaration> _functionHandlers;
 
-  AiFunctionDeclaration _getFunctionCall(FunctionCall call) {
-    return _functionHandlers[call.name]!;
+  late final Map<String, LlmFunctionDeclaration> _functionHandlers;
+
+  LlmFunctionDeclaration _getFunctionDeclaration(FunctionCall call) {
+    final declaration = _functionHandlers[call.name];
+
+    if (declaration == null) {
+      throw Exception('No function declaration found for ${call.name}');
+    }
+
+    return declaration;
   }
 
   Content _buildUserMessage(String prompt, Iterable<Attachment> attachments) {
@@ -59,27 +46,28 @@ class GeminiProvider {
     ]);
   }
 
-  Stream<AiElement> sendMessageStream(
+  @override
+  Stream<LlmElement> sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async* {
     final content = _buildUserMessage(prompt, attachments);
     final response = chat.sendMessageStream(content);
 
-    final functionParts = <AiFunctionElement>[];
+    final functionParts = <LlmFunctionElement>[];
     await for (final chunk in response) {
       final functionCalls = chunk.functionCalls.toList();
       if (functionCalls.isNotEmpty) {
         for (final call in chunk.functionCalls) {
-          final functionPart = _getFunctionCall(call).toElement();
-          yield functionPart;
+          final widgetEl = _getFunctionDeclaration(call).toElement();
+          yield widgetEl;
 
-          await functionPart.exec(call.args);
-          functionParts.add(functionPart);
+          await widgetEl.exec(call.args);
+          functionParts.add(widgetEl);
         }
       }
       final text = chunk.text ?? '';
-      if (text.isNotEmpty) yield AiTextElement(text: text);
+      if (text.isNotEmpty) yield LlmTextElement(text: text);
     }
 
     if (functionParts.isNotEmpty) {
@@ -93,48 +81,49 @@ class GeminiProvider {
 
         if (functionCalls.isNotEmpty) {
           for (final call in chunk.functionCalls) {
-            final functionPart = _getFunctionCall(call).toElement();
-            yield functionPart;
-            await functionPart.exec(call.args);
+            final widgetEl = _getFunctionDeclaration(call).toElement();
+            yield widgetEl;
+            await widgetEl.exec(call.args);
           }
         }
 
         final text = chunk.text ?? '';
-        if (text.isNotEmpty) yield AiTextElement(text: text);
+        if (text.isNotEmpty) yield LlmTextElement(text: text);
       }
     }
   }
 
-  Future<AiContent> sendMessage(
+  @override
+  Future<LlmContent> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
     final content = _buildUserMessage(prompt, attachments);
     final response = await chat.sendMessage(content);
     final parts = await _getPartsFromResponse(response);
-    return AiContent(parts: parts);
+    return LlmContent(parts: parts);
   }
 
-  Future<List<AiElement>> _getPartsFromResponse(
+  Future<List<LlmElement>> _getPartsFromResponse(
     GenerateContentResponse response,
   ) async {
     final content = response.candidates.first.content;
 
     final functionCalls = content.parts.whereType<FunctionCall>().toList();
 
-    final functionParts = <AiFunctionElement>[];
+    final functionParts = <LlmFunctionElement>[];
 
     for (final call in functionCalls) {
-      final functionPart = _getFunctionCall(call).toElement();
-      await functionPart.exec(call.args);
-      functionParts.add(functionPart);
+      final widgetEl = _getFunctionDeclaration(call).toElement();
+      await widgetEl.exec(call.args);
+      functionParts.add(widgetEl);
     }
 
     final parts = [
       ...functionParts,
       ...content.parts
           .whereType<TextPart>()
-          .map((e) => AiTextElement(text: e.text)),
+          .map((e) => LlmTextElement(text: e.text)),
     ];
 
     if (functionParts.isNotEmpty) {
@@ -145,7 +134,7 @@ class GeminiProvider {
 
       final textPart = textResponse.text ?? '';
       if (textPart.isNotEmpty) {
-        parts.add(AiTextElement(text: textPart));
+        parts.add(LlmTextElement(text: textPart));
       }
     }
 
@@ -157,17 +146,4 @@ class GeminiProvider {
         (ImageAttachment a) => DataPart(a.mimeType, a.bytes),
         (LinkAttachment a) => FilePart(a.url),
       };
-}
-
-List<Tool> _llmFunctionsToTools(List<AiFunctionDeclaration> functions) {
-  return [
-    Tool(
-        functionDeclarations: functions
-            .map((e) => FunctionDeclaration(
-                  e.name,
-                  e.description,
-                  e.parameters,
-                ))
-            .toList())
-  ];
 }

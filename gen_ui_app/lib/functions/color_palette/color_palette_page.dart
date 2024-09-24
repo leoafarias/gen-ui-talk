@@ -10,8 +10,8 @@ import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
 import '../../ai/helpers.dart';
 import '../../ai/helpers/color_helpers.dart';
-import '../../ai/models/ai_response.dart';
 import '../../ai/models/content.dart';
+import '../../ai/models/llm_response.dart';
 import '../../ai/views/chat_view.dart';
 import '../light_control/light_control_page.dart';
 import 'color_palette_controller.dart';
@@ -30,7 +30,7 @@ class ColorPalettePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = GenAiOptions.fromMap(this.options.args);
+    final options = GenAiWidgetOptions.fromMap(this.options.args);
     // Initialize poster design state with default values.
     final controller =
         useChatController(colorPaletteProvider, streamResponse: false);
@@ -48,7 +48,7 @@ class ColorPalettePage extends HookWidget {
         if (!isProcessing) {
           final lastResponse = controller.transcript.lastOrNull;
 
-          if (lastResponse is AiContent) {
+          if (lastResponse is LlmContent) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               colorPaletteController.setColorPalette(
                 ColorPaletteDto.fromJson(lastResponse.text),
@@ -61,7 +61,7 @@ class ColorPalettePage extends HookWidget {
       }
     }, [isProcessing]);
 
-    final elementBuilder = useCallback((AiTextElement part) {
+    final elementBuilder = useCallback((LlmTextElement part) {
       try {
         if (options.isSchema) {
           return JsonSyntax(prettyJson(jsonDecode(part.text)));
@@ -81,13 +81,7 @@ class ColorPalettePage extends HookWidget {
         PlaygroundPage(
           leftFlex: 6,
           rightFlex: 4,
-          sampleInputs: const [
-            'tropical',
-            'vibrant',
-            'pastel',
-            'chocolatey pink unicorn',
-            'cyberpunk',
-          ],
+          sampleInputs: options.prompts,
           onSampleSelected: selectSample,
           rightWidget: ChatView(
             controller: controller,

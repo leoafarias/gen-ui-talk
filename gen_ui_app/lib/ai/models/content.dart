@@ -1,7 +1,7 @@
 import 'package:uuid/uuid.dart';
 
 import '../providers/ai_provider_interface.dart';
-import 'ai_response.dart';
+import 'llm_response.dart';
 
 sealed class ContentBase {
   late final String id;
@@ -61,22 +61,22 @@ enum ContentOrigin {
   bool get isLlm => this == ContentOrigin.ai;
 }
 
-abstract class AiContentBase extends ContentBase {
-  List<AiElement> get parts;
+abstract class LlmContentBase extends ContentBase {
+  List<LlmElement> get parts;
 
-  AiContentBase({
+  LlmContentBase({
     super.id,
   }) : super(origin: ContentOrigin.ai);
 
-  List<AiFunctionElement> get functions =>
-      parts.whereType<AiFunctionElement>().toList();
+  List<LlmFunctionElement> get functions =>
+      parts.whereType<LlmFunctionElement>().toList();
 
-  List<AiTextElement> get _textParts =>
-      parts.whereType<AiTextElement>().toList();
+  List<LlmTextElement> get _textParts =>
+      parts.whereType<LlmTextElement>().toList();
 
   String get text => _textParts.map((e) => e.text).join();
 
   @override
   String toString() =>
-      'AiContent(parts: ${parts.map((e) => e.toString()).join(', ')})';
+      'LlmContentBase(parts: ${parts.map((e) => e.toString()).join(', ')})';
 }

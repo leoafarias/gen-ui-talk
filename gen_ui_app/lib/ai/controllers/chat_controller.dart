@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../models/ai_response.dart';
 import '../models/content.dart';
+import '../models/llm_response.dart';
 import '../providers/ai_provider_interface.dart';
 
 class ChatController extends ChangeNotifier {
-  final AiProvider provider;
+  final LlmProvider provider;
   final TextEditingController editingController = TextEditingController();
   final bool streamResponse;
 
@@ -29,7 +29,7 @@ class ChatController extends ChangeNotifier {
       .dependOnInheritedWidgetOfExactType<ChatControllerProvider>()!
       .notifier!;
 
-  Future<AiContent> send(
+  Future<LlmContent> send(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
@@ -39,7 +39,7 @@ class ChatController extends ChangeNotifier {
     return await _sendMessage(prompt, attachments: attachments);
   }
 
-  Future<AiContent> _sendMessageStream(
+  Future<LlmContent> _sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
@@ -47,7 +47,7 @@ class ChatController extends ChangeNotifier {
       isProcessing = true;
 
       final userMessage = UserContent(prompt: prompt, attachments: attachments);
-      final llmStreamableMessage = AiStreamableContent();
+      final llmStreamableMessage = LlmStreamableContent();
       _transcript.add(llmStreamableMessage);
       notifyListeners();
       _currentResponse = _LlmResponseListener(
@@ -80,7 +80,7 @@ class ChatController extends ChangeNotifier {
     }
   }
 
-  Future<AiContent> _sendMessage(
+  Future<LlmContent> _sendMessage(
     String prompt, {
     Iterable<Attachment> attachments = const [],
   }) async {
@@ -146,15 +146,15 @@ class ChatController extends ChangeNotifier {
 }
 
 class _LlmResponseListener {
-  final AiStreamableContent message;
-  final void Function(AiStreamableContent)? onDone;
-  StreamSubscription<AiElement>? _subscription;
-  final void Function(AiStreamableContent)? onUpdate;
-  final Completer<AiStreamableContent> _completer =
-      Completer<AiStreamableContent>();
+  final LlmStreamableContent message;
+  final void Function(LlmStreamableContent)? onDone;
+  StreamSubscription<LlmElement>? _subscription;
+  final void Function(LlmStreamableContent)? onUpdate;
+  final Completer<LlmStreamableContent> _completer =
+      Completer<LlmStreamableContent>();
 
   _LlmResponseListener({
-    required Stream<AiElement> stream,
+    required Stream<LlmElement> stream,
     required this.message,
     this.onDone,
     this.onUpdate,
@@ -167,7 +167,7 @@ class _LlmResponseListener {
     );
   }
 
-  Future<AiContent> wait() async {
+  Future<LlmContent> wait() async {
     final result = await _completer.future;
     return result.finalize();
   }
@@ -175,7 +175,7 @@ class _LlmResponseListener {
   void cancel() => _handleClose();
 
   void _handleOnError(dynamic err) {
-    message.append(AiTextElement(text: 'ERROR: $err'));
+    message.append(LlmTextElement(text: 'ERROR: $err'));
     _handleClose();
     _completer.completeError(err);
   }
@@ -185,7 +185,7 @@ class _LlmResponseListener {
     _completer.complete(message);
   }
 
-  void _handleOnData(AiElement part) {
+  void _handleOnData(LlmElement part) {
     message.append(part);
     onUpdate?.call(message);
   }
@@ -208,7 +208,7 @@ class ChatControllerProvider extends InheritedNotifier<ChatController> {
 }
 
 ChatController useChatController(
-  AiProvider provider, {
+  LlmProvider provider, {
   bool streamResponse = true,
 }) {
   return use(_ChatControllerHook(
@@ -218,7 +218,7 @@ ChatController useChatController(
 }
 
 class _ChatControllerHook extends Hook<ChatController> {
-  final AiProvider provider;
+  final LlmProvider provider;
   final bool streamResponse;
 
   const _ChatControllerHook(

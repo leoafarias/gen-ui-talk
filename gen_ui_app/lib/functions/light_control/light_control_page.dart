@@ -56,13 +56,16 @@ enum GenAIOptionType {
   }
 }
 
-class GenAiOptions {
+class GenAiWidgetOptions {
   final GenAIOptionType type;
-  const GenAiOptions({this.type = GenAIOptionType.chat});
+  final List<String> prompts;
+  const GenAiWidgetOptions(
+      {this.type = GenAIOptionType.chat, this.prompts = const []});
 
-  static GenAiOptions fromMap(Map<String, dynamic> map) {
-    return GenAiOptions(
+  static GenAiWidgetOptions fromMap(Map<String, dynamic> map) {
+    return GenAiWidgetOptions(
       type: GenAIOptionType.fromString(map['type']),
+      prompts: (map['prompts'] as List<dynamic>).cast<String>(),
     );
   }
 
@@ -78,12 +81,10 @@ class LightControlPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = GenAiOptions.fromMap(this.options.args);
+    final options = GenAiWidgetOptions.fromMap(this.options.args);
 
     final lightControl = useListenable(lightControlController);
-    final controller = useChatController(
-      options.isWidget ? controlLightProvider : controlLightSchemaProvider,
-    );
+    final controller = useChatController(controlLightProvider);
 
     final selectSample = useOnSelectSample(controller);
 
@@ -106,16 +107,10 @@ class LightControlPage extends HookWidget {
       leftFlex: 5,
       onSampleSelected: selectSample,
       rightFlex: 3,
-      sampleInputs: const [
-        'Dim the lights by 20',
-        'Increase by 35',
-        'Turn off the lights',
-        'Set it to 80',
-        'Lower by half',
-        'Max brightness'
-      ],
+      sampleInputs: options.prompts,
       rightWidget: ChatView(
         controller: controller,
+        functionElementBuilder: updateBrightnessWidget.tryRender,
         style: const LlmChatViewStyle(
           backgroundColor: ui.Color.fromARGB(247, 12, 5, 23),
         ),

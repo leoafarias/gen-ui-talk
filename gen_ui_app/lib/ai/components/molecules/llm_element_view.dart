@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers.dart';
-import '../../models/ai_response.dart';
+import '../../models/llm_response.dart';
 import '../../style.dart';
 import '../atoms/message_bubble.dart';
 
-class AiTextElementView extends AiElementView<AiTextElement> {
-  const AiTextElementView(
+class LlmTextElementView extends LlmElementView<LlmTextElement> {
+  const LlmTextElementView(
     super.element, {
     super.key,
     super.builder,
@@ -45,41 +45,8 @@ class AiTextElementView extends AiElementView<AiTextElement> {
   }
 }
 
-abstract class AiWidgetElementView<T>
-    extends AiStatefulElementElementView<AiWidgetElement<T>>
-    with AiWidgetElementMixin<T> {
-  const AiWidgetElementView(
-    super.element, {
-    super.key,
-    super.builder,
-  });
-
-  @override
-  Widget build(BuildContext context);
-}
-
-mixin AiWidgetElementMixin<T>
-    on AiStatefulElementElementView<AiWidgetElement<T>> {
-  Future<void> exec(JSON args) async {
-    await element.exec(args);
-  }
-
-  AiFunctionStatus get status => element.status;
-
-  bool get isRunning => status == AiFunctionStatus.running;
-
-  bool get isIdle => status == AiFunctionStatus.idle;
-
-  bool get isError => status == AiFunctionStatus.error;
-
-  Object? get error => element.error;
-
-  bool get isDone => status == AiFunctionStatus.done;
-}
-
-class AiFunctionElementView
-    extends AiStatefulElementElementView<AiFunctionElement> {
-  const AiFunctionElementView(
+class LlmFunctionElementView extends LlmElementView<LlmFunctionElement> {
+  const LlmFunctionElementView(
     super.element, {
     super.key,
     super.builder,
@@ -131,7 +98,7 @@ class AiFunctionElementView
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: element.function.name,
+                                  text: element.declaration.name,
                                   style: kMonoFont.copyWith(
                                     color: kSecondaryColor,
                                   ),
@@ -199,58 +166,30 @@ class AiFunctionElementView
       ],
     );
   }
-}
-
-class AiStatefulElementProvider extends InheritedNotifier {
-  const AiStatefulElementProvider({
-    super.key,
-    required super.notifier,
-    required super.child,
-  });
-
-  static AiStatefulElementProvider of<T extends AiStatefulElement>(
-      BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<AiStatefulElementProvider>()!;
-  }
-}
-
-abstract class AiStatefulElementElementView<T extends AiStatefulElement>
-    extends AiElementView<T> {
-  const AiStatefulElementElementView(
-    super.element, {
-    super.key,
-    super.builder,
-  });
 
   @override
-  Widget build(BuildContext context);
-
-  @override
-  State<AiElementView<T>> createState() => _AiStatefulElementViewState<T>();
+  _LlmStatefulElementViewState createState() => _LlmStatefulElementViewState();
 }
 
-class _AiStatefulElementViewState<T extends AiStatefulElement>
-    extends _AiElementViewState<T> {
+class _LlmStatefulElementViewState
+    extends _LlmElementViewState<LlmFunctionElement> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
         listenable: widget.element,
         builder: (context, _) {
-          return AiStatefulElementProvider(
-            notifier: widget.element,
-            child: Builder(
-              builder: (context) {
-                return widget.build(context);
-              },
-            ),
+          return Builder(
+            builder: (context) {
+              return widget.builder?.call(widget.element) ??
+                  widget.build(context);
+            },
           );
         });
   }
 }
 
-abstract class AiElementView<T extends AiElement> extends StatefulWidget {
-  const AiElementView(
+abstract class LlmElementView<T extends LlmElement> extends StatefulWidget {
+  const LlmElementView(
     this.element, {
     super.key,
     required this.builder,
@@ -263,11 +202,12 @@ abstract class AiElementView<T extends AiElement> extends StatefulWidget {
   Widget build(BuildContext context);
 
   @override
-  State<AiElementView<T>> createState() => _AiElementViewState<T>();
+  State<LlmElementView<T>> createState() => _LlmElementViewState<T>();
 }
 
-class _AiElementViewState<T extends AiElement> extends State<AiElementView<T>> {
-  _AiElementViewState();
+class _LlmElementViewState<T extends LlmElement>
+    extends State<LlmElementView<T>> {
+  _LlmElementViewState();
   @override
   Widget build(BuildContext context) {
     if (widget.builder != null) {
