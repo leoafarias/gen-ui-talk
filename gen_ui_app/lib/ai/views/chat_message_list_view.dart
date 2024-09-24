@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../components/molecules/ai_content_view.dart';
+import '../components/molecules/llm_content_view.dart';
 import '../components/molecules/system_content_view.dart';
 import '../components/molecules/user_content_view.dart';
-import '../models/ai_response.dart';
 import '../models/content.dart';
+import '../models/llm_response.dart';
 import 'builder_types.dart';
 
 class ChatMessageList extends StatefulWidget {
@@ -14,7 +14,6 @@ class ChatMessageList extends StatefulWidget {
     this.onEditMessage,
     this.userContentBuilder,
     this.textElementBuilder,
-    this.widgetElementBuilder,
     this.functionElementBuilder,
     super.key,
   });
@@ -24,9 +23,8 @@ class ChatMessageList extends StatefulWidget {
   final void Function(ContentBase message)? onEditMessage;
 
   final UserContentViewBuilder? userContentBuilder;
-  final WidgetElementViewBuilder<AiWidgetElement>? widgetElementBuilder;
-  final WidgetElementViewBuilder<AiTextElement>? textElementBuilder;
-  final WidgetElementViewBuilder<AiFunctionElement>? functionElementBuilder;
+  final WidgetElementViewBuilder<LlmFunctionElement>? functionElementBuilder;
+  final WidgetElementViewBuilder<LlmTextElement>? textElementBuilder;
 
   @override
   State<ChatMessageList> createState() => _ChatMessageListState();
@@ -153,13 +151,12 @@ class _ChatMessageListState extends State<ChatMessageList> {
     return switch (content) {
       (SystemContent message) => SystemContentView(message, key: messageKey),
       (UserContent message) => UserContentView(message, key: messageKey),
-      (AiContentBase message) => AiContentView(
+      (LlmContentBase message) => LlmContentView(
           message,
           key: messageKey,
           active: active,
-          widgetBuilder: widget.widgetElementBuilder,
+          functionBuilders: widget.functionElementBuilder,
           textBuilder: widget.textElementBuilder,
-          functionBuilder: widget.functionElementBuilder,
         )
     };
   }

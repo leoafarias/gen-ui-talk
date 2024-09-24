@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../ai/components/molecules/ai_content_view.dart';
-import '../../ai/components/molecules/ai_element_view.dart';
+import '../../ai/components/molecules/llm_content_view.dart';
 import '../../ai/controllers/chat_controller.dart';
-import '../../ai/models/ai_response.dart';
+import '../../ai/models/llm_response.dart';
 import '../../ai/style.dart';
 import 'light_control_controller.dart';
 import 'light_control_dto.dart';
 
 class _LightControlWidgetResponse extends HookWidget {
-  const _LightControlWidgetResponse(this.element);
+  const _LightControlWidgetResponse(this.data);
 
-  final AiWidgetElement<LightControlDto> element;
+  final LightControlDto data;
 
   void _updateBrightness(num value) {
     lightControlController.setBrightness(value.toInt());
@@ -20,14 +19,14 @@ class _LightControlWidgetResponse extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = useState(element.requiredData.brightness);
+    final brightness = useState(data.brightness);
     final previousBrightness = usePrevious(brightness.value);
 
     final chatController = ChatController.of(context);
 
     void handleConfirmation() {
       var message = 'Confirmed';
-      if (brightness.value != element.requiredData.brightness) {
+      if (brightness.value != data.brightness) {
         if (brightness.value == 0.0) {
           message = 'Light turned off';
         } else {
@@ -168,12 +167,13 @@ class _LightControlWidgetResponse extends HookWidget {
   }
 }
 
-class LightControlWidgetResponse extends AiWidgetElementView<LightControlDto> {
-  const LightControlWidgetResponse(super.element, {super.key});
+class LightControlWidgetResponse extends HookWidget {
+  final LlmFunctionElement element;
+  const LightControlWidgetResponse(this.element, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = AiContentViewProvider.of(context);
+    final provider = LlmContentViewProvider.of(context);
     if (!provider.active) {
       return const SizedBox.shrink();
     }
@@ -181,7 +181,8 @@ class LightControlWidgetResponse extends AiWidgetElementView<LightControlDto> {
     if (!element.isComplete) {
       return const _LightControlWidgetSkeleton();
     }
-    return _LightControlWidgetResponse(element);
+    return _LightControlWidgetResponse(
+        LightControlDto.fromMap(element.requiredData));
   }
 }
 

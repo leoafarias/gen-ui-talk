@@ -8,8 +8,8 @@ import '../../ai/components/atoms/code_highlighter.dart';
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
 import '../../ai/helpers.dart';
-import '../../ai/models/ai_response.dart';
 import '../../ai/models/content.dart';
+import '../../ai/models/llm_response.dart';
 import '../../ai/views/chat_view.dart';
 import '../color_palette/color_palette_controller.dart';
 import '../light_control/light_control_page.dart';
@@ -28,7 +28,7 @@ class ColorPaletteUpdatablePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = GenAiOptions.fromMap(this.options.args);
+    final options = GenAiWidgetOptions.fromMap(this.options.args);
     // Initialize poster design state with default values.
     final controller =
         useChatController(colorPaletteUpdatableProvider, streamResponse: false);
@@ -36,13 +36,12 @@ class ColorPaletteUpdatablePage extends HookWidget {
     final palette = colorPaletteController.colorPalette;
     final selectSample = useOnSelectSample(controller);
 
-    final elementBuilder = useCallback((AiTextElement part) {
+    final elementBuilder = useCallback((LlmTextElement part) {
       try {
         if (options.isSchema) {
           return JsonSyntax(prettyJson(jsonDecode(part.text)));
         }
         return ColorPaletteUpdatableResponseView(
-          key: ValueKey(part.text),
           data: WidgetSchemaDto.fromMap(jsonDecode(part.text)),
         );
       } catch (e) {
@@ -55,12 +54,7 @@ class ColorPaletteUpdatablePage extends HookWidget {
         PlaygroundPage(
           leftFlex: 0,
           rightFlex: 4,
-          sampleInputs: const [
-            'Change top colors',
-            'Change font',
-            'Change all colors',
-            'Change everything',
-          ],
+          sampleInputs: options.prompts,
           onSampleSelected: selectSample,
           rightWidget: Row(
             children: [

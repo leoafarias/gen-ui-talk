@@ -7,7 +7,7 @@ import 'dart:typed_data';
 import 'package:cross_file/cross_file.dart';
 import 'package:mime/mime.dart';
 
-import '../models/ai_response.dart';
+import '../models/llm_response.dart';
 
 /// An abstract class representing an attachment in a chat message.
 ///
@@ -109,13 +109,13 @@ final class LinkAttachment extends Attachment {
   LinkAttachment({required super.name, required this.url});
 }
 
-abstract class AiProvider<T> {
-  Stream<AiElement> sendMessageStream(
+abstract class LlmProvider {
+  Stream<LlmElement> sendMessageStream(
     String prompt, {
     Iterable<Attachment> attachments,
   });
 
-  Future<AiContent> sendMessage(
+  Future<LlmContent> sendMessage(
     String prompt, {
     Iterable<Attachment> attachments,
   });

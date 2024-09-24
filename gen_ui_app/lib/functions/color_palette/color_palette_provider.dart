@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-import '../../ai/providers/gemini_provider.dart';
-import '../../main.dart';
+import '../../ai/controllers/provider_helpers.dart';
 import 'color_palette_dto.dart';
 
 final _history = [
@@ -98,9 +97,7 @@ A color palette is a set of colors that work well together.
 - bottomRightColor: The fourth color in the palette.
 ''';
 
-final colorPaletteProvider = GeminiProvider(
-  model: GeminiModel.flash15Latest.model,
-  apiKey: kGeminiApiKey,
+final colorPaletteProvider = buildGenerativeModel(
   config: GenerationConfig(
     responseMimeType: 'application/json',
     responseSchema: ColorPaletteDto.schema,

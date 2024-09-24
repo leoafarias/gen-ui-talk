@@ -10,8 +10,6 @@ import 'parts/footer.dart';
 import 'parts/header.dart';
 import 'style.dart';
 
-String get kGeminiApiKey => dotenv.env['GEMINI_API_KEY'] as String;
-
 void main() async {
   await SuperDeckApp.initialize();
   runApp(
