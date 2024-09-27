@@ -2,45 +2,26 @@
   "config": {},
   "slides": [
     {
-      "key": "w1Id1XVZ",
+      "key": "m0lMk1RF",
       "options": {},
-      "markdown": "![llm tools](assets/llm_tools.png){.cover}",
+      "markdown": "{@column \n  align: center\n  flex: 1\n}\n#### Leo Farias\n@leoafarias\n\n{@column align: center_right}\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
       "sections": [
         {
           "sub_sections": [
             {
-              "content": "![llm tools](assets/llm_tools.png){.cover}",
-              "type": "column"
-            }
-          ]
-        }
-      ],
-      "notes": []
-    },
-    {
-      "key": "3eFdrtdl",
-      "options": {
-        "style": "demo"
-      },
-      "markdown": "{@lightControl\n  type: widget\n  prompts:\n    - Dim the lights by 20\n    - Increase by 35\n    - Turn off the lights\n    - Set it to 80\n    - Lower by half\n    - Max brightness\n}",
-      "sections": [
-        {
-          "sub_sections": [
-            {
+              "content": "\n#### Leo Farias\n@leoafarias\n",
               "options": {
-                "name": "lightControl",
-                "type": "widget",
-                "prompts": [
-                  "Dim the lights by 20",
-                  "Increase by 35",
-                  "Turn off the lights",
-                  "Set it to 80",
-                  "Lower by half",
-                  "Max brightness"
-                ]
+                "flex": 1,
+                "align": "center"
               },
-              "content": "",
-              "type": "widget"
+              "type": "column"
+            },
+            {
+              "content": "\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
+              "options": {
+                "align": "center_right"
+              },
+              "type": "column"
             }
           ]
         }
@@ -656,11 +637,6 @@
     }
   ],
   "assets": [
-    {
-      "path": ".superdeck/generated/thumbnail_3eFdrtdl.png",
-      "width": 512,
-      "height": 288
-    },
     {
       "path": ".superdeck/generated/thumbnail_JXYAv556.png",
       "width": 512,

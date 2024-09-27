@@ -1,21 +1,17 @@
 ---
-
-![llm tools](assets/llm_tools.png){.cover}
-
----
-style: demo
----
-
-{@lightControl
-  type: widget
-  prompts:
-    - Dim the lights by 20
-    - Increase by 35
-    - Turn off the lights
-    - Set it to 80
-    - Lower by half
-    - Max brightness
+{@column 
+  align: center
+  flex: 1
 }
+#### Leo Farias
+@leoafarias
+
+{@column align: center_right}
+- Founder/CEO/CTO
+- Open Source Contributor
+- Flutter & Dart GDE
+- Passionate about UI/UX/DX
+
 
 
 ---
