@@ -1,41 +1,39 @@
 config: {}
 slides: 
-  - key: 'w1Id1XVZ'
+  - key: 'm0lMk1RF'
     options: {}
-    markdown: '![llm tools](assets/llm_tools.png){.cover}'
-    sections: 
-      - sub_sections: 
-          - content: '![llm tools](assets/llm_tools.png){.cover}'
-            type: 'column'
-    notes: []
-  - key: '3eFdrtdl'
-    options: 
-      style: 'demo'
     markdown: |-
-      {@lightControl
-        type: widget
-        prompts:
-          - Dim the lights by 20
-          - Increase by 35
-          - Turn off the lights
-          - Set it to 80
-          - Lower by half
-          - Max brightness
+      {@column 
+        align: center
+        flex: 1
       }
+      #### Leo Farias
+      @leoafarias
+      
+      {@column align: center_right}
+      - Founder/CEO/CTO
+      - Open Source Contributor
+      - Flutter & Dart GDE
+      - Passionate about UI/UX/DX
     sections: 
       - sub_sections: 
-          - options: 
-              name: 'lightControl'
-              type: 'widget'
-              prompts: 
-                - 'Dim the lights by 20'
-                - 'Increase by 35'
-                - 'Turn off the lights'
-                - 'Set it to 80'
-                - 'Lower by half'
-                - 'Max brightness'
-            content: ''
-            type: 'widget'
+          - content: |
+              
+              #### Leo Farias
+              @leoafarias
+            options: 
+              flex: 1
+              align: 'center'
+            type: 'column'
+          - content: |-
+              
+              - Founder/CEO/CTO
+              - Open Source Contributor
+              - Flutter & Dart GDE
+              - Passionate about UI/UX/DX
+            options: 
+              align: 'center_right'
+            type: 'column'
     notes: []
   - key: 'JXYAv556'
     options: {}
@@ -820,9 +818,6 @@ slides:
             type: 'column'
     notes: []
 assets: 
-  - path: '.superdeck/generated/thumbnail_3eFdrtdl.png'
-    width: 512
-    height: 288
   - path: '.superdeck/generated/thumbnail_JXYAv556.png'
     width: 512
     height: 288
