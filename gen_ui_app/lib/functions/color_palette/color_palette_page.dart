@@ -22,7 +22,7 @@ import 'color_palette_widget.dart';
 class ColorPalettePage extends HookWidget {
   const ColorPalettePage(this.options, {super.key});
 
-  final WidgetOptions options;
+  final WidgetBlock options;
 
   Widget _userContentBuilder(UserContent content) {
     return const SizedBox.shrink();
