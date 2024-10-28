@@ -10,7 +10,7 @@ class HeaderPart extends FixedSlidePart {
   double get height => 0;
 
   @override
-  Widget build(context, configuration) {
+  Widget build(context) {
     final slide = configuration.slide;
     final index = configuration.slideIndex;
     return Padding(

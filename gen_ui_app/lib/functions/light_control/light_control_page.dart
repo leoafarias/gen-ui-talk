@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:superdeck/superdeck.dart';
 
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
@@ -77,7 +76,7 @@ class GenAiWidgetOptions {
 class LightControlPage extends HookWidget {
   const LightControlPage(this.options, {super.key});
 
-  final WidgetOptions options;
+  final options;
 
   @override
   Widget build(BuildContext context) {
