@@ -28,9 +28,9 @@
       ]
     },
     {
-      "key": "zNJXMoEi",
+      "key": "brprlAOT",
       "options": {},
-      "markdown": "{@column \n  align: center\n}\n\n#### Leo Farias {.heading}\n@leoafarias {.subheading}\n\n{@column align: center_left}\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
+      "markdown": "{@column \n  align: center\n}\n\n#### Leo Farias {.heading}\n@leoafarias {.subheading}\n\n{@column align: center_left}\n- Founder/CEO/CTO\n- Open Source Contributor (fvm, mix, superdeck, others..)\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
       "sections": [
         {
           "blocks": [
@@ -41,7 +41,7 @@
             },
             {
               "align": "center_left",
-              "content": "- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
+              "content": "- Founder/CEO/CTO\n- Open Source Contributor (fvm, mix, superdeck, others..)\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
               "scrollable": false
             }
           ],
@@ -49,18 +49,12 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_zNJXMoEi.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "OnZ1cviT",
+      "key": "JRXV2rTe",
       "options": {},
-      "markdown": "{@column}\n\n{@column \n  align: center_left \n  flex: 2\n}\n> [!WARNING]  \n> This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.\n\n{@column}",
+      "markdown": "{@column}\n\n{@column \n  align: center_left \n  flex: 2\n}\n> [!WARNING]  \n> Esta presentación contiene contenido generado en vivo por IA. Durante la demostración pueden ocurrir eventos inesperados\n\n{@column}",
       "sections": [
         {
           "blocks": [
@@ -71,7 +65,7 @@
             {
               "flex": 2,
               "align": "center_left",
-              "content": "> [!WARNING]  \n> This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.\n",
+              "content": "> [!WARNING]  \n> Esta presentación contiene contenido generado en vivo por IA. Durante la demostración pueden ocurrir eventos inesperados\n",
               "scrollable": false
             },
             {
@@ -82,16 +76,10 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_OnZ1cviT.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "CAurJ5Yl",
+      "key": "gTvLpmRu",
       "options": {},
       "markdown": "{@column \n  flex: 2 \n  align: center_right\n}\n### Generative UI {.heading}\n{@column}\n## VS \n{@column flex: 2}\n### AI Assisted Code Generation",
       "sections": [
@@ -117,27 +105,21 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_CAurJ5Yl.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "jEZo0jQV",
+      "key": "pU4bIipS",
       "options": {},
-      "markdown": "### What is Generative UI? {.heading}\n\n{@column}\n\n- LLMs are great at generating content based on context\n- GUIs are great at providing structured, interactive interfaces for user input and navigation",
+      "markdown": "### ¿Qué es una UI Generativa? {.heading}\n\n{@column}\n\n- Los LLM son excelentes para generar contenido basado en el contexto.\n- Las GUI son excelentes para proporcionar interfaces estructuradas e interactivas para la entrada de usuario y navegación.",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### What is Generative UI? {.heading}\n",
+              "content": "### ¿Qué es una UI Generativa? {.heading}\n",
               "scrollable": false
             },
             {
-              "content": "- LLMs are great at generating content based on context\n- GUIs are great at providing structured, interactive interfaces for user input and navigation",
+              "content": "- Los LLM son excelentes para generar contenido basado en el contexto.\n- Las GUI son excelentes para proporcionar interfaces estructuradas e interactivas para la entrada de usuario y navegación.",
               "scrollable": false
             }
           ],
@@ -145,13 +127,7 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_jEZo0jQV.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
       "key": "BM8dTIiu",
@@ -178,9 +154,9 @@
       ]
     },
     {
-      "key": "rNOkrZ1O",
+      "key": "ZpiYHha1",
       "options": {},
-      "markdown": "{@column}\n{@column\n  flex: 5\n  align: center\n}\n### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}\n\n{@column}",
+      "markdown": "{@column}\n{@column\n  flex: 5\n  align: center\n}\n### Crea interfaces dinámicas y sensibles al contexto al interpretar acciones y mantener el estado con LLMs para respuestas fluidas e interactivas. {.heading}\n\n{@column}",
       "sections": [
         {
           "blocks": [
@@ -190,7 +166,7 @@
             {
               "flex": 5,
               "align": "center",
-              "content": "### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}\n",
+              "content": "### Crea interfaces dinámicas y sensibles al contexto al interpretar acciones y mantener el estado con LLMs para respuestas fluidas e interactivas. {.heading}\n",
               "scrollable": false
             },
             {
@@ -201,23 +177,17 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_rNOkrZ1O.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "9ERBjvfD",
+      "key": "ZhsL96Je",
       "options": {},
-      "markdown": "### Benefits over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
+      "markdown": "### Ventajas sobre el chat\n\n-\tMás intuitivo y fácil de usar, especialmente para tareas complejas\n-\tCiclo de feedback más rápido entre usuarios y LLMs\n-\tMejora la eficiencia y la interacción",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Benefits over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
+              "content": "### Ventajas sobre el chat\n\n-\tMás intuitivo y fácil de usar, especialmente para tareas complejas\n-\tCiclo de feedback más rápido entre usuarios y LLMs\n-\tMejora la eficiencia y la interacción",
               "scrollable": false
             }
           ],
@@ -225,25 +195,26 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_9ERBjvfD.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "BCBPTGpJ",
+      "key": "oVui9VPS",
       "options": {},
-      "markdown": "{@column\n  flex: 3 \n  align: center\n}\n### Flutter is Well-Suited for Generative UI\nBuilt for any screen: Ideal for generating adaptive UIs across devices and platforms.",
+      "markdown": "{@column}\n\n{@column\n  flex: 3 \n  align: center\n}\n### Flutter es ideal para UI Generativa\nBuilt for any screen: Ideal para generar UIs adaptativas en diversos dispositivos y plataformas.\n\n{@column}",
       "sections": [
         {
           "blocks": [
+            {
+              "content": "",
+              "scrollable": false
+            },
             {
               "flex": 3,
               "align": "center",
-              "content": "### Flutter is Well-Suited for Generative UI\nBuilt for any screen: Ideal for generating adaptive UIs across devices and platforms.",
+              "content": "### Flutter es ideal para UI Generativa\nBuilt for any screen: Ideal para generar UIs adaptativas en diversos dispositivos y plataformas.\n",
+              "scrollable": false
+            },
+            {
               "scrollable": false
             }
           ],
@@ -251,23 +222,17 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_BCBPTGpJ.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "6Jo26Y4b",
+      "key": "jIeTulIX",
       "options": {},
-      "markdown": "## How can LLMs Understand Your UI?\n\n{@column}\n\n![structured_output](assets/structured_output.png)",
+      "markdown": "### ¿Cómo pueden los LLM comprender tu UI?\n\n{@column}\n\n![structured_output](assets/structured_output.png)",
       "sections": [
         {
           "blocks": [
             {
-              "content": "## How can LLMs Understand Your UI?\n",
+              "content": "### ¿Cómo pueden los LLM comprender tu UI?\n",
               "scrollable": false
             },
             {
@@ -279,23 +244,17 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_6Jo26Y4b.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "jDEVRy3D",
+      "key": "3gDaO4JA",
       "options": {},
-      "markdown": "{@column}\n\n### Define the Schema {.heading}\n\n{@column}\n\n```dart\nfinal schema = Schema.array(\n  description: 'List of recipes',\n  items: Schema.object(\n    properties: {\n      'recipeName': Schema.string(\n        description: 'Name of the recipe.',\n        nullable: false,\n      ),\n    },\n    requiredProperties: ['recipeName'],\n  ),\n);\n\n```{.code}",
+      "markdown": "{@column}\n\n### Definir el schema{.heading}\n\n{@column}\n\n```dart\nfinal schema = Schema.array(\n  description: 'List of recipes',\n  items: Schema.object(\n    properties: {\n      'recipeName': Schema.string(\n        description: 'Name of the recipe.',\n        nullable: false,\n      ),\n    },\n    requiredProperties: ['recipeName'],\n  ),\n);\n\n```{.code}",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Define the Schema {.heading}\n",
+              "content": "### Definir el schema{.heading}\n",
               "scrollable": false
             },
             {
@@ -307,24 +266,18 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_jDEVRy3D.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "3diQGYW8",
+      "key": "Mmn4FSEE",
       "options": {},
-      "markdown": "{@column align: bottom_center}\n\n### Configure responseMimeType & responseSchema {.heading}\n\n{@column}\n\n```dart\nfinal schema = Schema.array(\n  description: 'List of recipes',\n  items: Schema.object(\n    properties: {\n      'recipeName': Schema.string(\n        description: 'Name of the recipe.',\n        nullable: false,\n      ),\n    },\n    requiredProperties: ['recipeName'],\n  ),\n);\n\n\nfinal model = GenerativeModel(\n  model: 'gemini-1.5-pro',\n  apiKey: apiKey,\n  generationConfig: GenerationConfig(\n    responseMimeType: 'application/json',\n    responseSchema: schema,\n  ),\n);\n\n```{.code}",
+      "markdown": "{@column align: bottom_center}\n\n### Configurar responseMimeType y responseSchema {.heading}\n\n{@column}\n\n```dart\nfinal schema = Schema.array(\n  description: 'List of recipes',\n  items: Schema.object(\n    properties: {\n      'recipeName': Schema.string(\n        description: 'Name of the recipe.',\n        nullable: false,\n      ),\n    },\n    requiredProperties: ['recipeName'],\n  ),\n);\n\n\nfinal model = GenerativeModel(\n  model: 'gemini-1.5-pro',\n  apiKey: apiKey,\n  generationConfig: GenerationConfig(\n    responseMimeType: 'application/json',\n    responseSchema: schema,\n  ),\n);\n\n```{.code}",
       "sections": [
         {
           "blocks": [
             {
               "align": "bottom_center",
-              "content": "### Configure responseMimeType & responseSchema {.heading}\n",
+              "content": "### Configurar responseMimeType y responseSchema {.heading}\n",
               "scrollable": false
             },
             {
@@ -336,24 +289,18 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_3diQGYW8.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "CnWvT9H8",
+      "key": "KvQsJipa",
       "options": {},
-      "markdown": "{@section flex: 2}\n\n\n{@column flex: 2}\n\n#### Passing a prompt to your model {.heading}\n\n{@column flex: 3}\n\n```dart\nfinal prompt = 'List a few popular cookie recipes.';\nfinal response = await model.generateContent([Content.text(prompt)]);\n\nprint(response.candidates.first.content);\n\n```{.code}\n\n{@section flex: 3}\n\n{@column \n  flex: 2\n  align: bottom_left\n}\n\n#### JSON Response\n\n{@column flex: 3}\n\n```json\n[\n  {\n    \"recipeName\": \"Chocolate Chip Cookies\"\n  },\n  {\n    \"recipeName\": \"Peanut Butter Cookies\"\n  },\n  {\n    \"recipeName\": \"Snickerdoodles\"\n  }\n]\n```",
+      "markdown": "{@section flex: 2}\n\n\n{@column flex: 2}\n\n#### Pasar un prompt a tu modelo {.heading}\n\n{@column flex: 3}\n\n```dart\nfinal prompt = 'List a few popular cookie recipes.';\nfinal response = await model.generateContent([Content.text(prompt)]);\n\nprint(response.candidates.first.content);\n\n```{.code}\n\n{@section flex: 3}\n\n{@column \n  flex: 2\n  align: bottom_left\n}\n\n#### JSON Response\n\n{@column flex: 3}\n\n```json\n[\n  {\n    \"recipeName\": \"Chocolate Chip Cookies\"\n  },\n  {\n    \"recipeName\": \"Peanut Butter Cookies\"\n  },\n  {\n    \"recipeName\": \"Snickerdoodles\"\n  }\n]\n```",
       "sections": [
         {
           "blocks": [
             {
               "flex": 2,
-              "content": "#### Passing a prompt to your model {.heading}\n",
+              "content": "#### Pasar un prompt a tu modelo {.heading}\n",
               "scrollable": false
             },
             {
@@ -384,23 +331,17 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_CnWvT9H8.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "6EU2Xxrf",
+      "key": "YJuyTjvl",
       "options": {},
-      "markdown": "{@column}\n### Color Palette Generator\n\nGenerate a color palette based on a given text.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette",
+      "markdown": "{@column}\n### Generador de paleta de colores\n\nGenera una paleta de colores basada en un texto dado.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Color Palette Generator\n\nGenerate a color palette based on a given text.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette",
+              "content": "### Generador de paleta de colores\n\nGenera una paleta de colores basada en un texto dado.\n\n- Name of the palette\n- Font family\n- Font color\n- Color for each corner of the palette",
               "scrollable": false
             }
           ],
@@ -408,13 +349,7 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_6EU2Xxrf.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
       "key": "yo70fIoq",
@@ -511,14 +446,14 @@
       ]
     },
     {
-      "key": "H0jUl8Aj",
+      "key": "NQNfkx8t",
       "options": {},
-      "markdown": "## LLMs Orchestrate APIs",
+      "markdown": "## Los LLM orquestan APIs",
       "sections": [
         {
           "blocks": [
             {
-              "content": "## LLMs Orchestrate APIs",
+              "content": "## Los LLM orquestan APIs",
               "scrollable": false
             }
           ],
@@ -526,13 +461,7 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_H0jUl8Aj.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
       "key": "QQJaCN5k",
@@ -609,15 +538,15 @@
       ]
     },
     {
-      "key": "5dttoW9C",
+      "key": "hBq6XCkc",
       "options": {},
-      "markdown": "{@column \n  align: bottom_right\n}\n\n### User Interaction {.heading}\nNatural Language way to interact with an LLM\n\n{@column\n  flex: 2\n}\n![llm response](assets/llm_interaction.png)",
+      "markdown": "{@column \n  align: bottom_right\n}\n\n### User Interaction {.heading}\nForma de interactuar con un LLM mediante lenguaje natural\n\n{@column\n  flex: 2\n}\n![llm response](assets/llm_interaction.png)",
       "sections": [
         {
           "blocks": [
             {
               "align": "bottom_right",
-              "content": "### User Interaction {.heading}\nNatural Language way to interact with an LLM\n",
+              "content": "### User Interaction {.heading}\nForma de interactuar con un LLM mediante lenguaje natural\n",
               "scrollable": false
             },
             {
@@ -630,13 +559,7 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_5dttoW9C.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
       "key": "8I3fvDqR",
@@ -705,14 +628,14 @@
       ]
     },
     {
-      "key": "pNxPyfLK",
+      "key": "9yZftHgP",
       "options": {},
-      "markdown": "## What if the tool to use is a widget schema?",
+      "markdown": "## ¿Qué pasa si la herramienta a usar es un esquema de widget?",
       "sections": [
         {
           "blocks": [
             {
-              "content": "## What if the tool to use is a widget schema?",
+              "content": "## ¿Qué pasa si la herramienta a usar es un esquema de widget?",
               "scrollable": false
             }
           ],
@@ -720,13 +643,7 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_pNxPyfLK.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
       "key": "ubDKfZYy",
@@ -864,16 +781,16 @@
       ]
     },
     {
-      "key": "OnQyKozf",
+      "key": "nuYiXDBE",
       "options": {
         "style": "quote"
       },
-      "markdown": "> The future of UI might be orchestrating user\n> experiences rather than creating it.",
+      "markdown": "> The future of UI might be orchestrating user\n> experiences rather than creating it.\n\n> El futuro de la UI podría ser orquestar\n> experiencias de usuario en lugar de crearlas.",
       "sections": [
         {
           "blocks": [
             {
-              "content": "> The future of UI might be orchestrating user\n> experiences rather than creating it.",
+              "content": "> The future of UI might be orchestrating user\n> experiences rather than creating it.\n\n> El futuro de la UI podría ser orquestar\n> experiencias de usuario en lugar de crearlas.",
               "scrollable": false
             }
           ],
@@ -881,23 +798,17 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_OnQyKozf.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     },
     {
-      "key": "UqCN11cB",
+      "key": "npC7NNxN",
       "options": {},
-      "markdown": "### Thank you\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)",
+      "markdown": "### Gracias\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Thank you\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)",
+              "content": "### Gracias\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)",
               "scrollable": false
             }
           ],
@@ -905,13 +816,7 @@
         }
       ],
       "notes": [],
-      "assets": [
-        {
-          "path": ".superdeck/generated/thumbnail_UqCN11cB.png",
-          "width": 512,
-          "height": 288
-        }
-      ]
+      "assets": []
     }
   ]
 }
