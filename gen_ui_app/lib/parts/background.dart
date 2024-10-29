@@ -28,7 +28,7 @@ class BackgroundPart extends SlidePart {
 
   @override
   Widget build(BuildContext context) {
-    final configuration = Provider.of<SlideConfiguration>(context);
+    final configuration = Provider.of<SlideData>(context);
     return _AnimatedSwitcherOMesh(
       index: configuration.slideIndex,
       duration: const Duration(milliseconds: 1000),

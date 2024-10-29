@@ -20,7 +20,7 @@ import 'color_palette_provider.dart';
 import 'color_palette_widget.dart';
 
 class ColorPalettePage extends HookWidget {
-  const ColorPalettePage(this.options, {super.key});
+  ColorPalettePage(this.options, {super.key});
 
   final WidgetBlock options;
 
@@ -28,9 +28,10 @@ class ColorPalettePage extends HookWidget {
     return const SizedBox.shrink();
   }
 
+  late final widgetOptions = GenAiWidgetOptions.fromMap(options.args);
+
   @override
   Widget build(BuildContext context) {
-    final options = GenAiWidgetOptions.fromMap(this.options.args);
     // Initialize poster design state with default values.
     final controller =
         useChatController(colorPaletteProvider, streamResponse: false);
@@ -63,7 +64,7 @@ class ColorPalettePage extends HookWidget {
 
     final elementBuilder = useCallback((LlmTextElement part) {
       try {
-        if (options.isSchema) {
+        if (widgetOptions.isSchema) {
           return JsonSyntax(prettyJson(jsonDecode(part.text)));
         }
         return ColorPaletteResponseView(
@@ -81,7 +82,7 @@ class ColorPalettePage extends HookWidget {
         PlaygroundPage(
           leftFlex: 6,
           rightFlex: 4,
-          sampleInputs: options.prompts,
+          sampleInputs: widgetOptions.prompts,
           onSampleSelected: selectSample,
           rightWidget: ChatView(
             controller: controller,
@@ -90,7 +91,7 @@ class ColorPalettePage extends HookWidget {
           ),
           leftWidget: _ColorPaletteMesh(palette),
         ),
-        renderOptionTypeWidget(options.type),
+        renderOptionTypeWidget(widgetOptions.kind),
       ],
     );
   }

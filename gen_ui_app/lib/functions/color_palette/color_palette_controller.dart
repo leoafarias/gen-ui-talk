@@ -50,5 +50,9 @@ class ColorPaletteController extends ChangeNotifier {
 ColorPaletteController useColorPaletteController() {
   final controller = useRef(ColorPaletteController());
 
+  useEffect(() {
+    return controller.value.dispose;
+  }, []);
+
   return useListenable(controller.value);
 }

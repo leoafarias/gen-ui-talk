@@ -12,6 +12,7 @@ enum GeminiModel {
   pro1001('gemini-1.0-pro-001'),
   pro15('gemini-1.5-pro'),
   flash15Latest('gemini-1.5-flash-latest'),
+  flash158b('gemini-1.5-flash-8b'),
   pro15Latest('gemini-1.5-pro-latest');
 
   const GeminiModel(this.model);

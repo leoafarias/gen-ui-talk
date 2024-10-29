@@ -11,6 +11,7 @@ class HeaderPart extends FixedSlidePart {
 
   @override
   Widget build(context) {
+    final configuration = Provider.of<SlideData>(context);
     final slide = configuration.slide;
     final index = configuration.slideIndex;
     return Padding(
