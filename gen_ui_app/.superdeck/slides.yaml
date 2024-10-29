@@ -1,37 +1,37 @@
 config: {}
 slides:
-  - key: 'bCJeLzLi'
+  - key: 'D36namou'
     options: {}
     markdown: |-
       {@section flex: 2}
       {@column
         align: center
       }
-      # Generative UI
-      # with Flutter
+      # Generative UI {.heading}
+      # with Flutter {.subheading}
     sections:
       - blocks:
           - align: 'center'
             content: |-
-              # Generative UI
-              # with Flutter
+              # Generative UI {.heading}
+              # with Flutter {.subheading}
             scrollable: false
         flex: 2
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_bCJeLzLi.png'
+      - path: '.superdeck/generated/thumbnail_D36namou.png'
         width: 512
         height: 288
-  - key: 'spKrChRz'
+  - key: 'zNJXMoEi'
     options: {}
     markdown: |-
       {@column 
         align: center
       }
       
-      #### Leo Farias
-      @leoafarias
+      #### Leo Farias {.heading}
+      @leoafarias {.subheading}
       
       {@column align: center_left}
       - Founder/CEO/CTO
@@ -42,8 +42,8 @@ slides:
       - blocks:
           - align: 'center'
             content: |
-              #### Leo Farias
-              @leoafarias
+              #### Leo Farias {.heading}
+              @leoafarias {.subheading}
             scrollable: false
           - align: 'center_left'
             content: |-
@@ -55,7 +55,7 @@ slides:
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_spKrChRz.png'
+      - path: '.superdeck/generated/thumbnail_zNJXMoEi.png'
         width: 512
         height: 288
   - key: 'OnZ1cviT'
@@ -88,25 +88,25 @@ slides:
       - path: '.superdeck/generated/thumbnail_OnZ1cviT.png'
         width: 512
         height: 288
-  - key: 'D4etKl0J'
+  - key: 'CAurJ5Yl'
     options: {}
     markdown: |-
       {@column 
         flex: 2 
         align: center_right
       }
-      ### Generative UI
+      ### Generative UI {.heading}
       {@column}
-      ## VS
+      ## VS 
       {@column flex: 2}
       ### AI Assisted Code Generation
     sections:
       - blocks:
           - flex: 2
             align: 'center_right'
-            content: '### Generative UI'
+            content: '### Generative UI {.heading}'
             scrollable: false
-          - content: '## VS'
+          - content: '## VS '
             scrollable: false
           - flex: 2
             content: '### AI Assisted Code Generation'
@@ -114,13 +114,13 @@ slides:
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_D4etKl0J.png'
+      - path: '.superdeck/generated/thumbnail_CAurJ5Yl.png'
         width: 512
         height: 288
-  - key: '4E2GOMRu'
+  - key: 'jEZo0jQV'
     options: {}
     markdown: |-
-      ### What is Generative UI?
+      ### What is Generative UI? {.heading}
       
       {@column}
       
@@ -129,7 +129,7 @@ slides:
     sections:
       - blocks:
           - content: |
-              ### What is Generative UI?
+              ### What is Generative UI? {.heading}
             scrollable: false
           - content: |-
               - LLMs are great at generating content based on context
@@ -138,52 +138,52 @@ slides:
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_4E2GOMRu.png'
+      - path: '.superdeck/generated/thumbnail_jEZo0jQV.png'
         width: 512
         height: 288
-  - key: '7qVeHjc5'
+  - key: 'BM8dTIiu'
     options: {}
-    markdown: '# LLM ❤️ GUI'
+    markdown: '# LLM ❤️ GUI {.heading}'
     sections:
       - blocks:
-          - content: '# LLM ❤️ GUI'
+          - content: '# LLM ❤️ GUI {.heading}'
             scrollable: false
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_7qVeHjc5.png'
+      - path: '.superdeck/generated/thumbnail_BM8dTIiu.png'
         width: 512
         height: 288
-  - key: 'D6lTKmGt'
+  - key: 'rNOkrZ1O'
     options: {}
     markdown: |-
       {@column}
       {@column
-        flex: 2
+        flex: 5
         align: center
       }
-      Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.
+      ### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
       
       {@column}
     sections:
       - blocks:
           - scrollable: false
-          - flex: 2
+          - flex: 5
             align: 'center'
             content: |
-              Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.
+              ### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
             scrollable: false
           - scrollable: false
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_D6lTKmGt.png'
+      - path: '.superdeck/generated/thumbnail_rNOkrZ1O.png'
         width: 512
         height: 288
-  - key: 'hHrCdu5G'
+  - key: '9ERBjvfD'
     options: {}
     markdown: |-
-      ### Benefits of UI over Chat
+      ### Benefits over Chat
       
       - More intuitive and user-friendly, especially for complex tasks
       - Faster feedback loop between users and LLMs
@@ -191,7 +191,7 @@ slides:
     sections:
       - blocks:
           - content: |-
-              ### Benefits of UI over Chat
+              ### Benefits over Chat
               
               - More intuitive and user-friendly, especially for complex tasks
               - Faster feedback loop between users and LLMs
@@ -200,7 +200,7 @@ slides:
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_hHrCdu5G.png'
+      - path: '.superdeck/generated/thumbnail_9ERBjvfD.png'
         width: 512
         height: 288
   - key: 'BCBPTGpJ'
@@ -700,7 +700,10 @@ slides:
         flex: 4
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_QQJaCN5k.png'
+        width: 512
+        height: 288
   - key: 'B4azSyhQ'
     options:
       style: 'demo'
@@ -837,10 +840,163 @@ slides:
       - path: '.superdeck/generated/thumbnail_pNxPyfLK.png'
         width: 512
         height: 288
-  - key: '5cGNbsJx'
+  - key: 'ubDKfZYy'
+    options: {}
+    markdown: '![widget_schema](assets/widget_schema.png)'
+    sections:
+      - blocks:
+          - content: '![widget_schema](assets/widget_schema.png)'
+            scrollable: false
+        type: 'section'
+    notes: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_ubDKfZYy.png'
+        width: 512
+        height: 288
+  - key: 'qm5WqrJY'
     options: {}
     markdown: |-
-      ### Experimental
+      {@column flex: 2}
+      ### Dropdown Widget Schema
+      
+      ```dart
+      class DropdownSchemaDto {
+        final String label;
+        final String currentValue;
+        final List<String> options;
+      
+        DropdownSchemaDto({
+          required this.label,
+          required this.currentValue,
+          required this.options,
+        });
+      
+      ```
+      {@column flex: 3}
+      
+      ```dart
+        static final schema = Schema.object(properties: {
+          'label': Schema.string(
+            description: 'The label of the dropdown',
+            nullable: false,
+          ),
+          'currentValue': Schema.string(
+            description: 'The currentValue of the dropdown',
+            nullable: false,
+          ),
+          'options': Schema.array(
+            description: 'The options of the dropdown',
+            items: Schema.string(
+              description: 'The options of the dropdown',
+              nullable: false,
+            ),
+            nullable: false,
+          )
+        });
+      }
+      ```
+    sections:
+      - blocks:
+          - flex: 2
+            content: |-
+              ### Dropdown Widget Schema
+              
+              ```dart
+              class DropdownSchemaDto {
+                final String label;
+                final String currentValue;
+                final List<String> options;
+              
+                DropdownSchemaDto({
+                  required this.label,
+                  required this.currentValue,
+                  required this.options,
+                });
+              
+              ```
+            scrollable: false
+          - flex: 3
+            content: |-
+              ```dart
+                static final schema = Schema.object(properties: {
+                  'label': Schema.string(
+                    description: 'The label of the dropdown',
+                    nullable: false,
+                  ),
+                  'currentValue': Schema.string(
+                    description: 'The currentValue of the dropdown',
+                    nullable: false,
+                  ),
+                  'options': Schema.array(
+                    description: 'The options of the dropdown',
+                    items: Schema.string(
+                      description: 'The options of the dropdown',
+                      nullable: false,
+                    ),
+                    nullable: false,
+                  )
+                });
+              }
+              ```
+            scrollable: false
+        type: 'section'
+    notes: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_qm5WqrJY.png'
+        width: 512
+        height: 288
+  - key: 'LgjZ2pSq'
+    options: {}
+    markdown: |-
+      ### Dropdown Schema Builder
+      
+      {@column flex: 2}
+      ```dart
+       ListTile(
+        title: Text(schema.label),
+        trailing: DropdownButton<String>(
+          value: schema.currentValue,
+          items: schema.options.map((option) {
+            return DropdownMenuItem<String>(
+              value: option,
+              child: Text(option),
+            );
+          }).toList(),
+          onChanged: (newValue) {},
+        ),
+      );
+      ```
+    sections:
+      - blocks:
+          - content: |
+              ### Dropdown Schema Builder
+            scrollable: false
+          - flex: 2
+            content: |-
+              ```dart
+               ListTile(
+                title: Text(schema.label),
+                trailing: DropdownButton<String>(
+                  value: schema.currentValue,
+                  items: schema.options.map((option) {
+                    return DropdownMenuItem<String>(
+                      value: option,
+                      child: Text(option),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) {},
+                ),
+              );
+              ```
+            scrollable: false
+        type: 'section'
+    notes: []
+    assets: []
+  - key: 'Wxrj9iSH'
+    options: {}
+    markdown: |-
+      ### Widget Schemas
+      
       
       ```dart
       final schema = Schema.object(properties: {
@@ -865,7 +1021,8 @@ slides:
     sections:
       - blocks:
           - content: |-
-              ### Experimental
+              ### Widget Schemas
+              
               
               ```dart
               final schema = Schema.object(properties: {
@@ -891,7 +1048,7 @@ slides:
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_5cGNbsJx.png'
+      - path: '.superdeck/generated/thumbnail_Wxrj9iSH.png'
         width: 512
         height: 288
   - key: 'aJu8RjyT'
@@ -923,17 +1080,22 @@ slides:
       - path: '.superdeck/generated/thumbnail_aJu8RjyT.png'
         width: 512
         height: 288
-  - key: '3kW1wOHd'
-    options: {}
-    markdown: '## The future of UI might be orchestrating user experiences rather than creating it.'
+  - key: 'OnQyKozf'
+    options:
+      style: 'quote'
+    markdown: |-
+      > The future of UI might be orchestrating user
+      > experiences rather than creating it.
     sections:
       - blocks:
-          - content: '## The future of UI might be orchestrating user experiences rather than creating it.'
+          - content: |-
+              > The future of UI might be orchestrating user
+              > experiences rather than creating it.
             scrollable: false
         type: 'section'
     notes: []
     assets:
-      - path: '.superdeck/generated/thumbnail_3kW1wOHd.png'
+      - path: '.superdeck/generated/thumbnail_OnQyKozf.png'
         width: 512
         height: 288
   - key: 'UqCN11cB'

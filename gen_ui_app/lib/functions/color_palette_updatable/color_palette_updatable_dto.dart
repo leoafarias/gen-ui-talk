@@ -105,8 +105,11 @@ class DropdownSchemaDto {
   final String currentValue;
   final List<String> options;
 
-  DropdownSchemaDto(
-      {required this.label, required this.currentValue, required this.options});
+  DropdownSchemaDto({
+    required this.label,
+    required this.currentValue,
+    required this.options,
+  });
 
   static DropdownSchemaDto fromMap(Map<String, dynamic> map) {
     return DropdownSchemaDto(

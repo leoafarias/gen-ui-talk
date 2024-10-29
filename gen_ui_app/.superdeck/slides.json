@@ -2,15 +2,15 @@
   "config": {},
   "slides": [
     {
-      "key": "bCJeLzLi",
+      "key": "D36namou",
       "options": {},
-      "markdown": "{@section flex: 2}\n{@column\n  align: center\n}\n# Generative UI\n# with Flutter",
+      "markdown": "{@section flex: 2}\n{@column\n  align: center\n}\n# Generative UI {.heading}\n# with Flutter {.subheading}",
       "sections": [
         {
           "blocks": [
             {
               "align": "center",
-              "content": "# Generative UI\n# with Flutter",
+              "content": "# Generative UI {.heading}\n# with Flutter {.subheading}",
               "scrollable": false
             }
           ],
@@ -21,22 +21,22 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_bCJeLzLi.png",
+          "path": ".superdeck/generated/thumbnail_D36namou.png",
           "width": 512,
           "height": 288
         }
       ]
     },
     {
-      "key": "spKrChRz",
+      "key": "zNJXMoEi",
       "options": {},
-      "markdown": "{@column \n  align: center\n}\n\n#### Leo Farias\n@leoafarias\n\n{@column align: center_left}\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
+      "markdown": "{@column \n  align: center\n}\n\n#### Leo Farias {.heading}\n@leoafarias {.subheading}\n\n{@column align: center_left}\n- Founder/CEO/CTO\n- Open Source Contributor\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX",
       "sections": [
         {
           "blocks": [
             {
               "align": "center",
-              "content": "#### Leo Farias\n@leoafarias\n",
+              "content": "#### Leo Farias {.heading}\n@leoafarias {.subheading}\n",
               "scrollable": false
             },
             {
@@ -51,7 +51,7 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_spKrChRz.png",
+          "path": ".superdeck/generated/thumbnail_zNJXMoEi.png",
           "width": 512,
           "height": 288
         }
@@ -91,20 +91,20 @@
       ]
     },
     {
-      "key": "D4etKl0J",
+      "key": "CAurJ5Yl",
       "options": {},
-      "markdown": "{@column \n  flex: 2 \n  align: center_right\n}\n### Generative UI\n{@column}\n## VS\n{@column flex: 2}\n### AI Assisted Code Generation",
+      "markdown": "{@column \n  flex: 2 \n  align: center_right\n}\n### Generative UI {.heading}\n{@column}\n## VS \n{@column flex: 2}\n### AI Assisted Code Generation",
       "sections": [
         {
           "blocks": [
             {
               "flex": 2,
               "align": "center_right",
-              "content": "### Generative UI",
+              "content": "### Generative UI {.heading}",
               "scrollable": false
             },
             {
-              "content": "## VS",
+              "content": "## VS ",
               "scrollable": false
             },
             {
@@ -119,21 +119,21 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_D4etKl0J.png",
+          "path": ".superdeck/generated/thumbnail_CAurJ5Yl.png",
           "width": 512,
           "height": 288
         }
       ]
     },
     {
-      "key": "4E2GOMRu",
+      "key": "jEZo0jQV",
       "options": {},
-      "markdown": "### What is Generative UI?\n\n{@column}\n\n- LLMs are great at generating content based on context\n- GUIs are great at providing structured, interactive interfaces for user input and navigation",
+      "markdown": "### What is Generative UI? {.heading}\n\n{@column}\n\n- LLMs are great at generating content based on context\n- GUIs are great at providing structured, interactive interfaces for user input and navigation",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### What is Generative UI?\n",
+              "content": "### What is Generative UI? {.heading}\n",
               "scrollable": false
             },
             {
@@ -147,21 +147,21 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_4E2GOMRu.png",
+          "path": ".superdeck/generated/thumbnail_jEZo0jQV.png",
           "width": 512,
           "height": 288
         }
       ]
     },
     {
-      "key": "7qVeHjc5",
+      "key": "BM8dTIiu",
       "options": {},
-      "markdown": "# LLM ❤️ GUI",
+      "markdown": "# LLM ❤️ GUI {.heading}",
       "sections": [
         {
           "blocks": [
             {
-              "content": "# LLM ❤️ GUI",
+              "content": "# LLM ❤️ GUI {.heading}",
               "scrollable": false
             }
           ],
@@ -171,16 +171,16 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_7qVeHjc5.png",
+          "path": ".superdeck/generated/thumbnail_BM8dTIiu.png",
           "width": 512,
           "height": 288
         }
       ]
     },
     {
-      "key": "D6lTKmGt",
+      "key": "rNOkrZ1O",
       "options": {},
-      "markdown": "{@column}\n{@column\n  flex: 2\n  align: center\n}\nCreates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.\n\n{@column}",
+      "markdown": "{@column}\n{@column\n  flex: 5\n  align: center\n}\n### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}\n\n{@column}",
       "sections": [
         {
           "blocks": [
@@ -188,9 +188,9 @@
               "scrollable": false
             },
             {
-              "flex": 2,
+              "flex": 5,
               "align": "center",
-              "content": "Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.\n",
+              "content": "### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}\n",
               "scrollable": false
             },
             {
@@ -203,21 +203,21 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_D6lTKmGt.png",
+          "path": ".superdeck/generated/thumbnail_rNOkrZ1O.png",
           "width": 512,
           "height": 288
         }
       ]
     },
     {
-      "key": "hHrCdu5G",
+      "key": "9ERBjvfD",
       "options": {},
-      "markdown": "### Benefits of UI over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
+      "markdown": "### Benefits over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Benefits of UI over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
+              "content": "### Benefits over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
               "scrollable": false
             }
           ],
@@ -227,7 +227,7 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_hHrCdu5G.png",
+          "path": ".superdeck/generated/thumbnail_9ERBjvfD.png",
           "width": 512,
           "height": 288
         }
@@ -564,7 +564,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_QQJaCN5k.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "B4azSyhQ",
@@ -723,14 +729,14 @@
       ]
     },
     {
-      "key": "5cGNbsJx",
+      "key": "ubDKfZYy",
       "options": {},
-      "markdown": "### Experimental\n\n```dart\nfinal schema = Schema.object(properties: {\n  'textFields': Schema.array(\n    description: 'A list of text fields',\n    items: TextFieldSchemaDto.schema,\n    nullable: true,\n  ),\n  'dropdowns': Schema.array(\n    description: 'A list of dropdowns',\n    items: DropdownSchemaDto.schema,\n    nullable: true,\n  ),\n  'colorPickers': Schema.array(\n    description: 'A list of colors pickers',\n    items: ColorPickerDtoSchema.schema,\n    nullable: true,\n  ),\n});\n\n```",
+      "markdown": "![widget_schema](assets/widget_schema.png)",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Experimental\n\n```dart\nfinal schema = Schema.object(properties: {\n  'textFields': Schema.array(\n    description: 'A list of text fields',\n    items: TextFieldSchemaDto.schema,\n    nullable: true,\n  ),\n  'dropdowns': Schema.array(\n    description: 'A list of dropdowns',\n    items: DropdownSchemaDto.schema,\n    nullable: true,\n  ),\n  'colorPickers': Schema.array(\n    description: 'A list of colors pickers',\n    items: ColorPickerDtoSchema.schema,\n    nullable: true,\n  ),\n});\n\n```",
+              "content": "![widget_schema](assets/widget_schema.png)",
               "scrollable": false
             }
           ],
@@ -740,7 +746,84 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_5cGNbsJx.png",
+          "path": ".superdeck/generated/thumbnail_ubDKfZYy.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
+    },
+    {
+      "key": "qm5WqrJY",
+      "options": {},
+      "markdown": "{@column flex: 2}\n### Dropdown Widget Schema\n\n```dart\nclass DropdownSchemaDto {\n  final String label;\n  final String currentValue;\n  final List<String> options;\n\n  DropdownSchemaDto({\n    required this.label,\n    required this.currentValue,\n    required this.options,\n  });\n\n```\n{@column flex: 3}\n\n```dart\n  static final schema = Schema.object(properties: {\n    'label': Schema.string(\n      description: 'The label of the dropdown',\n      nullable: false,\n    ),\n    'currentValue': Schema.string(\n      description: 'The currentValue of the dropdown',\n      nullable: false,\n    ),\n    'options': Schema.array(\n      description: 'The options of the dropdown',\n      items: Schema.string(\n        description: 'The options of the dropdown',\n        nullable: false,\n      ),\n      nullable: false,\n    )\n  });\n}\n```",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "flex": 2,
+              "content": "### Dropdown Widget Schema\n\n```dart\nclass DropdownSchemaDto {\n  final String label;\n  final String currentValue;\n  final List<String> options;\n\n  DropdownSchemaDto({\n    required this.label,\n    required this.currentValue,\n    required this.options,\n  });\n\n```",
+              "scrollable": false
+            },
+            {
+              "flex": 3,
+              "content": "```dart\n  static final schema = Schema.object(properties: {\n    'label': Schema.string(\n      description: 'The label of the dropdown',\n      nullable: false,\n    ),\n    'currentValue': Schema.string(\n      description: 'The currentValue of the dropdown',\n      nullable: false,\n    ),\n    'options': Schema.array(\n      description: 'The options of the dropdown',\n      items: Schema.string(\n        description: 'The options of the dropdown',\n        nullable: false,\n      ),\n      nullable: false,\n    )\n  });\n}\n```",
+              "scrollable": false
+            }
+          ],
+          "type": "section"
+        }
+      ],
+      "notes": [],
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_qm5WqrJY.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
+    },
+    {
+      "key": "LgjZ2pSq",
+      "options": {},
+      "markdown": "### Dropdown Schema Builder\n\n{@column flex: 2}\n```dart\n ListTile(\n  title: Text(schema.label),\n  trailing: DropdownButton<String>(\n    value: schema.currentValue,\n    items: schema.options.map((option) {\n      return DropdownMenuItem<String>(\n        value: option,\n        child: Text(option),\n      );\n    }).toList(),\n    onChanged: (newValue) {},\n  ),\n);\n```",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "content": "### Dropdown Schema Builder\n",
+              "scrollable": false
+            },
+            {
+              "flex": 2,
+              "content": "```dart\n ListTile(\n  title: Text(schema.label),\n  trailing: DropdownButton<String>(\n    value: schema.currentValue,\n    items: schema.options.map((option) {\n      return DropdownMenuItem<String>(\n        value: option,\n        child: Text(option),\n      );\n    }).toList(),\n    onChanged: (newValue) {},\n  ),\n);\n```",
+              "scrollable": false
+            }
+          ],
+          "type": "section"
+        }
+      ],
+      "notes": [],
+      "assets": []
+    },
+    {
+      "key": "Wxrj9iSH",
+      "options": {},
+      "markdown": "### Widget Schemas\n\n\n```dart\nfinal schema = Schema.object(properties: {\n  'textFields': Schema.array(\n    description: 'A list of text fields',\n    items: TextFieldSchemaDto.schema,\n    nullable: true,\n  ),\n  'dropdowns': Schema.array(\n    description: 'A list of dropdowns',\n    items: DropdownSchemaDto.schema,\n    nullable: true,\n  ),\n  'colorPickers': Schema.array(\n    description: 'A list of colors pickers',\n    items: ColorPickerDtoSchema.schema,\n    nullable: true,\n  ),\n});\n\n```",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "content": "### Widget Schemas\n\n\n```dart\nfinal schema = Schema.object(properties: {\n  'textFields': Schema.array(\n    description: 'A list of text fields',\n    items: TextFieldSchemaDto.schema,\n    nullable: true,\n  ),\n  'dropdowns': Schema.array(\n    description: 'A list of dropdowns',\n    items: DropdownSchemaDto.schema,\n    nullable: true,\n  ),\n  'colorPickers': Schema.array(\n    description: 'A list of colors pickers',\n    items: ColorPickerDtoSchema.schema,\n    nullable: true,\n  ),\n});\n\n```",
+              "scrollable": false
+            }
+          ],
+          "type": "section"
+        }
+      ],
+      "notes": [],
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_Wxrj9iSH.png",
           "width": 512,
           "height": 288
         }
@@ -781,14 +864,16 @@
       ]
     },
     {
-      "key": "3kW1wOHd",
-      "options": {},
-      "markdown": "## The future of UI might be orchestrating user experiences rather than creating it.",
+      "key": "OnQyKozf",
+      "options": {
+        "style": "quote"
+      },
+      "markdown": "> The future of UI might be orchestrating user\n> experiences rather than creating it.",
       "sections": [
         {
           "blocks": [
             {
-              "content": "## The future of UI might be orchestrating user experiences rather than creating it.",
+              "content": "> The future of UI might be orchestrating user\n> experiences rather than creating it.",
               "scrollable": false
             }
           ],
@@ -798,7 +883,7 @@
       "notes": [],
       "assets": [
         {
-          "path": ".superdeck/generated/thumbnail_3kW1wOHd.png",
+          "path": ".superdeck/generated/thumbnail_OnQyKozf.png",
           "width": 512,
           "height": 288
         }

@@ -4,8 +4,8 @@
 {@column
   align: center
 }
-# Generative UI
-# with Flutter
+# Generative UI {.heading}
+# with Flutter {.subheading}
 
 ---
 ---
@@ -13,8 +13,8 @@
   align: center
 }
 
-#### Leo Farias
-@leoafarias
+#### Leo Farias {.heading}
+@leoafarias {.subheading}
 
 {@column align: center_left}
 - Founder/CEO/CTO
@@ -41,15 +41,15 @@
   flex: 2 
   align: center_right
 }
-### Generative UI
+### Generative UI {.heading}
 {@column}
-## VS
+## VS 
 {@column flex: 2}
 ### AI Assisted Code Generation
 
 ---
 ---
-### What is Generative UI?
+### What is Generative UI? {.heading}
 
 {@column}
 
@@ -58,22 +58,22 @@
 
 ---
 ---
-# LLM ❤️ GUI
+# LLM ❤️ GUI {.heading}
 
 ---
 ---
 {@column}
 {@column
-  flex: 2
+  flex: 5
   align: center
 }
-Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses.
+### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
 
 {@column}
 
 ---
 ---
-### Benefits of UI over Chat
+### Benefits over Chat
 
 - More intuitive and user-friendly, especially for complex tasks
 - Faster feedback loop between users and LLMs
@@ -361,7 +361,75 @@ style: 'demo'
 
 ---
 ---
-### Experimental
+![widget_schema](assets/widget_schema.png)
+
+---
+---
+{@column flex: 2}
+### Dropdown Widget Schema
+
+```dart
+class DropdownSchemaDto {
+  final String label;
+  final String currentValue;
+  final List<String> options;
+
+  DropdownSchemaDto({
+    required this.label,
+    required this.currentValue,
+    required this.options,
+  });
+
+```
+{@column flex: 3}
+
+```dart
+  static final schema = Schema.object(properties: {
+    'label': Schema.string(
+      description: 'The label of the dropdown',
+      nullable: false,
+    ),
+    'currentValue': Schema.string(
+      description: 'The currentValue of the dropdown',
+      nullable: false,
+    ),
+    'options': Schema.array(
+      description: 'The options of the dropdown',
+      items: Schema.string(
+        description: 'The options of the dropdown',
+        nullable: false,
+      ),
+      nullable: false,
+    )
+  });
+}
+```
+
+---
+---
+### Dropdown Schema Builder
+
+{@column flex: 2}
+```dart
+ ListTile(
+  title: Text(schema.label),
+  trailing: DropdownButton<String>(
+    value: schema.currentValue,
+    items: schema.options.map((option) {
+      return DropdownMenuItem<String>(
+        value: option,
+        child: Text(option),
+      );
+    }).toList(),
+    onChanged: (newValue) {},
+  ),
+);
+```
+
+---
+---
+### Widget Schemas
+
 
 ```dart
 final schema = Schema.object(properties: {
@@ -397,8 +465,10 @@ style: 'demo'
 }
 
 ---
+style: 'quote'
 ---
-## The future of UI might be orchestrating user experiences rather than creating it.
+> The future of UI might be orchestrating user
+> experiences rather than creating it.
 
 ---
 ---

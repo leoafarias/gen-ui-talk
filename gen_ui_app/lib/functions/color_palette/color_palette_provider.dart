@@ -5,7 +5,7 @@ import '../../ai/controllers/provider_helpers.dart';
 import 'color_palette_dto.dart';
 
 final _history = [
-  Content.text('in`spirational'),
+  Content.text('inspirational'),
   Content.model(
     [
       TextPart(
@@ -81,6 +81,18 @@ final _history = [
       bottomRightColor: const Color(0xFF40E0D0),
     ).toJson()),
   ]),
+  Content.text('calm'),
+  Content.model([
+    TextPart(ColorPaletteDto(
+      name: 'Tranquil Serenity',
+      font: ColorPaletteFontFamily.pacifico,
+      fontColor: const Color(0xFF333333),
+      topLeftColor: const Color(0xFFADD8E6),
+      topRightColor: const Color(0xFF90EE90),
+      bottomLeftColor: const Color(0xFFD3D3D3),
+      bottomRightColor: const Color(0xFFE0FFFF),
+    ).toJson()),
+  ]),
 ];
 
 const _systemInstructions = '''
@@ -88,7 +100,7 @@ You are a color palette generator.
 
 A color palette is a set of colors that work well together.
 
-- name: The name of the color palette.
+- name: A creative name for the color palette.
 - colorPaletteTextFont: The font family for the colorPalette text.
 - colorPaletteTextColor: The color to overlay the name on top of the color palette.
 - topLeftColor: The first color in the palette.
