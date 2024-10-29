@@ -23,7 +23,7 @@ slides:
       - path: '.superdeck/generated/thumbnail_D36namou.png'
         width: 512
         height: 288
-  - key: 'zNJXMoEi'
+  - key: 'brprlAOT'
     options: {}
     markdown: |-
       {@column 
@@ -35,7 +35,7 @@ slides:
       
       {@column align: center_left}
       - Founder/CEO/CTO
-      - Open Source Contributor
+      - Open Source Contributor (fvm, mix, superdeck, others..)
       - Flutter & Dart GDE
       - Passionate about UI/UX/DX
     sections:
@@ -48,17 +48,14 @@ slides:
           - align: 'center_left'
             content: |-
               - Founder/CEO/CTO
-              - Open Source Contributor
+              - Open Source Contributor (fvm, mix, superdeck, others..)
               - Flutter & Dart GDE
               - Passionate about UI/UX/DX
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_zNJXMoEi.png'
-        width: 512
-        height: 288
-  - key: 'OnZ1cviT'
+    assets: []
+  - key: 'JRXV2rTe'
     options: {}
     markdown: |-
       {@column}
@@ -68,7 +65,7 @@ slides:
         flex: 2
       }
       > [!WARNING]  
-      > This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
+      > Esta presentación contiene contenido generado en vivo por IA. Durante la demostración pueden ocurrir eventos inesperados
       
       {@column}
     sections:
@@ -79,16 +76,13 @@ slides:
             align: 'center_left'
             content: |
               > [!WARNING]  
-              > This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
+              > Esta presentación contiene contenido generado en vivo por IA. Durante la demostración pueden ocurrir eventos inesperados
             scrollable: false
           - scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_OnZ1cviT.png'
-        width: 512
-        height: 288
-  - key: 'CAurJ5Yl'
+    assets: []
+  - key: 'gTvLpmRu'
     options: {}
     markdown: |-
       {@column 
@@ -113,34 +107,28 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_CAurJ5Yl.png'
-        width: 512
-        height: 288
-  - key: 'jEZo0jQV'
+    assets: []
+  - key: 'pU4bIipS'
     options: {}
     markdown: |-
-      ### What is Generative UI? {.heading}
+      ### ¿Qué es una UI Generativa? {.heading}
       
       {@column}
       
-      - LLMs are great at generating content based on context
-      - GUIs are great at providing structured, interactive interfaces for user input and navigation
+      - Los LLM son excelentes para generar contenido basado en el contexto.
+      - Las GUI son excelentes para proporcionar interfaces estructuradas e interactivas para la entrada de usuario y navegación.
     sections:
       - blocks:
           - content: |
-              ### What is Generative UI? {.heading}
+              ### ¿Qué es una UI Generativa? {.heading}
             scrollable: false
           - content: |-
-              - LLMs are great at generating content based on context
-              - GUIs are great at providing structured, interactive interfaces for user input and navigation
+              - Los LLM son excelentes para generar contenido basado en el contexto.
+              - Las GUI son excelentes para proporcionar interfaces estructuradas e interactivas para la entrada de usuario y navegación.
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_jEZo0jQV.png'
-        width: 512
-        height: 288
+    assets: []
   - key: 'BM8dTIiu'
     options: {}
     markdown: '# LLM ❤️ GUI {.heading}'
@@ -154,7 +142,7 @@ slides:
       - path: '.superdeck/generated/thumbnail_BM8dTIiu.png'
         width: 512
         height: 288
-  - key: 'rNOkrZ1O'
+  - key: 'ZpiYHha1'
     options: {}
     markdown: |-
       {@column}
@@ -162,7 +150,7 @@ slides:
         flex: 5
         align: center
       }
-      ### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
+      ### Crea interfaces dinámicas y sensibles al contexto al interpretar acciones y mantener el estado con LLMs para respuestas fluidas e interactivas. {.heading}
       
       {@column}
     sections:
@@ -171,65 +159,63 @@ slides:
           - flex: 5
             align: 'center'
             content: |
-              ### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
+              ### Crea interfaces dinámicas y sensibles al contexto al interpretar acciones y mantener el estado con LLMs para respuestas fluidas e interactivas. {.heading}
             scrollable: false
           - scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_rNOkrZ1O.png'
-        width: 512
-        height: 288
-  - key: '9ERBjvfD'
+    assets: []
+  - key: 'ZhsL96Je'
     options: {}
     markdown: |-
-      ### Benefits over Chat
+      ### Ventajas sobre el chat
       
-      - More intuitive and user-friendly, especially for complex tasks
-      - Faster feedback loop between users and LLMs
-      - Enhances efficiency and interaction
+      -	Más intuitivo y fácil de usar, especialmente para tareas complejas
+      -	Ciclo de feedback más rápido entre usuarios y LLMs
+      -	Mejora la eficiencia y la interacción
     sections:
       - blocks:
           - content: |-
-              ### Benefits over Chat
+              ### Ventajas sobre el chat
               
-              - More intuitive and user-friendly, especially for complex tasks
-              - Faster feedback loop between users and LLMs
-              - Enhances efficiency and interaction
+              -	Más intuitivo y fácil de usar, especialmente para tareas complejas
+              -	Ciclo de feedback más rápido entre usuarios y LLMs
+              -	Mejora la eficiencia y la interacción
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_9ERBjvfD.png'
-        width: 512
-        height: 288
-  - key: 'BCBPTGpJ'
+    assets: []
+  - key: 'oVui9VPS'
     options: {}
     markdown: |-
+      {@column}
+      
       {@column
         flex: 3 
         align: center
       }
-      ### Flutter is Well-Suited for Generative UI
-      Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
+      ### Flutter es ideal para UI Generativa
+      Built for any screen: Ideal para generar UIs adaptativas en diversos dispositivos y plataformas.
+      
+      {@column}
     sections:
       - blocks:
+          - content: ''
+            scrollable: false
           - flex: 3
             align: 'center'
-            content: |-
-              ### Flutter is Well-Suited for Generative UI
-              Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
+            content: |
+              ### Flutter es ideal para UI Generativa
+              Built for any screen: Ideal para generar UIs adaptativas en diversos dispositivos y plataformas.
             scrollable: false
+          - scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_BCBPTGpJ.png'
-        width: 512
-        height: 288
-  - key: '6Jo26Y4b'
+    assets: []
+  - key: 'jIeTulIX'
     options: {}
     markdown: |-
-      ## How can LLMs Understand Your UI?
+      ### ¿Cómo pueden los LLM comprender tu UI?
       
       {@column}
       
@@ -237,22 +223,19 @@ slides:
     sections:
       - blocks:
           - content: |
-              ## How can LLMs Understand Your UI?
+              ### ¿Cómo pueden los LLM comprender tu UI?
             scrollable: false
           - content: '![structured_output](assets/structured_output.png)'
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_6Jo26Y4b.png'
-        width: 512
-        height: 288
-  - key: 'jDEVRy3D'
+    assets: []
+  - key: '3gDaO4JA'
     options: {}
     markdown: |-
       {@column}
       
-      ### Define the Schema {.heading}
+      ### Definir el schema{.heading}
       
       {@column}
       
@@ -274,7 +257,7 @@ slides:
     sections:
       - blocks:
           - content: |
-              ### Define the Schema {.heading}
+              ### Definir el schema{.heading}
             scrollable: false
           - content: |-
               ```dart
@@ -295,16 +278,13 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_jDEVRy3D.png'
-        width: 512
-        height: 288
-  - key: '3diQGYW8'
+    assets: []
+  - key: 'Mmn4FSEE'
     options: {}
     markdown: |-
       {@column align: bottom_center}
       
-      ### Configure responseMimeType & responseSchema {.heading}
+      ### Configurar responseMimeType y responseSchema {.heading}
       
       {@column}
       
@@ -337,7 +317,7 @@ slides:
       - blocks:
           - align: 'bottom_center'
             content: |
-              ### Configure responseMimeType & responseSchema {.heading}
+              ### Configurar responseMimeType y responseSchema {.heading}
             scrollable: false
           - content: |-
               ```dart
@@ -368,11 +348,8 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_3diQGYW8.png'
-        width: 512
-        height: 288
-  - key: 'CnWvT9H8'
+    assets: []
+  - key: 'KvQsJipa'
     options: {}
     markdown: |-
       {@section flex: 2}
@@ -380,7 +357,7 @@ slides:
       
       {@column flex: 2}
       
-      #### Passing a prompt to your model {.heading}
+      #### Pasar un prompt a tu modelo {.heading}
       
       {@column flex: 3}
       
@@ -420,7 +397,7 @@ slides:
       - blocks:
           - flex: 2
             content: |
-              #### Passing a prompt to your model {.heading}
+              #### Pasar un prompt a tu modelo {.heading}
             scrollable: false
           - flex: 3
             content: |
@@ -459,17 +436,14 @@ slides:
         flex: 3
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_CnWvT9H8.png'
-        width: 512
-        height: 288
-  - key: '6EU2Xxrf'
+    assets: []
+  - key: 'YJuyTjvl'
     options: {}
     markdown: |-
       {@column}
-      ### Color Palette Generator
+      ### Generador de paleta de colores
       
-      Generate a color palette based on a given text.
+      Genera una paleta de colores basada en un texto dado.
       
       - Name of the palette
       - Font family
@@ -478,9 +452,9 @@ slides:
     sections:
       - blocks:
           - content: |-
-              ### Color Palette Generator
+              ### Generador de paleta de colores
               
-              Generate a color palette based on a given text.
+              Genera una paleta de colores basada en un texto dado.
               
               - Name of the palette
               - Font family
@@ -489,10 +463,7 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_6EU2Xxrf.png'
-        width: 512
-        height: 288
+    assets: []
   - key: 'yo70fIoq'
     options: {}
     markdown: |-
@@ -662,19 +633,16 @@ slides:
       - path: '.superdeck/generated/thumbnail_UCL3ljnv.png'
         width: 512
         height: 288
-  - key: 'H0jUl8Aj'
+  - key: 'NQNfkx8t'
     options: {}
-    markdown: '## LLMs Orchestrate APIs'
+    markdown: '## Los LLM orquestan APIs'
     sections:
       - blocks:
-          - content: '## LLMs Orchestrate APIs'
+          - content: '## Los LLM orquestan APIs'
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_H0jUl8Aj.png'
-        width: 512
-        height: 288
+    assets: []
   - key: 'QQJaCN5k'
     options: {}
     markdown: |-
@@ -737,7 +705,7 @@ slides:
       - path: '.superdeck/generated/thumbnail_B4azSyhQ.png'
         width: 512
         height: 288
-  - key: '5dttoW9C'
+  - key: 'hBq6XCkc'
     options: {}
     markdown: |-
       {@column 
@@ -745,7 +713,7 @@ slides:
       }
       
       ### User Interaction {.heading}
-      Natural Language way to interact with an LLM
+      Forma de interactuar con un LLM mediante lenguaje natural
       
       {@column
         flex: 2
@@ -756,17 +724,14 @@ slides:
           - align: 'bottom_right'
             content: |
               ### User Interaction {.heading}
-              Natural Language way to interact with an LLM
+              Forma de interactuar con un LLM mediante lenguaje natural
             scrollable: false
           - flex: 2
             content: '![llm response](assets/llm_interaction.png)'
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_5dttoW9C.png'
-        width: 512
-        height: 288
+    assets: []
   - key: '8I3fvDqR'
     options: {}
     markdown: |-
@@ -827,19 +792,16 @@ slides:
       - path: '.superdeck/generated/thumbnail_wcrXMfUu.png'
         width: 512
         height: 288
-  - key: 'pNxPyfLK'
+  - key: '9yZftHgP'
     options: {}
-    markdown: '## What if the tool to use is a widget schema?'
+    markdown: '## ¿Qué pasa si la herramienta a usar es un esquema de widget?'
     sections:
       - blocks:
-          - content: '## What if the tool to use is a widget schema?'
+          - content: '## ¿Qué pasa si la herramienta a usar es un esquema de widget?'
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_pNxPyfLK.png'
-        width: 512
-        height: 288
+    assets: []
   - key: 'ubDKfZYy'
     options: {}
     markdown: '![widget_schema](assets/widget_schema.png)'
@@ -1080,28 +1042,31 @@ slides:
       - path: '.superdeck/generated/thumbnail_aJu8RjyT.png'
         width: 512
         height: 288
-  - key: 'OnQyKozf'
+  - key: 'nuYiXDBE'
     options:
       style: 'quote'
     markdown: |-
       > The future of UI might be orchestrating user
       > experiences rather than creating it.
+      
+      > El futuro de la UI podría ser orquestar
+      > experiencias de usuario en lugar de crearlas.
     sections:
       - blocks:
           - content: |-
               > The future of UI might be orchestrating user
               > experiences rather than creating it.
+              
+              > El futuro de la UI podría ser orquestar
+              > experiencias de usuario en lugar de crearlas.
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_OnQyKozf.png'
-        width: 512
-        height: 288
-  - key: 'UqCN11cB'
+    assets: []
+  - key: 'npC7NNxN'
     options: {}
     markdown: |-
-      ### Thank you
+      ### Gracias
       
       Leo Farias
       @leoafarias
@@ -1109,7 +1074,7 @@ slides:
     sections:
       - blocks:
           - content: |-
-              ### Thank you
+              ### Gracias
               
               Leo Farias
               @leoafarias
@@ -1117,7 +1082,4 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets:
-      - path: '.superdeck/generated/thumbnail_UqCN11cB.png'
-        width: 512
-        height: 288
+    assets: []
