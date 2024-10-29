@@ -72,7 +72,7 @@ class ColorPaletteUpdatablePage extends HookWidget {
           ),
           leftWidget: const SizedBox(),
         ),
-        renderOptionTypeWidget(options.type),
+        renderOptionTypeWidget(options.kind),
       ],
     );
   }

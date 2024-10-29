@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:superdeck/superdeck.dart';
 
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
@@ -56,27 +57,27 @@ enum GenAIOptionType {
 }
 
 class GenAiWidgetOptions {
-  final GenAIOptionType type;
+  final GenAIOptionType kind;
   final List<String> prompts;
   const GenAiWidgetOptions(
-      {this.type = GenAIOptionType.chat, this.prompts = const []});
+      {this.kind = GenAIOptionType.chat, this.prompts = const []});
 
   static GenAiWidgetOptions fromMap(Map<String, dynamic> map) {
     return GenAiWidgetOptions(
-      type: GenAIOptionType.fromString(map['type']),
+      kind: GenAIOptionType.fromString(map['kind']),
       prompts: (map['prompts'] as List<dynamic>).cast<String>(),
     );
   }
 
-  bool get isSchema => type == GenAIOptionType.schema;
-  bool get isWidget => type == GenAIOptionType.widget;
-  bool get isChat => type == GenAIOptionType.chat;
+  bool get isSchema => kind == GenAIOptionType.schema;
+  bool get isWidget => kind == GenAIOptionType.widget;
+  bool get isChat => kind == GenAIOptionType.chat;
 }
 
 class LightControlPage extends HookWidget {
   const LightControlPage(this.options, {super.key});
 
-  final options;
+  final WidgetBlock options;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +136,7 @@ class LightControlPage extends HookWidget {
               ),
             ],
           ),
-          renderOptionTypeWidget(options.type),
+          renderOptionTypeWidget(options.kind),
         ],
       ),
     );

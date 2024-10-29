@@ -56,7 +56,7 @@ class DemoStyle extends DeckStyle {
   DemoStyle();
   @override
   Style build() {
-    return Style($.slideContainer.padding(0));
+    return Style($.blockContainer.padding(0));
   }
 }
 
@@ -91,7 +91,7 @@ class AnnouncementStyle extends DeckStyle {
               ..style.fontSize(60)
               ..style.color(Colors.white)
               ..style.fontWeight(FontWeight.w100),
-            $.contentContainer.gradient.linear(
+            $.blockContainer.gradient.linear(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
@@ -131,7 +131,7 @@ class ShowSectionsStyle extends DeckStyle {
   Style build() {
     return super.build().merge(
           Style(
-            $.slideContainer.chain
+            $.blockContainer.chain
               ..borderRadius(10)
               ..border.all(
                 color: Colors.blue,

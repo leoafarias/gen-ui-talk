@@ -1,25 +1,8 @@
 ---
-{@column 
-  align: center
-  flex: 1
-}
-#### Leo Farias
-@leoafarias
-
-{@column align: center_right}
-- Founder/CEO/CTO
-- Open Source Contributor
-- Flutter & Dart GDE
-- Passionate about UI/UX/DX
-
-
-
----
 
 {@section flex: 2}
 {@column
   align: center
-  tag: heading
 }
 # Generative UI
 # with Flutter
@@ -28,19 +11,19 @@
 
 {@column 
   align: center
-  flex: 1
 }
+
 #### Leo Farias
 @leoafarias
 
-{@column align: center_right}
+{@column align: center_left}
 - Founder/CEO/CTO
 - Open Source Contributor
 - Flutter & Dart GDE
 - Passionate about UI/UX/DX
 
 
-{@column}
+
 
 ---
 {@column}
@@ -111,20 +94,22 @@ Creates dynamic, context-aware UIs by interpreting actions and maintaining state
 }
 ### Flutter is Well-Suited for Generative UI
 Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
-{@column}
+
 
 ---
 
-## How can LLMs Understtand Your UI?
+## How can LLMs Understand Your UI?
 
-{@column tag: image}
+{@column}
+
 ![structured_output](assets/structured_output.png)
 
 
 ---
 {@column}
 
-## Structured Output
+### Define the Schema {.heading}
+
 {@column}
 
 ```dart
@@ -141,6 +126,31 @@ final schema = Schema.array(
   ),
 );
 
+```{.code}
+
+---
+
+{@column align: bottom_center}
+
+### Configure responseMimeType & responseSchema {.heading}
+
+{@column}
+
+```dart
+final schema = Schema.array(
+  description: 'List of recipes',
+  items: Schema.object(
+    properties: {
+      'recipeName': Schema.string(
+        description: 'Name of the recipe.',
+        nullable: false,
+      ),
+    },
+    requiredProperties: ['recipeName'],
+  ),
+);
+
+
 final model = GenerativeModel(
   model: 'gemini-1.5-pro',
   apiKey: apiKey,
@@ -150,10 +160,53 @@ final model = GenerativeModel(
   ),
 );
 
+```{.code}
+
+---
+
+{@section flex: 2}
+
+
+{@column flex: 2}
+
+#### Passing a prompt to your model {.heading}
+
+{@column flex: 3}
+
+```dart
 final prompt = 'List a few popular cookie recipes.';
 final response = await model.generateContent([Content.text(prompt)]);
 
+print(response.candidates.first.content);
+
+```{.code}
+
+{@section flex: 3}
+
+{@column 
+  flex: 2
+  align: bottom_left
+}
+
+#### JSON Response
+
+{@column flex: 3}
+
+```json
+[
+  {
+    "recipeName": "Chocolate Chip Cookies"
+  },
+  {
+    "recipeName": "Peanut Butter Cookies"
+  },
+  {
+    "recipeName": "Snickerdoodles"
+  }
+]
 ```
+
+
 
 ---
 
@@ -169,7 +222,7 @@ Generate a color palette based on a given text.
 
 --- 
 
-{@column}
+
 ```dart
 final schema = Schema.object(properties: {
   'name': Schema.string(
@@ -223,7 +276,7 @@ style: demo
 ---
 
 {@colorPalette
-  type: schema
+  kind: schema
   prompts:
     - tropical
     - vibrant
@@ -237,7 +290,7 @@ style: demo
 ---
 
 {@colorPalette
-  type: widget
+  kind: widget
   prompts:
     - tropical
     - vibrant
@@ -252,16 +305,13 @@ style: demo
 
 ---
 
-{@column 
-  align: center_right
-  tag: heading
-  flex: 3
-} 
-
-### Gemini Function Calling
+{@section} 
+{@column}
+#### Gemini Function Calling
+{@column}
 The Function Calling feature is in Beta release
 
-
+{@section flex: 4}
 ![llm tools](assets/llm_tools.png){.cover}
 
 
@@ -271,7 +321,7 @@ style: demo
 ---
 
 {@lightControl 
-  type: schema
+  kind: schema
   prompts:
     - Dim the lights by 20
     - Increase by 35
@@ -285,15 +335,13 @@ style: demo
 
 {@column 
   align: bottom_right
-  tag: heading
 }
 
-### User Interaction
+### User Interaction {.heading}
 Natural Language way to interact with an LLM
 
 {@column
-  tag: image
-  flex: 3
+  flex: 2
 }
 ![llm response](assets/llm_interaction.png)
 
@@ -303,13 +351,11 @@ Natural Language way to interact with an LLM
 
 {@column
   align: center_left
-  tag: heading
 }
-### Widget Response
+### Widget Response {.heading}
 
 {@column 
   flex: 3
-  tag: image
 }
 ![widget_response](assets/widget_response.png)
 
@@ -320,7 +366,7 @@ style: demo
 ---
 
 {@lightControl
-  type: widget
+  kind: widget
   prompts:
     - Dim the lights by 20
     - Increase by 35
@@ -364,7 +410,7 @@ style: demo
 ---
 
 {@widgetSchema
-  type: widget
+  kind: widget
   prompts:
     - Change top colors
     - Change font
