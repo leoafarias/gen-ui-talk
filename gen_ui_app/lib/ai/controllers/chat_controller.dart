@@ -209,7 +209,7 @@ class ChatControllerProvider extends InheritedNotifier<ChatController> {
 
 ChatController useChatController(
   LlmProvider provider, {
-  bool streamResponse = true,
+  bool streamResponse = false,
 }) {
   return use(_ChatControllerHook(
     provider,
