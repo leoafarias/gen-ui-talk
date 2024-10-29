@@ -110,7 +110,8 @@ class LightControlPage extends HookWidget {
       sampleInputs: options.prompts,
       rightWidget: ChatView(
         controller: controller,
-        functionElementBuilder: updateBrightnessWidget.tryRender,
+        functionElementBuilder:
+            options.isSchema ? null : updateBrightnessWidget.tryRender,
         style: const LlmChatViewStyle(
           backgroundColor: ui.Color.fromARGB(247, 12, 5, 23),
         ),

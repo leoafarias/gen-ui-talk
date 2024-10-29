@@ -31,27 +31,23 @@ class ColorPaletteUpdatableResponseView extends HookWidget {
       for (int i = 0; i < data.dropdowns!.length; i++) {
         final dropdownData = data.dropdowns![i];
         widgets.add(
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(dropdownData.label,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 24)),
-              const Spacer(),
-              DropdownButton<String>(
-                style: const TextStyle(
-                  fontSize: 24,
-                ),
-                value: dropdownData.currentValue,
-                items: dropdownData.options.map((option) {
-                  return DropdownMenuItem<String>(
-                    value: option,
-                    child: Text(option),
-                  );
-                }).toList(),
-                onChanged: (newValue) {},
+          ListTile(
+            title: Text(dropdownData.label,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+            trailing: DropdownButton<String>(
+              style: const TextStyle(
+                fontSize: 24,
               ),
-            ],
+              value: dropdownData.currentValue,
+              items: dropdownData.options.map((option) {
+                return DropdownMenuItem<String>(
+                  value: option,
+                  child: Text(option),
+                );
+              }).toList(),
+              onChanged: (newValue) {},
+            ),
           ),
         );
       }
@@ -61,7 +57,10 @@ class ColorPaletteUpdatableResponseView extends HookWidget {
     for (int i = 0; i < selectedColors.value.length; i++) {
       widgets.add(
         ListTile(
-          title: Text(colorPickerLabels[i]),
+          title: Text(
+            colorPickerLabels[i],
+            style: const TextStyle(fontSize: 24),
+          ),
           trailing: GestureDetector(
             onTap: () async {
               Color pickedColor = selectedColors.value[i];
@@ -106,15 +105,15 @@ class ColorPaletteUpdatableResponseView extends HookWidget {
       );
     }
 
-    return SingleChildScrollView(
-      child: Expanded(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: widgets,
-          ),
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // children: widgets,
+        // add a horizontal diider to all the widgets
+        children:
+            widgets.expand((element) => [element, const Divider()]).toList()
+              ..removeLast(),
       ),
     );
   }

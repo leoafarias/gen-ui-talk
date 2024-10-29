@@ -85,10 +85,10 @@ class GeminiProvider extends LlmProvider {
             yield widgetEl;
             await widgetEl.exec(call.args);
           }
+        } else {
+          final text = chunk.text ?? '';
+          if (text.isNotEmpty) yield LlmTextElement(text: text);
         }
-
-        final text = chunk.text ?? '';
-        if (text.isNotEmpty) yield LlmTextElement(text: text);
       }
     }
   }
@@ -119,26 +119,20 @@ class GeminiProvider extends LlmProvider {
       functionParts.add(widgetEl);
     }
 
-    final parts = [
-      ...functionParts,
-      ...content.parts
-          .whereType<TextPart>()
-          .map((e) => LlmTextElement(text: e.text)),
-    ];
-
     if (functionParts.isNotEmpty) {
       final textResponse = await chat.sendMessage(
         Content.functionResponses(
             functionParts.map((e) => FunctionResponse(e.name, e.response))),
       );
 
-      final textPart = textResponse.text ?? '';
-      if (textPart.isNotEmpty) {
-        parts.add(LlmTextElement(text: textPart));
-      }
+      return [...functionParts, ...await _getPartsFromResponse(textResponse)];
     }
 
-    return parts;
+    return [
+      ...content.parts
+          .whereType<TextPart>()
+          .map((e) => LlmTextElement(text: e.text))
+    ];
   }
 
   Part _partFrom(Attachment attachment) => switch (attachment) {
