@@ -116,7 +116,7 @@ class QuoteStyle extends DeckStyle {
                     width: 4,
                     color: Colors.red,
                   ),
-            $.p.style.fontSize(32),
+            $.p.style.fontSize(46),
             $.h6.chain
               ..style.as(GoogleFonts.notoSerif())
               ..style.fontSize(20),
