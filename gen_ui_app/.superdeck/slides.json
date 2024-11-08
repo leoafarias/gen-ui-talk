@@ -49,7 +49,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_brprlAOT.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "JRXV2rTe",
@@ -76,7 +82,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_JRXV2rTe.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "gTvLpmRu",
@@ -105,7 +117,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_gTvLpmRu.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "pU4bIipS",
@@ -127,7 +145,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_pU4bIipS.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "BM8dTIiu",
@@ -177,7 +201,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_ZpiYHha1.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "ZhsL96Je",
@@ -195,7 +225,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_ZhsL96Je.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "oVui9VPS",
@@ -222,7 +258,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_oVui9VPS.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "jIeTulIX",
@@ -244,7 +286,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_jIeTulIX.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "3gDaO4JA",
@@ -266,7 +314,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_3gDaO4JA.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "Mmn4FSEE",
@@ -289,7 +343,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_Mmn4FSEE.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "KvQsJipa",
@@ -331,7 +391,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_KvQsJipa.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "YJuyTjvl",
@@ -349,7 +415,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_YJuyTjvl.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "yo70fIoq",
@@ -461,7 +533,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_NQNfkx8t.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "QQJaCN5k",
@@ -559,7 +637,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_hBq6XCkc.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "8I3fvDqR",
@@ -643,7 +727,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_9yZftHgP.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "ubDKfZYy",
@@ -720,7 +810,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_LgjZ2pSq.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     },
     {
       "key": "Wxrj9iSH",
@@ -781,16 +877,16 @@
       ]
     },
     {
-      "key": "nuYiXDBE",
+      "key": "T7Vnr2z5",
       "options": {
         "style": "quote"
       },
-      "markdown": "> The future of UI might be orchestrating user\n> experiences rather than creating it.\n\n> El futuro de la UI podría ser orquestar\n> experiencias de usuario en lugar de crearlas.",
+      "markdown": "> El futuro de la UI podría ser orquestar\n> experiencias de usuario en lugar de crearlas.",
       "sections": [
         {
           "blocks": [
             {
-              "content": "> The future of UI might be orchestrating user\n> experiences rather than creating it.\n\n> El futuro de la UI podría ser orquestar\n> experiencias de usuario en lugar de crearlas.",
+              "content": "> El futuro de la UI podría ser orquestar\n> experiencias de usuario en lugar de crearlas.",
               "scrollable": false
             }
           ],
@@ -801,14 +897,18 @@
       "assets": []
     },
     {
-      "key": "npC7NNxN",
+      "key": "jE8fFA9r",
       "options": {},
-      "markdown": "### Gracias\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)",
+      "markdown": "### Gracias\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)\n\n#### Slides + Code\nhttps://github.com/leoafarias/gen-ui-talk\n\n{@column}\n\n### Want more AI?\nSESSION 10 - TRACK 2 - 15:20\nHat-trick: Flutter + Gemini + Vertex\nby Fabian Varela",
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Gracias\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)",
+              "content": "### Gracias\n\nLeo Farias\n@leoafarias\n(GitHub, Twitter/X)\n\n#### Slides + Code\nhttps://github.com/leoafarias/gen-ui-talk\n",
+              "scrollable": false
+            },
+            {
+              "content": "### Want more AI?\nSESSION 10 - TRACK 2 - 15:20\nHat-trick: Flutter + Gemini + Vertex\nby Fabian Varela",
               "scrollable": false
             }
           ],
@@ -816,7 +916,13 @@
         }
       ],
       "notes": [],
-      "assets": []
+      "assets": [
+        {
+          "path": ".superdeck/generated/thumbnail_jE8fFA9r.png",
+          "width": 512,
+          "height": 288
+        }
+      ]
     }
   ]
 }

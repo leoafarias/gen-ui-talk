@@ -487,9 +487,6 @@ style: demo
 style: quote
 ---
 
-> The future of UI might be orchestrating user
-> experiences rather than creating it.
-
 > El futuro de la UI podría ser orquestar
 > experiencias de usuario en lugar de crearlas.
 
@@ -500,3 +497,13 @@ style: quote
 Leo Farias
 @leoafarias
 (GitHub, Twitter/X)
+
+#### Slides + Code
+https://github.com/leoafarias/gen-ui-talk
+
+{@column}
+
+### Want more AI?
+SESSION 10 - TRACK 2 - 15:20
+Hat-trick: Flutter + Gemini + Vertex
+by Fabian Varela
