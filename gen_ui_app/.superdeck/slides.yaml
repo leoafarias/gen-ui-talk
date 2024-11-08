@@ -54,7 +54,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_brprlAOT.png'
+        width: 512
+        height: 288
   - key: 'JRXV2rTe'
     options: {}
     markdown: |-
@@ -81,7 +84,10 @@ slides:
           - scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_JRXV2rTe.png'
+        width: 512
+        height: 288
   - key: 'gTvLpmRu'
     options: {}
     markdown: |-
@@ -107,7 +113,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_gTvLpmRu.png'
+        width: 512
+        height: 288
   - key: 'pU4bIipS'
     options: {}
     markdown: |-
@@ -128,7 +137,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_pU4bIipS.png'
+        width: 512
+        height: 288
   - key: 'BM8dTIiu'
     options: {}
     markdown: '# LLM ❤️ GUI {.heading}'
@@ -164,7 +176,10 @@ slides:
           - scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_ZpiYHha1.png'
+        width: 512
+        height: 288
   - key: 'ZhsL96Je'
     options: {}
     markdown: |-
@@ -184,7 +199,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_ZhsL96Je.png'
+        width: 512
+        height: 288
   - key: 'oVui9VPS'
     options: {}
     markdown: |-
@@ -211,7 +229,10 @@ slides:
           - scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_oVui9VPS.png'
+        width: 512
+        height: 288
   - key: 'jIeTulIX'
     options: {}
     markdown: |-
@@ -229,7 +250,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_jIeTulIX.png'
+        width: 512
+        height: 288
   - key: '3gDaO4JA'
     options: {}
     markdown: |-
@@ -278,7 +302,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_3gDaO4JA.png'
+        width: 512
+        height: 288
   - key: 'Mmn4FSEE'
     options: {}
     markdown: |-
@@ -348,7 +375,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_Mmn4FSEE.png'
+        width: 512
+        height: 288
   - key: 'KvQsJipa'
     options: {}
     markdown: |-
@@ -436,7 +466,10 @@ slides:
         flex: 3
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_KvQsJipa.png'
+        width: 512
+        height: 288
   - key: 'YJuyTjvl'
     options: {}
     markdown: |-
@@ -463,7 +496,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_YJuyTjvl.png'
+        width: 512
+        height: 288
   - key: 'yo70fIoq'
     options: {}
     markdown: |-
@@ -642,7 +678,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_NQNfkx8t.png'
+        width: 512
+        height: 288
   - key: 'QQJaCN5k'
     options: {}
     markdown: |-
@@ -731,7 +770,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_hBq6XCkc.png'
+        width: 512
+        height: 288
   - key: '8I3fvDqR'
     options: {}
     markdown: |-
@@ -801,7 +843,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_9yZftHgP.png'
+        width: 512
+        height: 288
   - key: 'ubDKfZYy'
     options: {}
     markdown: '![widget_schema](assets/widget_schema.png)'
@@ -953,7 +998,10 @@ slides:
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_LgjZ2pSq.png'
+        width: 512
+        height: 288
   - key: 'Wxrj9iSH'
     options: {}
     markdown: |-
@@ -1042,28 +1090,22 @@ slides:
       - path: '.superdeck/generated/thumbnail_aJu8RjyT.png'
         width: 512
         height: 288
-  - key: 'nuYiXDBE'
+  - key: 'T7Vnr2z5'
     options:
       style: 'quote'
     markdown: |-
-      > The future of UI might be orchestrating user
-      > experiences rather than creating it.
-      
       > El futuro de la UI podría ser orquestar
       > experiencias de usuario en lugar de crearlas.
     sections:
       - blocks:
           - content: |-
-              > The future of UI might be orchestrating user
-              > experiences rather than creating it.
-              
               > El futuro de la UI podría ser orquestar
               > experiencias de usuario en lugar de crearlas.
             scrollable: false
         type: 'section'
     notes: []
     assets: []
-  - key: 'npC7NNxN'
+  - key: 'jE8fFA9r'
     options: {}
     markdown: |-
       ### Gracias
@@ -1071,15 +1113,37 @@ slides:
       Leo Farias
       @leoafarias
       (GitHub, Twitter/X)
+      
+      #### Slides + Code
+      https://github.com/leoafarias/gen-ui-talk
+      
+      {@column}
+      
+      ### Want more AI?
+      SESSION 10 - TRACK 2 - 15:20
+      Hat-trick: Flutter + Gemini + Vertex
+      by Fabian Varela
     sections:
       - blocks:
-          - content: |-
+          - content: |
               ### Gracias
               
               Leo Farias
               @leoafarias
               (GitHub, Twitter/X)
+              
+              #### Slides + Code
+              https://github.com/leoafarias/gen-ui-talk
+            scrollable: false
+          - content: |-
+              ### Want more AI?
+              SESSION 10 - TRACK 2 - 15:20
+              Hat-trick: Flutter + Gemini + Vertex
+              by Fabian Varela
             scrollable: false
         type: 'section'
     notes: []
-    assets: []
+    assets:
+      - path: '.superdeck/generated/thumbnail_jE8fFA9r.png'
+        width: 512
+        height: 288
