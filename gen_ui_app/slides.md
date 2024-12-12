@@ -32,7 +32,7 @@
   flex: 2
 }
 > [!WARNING]  
-> Esta presentación contiene contenido generado en vivo por IA. Durante la demostración pueden ocurrir eventos inesperados
+> This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
 
 {@column}
 
@@ -50,12 +50,12 @@
 
 ---
 
-### ¿Qué es una UI Generativa? {.heading}
+### What is Generative UI? {.heading}
 
 {@column}
 
-- Los LLM son excelentes para generar contenido basado en el contexto.
-- Las GUI son excelentes para proporcionar interfaces estructuradas e interactivas para la entrada de usuario y navegación.
+- LLMs are great at generating content based on context
+- GUIs are great at providing structured, interactive interfaces for user input and navigation
 
 
 ---
@@ -68,17 +68,17 @@
   flex: 5
   align: center
 }
-### Crea interfaces dinámicas y sensibles al contexto al interpretar acciones y mantener el estado con LLMs para respuestas fluidas e interactivas. {.heading}
+### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
 
 {@column}
 
 ---
 
-### Ventajas sobre el chat
+### Benefits over Chat
 
--	Más intuitivo y fácil de usar, especialmente para tareas complejas
--	Ciclo de feedback más rápido entre usuarios y LLMs
--	Mejora la eficiencia y la interacción
+- More intuitive and user-friendly, especially for complex tasks
+- Faster feedback loop between users and LLMs
+- Enhances efficiency and interaction
 
 ---
 
@@ -88,14 +88,14 @@
   flex: 3 
   align: center
 }
-### Flutter es ideal para UI Generativa
-Built for any screen: Ideal para generar UIs adaptativas en diversos dispositivos y plataformas.
+### Flutter is Well-Suited for Generative UI
+Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
 
 {@column}
 
 ---
 
-### ¿Cómo pueden los LLM comprender tu UI?
+### How can LLMs Understand Your UI?
 
 {@column}
 
@@ -105,7 +105,7 @@ Built for any screen: Ideal para generar UIs adaptativas en diversos dispositivo
 ---
 {@column}
 
-### Definir el schema{.heading}
+### Define the Schema {.heading}
 
 {@column}
 
@@ -129,7 +129,7 @@ final schema = Schema.array(
 
 {@column align: bottom_center}
 
-### Configurar responseMimeType y responseSchema {.heading}
+### Configure responseMimeType & responseSchema {.heading}
 
 {@column}
 
@@ -166,7 +166,7 @@ final model = GenerativeModel(
 
 {@column flex: 2}
 
-#### Pasar un prompt a tu modelo {.heading}
+#### Passing a prompt to your model {.heading}
 
 {@column flex: 3}
 
@@ -208,9 +208,9 @@ print(response.candidates.first.content);
 ---
 
 {@column}
-### Generador de paleta de colores
+### Color Palette Generator
 
-Genera una paleta de colores basada en un texto dado.
+Generate a color palette based on a given text.
 
 - Name of the palette
 - Font family
@@ -298,7 +298,7 @@ style: demo
 
 ---
 
-## Los LLM orquestan APIs
+## LLMs Orchestrate APIs
 
 ---
 
@@ -335,7 +335,7 @@ style: demo
 }
 
 ### User Interaction {.heading}
-Forma de interactuar con un LLM mediante lenguaje natural
+Natural Language way to interact with an LLM
 
 {@column
   flex: 2
@@ -375,7 +375,7 @@ style: demo
 
 ---
 
-## ¿Qué pasa si la herramienta a usar es un esquema de widget?
+## What if the tool to use is a widget schema?
 
 ---
 
@@ -487,12 +487,12 @@ style: demo
 style: quote
 ---
 
-> El futuro de la UI podría ser orquestar
-> experiencias de usuario en lugar de crearlas.
+> The future of UI might be orchestrating
+> user experiences rather than creating it.
 
 ---
 
-### Gracias
+### Thank you
 
 Leo Farias
 @leoafarias
