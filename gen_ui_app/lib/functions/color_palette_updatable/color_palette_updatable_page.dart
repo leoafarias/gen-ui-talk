@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:superdeck/superdeck.dart';
 
 import '../../ai/components/atoms/code_highlighter.dart';
 import '../../ai/components/molecules/playground.dart';
@@ -18,9 +17,9 @@ import 'color_palette_updatable_provider.dart';
 import 'color_palette_widget.dart';
 
 class ColorPaletteUpdatablePage extends HookWidget {
-  const ColorPaletteUpdatablePage(this.options, {super.key});
+  const ColorPaletteUpdatablePage(this.args, {super.key});
 
-  final WidgetBlock options;
+  final Map<String, dynamic> args;
 
   Widget _userContentBuilder(UserContent content) {
     return const SizedBox.shrink();
@@ -28,7 +27,7 @@ class ColorPaletteUpdatablePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final options = GenAiWidgetOptions.fromMap(this.options.args);
+    final options = GenAiWidgetOptions.fromMap(args);
     // Initialize poster design state with default values.
     final controller =
         useChatController(colorPaletteUpdatableProvider, streamResponse: false);

@@ -1,15 +1,17 @@
 dependency_overrides:
-  mix:
-    path: ../../mix/packages/mix
-  mix_generator:
-    path: ../../mix/packages/mix_generator
-  mix_lint:
-    path: ../../mix/packages/mix_lint
+  # mix:
+  #   path: ../../mix/packages/mix
+  # mix_generator:
+  #   path: ../../mix/packages/mix_generator
+  # mix_lint:
+  #   path: ../../mix/packages/mix_lint
   superdeck:
     path: ../../superdeck/packages/superdeck
   superdeck_core:
     path: ../../superdeck/packages/superdeck_core
-  mix_annotations:
-    path: ../../mix/packages/mix_annotations
-  remix:
-    path: ../../mix/packages/remix
+  superdeck_cli:
+    path: ../../superdeck/packages/superdeck_cli
+  # mix_annotations:
+  #   path: ../../mix/packages/mix_annotations
+  # remix:
+  #   path: ../../mix/packages/remix

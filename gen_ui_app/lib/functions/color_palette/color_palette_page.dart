@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mesh/mesh.dart';
-import 'package:superdeck/superdeck.dart';
 
 import '../../ai/components/atoms/code_highlighter.dart';
 import '../../ai/components/molecules/playground.dart';
@@ -20,15 +19,15 @@ import 'color_palette_provider.dart';
 import 'color_palette_widget.dart';
 
 class ColorPalettePage extends HookWidget {
-  ColorPalettePage(this.options, {super.key});
+  ColorPalettePage(this.args, {super.key});
 
-  final WidgetBlock options;
+  final Map<String, dynamic> args;
 
   Widget _userContentBuilder(UserContent content) {
     return const SizedBox.shrink();
   }
 
-  late final widgetOptions = GenAiWidgetOptions.fromMap(options.args);
+  late final widgetOptions = GenAiWidgetOptions.fromMap(args);
 
   @override
   Widget build(BuildContext context) {

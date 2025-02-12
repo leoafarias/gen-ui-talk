@@ -124,20 +124,3 @@ class QuoteStyle extends DeckStyle {
         );
   }
 }
-
-class ShowSectionsStyle extends DeckStyle {
-  ShowSectionsStyle();
-  @override
-  Style build() {
-    return super.build().merge(
-          Style(
-            $.blockContainer.chain
-              ..borderRadius(10)
-              ..border.all(
-                color: Colors.blue,
-                width: 2,
-              ),
-          ),
-        );
-  }
-}
