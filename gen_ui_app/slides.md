@@ -1,7 +1,9 @@
 ---
 
-{@section flex: 2}
-{@column
+@section {
+  flex: 2
+}
+@column {
   align: center
 }
 # Generative UI {.heading}
@@ -9,14 +11,16 @@
 
 ---
 
-{@column 
+@column {
   align: center
 }
 
 #### Leo Farias {.heading}
-@leoafarias {.subheading}
+#### @leoafarias {.subheading}
 
-{@column align: center_left}
+@column {
+  align: center_left
+}
 - Founder/CEO/CTO
 - Open Source Contributor (fvm, mix, superdeck, others..)
 - Flutter & Dart GDE
@@ -25,34 +29,36 @@
 
 ---
 
-{@column}
+@column
 
-{@column 
+@column {
   align: center_left 
   flex: 2
 }
 > [!WARNING]  
 > This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
 
-{@column}
+@column
 
 ---
 
-{@column 
+@column {
   flex: 2 
   align: center_right
 }
 ### Generative UI {.heading}
-{@column}
+@column
 ## VS 
-{@column flex: 2}
+@column {
+  flex: 2
+}
 ### AI Assisted Code Generation
 
 ---
 
 ### What is Generative UI? {.heading}
 
-{@column}
+@column
 
 - LLMs are great at generating content based on context
 - GUIs are great at providing structured, interactive interfaces for user input and navigation
@@ -63,14 +69,15 @@
 # LLM ❤️ GUI {.heading}
 
 ---
-{@column}
-{@column
+
+@column
+@column {
   flex: 5
   align: center
 }
 ### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
 
-{@column}
+@column
 
 ---
 
@@ -82,32 +89,33 @@
 
 ---
 
-{@column}
+@column
 
-{@column
+@column {
   flex: 3 
   align: center
 }
 ### Flutter is Well-Suited for Generative UI
 Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
 
-{@column}
+@column
 
 ---
 
 ### How can LLMs Understand Your UI?
 
-{@column}
+@column
 
 ![structured_output](assets/structured_output.png)
 
 
 ---
-{@column}
+
+@column
 
 ### Define the Schema {.heading}
 
-{@column}
+@column
 
 ```dart
 final schema = Schema.array(
@@ -127,11 +135,13 @@ final schema = Schema.array(
 
 ---
 
-{@column align: bottom_center}
+@column {
+  align: bottom_center
+}
 
 ### Configure responseMimeType & responseSchema {.heading}
 
-{@column}
+@column
 
 ```dart
 final schema = Schema.array(
@@ -161,14 +171,19 @@ final model = GenerativeModel(
 
 ---
 
-{@section flex: 2}
+@section {
+  flex: 2
+}
 
-
-{@column flex: 2}
+@column {
+  flex: 2
+}
 
 #### Passing a prompt to your model {.heading}
 
-{@column flex: 3}
+@column {
+  flex: 3
+}
 
 ```dart
 final prompt = 'List a few popular cookie recipes.';
@@ -178,16 +193,20 @@ print(response.candidates.first.content);
 
 ```{.code}
 
-{@section flex: 3}
+@section {
+  flex: 3
+}
 
-{@column 
+@column {
   flex: 2
   align: bottom_left
 }
 
 #### JSON Response
 
-{@column flex: 3}
+@column {
+  flex: 3
+}
 
 ```json
 [
@@ -207,7 +226,8 @@ print(response.candidates.first.content);
 
 ---
 
-{@column}
+@column
+
 ### Color Palette Generator
 
 Generate a color palette based on a given text.
@@ -219,41 +239,47 @@ Generate a color palette based on a given text.
 
 --- 
 
+@column{
+
+}
+
+## Color Palette Schema
+
+@column{
+  scrollable: true
+  flex: 2
+}
 
 ```dart
-final schema = Schema.object(properties: {
+final schema = Schema.object(
+  properties: {
   'name': Schema.string(
-    description:
-        'The text content to display on color palette. Format: #FF0000',
+    description:'Name of the color palette',
     nullable: false,
   ),
   'font': Schema.enumString(
     enumValues: ColorPaletteFontFamily.enumString,
-    description: 'The font to use for the poster text.',
+    description: 'Font to use for color palette name',
     nullable: false,
   ),
   'fontColor': Schema.string(
-    description: 'The hex color value of the poster text. Format: #FF0000',
+    description: 'Font color. Format: #FF0000',
     nullable: false,
   ),
   'topLeftColor': Schema.string(
-    description:
-        'The hex color value top left corner of color palette. Format: #FF0000',
+    description: 'Top left color. Format: #FF0000',
     nullable: false,
   ),
   'topRightColor': Schema.string(
-    description:
-        'The hex color value top right corner of color palette. Format: #FF0000',
+    description: 'Top right color. Format: #FF0000',
     nullable: false,
   ),
   'bottomLeftColor': Schema.string(
-    description:
-        'The hex color value bottom left corner of color palette. Format: #FF0000',
+    description: 'Bottom left color. Format: #FF0000',
     nullable: false,
   ),
   'bottomRightColor': Schema.string(
-    description:
-        'The hex color value bottom right corner of color palette. Format: #FF0000',
+    description: 'Bottom right color. Format: #FF0000',
     nullable: false,
   )
 }, requiredProperties: [
@@ -263,8 +289,9 @@ final schema = Schema.object(properties: {
   'topLeftColor',
   'topRightColor',
   'bottomLeftColor',
-  'bottomRightColor',
-]);
+    'bottomRightColor',
+  ],
+);
 
 ```
 
@@ -272,7 +299,7 @@ final schema = Schema.object(properties: {
 style: demo
 ---
 
-{@colorPalette
+@colorPalette {
   kind: schema
   prompts:
     - tropical
@@ -286,7 +313,7 @@ style: demo
 style: demo
 ---
 
-{@colorPalette
+@colorPalette {
   kind: widget
   prompts:
     - tropical
@@ -302,13 +329,15 @@ style: demo
 
 ---
 
-{@section} 
-{@column}
+@section
+@column
 #### Gemini Function Calling
-{@column}
+@column
 The Function Calling feature is in Beta release
 
-{@section flex: 4}
+@section {
+  flex: 4
+}
 ![llm tools](assets/llm_tools.png){.cover}
 
 
@@ -317,7 +346,7 @@ The Function Calling feature is in Beta release
 style: demo
 ---
 
-{@lightControl 
+@lightControl {
   kind: schema
   prompts:
     - Dim the lights by 20
@@ -330,14 +359,14 @@ style: demo
 
 --- 
 
-{@column 
+@column {
   align: bottom_right
 }
 
 ### User Interaction {.heading}
 Natural Language way to interact with an LLM
 
-{@column
+@column {
   flex: 2
 }
 ![llm response](assets/llm_interaction.png)
@@ -346,23 +375,22 @@ Natural Language way to interact with an LLM
 ---
 
 
-{@column
+@column {
   align: center_left
 }
 ### Widget Response {.heading}
 
-{@column 
+@column {
   flex: 3
 }
 ![widget_response](assets/widget_response.png)
-
 
 
 ---
 style: demo
 ---
 
-{@lightControl
+@lightControl {
   kind: widget
   prompts:
     - Dim the lights by 20
@@ -383,7 +411,9 @@ style: demo
 
 ---
 
-{@column flex: 2}
+@column {
+  flex: 2
+}
 ### Dropdown Widget Schema
 
 ```dart
@@ -399,7 +429,9 @@ class DropdownSchemaDto {
   });
 
 ```
-{@column flex: 3}
+@column {
+  flex: 3
+}
 
 ```dart
   static final schema = Schema.object(properties: {
@@ -427,7 +459,9 @@ class DropdownSchemaDto {
 
 ### Dropdown Schema Builder
 
-{@column flex: 2}
+@column {
+  flex: 2
+}
 ```dart
  ListTile(
   title: Text(schema.label),
@@ -474,7 +508,7 @@ final schema = Schema.object(properties: {
 style: demo
 ---
 
-{@widgetSchema
+@widgetSchema {
   kind: widget
   prompts:
     - Change top colors
@@ -492,18 +526,18 @@ style: quote
 
 ---
 
-### Thank you
+@section{
+  align: bottom_center
+  flex: 2
+}
+# Thank you
 
+@section
 Leo Farias
-@leoafarias
+_@leoafarias
 (GitHub, Twitter/X)
+
+@column 
 
 #### Slides + Code
 https://github.com/leoafarias/gen-ui-talk
-
-{@column}
-
-### Want more AI?
-SESSION 10 - TRACK 2 - 15:20
-Hat-trick: Flutter + Gemini + Vertex
-by Fabian Varela

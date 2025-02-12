@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:superdeck/superdeck.dart';
 
-class HeaderPart extends FixedSlidePart {
+class HeaderPart extends StatelessWidget implements PreferredSizeWidget {
   const HeaderPart({
     super.key,
   });
 
   @override
-  double get height => 0;
+  Size get preferredSize => const Size.fromHeight(50);
 
   @override
   Widget build(context) {
-    final configuration = Provider.of<SlideData>(context);
-    final slide = configuration.slide;
-    final index = configuration.slideIndex;
+    final slide = SlideConfiguration.of(context);
+    final title = slide.options.title;
+
+    final index = slide.slideIndex;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(slide.options?.title ?? 'Generative UI with Flutter'),
+          title != null ? Text(title) : const SizedBox.shrink(),
           const SizedBox(width: 20),
           Text('${index + 1}'),
         ],

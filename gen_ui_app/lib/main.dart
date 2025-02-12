@@ -6,8 +6,6 @@ import 'functions/color_palette/color_palette_page.dart';
 import 'functions/color_palette_updatable/color_palette_updatable_page.dart';
 import 'functions/light_control/light_control_page.dart';
 import 'parts/background.dart';
-import 'parts/footer.dart';
-import 'parts/header.dart';
 import 'style.dart';
 
 void main() async {
@@ -31,23 +29,23 @@ void main() async {
             title: 'Superdeck',
             debugShowCheckedModeBanner: false,
             home: SuperDeckApp(
-              baseStyle: BaseStyle(),
-              styles: {
-                'cover': CoverStyle(),
-                'demo': DemoStyle(),
-                'announcement': AnnouncementStyle(),
-                'quote': QuoteStyle(),
-                'show_sections': ShowSectionsStyle(),
-              },
-              background: const BackgroundPart(),
-              header: const HeaderPart(),
-              footer: const FooterPart(),
-              widgets: {
-                'lightControl': (context, options) => LightControlPage(options),
-                'colorPalette': (context, options) => ColorPalettePage(options),
-                'widgetSchema': (context, options) =>
-                    ColorPaletteUpdatablePage(options),
-              },
+              options: DeckOptions(
+                baseStyle: BaseStyle(),
+                styles: {
+                  'cover': CoverStyle(),
+                  'demo': DemoStyle(),
+                  'announcement': AnnouncementStyle(),
+                  'quote': QuoteStyle(),
+                },
+                parts: const SlideParts(
+                  background: BackgroundPart(),
+                ),
+                widgets: {
+                  'lightControl': LightControlPage.new,
+                  'colorPalette': ColorPalettePage.new,
+                  'widgetSchema': ColorPaletteUpdatablePage.new,
+                },
+              ),
             ),
           );
         }),

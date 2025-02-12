@@ -1,58 +1,49 @@
-name: gen_ui_app
-description: "A new Flutter project."
-publish_to: 'none' 
-version: 1.0.0+1
-
+name: 'gen_ui_app'
+description: A new Flutter project.
+publish_to: none
+version: '1.0.0+1'
 environment:
-  sdk: ">=3.3.0 <4.0.0"
-  
+  sdk: '>=3.3.0 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  uuid: ^4.4.2
-  google_generative_ai: ^0.4.6
-  flutter_markdown_selectionarea: ^0.6.17+1
-  image_picker: ^1.1.2
-  mime: ^1.0.6
-  google_fonts: ^6.2.1
-  file_selector: ^1.0.3
-  cross_file: ^0.3.4+2
-  gap: ^3.0.1
-  universal_platform: ^1.1.0
-  mix: ^1.5.2
-  remix: ^0.0.2+6
-  mix_annotations: ^0.3.0
-  intl: ^0.19.0
-  flutter_dotenv: ^5.1.0
-  markdown: ^7.2.2
-  re_highlight: ^0.0.3
-  meta: ^1.15.0
-  collection: ^1.18.0
-  flutter_hooks: ^0.20.5
-  mesh: ^0.4.1
-  flutter_colorpicker: ^1.1.0
-  superdeck: ^0.0.4
-  
-  
-
+  cupertino_icons: '^1.0.8'
+  uuid: '^4.4.2'
+  google_generative_ai: '^0.4.6'
+  flutter_markdown_selectionarea: '^0.6.17+1'
+  image_picker: '^1.1.2'
+  mime: '^1.0.6'
+  google_fonts: '^6.2.1'
+  file_selector: '^1.0.3'
+  cross_file: '^0.3.4+2'
+  gap: '^3.0.1'
+  universal_platform: '^1.1.0'
+  mix: '^1.5.2'
+  remix: '^0.0.2+6'
+  mix_annotations: '^0.3.0'
+  intl: '^0.19.0'
+  flutter_dotenv: '^5.1.0'
+  markdown: '^7.2.2'
+  re_highlight: '^0.0.3'
+  meta: '^1.15.0'
+  collection: '^1.18.0'
+  flutter_hooks: '^0.20.5'
+  mesh: '^0.4.1'
+  flutter_colorpicker: '^1.1.0'
+  superdeck: '^0.0.4'
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-  mix_generator: ^0.3.0
-  mix_lint: ^0.1.1
-  custom_lint: ^0.6.7 
-  superdeck_cli:
-    path: ../../superdeck/packages/superdeck_cli
-
-  
-
-flutter:  
+  flutter_lints: '^4.0.0'
+  mix_generator: '^0.3.0'
+  mix_lint: '^0.1.1'
+  custom_lint: '^0.6.7'
+  superdeck_cli: '^0.0.4'
+flutter:
   uses-material-design: true
   assets:
-  - .env
-  - assets/
-  - .superdeck/
-  - .superdeck/generated/
-
+    - .env
+    - assets/
+    - .superdeck/
+    - .superdeck/generated/
+    - .superdeck/assets/

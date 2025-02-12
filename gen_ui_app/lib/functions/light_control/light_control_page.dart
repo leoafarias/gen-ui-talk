@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:superdeck/superdeck.dart';
 
 import '../../ai/components/molecules/playground.dart';
 import '../../ai/controllers/chat_controller.dart';
@@ -75,13 +74,13 @@ class GenAiWidgetOptions {
 }
 
 class LightControlPage extends HookWidget {
-  const LightControlPage(this.options, {super.key});
+  const LightControlPage(this.args, {super.key});
 
-  final WidgetBlock options;
+  final Map<String, dynamic> args;
 
   @override
   Widget build(BuildContext context) {
-    final options = GenAiWidgetOptions.fromMap(this.options.args);
+    final options = GenAiWidgetOptions.fromMap(args);
 
     final lightControl = useListenable(lightControlController);
     final controller = useChatController(controlLightProvider);
