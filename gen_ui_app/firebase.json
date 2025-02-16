@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "site": "genuitalk",
+    "source": ".",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "frameworksBackend": {
+      "region": "us-east1"
+    }
+  }
+}
