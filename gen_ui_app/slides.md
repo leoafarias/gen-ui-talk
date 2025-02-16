@@ -81,7 +81,7 @@
 
 ---
 
-### Benefits over Chat
+### Benefits over Chat {.heading}
 
 - More intuitive and user-friendly, especially for complex tasks
 - Faster feedback loop between users and LLMs
@@ -95,14 +95,15 @@
   flex: 3 
   align: center
 }
-### Flutter is Well-Suited for Generative UI
+### Flutter is Well-Suited for Generative UI {.heading}
 Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
 
 @column
 
+
 ---
 
-### How can LLMs Understand Your UI?
+### How can LLMs Understand Your UI? {.heading}
 
 @column
 

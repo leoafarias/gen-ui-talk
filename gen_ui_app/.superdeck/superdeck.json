@@ -195,13 +195,13 @@
       "comments": []
     },
     {
-      "key": "9ERBjvfD",
+      "key": "H9csiBSw",
       "options": {},
       "sections": [
         {
           "blocks": [
             {
-              "content": "### Benefits over Chat\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
+              "content": "### Benefits over Chat {.heading}\n\n- More intuitive and user-friendly, especially for complex tasks\n- Faster feedback loop between users and LLMs\n- Enhances efficiency and interaction",
               "flex": 1,
               "scrollable": false,
               "type": "column"
@@ -215,7 +215,7 @@
       "comments": []
     },
     {
-      "key": "Vj0KwFcQ",
+      "key": "xBKlVDUe",
       "options": {},
       "sections": [
         {
@@ -227,7 +227,7 @@
               "type": "column"
             },
             {
-              "content": "\n### Flutter is Well-Suited for Generative UI\nBuilt for any screen: Ideal for generating adaptive UIs across devices and platforms.\n",
+              "content": "\n### Flutter is Well-Suited for Generative UI {.heading}\nBuilt for any screen: Ideal for generating adaptive UIs across devices and platforms.\n",
               "align": "center",
               "flex": 3,
               "scrollable": false,
@@ -248,13 +248,13 @@
       "comments": []
     },
     {
-      "key": "vHY8gszG",
+      "key": "rM86p0hI",
       "options": {},
       "sections": [
         {
           "blocks": [
             {
-              "content": "### How can LLMs Understand Your UI?\n",
+              "content": "### How can LLMs Understand Your UI? {.heading}\n",
               "flex": 1,
               "scrollable": false,
               "type": "column"
