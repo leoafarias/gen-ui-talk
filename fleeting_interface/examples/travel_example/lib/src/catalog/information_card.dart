@@ -71,7 +71,7 @@ final informationCard = CatalogItem(
           'id': 'image1',
           'widget': {
             'Image': {
-              'url': {'literalString': 'assets/travel_images/beach.jpg'},
+              'url': {'literalString': 'assets/travel_example/travel_images/beach.jpg'},
             },
           },
         },

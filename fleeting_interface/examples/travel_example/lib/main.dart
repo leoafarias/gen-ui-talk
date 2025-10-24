@@ -9,7 +9,7 @@ import 'package:flutter_genui/flutter_genui.dart';
 import 'package:flutter_genui_firebase_ai/flutter_genui_firebase_ai.dart';
 import 'package:logging/logging.dart';
 
-import 'firebase_options.dart';
+import 'package:fleeting_interface/firebase_options.dart';
 import 'src/catalog.dart';
 import 'src/travel_planner_page.dart';
 
