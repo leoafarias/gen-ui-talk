@@ -1,0 +1,33 @@
+name: fleeting_interface
+description: An example presentation for SuperDeck
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: ">=3.9.2 <4.0.0"
+  flutter: ">=3.35.5"
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.3.2
+  mesh: ^0.5.0
+  mix: ^2.0.0-dev.5
+  superdeck:
+    path: ../../superdeck/packages/superdeck
+  remix:
+    git:
+      url: https://github.com/btwld/remix.git
+      ref: main
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  superdeck_cli:
+    path: ../../superdeck/packages/cli
+  integration_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - .superdeck/
+    - .superdeck/assets/
