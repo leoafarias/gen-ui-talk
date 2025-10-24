@@ -1,5 +1,9 @@
 ---
 
+@simple_chat {}
+
+---
+
 @travel_example {}
 
 ---
