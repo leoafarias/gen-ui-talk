@@ -150,58 +150,6 @@ extension type _ItineraryEntryData.fromMap(Map<String, Object?> _json) {
 final itinerary = CatalogItem(
   name: 'Itinerary',
   dataSchema: _schema,
-  exampleData: [
-    () => {
-      'root': 'itinerary',
-      'widgets': [
-        {
-          'id': 'itinerary',
-          'widget': {
-            'Itinerary': {
-              'title': {'literalString': 'My Awesome Trip'},
-              'subheading': {'literalString': 'A 3-day adventure'},
-              'imageChildId': 'image1',
-              'days': [
-                {
-                  'title': {'literalString': 'Day 1'},
-                  'subtitle': {'literalString': 'Arrival and Exploration'},
-                  'description': {'literalString': 'Welcome to the city!'},
-                  'imageChildId': 'image2',
-                  'entries': [
-                    {
-                      'title': {'literalString': 'Check-in to Hotel'},
-                      'bodyText': {
-                        'literalString': 'Check-in to your hotel and relax.',
-                      },
-                      'time': {'literalString': '3:00 PM'},
-                      'type': 'accommodation',
-                      'status': 'noBookingRequired',
-                    },
-                  ],
-                },
-              ],
-            },
-          },
-        },
-        {
-          'id': 'image1',
-          'widget': {
-            'Image': {
-              'url': {'literalString': 'assets/travel_example/travel_images/beach.jpg'},
-            },
-          },
-        },
-        {
-          'id': 'image2',
-          'widget': {
-            'Image': {
-              'url': {'literalString': 'assets/travel_example/travel_images/city.jpg'},
-            },
-          },
-        },
-      ],
-    },
-  ],
   widgetBuilder:
       ({
         required data,
