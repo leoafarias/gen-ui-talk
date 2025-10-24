@@ -272,153 +272,207 @@ Understanding: [Emerges through interaction, not consumption]
 
 ### 2.3 The Architecture: Conversation as State
 
-**Duration:** 4 minutes
+**Duration:** 3 minutes
 
-**Main Idea:** How ephemeral interfaces actually work under the hood
+**Main Idea:** The state of the interface IS the conversation you've been having
 
-**The Process (Three Beats):**
+**The Traditional Mental Model:**
 
-> **Predict, Present, Disappear**
->
-> 1. System predicts what you need based on context
-> 2. Interface presents itself to serve that need
-> 3. Surface disappears when purpose is fulfilled
+When you use an app today, you think in locations:
 
-**The Traditional Approach:**
+- "I'm on the home screen"
+- "Now I'm in the settings menu"
+- "Let me go back to the product page"
 
-- Define states explicitly (screens, views, routes)
-- Code every transition between states
-- Navigation is predefined
-- User Action → State Change → View Update
-- Rigid, predictable, limited
+Your mental model is **spatial navigation through predetermined rooms**.
 
-**The Ephemeral Approach:**
+The app has states. You move between them. The path is fixed.
 
-- **Conversation history becomes the state machine**
-- State emerges from interaction, not predefined code
-- Interface evolves through conversational refinement
-- Dynamic, contextual, unbounded
+**The Ephemeral Mental Model:**
 
-**The State Components:**
+With breathing interfaces, there are no rooms to navigate.
 
-1. **Intent History** - What the user has asked for, requested, expressed
-2. **Generated UI History** - What surfaces were shown, when, why
-3. **Interaction History** - How user responded, what they selected, clicked, modified
-4. **Current State** - What's visible on screen, what data is filled in
+Instead, you think in **evolution of understanding**:
 
-**Example Flow:**
+- "I started wondering about X"
+- "That led me to explore Y"
+- "Now I understand the relationship between them"
 
-```
-User: "Plan a trip to Mexico"
-  ↓
-System creates: Destination picker surface
-State: {intent: "travel planning", location: unspecified, budget: unknown}
-  ↓
-User: [Selects Cancun, beach activities, $2000 budget]
-  ↓
-System creates: Detailed itinerary surface for Cancun beach vacation
-State: {destination: "Cancun", activities: ["beach"], budget: 2000, ...}
-  ↓
-User: "Make it more relaxing"
-  ↓
-System refines: Schedule, removes rushed elements
-State: {destination: "Cancun", pace: "relaxed", ...}
-```
+Your mental model is **conversational refinement of intent**.
 
-**Key Concept: Surfaces**
+**The Core Shift:**
 
-- Each interaction turn creates a temporary UI workspace called a **surface**
-- Surfaces have independent lifecycles:
-    - Destination picker → User selects → Surface deleted
-    - Itinerary → User reviews → Surface persists
-    - Refinements → User tweaks → Surface updates
-- Multiple surfaces can coexist
-- Each can be updated independently
-- Each retires when purpose fulfilled
+> **"The conversation history IS the state machine."**
+
+Traditional apps: State is explicitly coded (Screen A → Screen B → Screen C)
+
+Ephemeral interfaces: State emerges from interaction history (Question → Refinement → Understanding)
+
+**How It Feels:**
+
+**[DEMO: Show conversation-driven interface evolution]**
+
+*Demonstrate:*
+- User expresses initial intent
+- Interface materializes as response
+- User interacts (not navigates)
+- Interface evolves based on interaction
+- Each step builds on conversation history
+- No "back" button - just continuous refinement
 
 **Why This Works:**
 
-- Given full conversation context, next surface is deterministic
-- Not random or unpredictable
-- **Logically derived from conversation state**
-- Same as how next message in chat is deterministic given history
+Think about how conversations naturally flow:
 
-**Key Message:** Interface composition becomes conversational, not navigational
+```
+"I'm interested in ocean temperatures"
+→ [Someone shows you temperature maps]
+
+"How does this connect to storm intensity?"
+→ [They overlay storm data on the same map]
+
+"What happened in 2020 specifically?"
+→ [They zoom into 2020, highlight patterns]
+```
+
+Each response is **deterministic given the conversation so far**.
+
+The same principle applies to interfaces:
+
+```
+Given: Your full interaction history
+The next interface state is: Logically derivable
+
+Just like: Given conversation context
+The next appropriate response is: Deterministic
+```
+
+**What Makes This Different:**
+
+Traditional apps ask: **"Where are you?"** (spatial)
+
+Ephemeral interfaces ask: **"What are you understanding?"** (cognitive)
+
+Traditional: Navigation through predefined spaces
+Ephemeral: Evolution through conversational turns
+
+Traditional: Fixed paths between fixed states
+Ephemeral: Emergent surfaces from interaction history
+
+**The Experience:**
+
+You never think "I need to navigate to X."
+
+You think "I'm trying to understand Y" - and the environment shapes itself around that understanding.
+
+As your understanding deepens, the interface reconfigures.
+
+Not because you clicked "Next" - because the conversation evolved.
+
+**Key Message:** Interface composition becomes conversational, not navigational. The history of your interaction IS the state.
 
 ---
 
 ### 2.4 High-Bandwidth Interaction Loop
 
-**Duration:** 3 minutes
+**Duration:** 2 minutes
 
-**Main Idea:** Ephemeral interfaces enable richer communication than text-based interaction
+**Main Idea:** Showing beats telling - rich interaction replaces verbose description
 
-**The Key Shift:**
+**The Fundamental Limitation of Chat:**
+
+When you talk to a chatbot, you describe what you want in text:
+
+```
+You: "I want to find flights to Tokyo, preferably non-stop,
+     leaving sometime in March, budget around $1200,
+     window seat if possible..."
+```
+
+This is **low-bandwidth communication**:
+
+- Ambiguous (what does "around $1200" mean? $1100? $1300?)
+- Verbose (lots of words for simple preferences)
+- Imprecise (hard to specify nuanced desires)
+- Slow (typing takes time)
+
+**The Ephemeral Interface Solution:**
 
 > **"Interact, don't describe."**
 
-**The Limitation of Text:**
+Instead of typing your preferences, the system materializes controls and you **show** what you want:
 
-- Traditional chatbots: Low-bandwidth communication
-- You type descriptions of what you want
-- AI responds with text
-- Back and forth in prose
-- Ambiguous, verbose, inefficient
+**[DEMO: Compare text-based vs interaction-based intent capture]**
 
-**The Breakthrough:**
-
-- Ephemeral interfaces create **high-bandwidth feedback channel**
-- You interact with generated controls, don't describe desired states
-- Interactions serialize as structured data
-- AI sees precise intent, not ambiguous prose
+*Demonstrate:*
+- Text: User types long description of preferences
+- Interface: System shows controls, user adjusts sliders/selects options
+- Show resulting structured data from each approach
+- Contrast clarity and speed
 
 **How It Works:**
 
-### 1. Interact, Don't Describe
-
-- Don't type: "I want the budget to be $2000 with beach and snorkeling activities"
-- Instead: Move budget slider to $2000, check "Beach" and "Snorkeling" boxes
-- Don't type: "Show me the data for Q4 2024 filtered by region"
-- Instead: Select Q4 from date picker, choose region from dropdown
-
-### 2. Interactions Become Structure
-
-```json
-Slider movement     → {"budget": 2000}
-Checkbox selection  → {"activities": ["beach", "snorkeling"]}
-Dropdown choice     → {"region": "North America", "quarter": "Q4"}
-Form submission     → {complete structured object with all selections}
+Traditional chat:
+```
+User → Text description → AI parses → AI responds → Text
+       [Ambiguous]         [Lossy]      [Static]
 ```
 
-**Not ambiguous prose. Precise, typed, structured intent.**
+Ephemeral interface:
+```
+User → Interact with controls → Structured data → AI responds → Updated interface
+       [Precise]                [Lossless]         [Dynamic]
+```
 
-### 3. AI Receives Structure, Not Text
+**The Bandwidth Difference:**
 
-- Sees exact user selections as JSON
-- No parsing natural language
-- No "did they mean X or Y?" ambiguity
-- Can respond with precision because input was precise
+Moving a slider from $800 to $1200 instantly communicates:
+- Exact budget preference
+- Price flexibility
+- Willingness to spend more for quality
+
+Far more precise than typing "budget around $1200, preferably non-stop."
+
+**Why This Matters:**
+
+The interface isn't just showing you information.
+
+**The interface IS the communication channel back to the AI.**
+
+This creates a **bidirectional high-bandwidth loop**:
+
+1. AI generates interface based on context
+2. You interact with controls (sliders, selections, toggles)
+3. AI receives precise structured data
+4. AI adapts interface based on exact feedback
+5. Loop continues until understanding converges
+
+**The Result:**
+
+Conversations become **faster**, **more precise**, and **less ambiguous**.
+
+You're not translating your intent into words - you're **directly manipulating** the parameters of what you want.
+
+The AI doesn't have to parse natural language - it receives **typed, structured, unambiguous data**.
 
 **Example Flow:**
 
 ```
-AI generates: Destination picker (carousel of tropical locations)
-You tap:      Cancun card
-AI receives:  {destination: "Cancun", climate: "tropical", region: "Caribbean"}
-AI generates: Detailed itinerary tailored for Cancun beach vacation
-You adjust:   Budget slider from $2000 to $3000
-AI receives:  {budget: 3000, destination: "Cancun", activities: [...]}
-AI refines:   Upgrades hotel tier, adds premium activities, adjusts recommendations
+AI: [Generates trip planning interface]
+You: [Move budget slider to $1200]
+     [Select "Beach activities" checkbox]
+     [Choose "March 15-22" from calendar]
+AI: [Receives exact structured preferences]
+    [Updates recommendations instantly]
+    [Shows Cancun beach resorts in your budget]
+You: [Tap specific resort card]
+AI: [Receives selection with all metadata]
+    [Generates detailed itinerary for that resort]
 ```
 
-**The Paradigm Shift:**
+No ambiguity. No parsing errors. No "what did they mean?"
 
-- Interface isn't just for display
-- Interface is **communication channel back to intelligence**
-- Bidirectional high-bandwidth loop
-- This is why adaptation can be so precise
-
-**Key Message:** Rich interaction replaces verbose description
+**Key Message:** Rich interaction replaces verbose description. The interface becomes a precise communication channel, not just a display surface.
 
 ---
 
