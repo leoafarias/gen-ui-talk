@@ -27,4 +27,12 @@ doc/api/
 .flutter-plugins-dependencies
 gen_kit/node_modules
 .DS_Store
-gen_ui_app/.firebase
+.firebase
+.local-chrome/
+
+# Platform-specific directories
+windows/
+android/
+ios/
+linux/
+
