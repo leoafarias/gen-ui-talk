@@ -9,7 +9,7 @@ import 'package:flutter_genui/flutter_genui.dart';
 import 'package:flutter_genui_firebase_ai/flutter_genui_firebase_ai.dart';
 import 'package:logging/logging.dart';
 
-import 'package:fleeting_interface/firebase_options.dart';
+import '../../firebase_options.dart';
 import 'src/catalog.dart';
 import 'src/travel_planner_page.dart';
 
@@ -63,7 +63,7 @@ class TravelApp extends StatelessWidget {
 }
 
 class _TravelAppBody extends StatelessWidget {
-  _TravelAppBody(this.aiClient);
+  const _TravelAppBody(this.aiClient);
 
   /// The AI client to use for the application.
   ///

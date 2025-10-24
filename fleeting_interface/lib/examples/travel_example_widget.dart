@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_genui/flutter_genui.dart';
 import 'package:logging/logging.dart';
 
-import 'package:fleeting_interface/examples/travel_example/src/travel_planner_page.dart';
+import 'travel_example/src/travel_planner_page.dart';
 
 class TravelExampleWidget extends StatefulWidget {
   const TravelExampleWidget({super.key});
