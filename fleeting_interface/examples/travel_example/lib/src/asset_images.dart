@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 @visibleForTesting
-const assetImageCatalogPath = 'assets/travel_images';
+const assetImageCatalogPath = 'assets/travel_example/travel_images';
 @visibleForTesting
 const assetImageCatalogJsonFile = '$assetImageCatalogPath/_images.json';
 

@@ -187,7 +187,7 @@ final itinerary = CatalogItem(
           'id': 'image1',
           'widget': {
             'Image': {
-              'url': {'literalString': 'assets/travel_images/beach.jpg'},
+              'url': {'literalString': 'assets/travel_example/travel_images/beach.jpg'},
             },
           },
         },
@@ -195,7 +195,7 @@ final itinerary = CatalogItem(
           'id': 'image2',
           'widget': {
             'Image': {
-              'url': {'literalString': 'assets/travel_images/city.jpg'},
+              'url': {'literalString': 'assets/travel_example/travel_images/city.jpg'},
             },
           },
         },

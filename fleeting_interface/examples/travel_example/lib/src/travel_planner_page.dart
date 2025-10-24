@@ -485,7 +485,7 @@ contain the other widgets.
         "id": "mexico_city_image",
         "widget": {
           "Image": {
-            "location": "assets/travel_images/mexico_city.jpg"
+            "location": "assets/travel_example/travel_images/mexico_city.jpg"
           }
         }
       },
@@ -518,7 +518,7 @@ contain the other widgets.
         "id": "day1_image",
         "widget": {
           "Image": {
-            "location": "assets/travel_images/mexico_city.jpg"
+            "location": "assets/travel_example/travel_images/mexico_city.jpg"
           }
         }
       },

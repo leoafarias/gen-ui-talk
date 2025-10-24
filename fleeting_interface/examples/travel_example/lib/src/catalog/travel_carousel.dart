@@ -414,7 +414,7 @@ JsonMap _inspirationExample() => {
         'Image': {
           'fit': 'cover',
           'url': {
-            'literalString': 'assets/travel_images/santorini_panorama.jpg',
+            'literalString': 'assets/travel_example/travel_images/santorini_panorama.jpg',
           },
         },
       },
@@ -426,7 +426,7 @@ JsonMap _inspirationExample() => {
           'fit': 'cover',
           'url': {
             'literalString':
-                'assets/travel_images/akrotiri_spring_fresco_santorini.jpg',
+                'assets/travel_example/travel_images/akrotiri_spring_fresco_santorini.jpg',
           },
         },
       },
@@ -436,7 +436,7 @@ JsonMap _inspirationExample() => {
       'widget': {
         'Image': {
           'url': {
-            'literalString': 'assets/travel_images/santorini_from_space.jpg',
+            'literalString': 'assets/travel_example/travel_images/santorini_from_space.jpg',
           },
           'fit': 'cover',
         },
@@ -448,7 +448,7 @@ JsonMap _inspirationExample() => {
           'fit': 'cover',
           'url': {
             'literalString':
-                'assets/travel_images/saffron_gatherers_fresco_santorini.jpg',
+                'assets/travel_example/travel_images/saffron_gatherers_fresco_santorini.jpg',
           },
         },
       },
