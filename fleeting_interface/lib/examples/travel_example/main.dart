@@ -10,6 +10,7 @@ import 'package:flutter_genui_firebase_ai/flutter_genui_firebase_ai.dart';
 import 'package:logging/logging.dart';
 
 import '../../firebase_options.dart';
+import 'src/theme.dart';
 import 'src/catalog.dart';
 import 'src/travel_planner_page.dart';
 
@@ -51,12 +52,13 @@ class TravelApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = travelTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      ),
+      theme: theme,
+      darkTheme: theme,
+      themeMode: ThemeMode.dark,
       home: _TravelAppBody(aiClient),
     );
   }

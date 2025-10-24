@@ -1,5 +1,9 @@
 ---
 
+@travel_example {}
+
+---
+
 @section {
   flex: 2
 }
@@ -8,6 +12,12 @@
 }
 # Generative UI {.heading}
 # with Flutter {.subheading}
+
+@column {
+  flex: 3
+  align: center
+}
+
 
 ---
 
@@ -473,7 +483,41 @@ final schema = Schema.object(properties: {
 });
 
 ```
+
 ---
+
+@section {
+  flex: 3
+  align: top_left
+}
+@column {
+  flex: 2
+  align: top_left
+}
+### Adding a Custom Widget {.heading}
+
+1. Register the widget in `DeckOptions.widgets`.
+2. Reference it via `@widget_name { ... }` in Markdown.
+3. Pass args with the same keys you read from `WidgetArgs`.
+
+@column {
+  flex: 3
+  align: top_left
+}
+```dart
+widgets: {
+  'travel_example': (_) => const TravelExampleWidget(),
+}
+```
+
+@column {
+  flex: 3
+  align: top_left
+}
+```markdown
+@travel_example { }
+```
+
 style: quote
 ---
 
