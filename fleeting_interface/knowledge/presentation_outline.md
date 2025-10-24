@@ -61,6 +61,11 @@ Not: "Interfaces are too complex" (burden)
 
 But: **"Static things break cognitive momentum"**
 
+**The Real Cost:**
+
+> "For 60 years, we fought for screen real estate.
+> Now we're fighting for cognitive real estate."
+
 **Three Interruption Points:**
 
 ### Point 1: Application Boundaries
@@ -72,12 +77,15 @@ But: **"Static things break cognitive momentum"**
 - Example: Research in browser → analysis in spreadsheet → writing in doc
 - Each transition is a cognitive restart
 
-### Point 2: Static Interfaces Within Apps
+### Point 2: The "Everyone Tax"
 
 - Interface shows same features to everyone
-- Complex version: Everyone pays "Everyone Tax" - cognitive load for features they don't use (Photoshop, enterprise tools)
-- Simple version: Nobody gets what they need when they need it (minimalist apps)
+- **Complex apps:** Everyone pays rent on everyone else's features
+  - Photoshop's 500 menu items (you use 20)
+  - Enterprise software (built for power users, everyone pays the cognitive load)
+- **Simple apps:** Nobody gets what they need when they need it
 - Both fail because they're **static snapshots** that can't respond to evolving thought
+- The tax: Cognitive load for features you'll never use
 
 ### Point 3: Static Outputs from AI
 
@@ -152,10 +160,16 @@ Breathing Interface:  Tools adapt to you, thinking flows continuously
 
 **Main Idea:** Precise definition with three core characteristics
 
-**Definition:**
+**The Core Insight:**
+
+> **"Your intent is the layout."**
+>
+> When the system understands what you want,
+> the interface becomes a byproduct—not a destination.
+
+**Full Definition:**
 
 > Transient cognitive surfaces - materializing around intent, adapting as understanding deepens, dissolving once their purpose is fulfilled, leaving persistent understanding rather than static artifacts.
-> 
 
 **Three Defining Characteristics:**
 
@@ -262,6 +276,14 @@ Understanding: [Emerges through interaction, not consumption]
 
 **Main Idea:** How ephemeral interfaces actually work under the hood
 
+**The Process (Three Beats):**
+
+> **Predict, Present, Disappear**
+>
+> 1. System predicts what you need based on context
+> 2. Interface presents itself to serve that need
+> 3. Surface disappears when purpose is fulfilled
+
 **The Traditional Approach:**
 
 - Define states explicitly (screens, views, routes)
@@ -272,8 +294,8 @@ Understanding: [Emerges through interaction, not consumption]
 
 **The Ephemeral Approach:**
 
-- **Conversation history IS the state machine**
-- State isn't in your code, it's in the interaction record
+- **Conversation history becomes the state machine**
+- State emerges from interaction, not predefined code
 - Interface evolves through conversational refinement
 - Dynamic, contextual, unbounded
 
@@ -330,6 +352,10 @@ State: {destination: "Cancun", pace: "relaxed", ...}
 **Duration:** 3 minutes
 
 **Main Idea:** Ephemeral interfaces enable richer communication than text-based interaction
+
+**The Key Shift:**
+
+> **"Interact, don't describe."**
 
 **The Limitation of Text:**
 
@@ -471,6 +497,10 @@ Same intent, different context = different interface
 **Duration:** 2.5 minutes
 
 **Main Idea:** This isn't just better navigation - it's a different computing paradigm
+
+**The Fundamental Shift:**
+
+> **"Don't navigate to features. Features materialize around intent."**
 
 **The Application-Centric Model (60 Years):**
 
@@ -754,6 +784,12 @@ Too Much Transparency: Overwhelming, system-focused
 - Every element deliberate
 - "Perfect" means unchanging
 
+**Common Anti-Patterns to Avoid:**
+
+- **Chrome Creep:** Temporary panels that become permanent fixtures
+- **Mystery Meat Magic:** Adaptation without explanation (black box behavior)
+- **Forever Modals:** "Ephemeral" in name only, persistent in practice
+
 **The Design Culture Challenge:**
 
 - Designers trained to create monuments
@@ -976,62 +1012,41 @@ Today:        Novel, impressive
 
 **Main Idea:** Make starting achievable, specific, testable
 
-**Don't Rebuild Everything:**
+**Simple Starting Point:**
 
-- Pick one screen
-- One workflow
-- One context signal
+> **One screen. One context signal. Two states.**
 
-**Start With Time-Awareness:**
-
-Make one interface adapt to time of day
-
-**Morning vs Evening Example:**
+**Example: Time-Aware Dashboard**
 
 ```
 Morning (7-11 AM):
-→ Minimal density
-→ Next actions emphasized
-→ Quick-scan layout
+→ Minimal layout
+→ Next 3 actions only
 → High contrast
-→ Focus on today
+→ "What's urgent today?"
 
 Evening (6-10 PM):
 → Rich detail
 → Tomorrow preview
-→ Exploratory layout
-→ Comfortable colors
-→ Focus on planning
+→ Relaxed colors
+→ "What should I plan for?"
 ```
 
-**Test and Learn:**
+**The First Sprint:**
 
-1. Deploy to subset of users
-2. Measure cognitive flow metrics:
-    - Time to complete tasks
-    - Context switch frequency
-    - User satisfaction ratings
-    - Task completion rates by time of day
-3. Gather qualitative feedback
-4. Iterate based on data
+1. Choose one high-traffic screen
+2. Implement time-of-day adaptation
+3. A/B test with 50% of users
+4. Measure: Task completion time, satisfaction
+5. Duration: 2 weeks
 
 **Then Expand:**
 
-- Add more context signals (location, task, battery)
-- Apply to additional screens
-- Increase sophistication of adaptation
-- Build toward fuller paradigm
+- Add location awareness
+- Apply to more screens
+- Increase adaptation sophistication
 
-**The Pattern:**
-
-```
-1. Start simple (one context signal)
-2. Prove value (measure impact)
-3. Expand gradually (add complexity)
-4. Build momentum (organizational learning)
-```
-
-**Key Message:** You can start Monday morning with what you already know
+**Key Message:** Start simple. Prove value. Build momentum.
 
 ---
 
@@ -1141,13 +1156,15 @@ Persistent patterns of inquiry, connection, and understanding that remain after 
 
 ### Problem Framing
 
+- "For 60 years, we fought for screen real estate. Now we fight for cognitive real estate."
+- "Everyone pays rent on everyone else's features" (The Everyone Tax)
 - "Static artifacts interrupt cognitive movement"
 - "Your thinking breaks at application boundaries"
 - "We receive mass but lose momentum"
-- "Thought squeezed through static gates"
 
 ### Solution Vision
 
+- **"Your intent is the layout"**
 - "Light enough to move, strong enough to leave a trail"
 - "Interfaces that breathe with your thinking"
 - "From interruption to flow"
@@ -1155,7 +1172,9 @@ Persistent patterns of inquiry, connection, and understanding that remain after 
 
 ### Technical Concepts
 
-- "Conversation history IS the state machine"
+- **"Predict, present, disappear"** (Process summary)
+- **"Interact, don't describe"** (High-bandwidth loop)
+- "Conversation history becomes the state machine"
 - "Interface isn't just for display - it's a communication channel"
 - "From static answers to dynamic asking"
 - "Artifacts as interfaces"
@@ -1174,11 +1193,18 @@ Persistent patterns of inquiry, connection, and understanding that remain after 
 - "We're designing conversations, not publications"
 - "From pixel-perfect to fluid-appropriate"
 
+### Anti-Patterns (Memorable Warnings)
+
+- **Chrome Creep:** Temporary panels that become permanent
+- **Mystery Meat Magic:** Adaptation without explanation
+- **Forever Modals:** "Ephemeral" in name, persistent in practice
+
 ### Call to Action
 
 - "The future doesn't interrupt thinking. It breathes with it."
 - "Question isn't 'will this happen?' - it's 'when do you start?'"
-- "You can build this Monday morning"
+- **"One screen. One context signal. Two states."** (Starting point)
+- "Start simple. Prove value. Build momentum."
 - "Are you ready to build it?"
 
 ---

@@ -8,7 +8,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_app_check: ^0.4.0
+  firebase_core: ^4.0.0
+  flutter_genui:
+    git:
+      url: https://github.com/flutter/genui.git
+      path: packages/flutter_genui
+      ref: 536a9142789163e302b0a6acb8a662df377e85ee
+  flutter_genui_firebase_ai:
+    git:
+      url: https://github.com/flutter/genui.git
+      path: packages/flutter_genui_firebase_ai
+  gpt_markdown: ^1.1.4
   google_fonts: ^6.3.2
+  intl: ^0.20.2
+  json_schema_builder: ^0.1.3
+  logging: ^1.3.0
   mesh: ^0.5.0
   mix: ^2.0.0-dev.5
   superdeck:
@@ -31,3 +46,5 @@ flutter:
     - assets/
     - .superdeck/
     - .superdeck/assets/
+    - examples/travel_example/assets/travel_images/
+    - examples/travel_example/assets/booking_service/
