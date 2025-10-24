@@ -235,8 +235,13 @@ class _ChatInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final inputColor = colorScheme.surfaceContainerHighest.withValues(
+      alpha: 0.85,
+    );
     return Material(
-      elevation: 2.0,
+      color: inputColor,
+      elevation: 4.0,
       borderRadius: BorderRadius.circular(25.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -246,21 +251,27 @@ class _ChatInput extends StatelessWidget {
               child: TextField(
                 controller: controller,
                 enabled: !isThinking,
-                decoration: const InputDecoration.collapsed(
+                cursorColor: colorScheme.primary,
+                style: TextStyle(color: colorScheme.onSurface),
+                decoration: InputDecoration.collapsed(
                   hintText: 'Enter your prompt...',
+                  hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
                 ),
                 onSubmitted: isThinking ? null : onSend,
               ),
             ),
             if (isThinking)
-              const SizedBox(
+              SizedBox(
                 width: 24,
                 height: 24,
-                child: CircularProgressIndicator(strokeWidth: 2.0),
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.0,
+                  valueColor: AlwaysStoppedAnimation(colorScheme.primary),
+                ),
               )
             else
               IconButton(
-                icon: const Icon(Icons.send),
+                icon: Icon(Icons.send, color: colorScheme.primary),
                 onPressed: () => onSend(controller.text),
               ),
           ],
