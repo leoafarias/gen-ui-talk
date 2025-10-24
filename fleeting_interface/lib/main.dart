@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:superdeck/superdeck.dart';
 
+import 'examples/simple_chat_widget.dart';
 import 'examples/travel_example_widget.dart';
 import 'firebase_options.dart';
 import 'parts/background.dart';
@@ -41,6 +42,7 @@ void main() async {
                 'cover': coverStyle(),
               },
               widgets: {
+                'simple_chat': (_) => const SimpleChatWidget(),
                 'travel_example': (_) => const TravelExampleWidget(),
               },
               parts: const SlideParts(

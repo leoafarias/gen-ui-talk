@@ -1,6 +1,26 @@
 {
   "slides": [
     {
+      "key": "Z6GD9kBb",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "widget",
+              "flex": 1,
+              "scrollable": false,
+              "name": "simple_chat"
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
       "key": "9xDhg8Xj",
       "options": {},
       "sections": [
