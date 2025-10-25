@@ -16,7 +16,13 @@ extension FoodPresetX on FoodPreset {
   IconData get icon => switch (this) {
     FoodPreset.pizza => Icons.local_pizza,
     FoodPreset.cookies => Icons.cookie,
-    FoodPreset.chicken => Icons.food_bank,
+    FoodPreset.chicken => Icons.restaurant_menu,
+  };
+
+  String get emoji => switch (this) {
+    FoodPreset.pizza => '🍕',
+    FoodPreset.cookies => '🍪',
+    FoodPreset.chicken => '🍗',
   };
 }
 
@@ -254,19 +260,19 @@ FoodOptions defaultOptionsFor(FoodPreset preset) => switch (preset) {
 const _mono = TextStyle(fontFamily: 'monospace');
 TextStyle get _sectionTitle => const TextStyle(
   color: Colors.white70,
-  fontSize: 12,
+  fontSize: 16,
   fontWeight: FontWeight.w600,
   letterSpacing: 1,
 ).merge(_mono);
 
 TextStyle get _labelStyle => const TextStyle(
   color: Colors.white54,
-  fontSize: 10,
+  fontSize: 13,
   letterSpacing: 0.5,
 ).merge(_mono);
 
 TextStyle get _itemStyle =>
-    const TextStyle(color: Colors.white, fontSize: 12).merge(_mono);
+    const TextStyle(color: Colors.white, fontSize: 15).merge(_mono);
 
 class GlassDropdown<T> extends StatelessWidget {
   final String label;
@@ -289,9 +295,9 @@ class GlassDropdown<T> extends StatelessWidget {
     return Column(
       children: [
         Text(label, style: _labelStyle),
-        const SizedBox(height: 4),
+        const SizedBox(height: 6),
         Container(
-          height: 40,
+          height: 56,
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.06),
             borderRadius: BorderRadius.circular(6),
@@ -309,7 +315,7 @@ class GlassDropdown<T> extends StatelessWidget {
                     (v) => DropdownMenuItem<T>(
                       value: v,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: Text(toLabel(v), style: _itemStyle),
                       ),
                     ),
@@ -651,7 +657,7 @@ class _Section extends StatelessWidget {
     return Column(
       children: [
         Text(title, style: _sectionTitle),
-        const SizedBox(height: 14),
+        const SizedBox(height: 18),
         ...children,
       ],
     );
@@ -664,28 +670,10 @@ class _ControlRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final isTight = constraints.maxWidth < 480;
-        final items = children
-            .map(
-              (w) => isTight
-                  ? Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        child: w,
-                      ),
-                    )
-                  : SizedBox(width: 160, child: w),
-            )
-            .toList();
-        return isTight
-            ? Column(children: items)
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: items,
-              );
-      },
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: children.map((w) => SizedBox(width: 160, child: w)).toList(),
     );
   }
 }
@@ -809,11 +797,11 @@ class ModernOvenPanel extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 40,
-                  left: 40,
-                  right: 40,
+                  top: 25,
+                  left: 25,
+                  right: 25,
                   child: Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.40),
                       borderRadius: BorderRadius.circular(8),
@@ -978,11 +966,7 @@ class FoodSelectionBar extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  p.icon,
-                  color: active ? Colors.white : Colors.grey.shade400,
-                  size: 24,
-                ),
+                Text(p.emoji, style: const TextStyle(fontSize: 28)),
                 const SizedBox(height: 4),
                 Text(
                   p.label.toUpperCase(),
@@ -1009,6 +993,69 @@ class FoodSelectionBar extends StatelessWidget {
         const SizedBox(width: 8),
         item(FoodPreset.chicken),
       ],
+    );
+  }
+}
+
+class _FoodButton extends StatelessWidget {
+  final FoodPreset preset;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _FoodButton({
+    required this.preset,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        splashColor: Colors.orange.shade400.withOpacity(0.3),
+        highlightColor: Colors.orange.shade400.withOpacity(0.1),
+        child: Container(
+          width: 90,
+          height: 90,
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.black : Colors.grey.shade800,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              if (isSelected)
+                BoxShadow(
+                  color: Colors.orange.shade400.withOpacity(0.5),
+                  blurRadius: 12,
+                  spreadRadius: 1,
+                ),
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(preset.emoji, style: const TextStyle(fontSize: 36)),
+              const SizedBox(height: 4),
+              Text(
+                preset.label.toUpperCase(),
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.grey.shade400,
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ).merge(_mono),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -1069,32 +1116,50 @@ class _SmartOvenState extends State<SmartOven> {
   Widget build(BuildContext context) {
     final showSelector = widget.preset == null;
 
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade900,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (showSelector)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: FoodSelectionBar(
-                selected: _preset,
-                onChanged: _changePreset,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        if (showSelector) ...[
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _FoodButton(
+                preset: FoodPreset.pizza,
+                isSelected: _preset == FoodPreset.pizza,
+                onTap: () => _changePreset(FoodPreset.pizza),
               ),
-            ),
-          ModernOvenPanel(
+              const SizedBox(height: 12),
+              _FoodButton(
+                preset: FoodPreset.cookies,
+                isSelected: _preset == FoodPreset.cookies,
+                onTap: () => _changePreset(FoodPreset.cookies),
+              ),
+              const SizedBox(height: 12),
+              _FoodButton(
+                preset: FoodPreset.chicken,
+                isSelected: _preset == FoodPreset.chicken,
+                onTap: () => _changePreset(FoodPreset.chicken),
+              ),
+            ],
+          ),
+          const SizedBox(width: 24),
+        ],
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade900,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ModernOvenPanel(
             poweredOn: _poweredOn,
             preset: _preset,
             options: _options,
             onTogglePower: _togglePower,
             onOptionsChanged: _changeOptions,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

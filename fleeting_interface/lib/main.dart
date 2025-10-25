@@ -5,7 +5,7 @@ import 'package:superdeck/superdeck.dart';
 
 import 'examples/smart_oven_widget.dart';
 import 'examples/tool_bar_example_widget.dart';
-import 'examples/toolbar_with_chat_example.dart';
+import 'examples/toolbar_demo.dart';
 import 'firebase_options.dart';
 import 'parts/background.dart';
 import 'parts/footer.dart';
@@ -44,7 +44,10 @@ void main() async {
               widgets: {
                 'smart_oven': (_) => const SmartOven(),
                 'tool_bar_example': (_) => const ToolBarExampleWidget(),
-                'toolbar_with_chat': (_) => const ToolbarWithChatExample(),
+                'toolbar_demo': (params) => ToolbarDemo(
+                      all: params['all'] == true,
+                      chat: params['chat'] != false,
+                    ),
               },
               parts: const SlideParts(
                 header: HeaderPart(),

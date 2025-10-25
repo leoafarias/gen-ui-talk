@@ -15,20 +15,40 @@ import 'tool_definitions.dart';
 /// - Your intent shapes what appears
 /// - Context determines what's relevant
 /// - Appears when needed, dissolves when done
-class ToolbarWithChatExample extends StatefulWidget {
-  const ToolbarWithChatExample({super.key});
+class ToolbarDemo extends StatefulWidget {
+  const ToolbarDemo({
+    super.key,
+    this.all = false,
+    this.chat = true,
+  });
+
+  /// If true, shows all toolbar groups (for demo/presentation purposes)
+  final bool all;
+
+  /// If true, shows the chat widget on the right side
+  final bool chat;
 
   @override
-  State<ToolbarWithChatExample> createState() => _ToolbarWithChatExampleState();
+  State<ToolbarDemo> createState() => _ToolbarDemoState();
 }
 
-class _ToolbarWithChatExampleState extends State<ToolbarWithChatExample> {
-  // Start with basic writing tools
-  Set<ToolbarGroup> _shownGroups = {
-    ToolbarGroup.marks,
-    ToolbarGroup.alignment,
-    ToolbarGroup.history,
-  };
+class _ToolbarDemoState extends State<ToolbarDemo> {
+  late Set<ToolbarGroup> _shownGroups;
+
+  bool _isThinking = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // If 'all' parameter is true, show all groups. Otherwise start with basic writing tools.
+    _shownGroups = widget.all
+        ? ToolbarGroup.values.toSet()
+        : {
+            ToolbarGroup.marks,
+            ToolbarGroup.alignment,
+            ToolbarGroup.history,
+          };
+  }
 
   void _handleToolSelection(ToolSelection selection) {
     setState(() {
@@ -58,29 +78,44 @@ class _ToolbarWithChatExampleState extends State<ToolbarWithChatExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
-      body: Row(
-        children: [
-          // Toolbar showcase on the left
-          Expanded(
-            child: Center(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 900),
-                child: _StyledToolbar(
-                  groups: _shownGroups,
-                  onCommand: (cmd, payload) {
-                    debugPrint('Toolbar -> $cmd payload=$payload');
-                  },
-                ),
+      backgroundColor: Colors.transparent,
+      body: Container(
+        color: Colors.transparent, // Dark charcoal background
+        child: Row(
+          children: [
+            // Toolbar showcase on the left
+            Expanded(
+              child: Stack(
+                children: [
+                  Center(
+                    child: Container(
+                      color: Colors.transparent,
+                      child: _StyledToolbar(
+                        groups: _shownGroups,
+                        onCommand: (cmd, payload) {
+                          debugPrint('Toolbar -> $cmd payload=$payload');
+                        },
+                      ),
+                    ),
+                  ),
+                  // Thinking bubble at bottom left
+                  if (_isThinking)
+                    Positioned(left: 24, bottom: 24, child: _ThinkingBubble()),
+                ],
               ),
             ),
-          ),
-          // Chat on the right
-          ChatWidget(
-            onToolSelectionChanged: _handleToolSelection,
-            initialSystemPrompt: ToolbarDefinitions.generateSystemPrompt(),
-          ),
-        ],
+            // Chat on the right (conditionally shown)
+            if (widget.chat)
+              ChatWidget(
+                onToolSelectionChanged: _handleToolSelection,
+                initialSystemPrompt: ToolbarDefinitions.generateSystemPrompt(),
+                isThinking: _isThinking,
+                onThinkingChanged: (isThinking) {
+                  setState(() => _isThinking = isThinking);
+                },
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -88,10 +123,7 @@ class _ToolbarWithChatExampleState extends State<ToolbarWithChatExample> {
 
 /// Styled toolbar where each group has its own black rounded background
 class _StyledToolbar extends StatelessWidget {
-  const _StyledToolbar({
-    required this.groups,
-    required this.onCommand,
-  });
+  const _StyledToolbar({required this.groups, required this.onCommand});
 
   final Set<ToolbarGroup> groups;
   final void Function(ToolbarCommand command, dynamic payload) onCommand;
@@ -151,11 +183,7 @@ class _StyledToolbar extends StatelessWidget {
             ],
           ),
         if (groups.contains(ToolbarGroup.style))
-          _ToolGroup(
-            children: [
-              _dropdownBtn('Normal', ToolbarCommand.style),
-            ],
-          ),
+          _ToolGroup(children: [_dropdownBtn('Normal', ToolbarCommand.style)]),
         if (groups.contains(ToolbarGroup.font))
           _ToolGroup(
             children: [
@@ -164,11 +192,7 @@ class _StyledToolbar extends StatelessWidget {
             ],
           ),
         if (groups.contains(ToolbarGroup.zoom))
-          _ToolGroup(
-            children: [
-              _dropdownBtn('100%', ToolbarCommand.zoom),
-            ],
-          ),
+          _ToolGroup(children: [_dropdownBtn('100%', ToolbarCommand.zoom)]),
         if (groups.contains(ToolbarGroup.indent))
           _ToolGroup(
             children: [
@@ -222,11 +246,7 @@ class _StyledToolbar extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 4),
-            const Icon(
-              Icons.arrow_drop_down,
-              size: 18,
-              color: Colors.white,
-            ),
+            const Icon(Icons.arrow_drop_down, size: 18, color: Colors.white),
           ],
         ),
       ),
@@ -259,10 +279,95 @@ class _ToolGroup extends StatelessWidget {
           ),
         ],
       ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: children),
+    );
+  }
+}
+
+/// Animated thinking bubble that appears at bottom left
+class _ThinkingBubble extends StatefulWidget {
+  @override
+  State<_ThinkingBubble> createState() => _ThinkingBubbleState();
+}
+
+class _ThinkingBubbleState extends State<_ThinkingBubble>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade800,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: children,
+        children: [
+          _AnimatedDot(controller: _controller, delay: 0),
+          const SizedBox(width: 6),
+          _AnimatedDot(controller: _controller, delay: 0.2),
+          const SizedBox(width: 6),
+          _AnimatedDot(controller: _controller, delay: 0.4),
+        ],
       ),
+    );
+  }
+}
+
+class _AnimatedDot extends StatelessWidget {
+  const _AnimatedDot({required this.controller, required this.delay});
+
+  final AnimationController controller;
+  final double delay;
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = Tween<double>(begin: 0.4, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(delay, delay + 0.4, curve: Curves.easeInOut),
+      ),
+    );
+
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Opacity(
+          opacity: animation.value,
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+          ),
+        );
+      },
     );
   }
 }
