@@ -8,8 +8,7 @@ style: fullscreen
 @column {
   align: center
 }
-# Fleeting {.heading}
-# Interface {.subheading}
+# Ephemeral UI {.heading}
 
 ---
 
@@ -310,7 +309,8 @@ Context fusion: Multiple signals → Single understanding.
   align: center
 }
 
-## Conversation Loop {.heading}
+### Conversation Loop {.heading}
+Shared state evolves through conversation.
 
 @column {
   align: center
@@ -319,7 +319,6 @@ Context fusion: Multiple signals → Single understanding.
 
 ![Widget Response Flow](assets/widget_response.png)
 
-Shared state evolves through conversation.
 
 ---
 style: quote
