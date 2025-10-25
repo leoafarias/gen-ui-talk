@@ -355,31 +355,54 @@ class SimpleToolbar extends StatelessWidget {
     required List<DropdownOption<T>> options,
     required String hint,
     String? tip,
-  }) => Tooltip(
-    message: tip ?? cmd.label,
-    child: DropdownButtonHideUnderline(
+  }) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return Tooltip(
+      message: tip ?? cmd.label,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
-          border: Border.all(color: Theme.of(context).dividerColor),
-          borderRadius: BorderRadius.circular(8),
+          color: scheme.surface,
+          border: Border.all(color: scheme.outlineVariant),
+          borderRadius: BorderRadius.circular(4),
         ),
-        child: DropdownButton<T>(
-          isDense: true,
-          value: null, // stateless demo: always show hint
-          hint: Text(hint),
-          items: [
-            for (final opt in options)
-              DropdownMenuItem<T>(
-                value: opt.value,
-                child: opt.child ?? Text(opt.label ?? opt.value.toString()),
-              ),
-          ],
-          onChanged: (v) => onCommand(cmd, v),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<T>(
+            isDense: true,
+            value: null, // stateless demo: always show hint
+            hint: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  hint,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: scheme.onSurface,
+                    fontSize: 13,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Icon(
+                  Icons.arrow_drop_down,
+                  size: 18,
+                  color: scheme.onSurfaceVariant,
+                ),
+              ],
+            ),
+            icon: const SizedBox.shrink(), // Hide default icon since we show it in hint
+            items: [
+              for (final opt in options)
+                DropdownMenuItem<T>(
+                  value: opt.value,
+                  child: opt.child ?? Text(opt.label ?? opt.value.toString()),
+                ),
+            ],
+            onChanged: (v) => onCommand(cmd, v),
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 
   Widget _divider(BuildContext context) => SizedBox(
     height: 28,

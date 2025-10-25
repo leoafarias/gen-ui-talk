@@ -123,6 +123,8 @@ class _StyledToolbar extends StatelessWidget {
               _btn(Icons.format_bold, ToolbarCommand.bold),
               _btn(Icons.format_italic, ToolbarCommand.italic),
               _btn(Icons.format_underline, ToolbarCommand.underline),
+              _btn(Icons.format_color_text, ToolbarCommand.textColor),
+              _btn(Icons.highlight, ToolbarCommand.highlight),
             ],
           ),
         if (groups.contains(ToolbarGroup.alignment))
@@ -138,6 +140,7 @@ class _StyledToolbar extends StatelessWidget {
             children: [
               _btn(Icons.format_list_bulleted, ToolbarCommand.bulletList),
               _btn(Icons.format_list_numbered, ToolbarCommand.numberList),
+              _btn(Icons.checklist, ToolbarCommand.checkList),
             ],
           ),
         if (groups.contains(ToolbarGroup.insert))
@@ -150,20 +153,20 @@ class _StyledToolbar extends StatelessWidget {
         if (groups.contains(ToolbarGroup.style))
           _ToolGroup(
             children: [
-              _btn(Icons.title, ToolbarCommand.style),
+              _dropdownBtn('Normal', ToolbarCommand.style),
             ],
           ),
         if (groups.contains(ToolbarGroup.font))
           _ToolGroup(
             children: [
-              _btn(Icons.font_download, ToolbarCommand.fontFamily),
-              _btn(Icons.format_size, ToolbarCommand.fontSize),
+              _dropdownBtn('Arial', ToolbarCommand.fontFamily),
+              _dropdownBtn('12', ToolbarCommand.fontSize),
             ],
           ),
         if (groups.contains(ToolbarGroup.zoom))
           _ToolGroup(
             children: [
-              _btn(Icons.zoom_in, ToolbarCommand.zoom),
+              _dropdownBtn('100%', ToolbarCommand.zoom),
             ],
           ),
         if (groups.contains(ToolbarGroup.indent))
@@ -171,6 +174,7 @@ class _StyledToolbar extends StatelessWidget {
             children: [
               _btn(Icons.format_indent_increase, ToolbarCommand.increaseIndent),
               _btn(Icons.format_indent_decrease, ToolbarCommand.decreaseIndent),
+              _btn(Icons.format_line_spacing, ToolbarCommand.lineSpacing),
             ],
           ),
         if (groups.contains(ToolbarGroup.misc))
@@ -178,6 +182,7 @@ class _StyledToolbar extends StatelessWidget {
             children: [
               _btn(Icons.clear_all, ToolbarCommand.clearFormatting),
               _btn(Icons.history, ToolbarCommand.history),
+              _btn(Icons.edit, ToolbarCommand.edit),
             ],
           ),
       ],
@@ -191,6 +196,40 @@ class _StyledToolbar extends StatelessWidget {
       tooltip: command.name,
       padding: const EdgeInsets.all(10),
       constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+    );
+  }
+
+  Widget _dropdownBtn(String label, ToolbarCommand command) {
+    return SizedBox(
+      height: 44,
+      child: TextButton(
+        onPressed: () => onCommand(command, null),
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          minimumSize: const Size(70, 44),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                height: 1.0,
+              ),
+            ),
+            const SizedBox(width: 4),
+            const Icon(
+              Icons.arrow_drop_down,
+              size: 18,
+              color: Colors.white,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
