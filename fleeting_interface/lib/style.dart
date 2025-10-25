@@ -69,7 +69,8 @@ SlideStyle quoteStyle() {
     h1: TextStyler().style(
       TextStyleMix(
         fontFamily: GoogleFonts.notoSerif().fontFamily,
-        fontSize: 32,
+        fontSize: 42,
+        height: 1.4,
       ),
     ),
     blockquote: MarkdownBlockquoteStyle(
