@@ -114,7 +114,7 @@ SlideStyle borderedStyle() {
 
 SlideStyle fullscreenStyle() {
   return SlideStyle(
-    slideContainer: BoxStyler(padding: EdgeInsets.zero),
-    blockContainer: BoxStyler(padding: EdgeInsets.zero),
+    slideContainer: BoxStyler().paddingAll(0),
+    blockContainer: BoxStyler().paddingAll(0),
   );
 }

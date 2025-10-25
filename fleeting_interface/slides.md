@@ -1,4 +1,6 @@
-
+---
+style: fullscreen
+---
 
 @toolbar_with_chat {}
 
