@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mesh/mesh.dart';
 import 'package:superdeck/superdeck.dart';
 
- OMeshRect _meshBuilder(List<Color> colors) {
+OMeshRect _meshBuilder(List<Color> colors) {
   return OMeshRect(
     width: 4,
     height: 4,
@@ -34,11 +34,7 @@ class BackgroundPart extends StatelessWidget {
   Widget build(BuildContext context) {
     final configuration = SlideConfiguration.of(context);
 
-    return Stack(
-      children: [
-        _AnimatedSwitcherOMesh(slide: configuration),
-      ],
-    );
+    return Stack(children: [_AnimatedSwitcherOMesh(slide: configuration)]);
   }
 }
 
@@ -84,12 +80,12 @@ class _AnimatedSwitcherOMeshState extends State<_AnimatedSwitcherOMesh>
   }
 }
 
-// Color palette for radial gradient (purple/magenta to orange/yellow)
-const _yellow = Color(0xffFFB347); // Orange-yellow
-const _orange = Color(0xffFF6B6B); // Red-orange
-const _magenta = Color(0xffE91E63); // Magenta
-const _purple = Color(0xff9C27B0); // Purple
-const _deepPurple = Color(0xff673AB7); // Deep purple
+// Color palette for radial gradient
+const _yellow = Color.fromARGB(255, 103, 13, 228);
+const _green = Color.fromARGB(255, 69, 15, 195);
+const _darkGreen = Color.fromARGB(255, 39, 35, 96);
+const _darkGrey = Color.fromARGB(255, 41, 7, 75);
+const _almostBlack = Color(0xff0a0a0a);
 
 // Calculate Manhattan distance between two positions in 4x4 grid
 int _manhattanDistance(int pos1, int pos2) {
@@ -115,13 +111,13 @@ List<Color> _determiniscOrderBasedOnIndex(int index) {
   for (int i = 0; i < 16; i++) {
     final distance = _manhattanDistance(i, yellowPos);
 
-    // Assign color based on distance from yellow (radial gradient)
+    // Assign color based on distance from yellow
     final color = switch (distance) {
-      0 => _yellow, // Yellow/orange origin
-      1 => _orange, // Adjacent positions
-      2 => _magenta, // 2 steps away
-      3 => _purple, // 3 steps away
-      _ => _deepPurple, // 4+ steps away (farthest/extreme)
+      0 => _yellow, // Yellow origin
+      1 => _green, // Adjacent positions
+      2 => _darkGreen, // 2 steps away
+      3 => _darkGrey, // 3 steps away
+      _ => _almostBlack, // 4+ steps away (farthest/extreme)
     };
 
     meshColors.add(color);
