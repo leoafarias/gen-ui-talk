@@ -90,32 +90,18 @@ SlideStyle quoteStyle() {
 
 SlideStyle borderedStyle() {
   return SlideStyle(
-    // Base dark text colors for all text elements
-    h1: TextStyler().style(TextStyleMix(color: const Color(0xff1a1a1a))),
-    h2: TextStyler().style(TextStyleMix(color: const Color(0xff1a1a1a))),
-    h3: TextStyler().style(TextStyleMix(color: const Color(0xff1a1a1a))),
-    h4: TextStyler().style(TextStyleMix(color: const Color(0xff2a2a2a))),
-    h5: TextStyler().style(TextStyleMix(color: const Color(0xff2a2a2a))),
-    h6: TextStyler().style(TextStyleMix(color: const Color(0xff2a2a2a))),
-    p: TextStyler().style(TextStyleMix(color: const Color(0xff2a2a2a))),
-    modifier: WidgetModifierConfig(
-      modifiers: [
-        BoxModifierMix(
-          BoxStyler(
-            // No margin/padding - border goes to viewport edges
-            decoration: BoxDecorationMix(
-              border: BoxBorderMix.all(
-                BorderSideMix(
-                  color: Colors.white,
-                  width: 2,
-                  style: BorderStyle.solid,
-                ),
-              ),
-              borderRadius: BorderRadiusMix.all(Radius.circular(16)),
-            ),
+    slideContainer: BoxStyler(
+      // No margin/padding - border goes to viewport edges
+      decoration: BoxDecorationMix(
+        border: BoxBorderMix.all(
+          BorderSideMix(
+            color: Colors.white,
+            width: 2,
+            style: BorderStyle.solid,
           ),
         ),
-      ],
+        borderRadius: BorderRadiusMix.all(Radius.circular(16)),
+      ),
     ),
   );
 }

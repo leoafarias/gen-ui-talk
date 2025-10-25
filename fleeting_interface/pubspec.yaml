@@ -52,8 +52,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/travel_images/
-    - assets/booking_service/
-    - assets/prompt_images/
     - .superdeck/
     - .superdeck/assets/
