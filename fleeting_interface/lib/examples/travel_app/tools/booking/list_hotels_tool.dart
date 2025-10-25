@@ -12,7 +12,7 @@ class ListHotelsTool extends AiTool<Map<String, Object?>> {
   /// Creates a [ListHotelsTool].
   ListHotelsTool({required this.onListHotels})
     : super(
-        name: 'listHotels',
+        name: 'list_hotels',
         description: 'Lists hotels based on the provided criteria.',
         parameters: S.object(
           properties: {
