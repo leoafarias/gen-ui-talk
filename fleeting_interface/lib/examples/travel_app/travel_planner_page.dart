@@ -527,9 +527,7 @@ contain the other widgets.
         "id": "trip_title",
         "widget": {
           "Text": {
-            "text": {
-              "literalString": "Trip to Mexico City"
-            }
+            "text": "Trip to Mexico City"
           }
         }
       },
@@ -537,55 +535,29 @@ contain the other widgets.
         "id": "itinerary",
         "widget": {
           "Itinerary": {
-            "title": {
-              "literalString": "Mexico City Adventure"
-            },
-            "subheading": {
-              "literalString": "3-day Itinerary"
-            },
+            "title": "Mexico City Adventure",
+            "subheading": "3-day Itinerary",
             "imageChildId": "mexico_city_image",
             "days": [
               {
-                "title": {
-                  "literalString": "Day 1"
-                },
-                "subtitle": {
-                  "literalString": "Arrival and Exploration"
-                },
-                "description": {
-                  "literalString": "Your first day in Mexico City will be focused on settling in and exploring the historic center."
-                },
+                "title": "Day 1",
+                "subtitle": "Arrival and Exploration",
+                "description": "Your first day in Mexico City will be focused on settling in and exploring the historic center.",
                 "imageChildId": "day1_image",
                 "entries": [
                   {
-                    "title": {
-                      "literalString": "Arrival at MEX Airport"
-                    },
-                    "bodyText": {
-                      "literalString": "Arrive at Mexico City International Airport (MEX), clear customs, and pick up your luggage."
-                    },
-                    "time": {
-                      "literalString": "2:00 PM"
-                    },
+                    "title": "Arrival at MEX Airport",
+                    "bodyText": "Arrive at Mexico City International Airport (MEX), clear customs, and pick up your luggage.",
+                    "time": "2:00 PM",
                     "type": "transport",
                     "status": "noBookingRequired"
                   },
                   {
-                    "title": {
-                      "literalString": "Explore the Zocalo"
-                    },
-                    "subtitle": {
-                      "literalString": "Historic Center"
-                    },
-                    "bodyText": {
-                      "literalString": "Head to the Zocalo, the main square of Mexico City. Visit the Metropolitan Cathedral and the National Palace."
-                    },
-                    "time": {
-                      "literalString": "4:00 PM - 6:00 PM"
-                    },
-                    "address": {
-                      "literalString": "Plaza de la Constitución S/N, Centro Histórico, Ciudad de México"
-                    },
+                    "title": "Explore the Zocalo",
+                    "subtitle": "Historic Center",
+                    "bodyText": "Head to the Zocalo, the main square of Mexico City. Visit the Metropolitan Cathedral and the National Palace.",
+                    "time": "4:00 PM - 6:00 PM",
+                    "address": "Plaza de la Constitución S/N, Centro Histórico, Ciudad de México",
                     "type": "activity",
                     "status": "noBookingRequired"
                   }
@@ -599,9 +571,7 @@ contain the other widgets.
         "id": "mexico_city_image",
         "widget": {
           "Image": {
-            "url": {
-              "literalString": "assets/travel_images/beach.jpg"
-            },
+            "location": "assets/travel_images/beach.jpg",
             "fit": "cover"
           }
         }
@@ -610,9 +580,7 @@ contain the other widgets.
         "id": "day1_image",
         "widget": {
           "Image": {
-            "url": {
-              "literalString": "assets/travel_images/city.jpg"
-            },
+            "location": "assets/travel_images/city.jpg",
             "fit": "cover"
           }
         }

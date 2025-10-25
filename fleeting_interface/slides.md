@@ -247,7 +247,7 @@ final schema = Schema.object(properties: {
 @column {
   align: center
 }
-## Tool Calling Workflow{.heading}
+## Tool Calling Workflow {.heading}
 
 @column {
   align: center
@@ -321,17 +321,6 @@ Shared state evolves through conversation.
 
 
 ---
-style: fullscreen
----
-
-@column {
-  align: center
-}
-## Agentic Interfaces {.heading}
-
-@travel_app
-
----
 style: quote
 ---
 
@@ -378,3 +367,4 @@ https://github.com/flutter/genui
 }
 
 ## Thank You? {.heading}
+https://github.com/leoafarias/gen-ui-talk
