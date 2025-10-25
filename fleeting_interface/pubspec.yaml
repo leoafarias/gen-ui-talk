@@ -14,20 +14,16 @@ dependencies:
     git:
       url: https://github.com/flutter/genui.git
       path: packages/flutter_genui
-      ref: c5f3fd5d76ebf572d853d1578973ee53ccb2efa5
+      ref: 469fb0c0717d85547bdbb8a0b37c4ddbd963aae4
   flutter_genui_firebase_ai:
     git:
       url: https://github.com/flutter/genui.git
       path: packages/flutter_genui_firebase_ai
-      ref: c5f3fd5d76ebf572d853d1578973ee53ccb2efa5
+      ref: 469fb0c0717d85547bdbb8a0b37c4ddbd963aae4
   gpt_markdown: ^1.1.4
   google_fonts: ^6.3.2
   intl: ^0.20.2
-  json_schema_builder:
-    git:
-      url: https://github.com/flutter/genui.git
-      path: packages/json_schema_builder
-      ref: c5f3fd5d76ebf572d853d1578973ee53ccb2efa5
+  json_schema_builder: ^0.1.3
   logging: ^1.3.0
   mesh: ^0.5.0
   mix: ^2.0.0-dev.5
@@ -51,5 +47,6 @@ flutter:
     - assets/
     - .superdeck/
     - .superdeck/assets/
-    - assets/travel_example/travel_images/
-    - assets/travel_example/booking_service/
+    - assets/travel_images/
+    - assets/booking_service/
+    - assets/prompt_images/

@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:superdeck/superdeck.dart';
 
-import 'examples/simple_chat_widget.dart';
+import 'examples/smart_oven_widget.dart';
 import 'examples/tool_bar_example_widget.dart';
-import 'examples/travel_example_widget.dart';
+import 'examples/toolbar_with_chat_example.dart';
 import 'firebase_options.dart';
 import 'parts/background.dart';
 import 'parts/footer.dart';
@@ -41,9 +41,9 @@ void main() async {
                 'cover': coverStyle(),
               },
               widgets: {
-                'simple_chat': (_) => const SimpleChatWidget(),
+                'smart_oven': (_) => const SmartOven(),
                 'tool_bar_example': (_) => const ToolBarExampleWidget(),
-                'travel_example': (_) => const TravelExampleWidget(),
+                'toolbar_with_chat': (_) => const ToolbarWithChatExample(),
               },
               parts: const SlideParts(
                 header: HeaderPart(),
