@@ -7,6 +7,7 @@ import 'examples/flutter_genui_chat_demo.dart';
 import 'examples/smart_oven_widget.dart';
 import 'examples/tool_bar_example_widget.dart';
 import 'examples/toolbar_demo.dart';
+import 'examples/travel_app/travel_app_demo.dart';
 import 'firebase_options.dart';
 import 'parts/background.dart';
 import 'parts/footer.dart';
@@ -58,7 +59,8 @@ void main() async {
                   all: params['all'] == true,
                   chat: params['chat'] != false,
                 ),
-                'flutter_gen_ui_chat': (_) => const FlutterGenUIChat(),
+                'flutter_gen_ui_chat': (_) => const FlutterGenUiChatDemo(),
+                'travel_app': (_) => const TravelAppDemo(),
               },
               parts: const SlideParts(
                 header: HeaderPart(),

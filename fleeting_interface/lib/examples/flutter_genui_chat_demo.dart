@@ -28,19 +28,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Simple Chat',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const FlutterGenUIChat(),
+      home: const FlutterGenUiChatDemo(),
     );
   }
 }
 
-class FlutterGenUIChat extends StatefulWidget {
-  const FlutterGenUIChat({super.key});
+class FlutterGenUiChatDemo extends StatefulWidget {
+  const FlutterGenUiChatDemo({super.key});
 
   @override
-  State<FlutterGenUIChat> createState() => _FlutterGenUIChatState();
+  State<FlutterGenUiChatDemo> createState() => _FlutterGenUiChatDemoState();
 }
 
-class _FlutterGenUIChatState extends State<FlutterGenUIChat> {
+class _FlutterGenUiChatDemoState extends State<FlutterGenUiChatDemo> {
   final TextEditingController _textController = TextEditingController();
   final List<MessageController> _messages = [];
   late final GenUiConversation _genUiConversation;
