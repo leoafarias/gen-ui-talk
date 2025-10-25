@@ -1,4 +1,3 @@
----
 
 @section {
   flex: 2
@@ -6,8 +5,8 @@
 @column {
   align: center
 }
-# Generative UI {.heading}
-# with Flutter {.subheading}
+# Fleeting {.heading}
+# Interface {.subheading}
 
 ---
 
@@ -21,21 +20,20 @@
 @column {
   align: center_left
 }
-- Founder/CEO/CTO
-- Open Source Contributor (fvm, mix, superdeck, others..)
+- Bitwild @ Concepta
+- Open Source Contributor 
 - Flutter & Dart GDE
 - Passionate about UI/UX/DX
-
 
 ---
 
 @column
 
 @column {
-  align: center_left 
+  align: center_left
   flex: 2
 }
-> [!WARNING]  
+> [!WARNING]
 > This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
 
 @column
@@ -43,457 +41,431 @@
 ---
 
 @column {
-  flex: 2 
-  align: center_right
-}
-### Generative UI {.heading}
-@column
-## VS 
-@column {
-  flex: 2
-}
-### AI Assisted Code Generation
-
-<!-- Code Generation code as the output to boost developer productivity vs Generates widgets definitions to be rendered on the screen -->
-
----
-
-### What is Generative UI? {.heading}
-
-@column
-
-- LLMs are great at generating content based on context
-- GUIs are great at providing structured, interactive interfaces for user input and navigation
-
-
----
-
-# LLM ❤️ GUI {.heading}
-
----
-
-@column
-@column {
-  flex: 5
-  align: center
-}
-### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
-
-@column
-
----
-
-### Benefits over Chat {.heading}
-
-- More intuitive and user-friendly, especially for complex tasks
-- Faster feedback loop between users and LLMs
-- Enhances efficiency and interaction
-
----
-
-@column
-
-@column {
-  flex: 3 
-  align: center
-}
-### Flutter is Well-Suited for Generative UI {.heading}
-Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
-
-@column
-
----
-
-## Generative UI workflow
-
-@section
-
-@column {
-  align: top_center
-}
-```mermaid
-flowchart LR
-    A[Input] --> B[LLM]
-    B --> C[Structured Response]
-    C --> D[UI]
-
-    classDef inputStyle fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
-    classDef llmStyle fill:#2196F3,stroke:#1565C0,stroke-width:3px,color:#fff
-    classDef outputStyle fill:#FF9800,stroke:#E65100,stroke-width:3px,color:#fff
-    classDef uiStyle fill:#9C27B0,stroke:#6A1B9A,stroke-width:3px,color:#fff
-
-    class A inputStyle
-    class B llmStyle
-    class C outputStyle
-    class D uiStyle
-```
-
----
-
-### How can LLMs Understand Your UI? {.heading}
-
-@column
-
-![structured_output](assets/structured_output.png)
-
-
----
-
-@column
-
-### Define the Schema {.heading}
-
-@column
-
-```dart
-final schema = Schema.array(
-  description: 'List of recipes',
-  items: Schema.object(
-    properties: {
-      'recipeName': Schema.string(
-        description: 'Name of the recipe.',
-        nullable: false,
-      ),
-    },
-    requiredProperties: ['recipeName'],
-  ),
-);
-
-```{.code}
-
----
-
-@column {
-  align: bottom_center
-}
-
-### Configure responseMimeType & responseSchema {.heading}
-
-@column
-
-```dart
-final schema = Schema.array(
-  description: 'List of recipes',
-  items: Schema.object(
-    properties: {
-      'recipeName': Schema.string(
-        description: 'Name of the recipe.',
-        nullable: false,
-      ),
-    },
-    requiredProperties: ['recipeName'],
-  ),
-);
-
-
-final model = GenerativeModel(
-  model: 'gemini-1.5-pro',
-  apiKey: apiKey,
-  generationConfig: GenerationConfig(
-    responseMimeType: 'application/json',
-    responseSchema: schema,
-  ),
-);
-
-```{.code}
-
----
-
-@section {
-  flex: 2
-}
-
-@column {
-  flex: 2
-}
-
-#### Passing a prompt to your model {.heading}
-
-@column {
-  flex: 3
-}
-
-```dart
-final prompt = 'List a few popular cookie recipes.';
-final response = await model.generateContent([Content.text(prompt)]);
-
-print(response.candidates.first.content);
-
-```{.code}
-
-@section {
-  flex: 3
-}
-
-@column {
-  flex: 2
   align: bottom_left
 }
 
-#### JSON Response
+### I built something that felt like mine {.heading}
+
+---
+
+## Then everyone wanted something {.heading}
+
+---
+
+@column {
+  align: center_right
+}
+
+## The Everyone Tax {.heading}
+
+---
+
+
+## Traditional 'one-size-fits-all' interfaces impose 'Everyone Tax' through cluttered features and options {.heading}
+
+---
+
+@column
+@column {
+  flex: 3
+  align: center
+}
+## The Paradigm Shift {.heading}
+AI Makes Intent-Driven Interfaces Possible
+@column
+
+---
+
+
+### Intent-based outcome specification... the first new UI interaction paradigm since the invention of GUIs"
+#### IBM Research AI (2024)
+
+---
+
+@column {
+  align: center
+}
+## Demo: The Toolbar Problem {.heading}
+
+@editorDemo {
+  name: editorDemo
+}
+
+---
+
+
+## The best UI designs do more than work—they think for the user
+
+---
+
+@column {
+  align: center
+}
+## How AI Understands Your Interface {.heading}
 
 @column {
   flex: 3
 }
 
-```json
-[
-  {
-    "recipeName": "Chocolate Chip Cookies"
-  },
-  {
-    "recipeName": "Peanut Butter Cookies"
-  },
-  {
-    "recipeName": "Snickerdoodles"
-  }
-]
-```
-
-
+![Schema Foundation](assets/structured_output.png)
 
 ---
+
+@column {
+  flex: 2
+  align: center
+}
+## Define Capabilities with Schemas {.heading}
 
 @column
-
-### Color Palette Generator
-
-Generate a color palette based on a given text.
-
-- Name of the palette
-- Font family
-- Font color
-- Color for each corner of the palette
-
---- 
-
-@column{
-
-}
-
-## Color Palette Schema
-
-@column{
-  scrollable: true
-  flex: 2
-}
-
-```dart
-final schema = Schema.object(
-  properties: {
-  'name': Schema.string(
-    description:'Name of the color palette',
-    nullable: false,
-  ),
-  'font': Schema.enumString(
-    enumValues: ColorPaletteFontFamily.enumString,
-    description: 'Font to use for color palette name',
-    nullable: false,
-  ),
-  'fontColor': Schema.string(
-    description: 'Font color. Format: #FF0000',
-    nullable: false,
-  ),
-  'topLeftColor': Schema.string(
-    description: 'Top left color. Format: #FF0000',
-    nullable: false,
-  ),
-  'topRightColor': Schema.string(
-    description: 'Top right color. Format: #FF0000',
-    nullable: false,
-  ),
-  'bottomLeftColor': Schema.string(
-    description: 'Bottom left color. Format: #FF0000',
-    nullable: false,
-  ),
-  'bottomRightColor': Schema.string(
-    description: 'Bottom right color. Format: #FF0000',
-    nullable: false,
-  )
-}, requiredProperties: [
-  'name',
-  'font',
-  'fontColor',
-  'topLeftColor',
-  'topRightColor',
-  'bottomLeftColor',
-    'bottomRightColor',
-  ],
-);
-
-```
-
----
-
-## LLMs Orchestrate APIs
-
----
-
-@section
-@column
-#### Gemini Function Calling
-@column
-The Function Calling feature is in Beta release
-
-@section {
-  flex: 4
-}
-![llm tools](assets/llm_tools.png){.cover}
-
-
-
---- 
-
-@column {
-  align: bottom_right
-}
-
-### User Interaction {.heading}
-Natural Language way to interact with an LLM
-
-@column {
-  flex: 2
-}
-![llm response](assets/llm_interaction.png)
-
-
----
-
-
-@column {
-  align: center_left
-}
-### Widget Response {.heading}
-
-@column {
-  flex: 3
-}
-![widget_response](assets/widget_response.png)
-
-
----
-
-## What if the tool to use is a widget schema?
-
----
-
-![widget_schema](assets/widget_schema.png)
-
----
-
-@column {
-  flex: 2
-}
-### Dropdown Widget Schema
-
-```dart
-class DropdownSchemaDto {
-  final String label;
-  final String currentValue;
-  final List<String> options;
-
-  DropdownSchemaDto({
-    required this.label,
-    required this.currentValue,
-    required this.options,
-  });
-
-```
-@column {
-  flex: 3
-}
-
-```dart
-  static final schema = Schema.object(properties: {
-    'label': Schema.string(
-      description: 'The label of the dropdown',
-      nullable: false,
-    ),
-    'currentValue': Schema.string(
-      description: 'The currentValue of the dropdown',
-      nullable: false,
-    ),
-    'options': Schema.array(
-      description: 'The options of the dropdown',
-      items: Schema.string(
-        description: 'The options of the dropdown',
-        nullable: false,
-      ),
-      nullable: false,
-    )
-  });
-}
-```
-
----
-
-### Dropdown Schema Builder
-
-@column {
-  flex: 2
-}
-```dart
- ListTile(
-  title: Text(schema.label),
-  trailing: DropdownButton<String>(
-    value: schema.currentValue,
-    items: schema.options.map((option) {
-      return DropdownMenuItem<String>(
-        value: option,
-        child: Text(option),
-      );
-    }).toList(),
-    onChanged: (newValue) {},
-  ),
-);
-```
-
----
-
-### Widget Schemas
-
 
 ```dart
 final schema = Schema.object(properties: {
-  'textFields': Schema.array(
-    description: 'A list of text fields',
-    items: TextFieldSchemaDto.schema,
-    nullable: true,
+  'label': Schema.string(
+    description: 'The label of the dropdown',
   ),
-  'dropdowns': Schema.array(
-    description: 'A list of dropdowns',
-    items: DropdownSchemaDto.schema,
-    nullable: true,
+  'currentValue': Schema.string(
+    description: 'The current value',
   ),
-  'colorPickers': Schema.array(
-    description: 'A list of colors pickers',
-    items: ColorPickerDtoSchema.schema,
-    nullable: true,
+  'options': Schema.array(
+    description: 'Available options',
+    items: Schema.string(),
   ),
 });
-
 ```
----
-style: quote
----
-
-> The future of UI might be orchestrating
-> user experiences rather than creating it.
 
 ---
 
-@section{
-  align: bottom_center
-  flex: 2
+@column {
+  align: center
 }
-# Thank you
+## Intent → Interface Flow {.heading}
 
 @section
-Leo Farias
-_@leoafarias
-(GitHub, Twitter/X)
 
-@column 
+```mermaid
+flowchart LR
+    A[User Intent] --> B[LLM]
+    B --> C[Schema Selection]
+    C --> D[Widget Composition]
+```
 
-#### Slides + Code
-https://github.com/leoafarias/gen-ui-talk
+---
+
+@column {
+  align: center
+}
+## LLMs Orchestrate Capabilities {.heading}
+
+@column {
+  flex: 3
+}
+
+![LLM Tools Orchestration](assets/llm_tools.png)
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Schema → Widget Mapping {.heading}
+
+@column {
+  flex: 3
+}
+
+![Widget Schema Mapping](assets/widget_schema.png)
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Behaviors as Building Blocks {.heading}
+
+@column
+
+```dart
+abstract class Behavior {
+  Widget manifest(Intent intent);
+  bool isRelevant(Context context);
+}
+```
+
+---
+
+## From States to Behaviors {.heading}
+
+```dart
+// Old: State-driven
+setState(() => showFeature = true);
+
+// New: Behavior-driven
+behaviors.where((b) => b.isRelevant(context))
+```
+
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Ephemeral {.heading}
+Appears When Needed, Dissolves When Done
+
+@column
+
+```dart
+// ❌ WRONG: Timer-based
+if (minutesSinceInteraction > 5) vanish();
+
+// ✅ RIGHT: Purpose-driven
+if (taskCompleted) dissolve();
+if (!isRelevantAnymore(context)) fade();
+```
+
+---
+
+## Purpose-Driven Lifecycle {.heading}
+Not Timer-Based
+
+**Temporary manifestation of permanent capabilities**
+
+- Interface exists while serving a purpose
+- Not for a duration, but for an intent
+- Capabilities persist, manifestation changes
+
+---
+
+
+> *"Design isn't crafting a beautiful button. It's figuring out if there's a way to get rid of the button altogether."*
+> — Edward Tufte
+
+---
+
+@column {
+  align: center
+}
+## Context-Aware Oven Demo {.heading}
+Same Interface, Different Context 
+
+@smartOven {
+  
+}
+
+---
+
+@readingDemo{
+
+}
+---
+
+@column {
+  align: center
+}
+## Natural Language Interaction {.heading}
+
+@column {
+  flex: 3
+}
+
+![LLM Interaction](assets/llm_interaction.png)
+
+---
+
+## Conversation as State {.heading}
+
+```dart
+User: "Show ocean temperatures"
+→ Temperature map appears
+
+User: "How does this connect to storms?"
+→ Map adds storm overlay
+
+User: "Focus on 2020"
+→ Map zooms to 2020 data
+```
+
+**No navigation. Just conversation refinement.**
+
+---
+
+## State Emerges from Dialogue {.heading}
+
+**Traditional:** Navigate through predefined states
+- Menu → Submenu → Feature → Settings
+
+**Intent-Driven:** Evolve through conversation
+- "I want..." → Interface adapts
+- "Also show..." → Interface expands
+- "Focus on..." → Interface refines
+
+---
+
+
+> "Ephemeral UIs—UI elements dynamically generated by LLMs"
+> — Apple Inc. Research Team (2024)
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Simple Code, Intelligent Results {.heading}
+
+@column
+
+```dart
+@override
+Widget build(context) {
+  return EphemeralUI(
+    intent: userIntent,
+    schema: behaviorSchema,
+  );
+}
+```
+
+---
+
+@column {
+  align: center
+}
+## Widget Response {.heading}
+
+@column {
+  flex: 3
+}
+
+![Widget Response Example](assets/widget_response.png)
+
+---
+
+
+> "Simple is hard. Easy is harder. Invisible is hardest."
+> — Jean-Louis Gassée
+
+
+---
+
+@column {
+  flex: 2
+  align: center_right
+}
+## The Shift {.heading}
+
+
+@column {
+  flex: 2
+  align: center_left
+}
+## Intent-Driven, Not Application-Driven {.subheading}
+
+
+---
+
+@column
+@column {
+  flex: 3
+  align: center
+}
+## Your Intent Shapes What Appears {.heading}
+Schema Defines Capabilities, Context Determines Interface
+@column
+
+
+
+---
+
+> "The future of UI might be orchestrating user experiences rather than creating it."
+
+---
+
+## What Changes {.heading}
+
+**From → To**
+
+- Application-centric → Intent-centric
+- Navigation → Composition
+- Persistent UI → Ephemeral (understanding persists)
+- Static → Adaptive
+
+---
+
+## What Stays {.heading}
+
+**Users Remain in Control**
+
+- User agency and choice
+- Transparency in how system works
+- Ability to override and customize
+- Your data, your rules
+
+**This isn't taking control away—it's giving control back**
+
+---
+
+@column {
+  flex: 2
+  align: center_right
+}
+## Flutter + AI {.heading}
+
+@column
+
+@column {
+  flex: 2
+  align: center_left
+}
+## Natural Fit for Intent-Driven Interfaces {.subheading}
+
+
+---
+
+## Getting Started {.heading}
+
+**What's Real Today**
+
+- Schema-based tool selection ✓
+- Context-aware composition ✓
+- LLM-driven intent understanding ✓
+- Flutter's declarative widgets ✓
+
+**This isn't future tech—it's available now**
+
+---
+
+## Start Small, Ship Fast {.heading}
+
+**First Step:**
+
+1. One screen
+2. One context signal (time, location, or user state)
+3. Two interface states
+4. Ship it.
+
+**Then iterate based on real user behavior**
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Intent-Driven Interfaces Aren't Coming {.heading}
+
+@column
+
+**They're here. Ready to build?**
+
+---
+
+@column {
+  align: center
+}
+
+## Questions? {.heading}
+

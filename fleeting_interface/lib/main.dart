@@ -39,6 +39,7 @@ void main() async {
                 'announcement': announcementStyle(),
                 'quote': quoteStyle(),
                 'cover': coverStyle(),
+                'fullscreen': fullscreenStyle(),
               },
               widgets: {
                 'smart_oven': (_) => const SmartOven(),

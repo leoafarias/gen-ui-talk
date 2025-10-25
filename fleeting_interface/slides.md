@@ -1,3 +1,5 @@
+
+
 @toolbar_with_chat {}
 
 ---
@@ -74,7 +76,7 @@
   align: center
 }
 ## The Paradigm Shift {.heading}
-Machines Finally Learning Our Language
+AI Makes Intent-Driven Interfaces Possible
 @column
 
 ---
@@ -102,20 +104,83 @@ Machines Finally Learning Our Language
 ---
 
 @column {
+  align: center
+}
+## How AI Understands Your Interface {.heading}
+
+@column {
+  flex: 3
+}
+
+![Schema Foundation](assets/structured_output.png)
+
+---
+
+@column {
   flex: 2
   align: center
 }
-## Intent-Based Architecture {.heading}
+## Define Capabilities with Schemas {.heading}
 
 @column
 
 ```dart
-class UserIntent {
-  final String action;
-  final Context context;
-  final Purpose purpose;
-}
+final schema = Schema.object(properties: {
+  'label': Schema.string(
+    description: 'The label of the dropdown',
+  ),
+  'currentValue': Schema.string(
+    description: 'The current value',
+  ),
+  'options': Schema.array(
+    description: 'Available options',
+    items: Schema.string(),
+  ),
+});
 ```
+
+---
+
+@column {
+  align: center
+}
+## Intent → Interface Flow {.heading}
+
+@section
+
+```mermaid
+flowchart LR
+    A[User Intent] --> B[LLM]
+    B --> C[Schema Selection]
+    C --> D[Widget Composition]
+```
+
+---
+
+@column {
+  align: center
+}
+## LLMs Orchestrate Capabilities {.heading}
+
+@column {
+  flex: 3
+}
+
+![LLM Tools Orchestration](assets/llm_tools.png)
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Schema → Widget Mapping {.heading}
+
+@column {
+  flex: 3
+}
+
+![Widget Schema Mapping](assets/widget_schema.png)
 
 ---
 
@@ -149,6 +214,37 @@ behaviors.where((b) => b.isRelevant(context))
 
 ---
 
+@column {
+  flex: 2
+  align: center
+}
+## Ephemeral {.heading}
+Appears When Needed, Dissolves When Done
+
+@column
+
+```dart
+// ❌ WRONG: Timer-based
+if (minutesSinceInteraction > 5) vanish();
+
+// ✅ RIGHT: Purpose-driven
+if (taskCompleted) dissolve();
+if (!isRelevantAnymore(context)) fade();
+```
+
+---
+
+## Purpose-Driven Lifecycle {.heading}
+Not Timer-Based
+
+**Temporary manifestation of permanent capabilities**
+
+- Interface exists while serving a purpose
+- Not for a duration, but for an intent
+- Capabilities persist, manifestation changes
+
+---
+
 
 > *"Design isn't crafting a beautiful button. It's figuring out if there's a way to get rid of the button altogether."*
 > — Edward Tufte
@@ -170,6 +266,48 @@ Same Interface, Different Context
 @readingDemo{
 
 }
+---
+
+@column {
+  align: center
+}
+## Natural Language Interaction {.heading}
+
+@column {
+  flex: 3
+}
+
+![LLM Interaction](assets/llm_interaction.png)
+
+---
+
+## Conversation as State {.heading}
+
+```dart
+User: "Show ocean temperatures"
+→ Temperature map appears
+
+User: "How does this connect to storms?"
+→ Map adds storm overlay
+
+User: "Focus on 2020"
+→ Map zooms to 2020 data
+```
+
+**No navigation. Just conversation refinement.**
+
+---
+
+## State Emerges from Dialogue {.heading}
+
+**Traditional:** Navigate through predefined states
+- Menu → Submenu → Feature → Settings
+
+**Intent-Driven:** Evolve through conversation
+- "I want..." → Interface adapts
+- "Also show..." → Interface expands
+- "Focus on..." → Interface refines
+
 ---
 
 
@@ -198,6 +336,19 @@ Widget build(context) {
 
 ---
 
+@column {
+  align: center
+}
+## Widget Response {.heading}
+
+@column {
+  flex: 3
+}
+
+![Widget Response Example](assets/widget_response.png)
+
+---
+
 
 > "Simple is hard. Easy is harder. Invisible is hardest."
 > — Jean-Louis Gassée
@@ -209,14 +360,14 @@ Widget build(context) {
   flex: 2
   align: center_right
 }
-## The Paradigm Shift {.heading}
+## The Shift {.heading}
 
 
 @column {
   flex: 2
   align: center_left
 }
-## Thinking Interfaces {.subheading}
+## Intent-Driven, Not Application-Driven {.subheading}
 
 
 ---
@@ -226,11 +377,39 @@ Widget build(context) {
   flex: 3
   align: center
 }
-## Pure Intention → Reality {.heading}
-The Ultimate Goal
+## Your Intent Shapes What Appears {.heading}
+Schema Defines Capabilities, Context Determines Interface
 @column
 
 
+
+---
+
+> "The future of UI might be orchestrating user experiences rather than creating it."
+
+---
+
+## What Changes {.heading}
+
+**From → To**
+
+- Application-centric → Intent-centric
+- Navigation → Composition
+- Persistent UI → Ephemeral (understanding persists)
+- Static → Adaptive
+
+---
+
+## What Stays {.heading}
+
+**Users Remain in Control**
+
+- User agency and choice
+- Transparency in how system works
+- Ability to override and customize
+- Your data, your rules
+
+**This isn't taking control away—it's giving control back**
 
 ---
 
@@ -246,8 +425,46 @@ The Ultimate Goal
   flex: 2
   align: center_left
 }
-## Future {.subheading}
+## Natural Fit for Intent-Driven Interfaces {.subheading}
 
+
+---
+
+## Getting Started {.heading}
+
+**What's Real Today**
+
+- Schema-based tool selection ✓
+- Context-aware composition ✓
+- LLM-driven intent understanding ✓
+- Flutter's declarative widgets ✓
+
+**This isn't future tech—it's available now**
+
+---
+
+## Start Small, Ship Fast {.heading}
+
+**First Step:**
+
+1. One screen
+2. One context signal (time, location, or user state)
+3. Two interface states
+4. Ship it.
+
+**Then iterate based on real user behavior**
+
+---
+
+@column {
+  flex: 2
+  align: center
+}
+## Intent-Driven Interfaces Aren't Coming {.heading}
+
+@column
+
+**They're here. Ready to build?**
 
 ---
 

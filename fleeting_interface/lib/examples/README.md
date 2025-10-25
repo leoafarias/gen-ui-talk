@@ -40,37 +40,35 @@ ChatWidget(
 )
 ```
 
-### 2. `tool_selection_schema.dart`
-Schema-based system for context-aware tool selection.
+### 2. `tool_definitions.dart`
+Simple tool definitions for intent-driven selection.
 
-**Purpose**: Define capabilities and rules for when they appear
+**Purpose**: Define what each tool does. The LLM reads these and decides what to show based on user intent.
 
 **Key Classes**:
 
-#### `ToolContext`
-Represents the context that influences tool selection:
-- `userIntent`: What the user wants to do
-- `selectionState`: Current document selection
-- `userProfile`: User skill level and preferences
-- `workMode`: Quick, standard, or detailed work
+#### `ToolGroupDefinition`
+Simple definition of a tool group:
+- `id`: Unique identifier (e.g., 'marks', 'style', 'font')
+- `label`: Human-readable name
+- `description`: What this tool group does
 
-#### `ToolSelectionSchema`
-Defines all possible tools and rules for when to show them:
-- `toolGroups`: Map of all available tool groups
-- `selectionRules`: Rules for when each group appears
-- `selectTools(context)`: Returns which tools to show
+#### `ToolbarDefinitions`
+Container for all available tools:
+- `allGroups`: List of all 11 tool group definitions
+- `generateSystemPrompt()`: Creates LLM prompt from definitions
+- `toJsonSchema()`: JSON schema for structured LLM output
 
-#### `SelectionRule`
-A rule that matches context and returns groups to show:
+**Example**:
 ```dart
-SelectionRule(
-  name: 'basic_writing',
-  groupsToShow: {'marks', 'alignment', 'history'},
-  matches: (context) =>
-    context.userIntent.contains('write') &&
-    !context.userIntent.contains('advanced'),
+ToolGroupDefinition(
+  id: 'marks',
+  label: 'Text Formatting',
+  description: 'Bold, italic, underline, text color, and highlighting',
 )
 ```
+
+The LLM reads these definitions and decides what to show based on user intent. No complex rules needed!
 
 ### 3. `toolbar_with_chat_example.dart`
 Complete demonstration combining chat + toolbar + schema.
@@ -91,31 +89,34 @@ Complete demonstration combining chat + toolbar + schema.
 - "Help me add a list" → Shows: lists, indent, history
 - "Just reading" → Shows: zoom, file (minimal)
 
-## Schema Design Philosophy
+## Design Philosophy
 
 ### 1. Define ALL Capabilities Upfront
 
 ```dart
-// Define every possible tool group
-toolGroups: {
-  'marks': ToolGroupDefinition(...),
-  'style': ToolGroupDefinition(...),
-  'font': ToolGroupDefinition(...),
-  // ... all others
-}
+// Define every possible tool group - simple descriptions
+const allGroups = [
+  ToolGroupDefinition(
+    id: 'marks',
+    label: 'Text Formatting',
+    description: 'Bold, italic, underline, text color, and highlighting',
+  ),
+  // ... all 11 groups
+];
 ```
 
-**Why**: The full capability set exists. Context determines manifestation.
+**Why**: The full capability set exists. Intent determines what appears.
 
-### 2. Context Determines Appearance
+### 2. Let the LLM Decide
 
 ```dart
-// Same capabilities, different contexts = different UIs
-context1: "write simple note" → [marks, alignment]
-context2: "format document"   → [marks, style, font, alignment]
+// User intent → LLM reads definitions → Selects relevant tools
+"write simple note" → LLM chooses: [marks, alignment, history]
+"format document"   → LLM chooses: [marks, style, font, alignment]
+"just reading"      → LLM chooses: [zoom, file]
 ```
 
-**Why**: Intent-driven > feature-driven
+**Why**: LLM understands intent better than hard-coded rules
 
 ### 3. Purpose-Driven Lifecycle
 
@@ -132,52 +133,16 @@ if (contextChanged && !relevantAnymore) fade();
 
 ## Integrating with Firebase AI
 
-### Step 1: Update the Schema for LLM
+### Step 1: Use the Built-in System Prompt
 
-Convert your `ToolSelectionSchema` to JSON Schema format that firebase_ai can understand:
+The `ToolbarDefinitions` class already generates everything you need:
 
 ```dart
-// In tool_selection_schema.dart
-extension ToolSelectionSchemaJson on ToolSelectionSchema {
-  Map<String, dynamic> toJsonSchema() {
-    return {
-      'type': 'object',
-      'properties': {
-        'selectedToolGroups': {
-          'type': 'array',
-          'description': 'List of tool group IDs to show based on user intent',
-          'items': {
-            'type': 'string',
-            'enum': toolGroups.keys.toList(),
-          },
-        },
-        'explanation': {
-          'type': 'string',
-          'description': 'Brief explanation of why these tools were selected',
-        },
-      },
-      'required': ['selectedToolGroups', 'explanation'],
-    };
-  }
+// System prompt with all tool descriptions
+final systemPrompt = ToolbarDefinitions.generateSystemPrompt();
 
-  String toSystemPrompt() {
-    final buffer = StringBuffer();
-    buffer.writeln('You help users by selecting relevant toolbar groups based on their intent.');
-    buffer.writeln('\nAvailable tool groups:');
-
-    for (final group in toolGroups.entries) {
-      buffer.writeln('- ${group.key}: ${group.value.description}');
-      if (group.value.keywords.isNotEmpty) {
-        buffer.writeln('  Keywords: ${group.value.keywords.join(", ")}');
-      }
-    }
-
-    buffer.writeln('\nYour response should select only the tool groups relevant to the user\'s current intent.');
-    buffer.writeln('Less is more - show only what\'s needed for the task.');
-
-    return buffer.toString();
-  }
-}
+// JSON schema for structured output
+final jsonSchema = ToolbarDefinitions.toJsonSchema();
 ```
 
 ### Step 2: Update ChatWidget to Use Firebase AI
@@ -193,11 +158,11 @@ class _ChatWidgetState extends State<ChatWidget> {
   void initState() {
     super.initState();
 
-    // Initialize the model with the schema
+    // Initialize the model with the tool definitions
     _model = FirebaseVertexAI.instance.generativeModel(
       model: 'gemini-2.0-flash-exp',
       systemInstruction: Content.text(
-        TextEditorToolSchema.schema.toSystemPrompt(),
+        ToolbarDefinitions.generateSystemPrompt(),
       ),
       generationConfig: GenerationConfig(
         responseMimeType: 'application/json',
@@ -261,34 +226,26 @@ class _ChatWidgetState extends State<ChatWidget> {
 }
 ```
 
-### Step 3: Add Context Awareness (Optional)
+### Step 3: Add Context (Optional)
 
-For more sophisticated context awareness, include additional signals:
+You can include additional context in the user message:
 
 ```dart
 Future<void> _sendMessage() async {
-  // Build context object
-  final context = ToolContext(
-    userIntent: text,
-    selectionState: _getCurrentSelection(),
-    userProfile: _getUserProfile(),
-    workMode: _determineWorkMode(),
-  );
+  // Simple approach - just the user's intent
+  final prompt = text;
 
-  // Include context in the prompt
-  final prompt = '''
-User intent: ${context.userIntent}
+  // Or with additional context
+  final promptWithContext = '''
+Intent: $text
 
-Context:
-- Has selection: ${context.selectionState?.hasSelection ?? false}
-- Work mode: ${context.workMode.name}
-- Skill level: ${context.userProfile?.skillLevel.name ?? 'unknown'}
-
-Select the most relevant tool groups for this intent and context.
+Current state:
+- Has text selected: ${hasSelection ? 'yes' : 'no'}
+- Document type: ${documentType}
 ''';
 
   final response = await _model.generateContent([
-    Content.text(prompt),
+    Content.text(promptWithContext),
   ]);
 
   // ... rest of processing

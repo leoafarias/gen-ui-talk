@@ -8,8 +8,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_app_check: ^0.4.0
-  firebase_core: ^4.0.0
+  firebase_app_check: ^0.4.1
+  firebase_core: ^4.2.0
+  firebase_ai: ^3.4.0
   flutter_genui:
     git:
       url: https://github.com/flutter/genui.git
@@ -47,6 +48,3 @@ flutter:
     - assets/
     - .superdeck/
     - .superdeck/assets/
-    - assets/travel_images/
-    - assets/booking_service/
-    - assets/prompt_images/
