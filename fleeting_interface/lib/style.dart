@@ -111,3 +111,10 @@ SlideStyle borderedStyle() {
     ),
   );
 }
+
+SlideStyle fullscreenStyle() {
+  return SlideStyle(
+    slideContainer: BoxStyler(padding: EdgeInsets.zero),
+    blockContainer: BoxStyler(padding: EdgeInsets.zero),
+  );
+}

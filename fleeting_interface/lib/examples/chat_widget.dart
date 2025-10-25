@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter/material.dart';
+
+import 'tool_definitions.dart';
 
 /// A clean, reusable chat widget that appears on the right side of the screen.
 /// Demonstrates ephemeral, intent-driven interfaces.
@@ -28,9 +33,55 @@ class _ChatWidgetState extends State<ChatWidget> {
   final List<ChatMessage> _messages = [];
   final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
+  bool _hasText = false;
+  late final GenerativeModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeModel();
+    _controller.addListener(_onTextChanged);
+  }
+
+  void _onTextChanged() {
+    final hasText = _controller.text.isNotEmpty;
+    if (hasText != _hasText) {
+      setState(() => _hasText = hasText);
+    }
+  }
+
+  void _initializeModel() {
+    // Create JSON schema for tool selection
+    final toolSchema = Schema.object(
+      properties: {
+        'selectedToolGroups': Schema.array(
+          description: 'List of tool group IDs to show',
+          items: Schema.enumString(
+            enumValues: ToolbarDefinitions.allGroups.map((g) => g.id).toList(),
+          ),
+        ),
+        'explanation': Schema.string(
+          description: 'Brief explanation of why these tools were selected',
+        ),
+      },
+    );
+
+    // Create model with JSON response configuration
+    _model = FirebaseAI.googleAI().generativeModel(
+      model: 'gemini-2.5-flash',
+      generationConfig: GenerationConfig(
+        responseMimeType: 'application/json',
+        responseSchema: toolSchema,
+      ),
+      systemInstruction: Content.text(
+        widget.initialSystemPrompt ?? ToolbarDefinitions.generateSystemPrompt(),
+      ),
+    );
+  }
 
   @override
   void dispose() {
+    _controller.removeListener(_onTextChanged);
     _controller.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -48,26 +99,35 @@ class _ChatWidgetState extends State<ChatWidget> {
     _scrollToBottom();
 
     try {
-      // In a real implementation, this would call firebase_ai
-      // For now, this is a placeholder for the schema-based tool selection
-      await Future.delayed(const Duration(milliseconds: 500));
+      // Call firebase_ai with structured JSON output
+      final response = await _model.generateContent([Content.text(text)]);
+      final jsonText = response.text;
 
-      // Simulate LLM response with tool selection
-      // This will be replaced with actual firebase_ai integration
-      final response = _simulateToolSelection(text);
+      if (jsonText == null || jsonText.isEmpty) {
+        throw Exception('No response from AI');
+      }
+
+      // Parse JSON response
+      final jsonData = jsonDecode(jsonText) as Map<String, dynamic>;
+      final selectedTools =
+          (jsonData['selectedToolGroups'] as List?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          [];
+      final explanation = jsonData['explanation'] as String? ?? '';
+
+      final toolSelection = ToolSelection(
+        selectedTools: selectedTools,
+        explanation: explanation,
+      );
 
       setState(() {
-        _messages.add(
-          ChatMessage(
-            text: response.explanation,
-            isUser: false,
-          ),
-        );
+        _messages.add(ChatMessage(text: explanation, isUser: false));
         _isLoading = false;
       });
 
       // Notify parent of tool selection
-      widget.onToolSelectionChanged(response);
+      widget.onToolSelectionChanged(toolSelection);
       _scrollToBottom();
     } catch (e) {
       setState(() {
@@ -83,48 +143,11 @@ class _ChatWidgetState extends State<ChatWidget> {
     }
   }
 
-  // TODO: Replace with actual firebase_ai integration
-  ToolSelection _simulateToolSelection(String userMessage) {
-    final lowerMessage = userMessage.toLowerCase();
-
-    // Simple intent matching for demonstration
-    if (lowerMessage.contains('write') || lowerMessage.contains('type')) {
-      if (lowerMessage.contains('advanced') ||
-          lowerMessage.contains('format')) {
-        return ToolSelection(
-          selectedTools: ['style', 'font', 'marks', 'alignment'],
-          explanation: 'Showing advanced writing tools',
-        );
-      } else {
-        return ToolSelection(
-          selectedTools: ['marks', 'alignment'],
-          explanation: 'Showing basic writing tools',
-        );
-      }
-    } else if (lowerMessage.contains('edit')) {
-      return ToolSelection(
-        selectedTools: ['history', 'marks'],
-        explanation: 'Showing editing tools',
-      );
-    } else if (lowerMessage.contains('insert') ||
-        lowerMessage.contains('add')) {
-      return ToolSelection(
-        selectedTools: ['insert', 'lists'],
-        explanation: 'Showing insertion tools',
-      );
-    }
-
-    return ToolSelection(
-      selectedTools: [],
-      explanation: 'No specific tools needed for this task',
-    );
-  }
-
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
+          _scrollController.position.minScrollExtent,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
@@ -134,130 +157,123 @@ class _ChatWidgetState extends State<ChatWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Container(
       width: widget.width,
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        border: Border(
-          left: BorderSide(color: colorScheme.outlineVariant),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 8,
-            offset: const Offset(-2, 0),
+      color: Colors.black,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          // Messages area
+          Expanded(
+            child: _messages.isEmpty
+                ? Center(
+                    child: Text(
+                      'Describe your intent',
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.5),
+                        fontSize: 16,
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    controller: _scrollController,
+                    reverse: true,
+                    padding: EdgeInsets.zero,
+                    itemCount: _messages.length,
+                    itemBuilder: (context, index) {
+                      final message = _messages[_messages.length - 1 - index];
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: _MessageBubble(message: message),
+                      );
+                    },
+                  ),
+          ),
+
+          const SizedBox(height: 6),
+
+          // Input field with integrated submit button
+          TextField(
+            enabled: !_isLoading,
+            controller: _controller,
+            minLines: 1,
+            maxLines: 4,
+            style: const TextStyle(color: Colors.black, fontSize: 16),
+            decoration: InputDecoration(
+              hintText: _isLoading ? '' : 'context',
+              hintStyle: const TextStyle(color: Colors.black54, fontSize: 16),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+                borderSide: BorderSide.none,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
+              suffixIcon: _SubmitButton(
+                isLoading: _isLoading,
+                hasText: _hasText,
+                onSubmit: _sendMessage,
+              ),
+            ),
+            onSubmitted: (_) => _sendMessage(),
+            textInputAction: TextInputAction.send,
           ),
         ],
       ),
-      child: Column(
-        children: [
-          // Header
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest,
-              border: Border(
-                bottom: BorderSide(color: colorScheme.outlineVariant),
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.chat_bubble_outline,
-                  size: 20,
-                  color: colorScheme.primary,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Intent Assistant',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
+    );
+  }
+}
 
-          // Messages
-          Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.all(16),
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                final message = _messages[index];
-                return _MessageBubble(message: message);
-              },
-            ),
-          ),
+class _SubmitButton extends StatelessWidget {
+  const _SubmitButton({
+    required this.isLoading,
+    required this.hasText,
+    required this.onSubmit,
+  });
 
-          // Loading indicator
-          if (_isLoading)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: colorScheme.primary,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Thinking...',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+  final bool isLoading;
+  final bool hasText;
+  final VoidCallback onSubmit;
 
-          // Input field
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest,
-              border: Border(
-                top: BorderSide(color: colorScheme.outlineVariant),
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedScale(
+      duration: const Duration(milliseconds: 150),
+      scale: !hasText && !isLoading ? 0.0 : 1.0,
+      child: Padding(
+        padding: const EdgeInsets.all(4),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                shape: BoxShape.circle,
               ),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: 'Describe what you want to do...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
+              child: isLoading
+                  ? const Icon(Icons.stop, color: Colors.white, size: 20)
+                  : IconButton(
+                      onPressed: onSubmit,
+                      icon: const Icon(Icons.play_arrow, color: Colors.white),
+                      padding: EdgeInsets.zero,
                     ),
-                    onSubmitted: (_) => _sendMessage(),
-                    maxLines: null,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                IconButton(
-                  onPressed: _sendMessage,
-                  icon: Icon(Icons.send, color: colorScheme.primary),
-                  style: IconButton.styleFrom(
-                    backgroundColor: colorScheme.primaryContainer,
-                  ),
-                ),
-              ],
             ),
-          ),
-        ],
+            if (isLoading)
+              SizedBox(
+                width: 40,
+                height: 40,
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                  color: Colors.white.withValues(alpha: 0.3),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -270,27 +286,28 @@ class _MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
-        mainAxisAlignment:
-            message.isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: message.isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!message.isUser) ...[
-            CircleAvatar(
-              radius: 16,
-              backgroundColor: message.isError
-                  ? colorScheme.errorContainer
-                  : colorScheme.primaryContainer,
-              child: Icon(
-                message.isError ? Icons.error_outline : Icons.smart_toy,
-                size: 16,
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
                 color: message.isError
-                    ? colorScheme.onErrorContainer
-                    : colorScheme.onPrimaryContainer,
+                    ? Colors.red.shade900
+                    : Colors.grey.shade800,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                message.isError ? Icons.error_outline : Icons.auto_awesome,
+                size: 16,
+                color: Colors.white,
               ),
             ),
             const SizedBox(width: 8),
@@ -300,34 +317,31 @@ class _MessageBubble extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
                 color: message.isUser
-                    ? colorScheme.primaryContainer
+                    ? Colors.white
                     : message.isError
-                        ? colorScheme.errorContainer
-                        : colorScheme.surfaceContainerHighest,
+                    ? Colors.red.shade900.withValues(alpha: 0.3)
+                    : Colors.grey.shade900,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
                 message.text,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: message.isUser
-                          ? colorScheme.onPrimaryContainer
-                          : message.isError
-                              ? colorScheme.onErrorContainer
-                              : colorScheme.onSurface,
-                    ),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: message.isUser ? Colors.black : Colors.white,
+                ),
               ),
             ),
           ),
           if (message.isUser) ...[
             const SizedBox(width: 8),
-            CircleAvatar(
-              radius: 16,
-              backgroundColor: colorScheme.secondaryContainer,
-              child: Icon(
-                Icons.person,
-                size: 16,
-                color: colorScheme.onSecondaryContainer,
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade800,
+                shape: BoxShape.circle,
               ),
+              child: const Icon(Icons.person, size: 16, color: Colors.white),
             ),
           ],
         ],
@@ -342,11 +356,7 @@ class ChatMessage {
   final bool isUser;
   final bool isError;
 
-  ChatMessage({
-    required this.text,
-    required this.isUser,
-    this.isError = false,
-  });
+  ChatMessage({required this.text, required this.isUser, this.isError = false});
 }
 
 /// Represents tool selection from the LLM
@@ -354,8 +364,5 @@ class ToolSelection {
   final List<String> selectedTools;
   final String explanation;
 
-  ToolSelection({
-    required this.selectedTools,
-    required this.explanation,
-  });
+  ToolSelection({required this.selectedTools, required this.explanation});
 }
