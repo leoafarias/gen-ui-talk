@@ -272,6 +272,39 @@ if (userNavigatedAway) dissolve();
 
 ---
 
+@column {
+  align: center
+}
+
+## Context-Driven Adaptation {.heading}
+
+@column {
+  align: center_left
+  flex: 2
+}
+
+Same capability, different contexts = different interfaces.
+
+- **Who:** User preferences and history
+- **What:** Current task and intent
+- **When:** Time of day, urgency
+- **Where:** Location, device
+
+Context fusion: Multiple signals → Single understanding.
+
+---
+
+@section
+@column {
+  align: center_left
+}
+## Smart Oven Demo {.heading}
+Watch how cooking controls adapt based on what you're cooking, oven state, and context.
+
+@section {
+  flex: 2
+}
+
 @smart_oven {
   chat: true
 }
@@ -288,9 +321,7 @@ All Gen UI surfaces are rendered live from Firebase AI.
 @section {
   flex: 2
 }
-@travel_app {
-
-}
+@travel_app
 
 ---
 
@@ -329,18 +360,6 @@ Persistent UI → Ephemeral UI
 Static → Generative & Adaptive
 Manual learning → Automatic understanding
 
----
-
-## What Stays {.heading}
-
-**Users Remain in Control**
-
-- User agency and choice
-- Transparency in how system works
-- Ability to override and customize
-- Your data, your rules
-
-**This isn't taking control away—it's giving control back**
 
 ---
 
