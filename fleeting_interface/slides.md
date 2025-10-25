@@ -294,16 +294,6 @@ Context fusion: Multiple signals → Single understanding.
 
 ---
 
-@section
-@column {
-  align: center_left
-}
-## Smart Oven Demo {.heading}
-Watch how cooking controls adapt based on what you're cooking, oven state, and context.
-
-@section {
-  flex: 2
-}
 
 @smart_oven {
   chat: true
