@@ -352,13 +352,12 @@ style: quote
 
 ## What Changes {.heading}
 
-**From → To**
 
-Application-centric → Intent-centric
-Navigation → Composition
-Persistent UI → Ephemeral UI
-Static → Generative & Adaptive
-Manual learning → Automatic understanding
+- Action → Intent-centric
+- Navigation → Composition
+- Persistent UI → Ephemeral UI
+- Static → Generative & Adaptive
+- Manual learning → Automatic understanding
 
 
 ---
@@ -367,20 +366,14 @@ Manual learning → Automatic understanding
   align: center
 }
 ## Flutter + AI {.heading}
+https://github.com/flutter/genui
 
-@column {
-  align: center_left
-  flex: 2
-}
+@column
 
-**What's real today:**
-
-Schema-based capability definition
-Context-aware composition
-LLM-driven intent understanding
-Flutter's declarative architecture
-
-This isn't future tech. It's available now.
+- Schema-based capability definition
+- Context-aware composition
+- LLM-driven intent understanding
+- Flutter's declarative architecture
 
 
 ---
