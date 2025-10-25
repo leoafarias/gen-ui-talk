@@ -91,19 +91,14 @@ Every feature built for someone else is cognitive load you carry.
 }
 
 ## Cognitive Load {.heading}
-
-@column {
-  align: center_left
-  flex: 2
-}
-
 Not all mental effort is equal:
+
+@column
+
 
 - **Intrinsic:** The inherent difficulty of your task
 - **Germane:** Productive learning that makes you better
 - **Extraneous:** Wasted effort from poor design
-
-**Everyone Tax is pure Extraneous Load.**
 
 ---
 
@@ -123,17 +118,18 @@ Not all mental effort is equal:
 
 ---
 
+### Everyone Tax is pure Extraneous Load
+
+
+---
+
 @column {
   align: center
 }
 
-## Not so simple {.heading}
+## The Impossible Trade-off {.heading}
 
-@column {
-  align: center_left
-  flex: 2
-}
-
+@column
 
 - Show everything. Everyone drowns.
 - Hide everything. Everyone hits walls.
@@ -147,7 +143,7 @@ style: quote
   flex: 3
 }
 
-> "Intent-based outcome specification...the first new UI interaction paradigm since the invention of GUIs"
+> # "Intent-based outcome specification...the first new UI interaction paradigm since the invention of GUIs"
 >
 > — IBM Research AI
 
@@ -216,9 +212,9 @@ The new paradigm is now possible.
 
 @column
 
-- **Generative UI:** AI composes interface from intent
-- **Ephemeral UI:** Interface exists only while relevant
-- **Together:** Interfaces materialize when needed, adapt to context, dissolve when done.
+- **Generative UI:** Composes from intent
+- **Ephemeral UI:** Appears while relevant
+- **Together:** Appears when needed, dissolves when done
 
 ---
 
@@ -303,24 +299,11 @@ Same capability, different contexts = different interfaces.
 style: fullscreen
 ---
 
-
 @smart_oven {
   chat: true
 }
 
 ---
-style: fullscreen
----
-
-@column {
-  align: center
-}
-## Agentic Interfaces {.heading}
-
-@travel_app
-
----
-
 
 @column {
   align: center
@@ -338,11 +321,27 @@ Shared state evolves through conversation.
 
 
 ---
+style: fullscreen
+---
+
+@column {
+  align: center
+}
+## Agentic Interfaces {.heading}
+
+@travel_app
+
+---
 style: quote
 ---
 
-> "Simple is hard. Easy is harder. Invisible is hardest."
+@column {
+  flex: 2
+}
+> # "Simple is hard. Easy is harder. Invisible is hardest."
 > — Jean-Louis Gassée
+
+@column
 
 ---
 

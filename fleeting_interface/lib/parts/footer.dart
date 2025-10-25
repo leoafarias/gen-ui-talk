@@ -12,7 +12,7 @@ class FooterPart extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [Text('#superdeck')],
+        children: [Text('@leoafarias', style: TextStyle(fontSize: 24))],
       ),
     );
   }

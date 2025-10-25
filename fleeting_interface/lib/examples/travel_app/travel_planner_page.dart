@@ -155,11 +155,13 @@ class _TravelPlannerPageState extends State<TravelPlannerPage>
 
         if (!mounted) return;
         setState(() {
-          _conversation.add(AiTextMessage.text(
-            'I encountered an issue processing that request. '
-            'Please try rephrasing or simplifying your prompt.\n\n'
-            '(Error details logged to console)',
-          ));
+          _conversation.add(
+            AiTextMessage.text(
+              'I encountered an issue processing that request. '
+              'Please try rephrasing or simplifying your prompt.\n\n'
+              '(Error details logged to console)',
+            ),
+          );
         });
         _scrollToBottom();
       },
@@ -331,11 +333,11 @@ to the user.
     itinerary.
 
     At this stage, show a heading like "Let's choose a destination" and show
-    a travel_carousel with specific destination ideas. When the user clicks on
-    one, show an InformationCard with details on the destination and a TrailHead
+    a TravelCarousel with specific destination ideas. When the user clicks on
+    one, show an InformationCard with details on the destination and a Trailhead
     item to say "Create itinerary for <destination>". You can also suggest
     alternatives, like if the user click "Thailand" you could also have a
-    TrailHead item with "Create itinerary for South East Asia" or for Cambodia
+    Trailhead item with "Create itinerary for South East Asia" or for Cambodia
     etc.
 
 3.  Create an initial itinerary, which will be iterated over in subsequent
@@ -345,14 +347,15 @@ to the user.
     activities, while for longer trips this likely involves choosing which
     specific places to stay in and how many nights in each place.
 
-    At this step, you should first show an inputGroup which contains
+    At this step, you should first show an InputGroup which contains
     several input chips like the number of people, the destination, the length
     of time, the budget, preferred activity types etc.
 
     Then, when the user clicks search, you should update the surface to have
-    a Column with the existing inputGroup, an itineraryWithDetails. When
-    creating the itinerary, include all necessary `itineraryEntry` items for
-    hotels and transport with generic details and a status of `choiceRequired`.
+    a Column with the existing InputGroup, an Itinerary. When
+    creating the itinerary, include all necessary entries (inline objects within
+    the Itinerary's days array) for hotels and transport with generic details
+    and a status of `choiceRequired`.
 
     Note that during this step, the user may change their search parameters and
     resubmit, in which case you should regenerate the itinerary to match their
@@ -362,16 +365,16 @@ to the user.
     involves booking every accommodation, transport and activity in the itinerary
     one step at a time.
 
-    Here, you should just focus on one item at a time, using an `inputGroup`
-    with chips to ask the user for preferences, and the `travelCarousel` to show
+    Here, you should just focus on one item at a time, using an `InputGroup`
+    with chips to ask the user for preferences, and the `TravelCarousel` to show
     the user different options. When the user chooses an option, you can confirm
     it has been chosen and immediately prompt the user to book the next detail,
     e.g. an activity, hotels, transport etc. When a booking is confirmed,
-    update the original `itineraryWithDetails` to reflect the booking by
-    updating the relevant `itineraryEntry` to have the status `chosen` and
-    including the booking details in the `bodyText`.
+    update the original `Itinerary` to reflect the booking by
+    updating the relevant entry object within the Itinerary's days array to have
+    the status `chosen` and including the booking details in the `bodyText`.
 
-    When booking a hotel, use inputGroup, providing initial values for check-in and check-out dates (nearest weekend). Then use the `list_hotels` tool to search for hotels and pass the values listingSelectionId to `travelCarousel` to show the user different options. When user selects a hotel, pass the listingSelectionId of the selected hotel the parameter listingSelectionIds of `listingsBooker`.
+    When booking a hotel, use InputGroup, providing initial values for check-in and check-out dates (nearest weekend). Then use the `list_hotels` tool to search for hotels and pass the values listingSelectionId to `TravelCarousel` to show the user different options. When user selects a hotel, pass the listingSelectionId of the selected hotel the parameter listingSelectionIds of `ListingsBooker`.
 
 IMPORTANT: The user may start from different steps in the flow, and it is your job to
 understand which step of the flow the user is at, and when they are ready to
@@ -428,17 +431,48 @@ carousel. If there are only 2 or 3 obvious options, just think of some relevant
 alternatives that the user might be interested in.
 
 - Guiding the user: When the user has completes some action, e.g. they confirm
-they want to book some accommodation or activity, always show a trailhead
+they want to book some accommodation or activity, always show a Trailhead
 suggesting what the user might want to do next (e.g. book the next detail in the
 itinerary, repeat a search, research some related topic) so that they can click
 rather than typing.
 
-- Itinerary Structure: Itineraries have a three-level structure. The root is
-`itineraryWithDetails`, which provides an overview. Inside the modal view of an
-`itineraryWithDetails`, you should use one or more `itineraryDay` widgets to
-represent each day of the trip. Each `itineraryDay` should then contain a list
-of `itineraryEntry` widgets, which represent specific activities, bookings, or
-transport for that day.
+- Itinerary Structure: The `Itinerary` widget contains ALL itinerary data as
+nested inline objects. The Itinerary has a `days` array where each day is an
+inline object (NOT a separate widget) with properties like title, subtitle,
+description, and imageChildId. Each day object contains an `entries` array of
+inline entry objects (NOT separate widgets) representing specific activities,
+bookings, or transport. Do NOT create separate ItineraryDay or ItineraryEntry
+widgets - these are inline objects within the Itinerary schema.
+
+  **IMPORTANT Schema Structure:**
+  ```
+  Itinerary {
+    title: stringReference,
+    subheading: stringReference,
+    imageChildId: string,
+    days: [  // Array of day OBJECTS (not separate widgets)
+      {
+        title: stringReference,
+        subtitle: stringReference,
+        description: stringReference,
+        imageChildId: string,
+        entries: [  // Array of entry OBJECTS (not separate widgets)
+          {
+            title: stringReference,
+            subtitle: stringReference (optional),
+            bodyText: stringReference,
+            time: stringReference,
+            address: stringReference (optional),
+            totalCost: stringReference (optional),
+            type: "accommodation" | "transport" | "activity",
+            status: "noBookingRequired" | "choiceRequired" | "chosen",
+            choiceRequiredAction: action (optional, required if status is "choiceRequired")
+          }
+        ]
+      }
+    ]
+  }
+  ```
 
 - Inputs: When you are asking for information from the user, you should always include a
 submit button of some kind so that the user can indicate that they are done
@@ -493,18 +527,71 @@ contain the other widgets.
         "id": "trip_title",
         "widget": {
           "Text": {
-            "text": "Trip to Mexico City"
+            "text": {
+              "literalString": "Trip to Mexico City"
+            }
           }
         }
       },
       {
         "id": "itinerary",
         "widget": {
-          "ItineraryWithDetails": {
-            "title": "Mexico City Adventure",
-            "subheading": "3-day Itinerary",
+          "Itinerary": {
+            "title": {
+              "literalString": "Mexico City Adventure"
+            },
+            "subheading": {
+              "literalString": "3-day Itinerary"
+            },
             "imageChildId": "mexico_city_image",
-            "child": "itinerary_details"
+            "days": [
+              {
+                "title": {
+                  "literalString": "Day 1"
+                },
+                "subtitle": {
+                  "literalString": "Arrival and Exploration"
+                },
+                "description": {
+                  "literalString": "Your first day in Mexico City will be focused on settling in and exploring the historic center."
+                },
+                "imageChildId": "day1_image",
+                "entries": [
+                  {
+                    "title": {
+                      "literalString": "Arrival at MEX Airport"
+                    },
+                    "bodyText": {
+                      "literalString": "Arrive at Mexico City International Airport (MEX), clear customs, and pick up your luggage."
+                    },
+                    "time": {
+                      "literalString": "2:00 PM"
+                    },
+                    "type": "transport",
+                    "status": "noBookingRequired"
+                  },
+                  {
+                    "title": {
+                      "literalString": "Explore the Zocalo"
+                    },
+                    "subtitle": {
+                      "literalString": "Historic Center"
+                    },
+                    "bodyText": {
+                      "literalString": "Head to the Zocalo, the main square of Mexico City. Visit the Metropolitan Cathedral and the National Palace."
+                    },
+                    "time": {
+                      "literalString": "4:00 PM - 6:00 PM"
+                    },
+                    "address": {
+                      "literalString": "Plaza de la Constitución S/N, Centro Histórico, Ciudad de México"
+                    },
+                    "type": "activity",
+                    "status": "noBookingRequired"
+                  }
+                ]
+              }
+            ]
           }
         }
       },
@@ -512,32 +599,10 @@ contain the other widgets.
         "id": "mexico_city_image",
         "widget": {
           "Image": {
-            "location": "assets/travel_images/mexico_city.jpg"
-          }
-        }
-      },
-      {
-        "id": "itinerary_details",
-        "widget": {
-          "Column": {
-            "children": [
-              "day1"
-            ]
-          }
-        }
-      },
-      {
-        "id": "day1",
-        "widget": {
-          "ItineraryDay": {
-            "title": "Day 1",
-            "subtitle": "Arrival and Exploration",
-            "description": "Your first day in Mexico City will be focused on settling in and exploring the historic center.",
-            "imageChildId": "day1_image",
-            "children": [
-              "day1_entry1",
-              "day1_entry2"
-            ]
+            "url": {
+              "literalString": "assets/travel_images/beach.jpg"
+            },
+            "fit": "cover"
           }
         }
       },
@@ -545,33 +610,10 @@ contain the other widgets.
         "id": "day1_image",
         "widget": {
           "Image": {
-            "location": "assets/travel_images/mexico_city.jpg"
-          }
-        }
-      },
-      {
-        "id": "day1_entry1",
-        "widget": {
-          "ItineraryEntry": {
-            "type": "transport",
-            "title": "Arrival at MEX Airport",
-            "time": "2:00 PM",
-            "bodyText": "Arrive at Mexico City International Airport (MEX), clear customs, and pick up your luggage.",
-            "status": "noBookingRequired"
-          }
-        }
-      },
-      {
-        "id": "day1_entry2",
-        "widget": {
-          "ItineraryEntry": {
-            "type": "activity",
-            "title": "Explore the Zocalo",
-            "subtitle": "Historic Center",
-            "time": "4:00 PM - 6:00 PM",
-            "address": "Plaza de la Constitución S/N, Centro Histórico, Ciudad de México",
-            "bodyText": "Head to the Zocalo, the main square of Mexico City. Visit the Metropolitan Cathedral and the National Palace.",
-            "status": "noBookingRequired"
+            "url": {
+              "literalString": "assets/travel_images/city.jpg"
+            },
+            "fit": "cover"
           }
         }
       }
