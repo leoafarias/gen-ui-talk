@@ -1,29 +1,15 @@
 ---
 
-@simple_chat {}
-
----
-
-@travel_example {}
-
----
-
 @section {
   flex: 2
 }
 @column {
   align: center
 }
-# Generative UI {.heading}
-# with Flutter {.subheading}
+# EPHEMERAL INTERFACES {.heading}
+# The End of Static UI {.subheading}
 
-@column {
-  flex: 3
-  align: center
-}
-
-
----
+@column
 
 @column {
   align: center
@@ -40,493 +26,934 @@
 - Flutter & Dart GDE
 - Passionate about UI/UX/DX
 
-
----
-
-@column
-
-@column {
-  align: center_left 
-  flex: 2
-}
-> [!WARNING]  
-> This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
-
-@column
-
 ---
 
 @column {
-  flex: 2 
-  align: center_right
-}
-### Generative UI {.heading}
-@column
-## VS 
-@column {
-  flex: 2
-}
-### AI Assisted Code Generation
-
-<!-- Code Generation code as the output to boost developer productivity vs Generates widgets definitions to be rendered on the screen -->
-
----
-
-### What is Generative UI? {.heading}
-
-@column
-
-- LLMs are great at generating content based on context
-- GUIs are great at providing structured, interactive interfaces for user input and navigation
-
-
----
-
-# LLM ❤️ GUI {.heading}
-
----
-
-@column
-@column {
-  flex: 5
   align: center
 }
-### Creates dynamic, context-aware UIs by interpreting actions and maintaining state with LLMs for fluid, interactive responses. {.heading}
 
-@column
-
----
-
-### Benefits over Chat {.heading}
-
-- More intuitive and user-friendly, especially for complex tasks
-- Faster feedback loop between users and LLMs
-- Enhances efficiency and interaction
-
----
-
-@column
-
-@column {
-  flex: 3 
-  align: center
-}
-### Flutter is Well-Suited for Generative UI {.heading}
-Built for any screen: Ideal for generating adaptive UIs across devices and platforms.
-
-@column
-
----
-
-## Generative UI workflow
-
-@section
-
-@column {
-  align: top_center
-}
-```mermaid
-flowchart LR
-    A[Input] --> B[LLM]
-    B --> C[Structured Response]
-    C --> D[UI]
-
-    classDef inputStyle fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
-    classDef llmStyle fill:#2196F3,stroke:#1565C0,stroke-width:3px,color:#fff
-    classDef outputStyle fill:#FF9800,stroke:#E65100,stroke-width:3px,color:#fff
-    classDef uiStyle fill:#9C27B0,stroke:#6A1B9A,stroke-width:3px,color:#fff
-
-    class A inputStyle
-    class B llmStyle
-    class C outputStyle
-    class D uiStyle
-```
-
----
-
-### How can LLMs Understand Your UI? {.heading}
-
-@column
-
-![structured_output](assets/structured_output.png)
-
-
----
-
-@column
-
-### Define the Schema {.heading}
-
-@column
-
-```dart
-final schema = Schema.array(
-  description: 'List of recipes',
-  items: Schema.object(
-    properties: {
-      'recipeName': Schema.string(
-        description: 'Name of the recipe.',
-        nullable: false,
-      ),
-    },
-    requiredProperties: ['recipeName'],
-  ),
-);
-
-```{.code}
-
----
-
-@column {
-  align: bottom_center
-}
-
-### Configure responseMimeType & responseSchema {.heading}
-
-@column
-
-```dart
-final schema = Schema.array(
-  description: 'List of recipes',
-  items: Schema.object(
-    properties: {
-      'recipeName': Schema.string(
-        description: 'Name of the recipe.',
-        nullable: false,
-      ),
-    },
-    requiredProperties: ['recipeName'],
-  ),
-);
-
-
-final model = GenerativeModel(
-  model: 'gemini-1.5-pro',
-  apiKey: apiKey,
-  generationConfig: GenerationConfig(
-    responseMimeType: 'application/json',
-    responseSchema: schema,
-  ),
-);
-
-```{.code}
-
----
-
-@section {
-  flex: 2
-}
+### The First New UI Paradigm in 60 Years {.heading}
 
 @column {
   flex: 2
-}
-
-#### Passing a prompt to your model {.heading}
-
-@column {
-  flex: 3
-}
-
-```dart
-final prompt = 'List a few popular cookie recipes.';
-final response = await model.generateContent([Content.text(prompt)]);
-
-print(response.candidates.first.content);
-
-```{.code}
-
-@section {
-  flex: 3
-}
-
-@column {
-  flex: 2
-  align: bottom_left
-}
-
-#### JSON Response
-
-@column {
-  flex: 3
-}
-
-```json
-[
-  {
-    "recipeName": "Chocolate Chip Cookies"
-  },
-  {
-    "recipeName": "Peanut Butter Cookies"
-  },
-  {
-    "recipeName": "Snickerdoodles"
-  }
-]
-```
-
-
-
----
-
-@column
-
-### Color Palette Generator
-
-Generate a color palette based on a given text.
-
-- Name of the palette
-- Font family
-- Font color
-- Color for each corner of the palette
-
---- 
-
-@column{
-
-}
-
-## Color Palette Schema
-
-@column{
-  scrollable: true
-  flex: 2
-}
-
-```dart
-final schema = Schema.object(
-  properties: {
-  'name': Schema.string(
-    description:'Name of the color palette',
-    nullable: false,
-  ),
-  'font': Schema.enumString(
-    enumValues: ColorPaletteFontFamily.enumString,
-    description: 'Font to use for color palette name',
-    nullable: false,
-  ),
-  'fontColor': Schema.string(
-    description: 'Font color. Format: #FF0000',
-    nullable: false,
-  ),
-  'topLeftColor': Schema.string(
-    description: 'Top left color. Format: #FF0000',
-    nullable: false,
-  ),
-  'topRightColor': Schema.string(
-    description: 'Top right color. Format: #FF0000',
-    nullable: false,
-  ),
-  'bottomLeftColor': Schema.string(
-    description: 'Bottom left color. Format: #FF0000',
-    nullable: false,
-  ),
-  'bottomRightColor': Schema.string(
-    description: 'Bottom right color. Format: #FF0000',
-    nullable: false,
-  )
-}, requiredProperties: [
-  'name',
-  'font',
-  'fontColor',
-  'topLeftColor',
-  'topRightColor',
-  'bottomLeftColor',
-    'bottomRightColor',
-  ],
-);
-
-```
-
----
-
-## LLMs Orchestrate APIs
-
----
-
-@section
-@column
-#### Gemini Function Calling
-@column
-The Function Calling feature is in Beta release
-
-@section {
-  flex: 4
-}
-![llm tools](assets/llm_tools.png){.cover}
-
-
-
---- 
-
-@column {
-  align: bottom_right
-}
-
-### User Interaction {.heading}
-Natural Language way to interact with an LLM
-
-@column {
-  flex: 2
-}
-![llm response](assets/llm_interaction.png)
-
-
----
-
-
-@column {
   align: center_left
 }
-### Widget Response {.heading}
+
+> *"Intent-based outcome specification...the first new UI interaction paradigm in 60 years"*
+>
+> **— IBM Research, 2024**
+
+@column
+
+---
+
+@column {
+  align: center
+}
+
+## For 60 years, we fought for screen real estate.
+
+## Now we fight for **cognitive real estate**.
+
+---
+
+@column
 
 @column {
   flex: 3
+  align: center
 }
-![widget_response](assets/widget_response.png)
 
+### The Everyone Tax {.heading}
 
----
+Complex apps burden everyone with features built for others.
 
-## What if the tool to use is a widget schema?
-
----
-
-![widget_schema](assets/widget_schema.png)
+@column
 
 ---
+
+@section
 
 @column {
+  align: center
   flex: 2
 }
-### Dropdown Widget Schema
 
-```dart
-class DropdownSchemaDto {
-  final String label;
-  final String currentValue;
-  final List<String> options;
+### Photoshop {.heading}
 
-  DropdownSchemaDto({
-    required this.label,
-    required this.currentValue,
-    required this.options,
-  });
+500 menu items and buttons
 
-```
+You use about 20
+
 @column {
   flex: 3
+  align: center
 }
 
-```dart
-  static final schema = Schema.object(properties: {
-    'label': Schema.string(
-      description: 'The label of the dropdown',
-      nullable: false,
-    ),
-    'currentValue': Schema.string(
-      description: 'The currentValue of the dropdown',
-      nullable: false,
-    ),
-    'options': Schema.array(
-      description: 'The options of the dropdown',
-      items: Schema.string(
-        description: 'The options of the dropdown',
-        nullable: false,
-      ),
-      nullable: false,
-    )
-  });
-}
-```
+### 500 - 20 = 480 {.heading}
+
+**Everyone Tax**
+
+You pay cognitive load for 480 features you'll never use.
 
 ---
 
-### Dropdown Schema Builder
+@column {
+  align: center
+}
+
+### Problem #2: Application Boundaries {.heading}
+
+Your thought doesn't stop at app edges. But your tools do.
 
 @column {
   flex: 2
+  align: center_left
 }
-```dart
- ListTile(
-  title: Text(schema.label),
-  trailing: DropdownButton<String>(
-    value: schema.currentValue,
-    items: schema.options.map((option) {
-      return DropdownMenuItem<String>(
-        value: option,
-        child: Text(option),
-      );
-    }).toList(),
-    onChanged: (newValue) {},
-  ),
-);
-```
+
+**Traditional workflow:**
+- Research in browser
+- Switch to spreadsheet (context breaks)
+- Switch to doc (another restart)
+
+Three apps. Three cognitive restarts.
+
+**Your thinking breaks at application boundaries.**
 
 ---
 
-### Widget Schemas
+@column {
+  align: center
+}
 
+## What if interfaces moved with your thinking instead of interrupting it?
 
-```dart
-final schema = Schema.object(properties: {
-  'textFields': Schema.array(
-    description: 'A list of text fields',
-    items: TextFieldSchemaDto.schema,
-    nullable: true,
-  ),
-  'dropdowns': Schema.array(
-    description: 'A list of dropdowns',
-    items: DropdownSchemaDto.schema,
-    nullable: true,
-  ),
-  'colorPickers': Schema.array(
-    description: 'A list of colors pickers',
-    items: ColorPickerDtoSchema.schema,
-    nullable: true,
-  ),
-});
+---
 
-```
+@column {
+  align: center
+}
+
+### Three Transformations {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**From Static to Breathing**
+Not fixed artifacts — surfaces that materialize and dissolve
+
+**From Application-Centric to Intent-Centric**
+Not "which app?" — "what am I trying to understand?"
+
+**From Interruption to Flow**
+Your thought doesn't break at boundaries
 
 ---
 
 @section {
-  flex: 3
-  align: top_left
-}
-@column {
   flex: 2
-  align: top_left
 }
-### Adding a Custom Widget {.heading}
-
-1. Register the widget in `DeckOptions.widgets`.
-2. Reference it via `@widget_name { ... }` in Markdown.
-3. Pass args with the same keys you read from `WidgetArgs`.
 
 @column {
+  align: center
   flex: 3
-  align: top_left
 }
-```dart
-widgets: {
-  'travel_example': (_) => const TravelExampleWidget(),
-}
-```
 
-@column {
-  flex: 3
-  align: top_left
-}
-```markdown
-@travel_example { }
-```
+# Your intent is the layout {.heading}
 
-style: quote
+@column
+
 ---
 
-> The future of UI might be orchestrating
-> user experiences rather than creating it.
+@column {
+  align: center
+  flex: 2
+}
+
+### Ephemeral Interfaces {.heading}
+
+Transient cognitive surfaces—materializing around intent, adapting as understanding deepens, dissolving once their purpose is fulfilled.
+
+---
+
+@column {
+  align: center
+}
+
+### Characteristic 1: Purpose-Driven Lifecycle {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Traditional:**
+- You pay a bill
+- Form stays open
+- You close it manually
+
+**Ephemeral:**
+- You pay a bill
+- Payment form appears (pre-filled)
+- You confirm
+- Payment processes
+- **Interface dissolves**
+
+Not because 60 seconds passed.
+Because the purpose was fulfilled.
+
+---
+
+@column
+
+@column {
+  flex: 3
+  align: center_left
+}
+
+### Purpose-Driven, Not Timer-Based {.heading}
+
+```dart
+// ❌ WRONG: Timer-based
+if (minutesSinceInteraction > 5) {
+  vanish();
+}
+
+// ✅ RIGHT: Purpose-driven
+if (taskCompleted) {
+  dissolve();
+}
+if (contextChanged && !relevantAnymore) {
+  fade();
+}
+```{.code}
+
+@column
+
+---
+
+@column {
+  align: center
+}
+
+### Characteristic 2: Contextual Awareness {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Multi-dimensional understanding:**
+- **Who** you are (skills, goals, expertise)
+- **Where** you are (environment, device)
+- **What** you're doing (task, progress)
+- **When** it's happening (time, urgency)
+
+Same capability. Different context. Different interface.
+
+---
+
+@column {
+  align: center
+}
+
+### Characteristic 3: Persistent Underpinnings {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+The interface dissolves.
+The understanding persists.
+
+**What persists:**
+- Trails of inquiry (paths explored)
+- Webs of connection (ideas linked)
+- Latent understanding (context built)
+
+---
+
+@column {
+  align: center
+}
+
+## Why Now? {.heading}
+
+The generative AI evolution makes this possible.
+
+---
+
+@column {
+  align: center
+}
+
+### The Generative Leap {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**First Wave:** Content Generation
+- AI generates text, code, images
+- Output: Static artifacts
+
+**The Problem:**
+- Comprehensive reports
+- We receive mass but lose momentum
+- Static answers don't support dynamic asking
+
+**The Leap:**
+What if AI generated the structures of interaction themselves?
+
+---
+
+@section
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+### From Static Answers to Dynamic Asking {.heading}
+
+Not: "Here's a 10-page report on ocean temperatures"
+
+But: "Here's an explorable environment for understanding ocean temperatures"
+
+@column {
+  flex: 3
+  align: center
+}
+
+> *"Ephemeral UIs—UI elements that are dynamically generated by LLMs and contextually integrated."*
+>
+> **— Apple Research, 2024**
+
+---
+
+@column {
+  align: center
+}
+
+### Conversation as State {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Traditional Mental Model:**
+- "I'm on the home screen"
+- "Now I'm in settings"
+- "Let me go back"
+
+Spatial navigation through predetermined rooms.
+
+**Ephemeral Mental Model:**
+- "Show ocean temperatures" → map appears
+- "How does this connect to storms?" → storm overlay added
+- "Focus on 2020" → map zooms to 2020
+
+No navigation. Just continuous refinement.
+
+**The conversation history becomes the state machine.**
+
+---
+
+@column {
+  align: center
+}
+
+### Context-Driven Adaptation {.heading}
+
+Same intent: "Show my schedule"
+
+Three different contexts. Three different interfaces.
+
+---
+
+@section
+
+@column {
+  flex: 1
+  align: center
+}
+
+### Morning {.heading}
+**Commute**
+
+- Next 3 events
+- Large text
+- Transit times
+- Minimal layout
+
+@column {
+  flex: 1
+  align: center
+}
+
+### Midday {.heading}
+**At Desk**
+
+- Full day visible
+- Detailed info
+- Documents linked
+- Dense, efficient
+
+@column {
+  flex: 1
+  align: center
+}
+
+### Evening {.heading}
+**Home**
+
+- Tomorrow preview
+- Relaxed layout
+- Social context
+- Preparation mode
+
+---
+
+@column {
+  align: center
+}
+
+## What Adapts? {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+- **Content selection** — which information matters
+- **Layout composition** — how elements arrange
+- **Feature prioritization** — which 3-5 capabilities appear
+- **Information density** — detailed vs summary
+- **Visual styling** — colors, typography for environment
+
+All driven by context. All composed on-demand.
+
+---
+
+@column {
+  align: center
+}
+
+## Live Demo {.heading}
+
+### Travel Planner
+(Built with Flutter + Gemini)
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Watch for:**
+- Intent-driven composition
+- Context awareness
+- Conversation as state
+- Ephemeral lifecycle
+
+---
+
+@travel_example {}
+
+---
+
+@column {
+  align: center
+}
+
+### What You Just Saw {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+✓ **Intent-driven composition**
+"Beach vacation" shaped what appeared
+
+✓ **Context awareness**
+Budget, dates, preferences determined options
+
+✓ **Conversation as state**
+Each interaction built on previous
+
+✓ **Ephemeral**
+Temporary manifestation of booking capability
+
+**This is working today. Flutter + Gemini + Schema-driven architecture.**
+
+---
+
+@column {
+  align: center
+}
+
+# The Shift {.heading}
+
+---
+
+@section
+
+@column {
+  flex: 2
+  align: center_right
+}
+
+### Application-Centric {.heading}
+60 years
+
+Choose app → Work within constraints
+
+@column
+
+## →
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+### Intent-Centric {.heading}
+Now
+
+Express intent → Environment materializes
+
+---
+
+@column {
+  align: center
+}
+
+## Don't navigate to features. {.heading}
+
+## Features materialize around you. {.heading}
+
+---
+
+@section
+
+@column {
+  flex: 2
+  align: center
+}
+
+### Traditional (Application-Centric) {.heading}
+
+1. Open browser → search
+2. Switch to spreadsheet → analyze
+3. Switch to charts → visualize
+4. Switch to presentation → create
+5. Switch to doc → write
+
+**5 apps. 5 context switches. 5 cognitive restarts.**
+
+@column {
+  flex: 2
+  align: center
+}
+
+### Intent-Centric (Ephemeral) {.heading}
+
+"Explore ocean temperature and storm intensity relationships"
+
+→ Research environment materializes
+→ As inquiry shifts: Environment reconfigures
+→ Question answered: Surface dissolves
+
+**0 context switches. Continuous cognitive flow.**
+
+---
+
+@column {
+  align: center
+}
+
+## "If the interface dissolves, what's left?" {.heading}
+
+---
+
+@column {
+  align: center
+}
+
+### Transience in Form, Persistence in Substance {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**What Dissolves:**
+- The UI arrangement
+- The temporary surface
+- The scaffolding
+
+**What Persists:**
+- Trails of inquiry
+- Webs of connection
+- Latent understanding
+- Cognitive trails you blazed
+
+---
+
+@section {
+  flex: 2
+}
+
+@column {
+  align: center
+  flex: 3
+}
+
+## Dissolution isn't erasure. {.heading}
+
+## It's integration. {.heading}
+
+@column
+
+---
+
+@column {
+  align: center
+}
+
+### Example: Climate Research Session {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+You explore climate data for 30 minutes.
+Interface shows maps, graphs, annotations.
+Session ends → Surface dissolves.
+
+**What remains:**
+- Insights discovered (in your notes, in system memory)
+- Connections made (in knowledge graph)
+- Questions identified (in next-actions)
+- Cognitive trail blazed (in session history)
+
+**Next time:** System knows what you've explored.
+Materializes new surface informed by that history.
+
+---
+
+@column {
+  align: center
+}
+
+### Design Principles {.heading}
+
+How do we build these responsibly?
+
+---
+
+@column {
+  align: center
+}
+
+### Transparency Imperative {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+Fluidity without transparency = disorienting black box.
+
+**Three Key Principles:**
+
+1. **Make reasoning visible**
+   "Showing simplified view because you're scanning quickly"
+
+2. **Provide override mechanisms**
+   "Show me everything" always available
+
+3. **Explainability on demand**
+   "Why am I seeing this?" button
+
+Users must understand and control what the system understands and controls.
+
+---
+
+@column {
+  align: center
+}
+
+## Design for movement, not monuments. {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Current aesthetic:**
+Pixel-perfect precision. Static consistency.
+Designers trained to create monuments.
+
+**Required shift:**
+From designing artifacts → to designing grammars
+From pixel-perfect screens → to fluid compositions
+
+**We're designing conversations, not publications.**
+
+---
+
+@column {
+  align: center
+}
+
+# The Path Forward {.heading}
+
+---
+
+@column {
+  align: center
+}
+
+### What Exists Today {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Mature Capabilities:**
+- Generative UI code (LLMs write React/Flutter)
+- Composable component architectures
+- Secure execution environments
+- Tool calling and structured data
+- Context APIs (time, location, device state)
+
+**We have the building blocks.**
+
+You just saw it: Flutter + Gemini + Schemas = Working demo
+
+---
+
+@column {
+  align: center
+}
+
+### Timeline {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**TODAY:**
+Simple context-aware interfaces
+
+**1-2 YEARS:**
+Sophisticated adaptation
+
+**3-5 YEARS:**
+Full paradigm maturity
+
+**Honest assessment:**
+We can build simple ephemeral interfaces today.
+Full "breathing surfaces" paradigm — still evolving.
+
+But the primitives exist. The path is clear.
+
+---
+
+@column {
+  align: center
+}
+
+## Why Act Now? {.heading}
+
+@column {
+  flex: 2
+  align: center
+}
+
+> *"Users will soon expect this individual support. Predefined and non-individualized menus will feel old-fashioned."*
+>
+> **— Dr. Michael Voit, Fraunhofer IOSB, 2024**
+
+---
+
+@section
+
+@column {
+  flex: 2
+  align: center
+}
+
+### Lead Now {.heading}
+
+- Learn in practice
+- Shape user expectations
+- Lead category
+
+@column
+
+## OR
+
+@column {
+  flex: 2
+  align: center
+}
+
+### Play Catch-Up {.heading}
+
+- Competitors define patterns
+- Users expect it from them
+- Harder to differentiate
+
+---
+
+@column {
+  align: center
+}
+
+## Question isn't "will this happen?" {.heading}
+
+## It's "when do you start?" {.heading}
+
+---
+
+@section {
+  flex: 2
+}
+
+@column {
+  align: center
+  flex: 3
+}
+
+# One screen. {.heading}
+# One context signal. {.heading}
+# Two states. {.heading}
+
+@column
+
+---
+
+@section
+
+@column {
+  flex: 1
+  align: center
+}
+
+### Morning {.heading}
+7-11 AM
+
+- Minimal layout
+- Next 3 actions
+- High contrast
+- "What's urgent?"
+
+@column {
+  flex: 1
+  align: center
+}
+
+### Evening {.heading}
+6-10 PM
+
+- Rich detail
+- Tomorrow preview
+- Relaxed colors
+- "What to plan?"
+
+---
+
+@column {
+  align: center
+}
+
+### The First Sprint {.heading}
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+1. Choose one high-traffic screen
+2. Implement time-of-day adaptation
+3. A/B test with 50% of users
+4. Measure task completion, satisfaction
+5. **Duration: 2 weeks**
+
+Then expand:
+- Add location awareness
+- Apply to more screens
+- Increase sophistication
+
+**Start simple. Prove value. Build momentum.**
+
+---
+
+@column {
+  align: center
+}
+
+## For 60 years: {.heading}
+
+Static interfaces.
+Designed, shipped, unchanging.
+Users forced to adapt.
+Thinking interrupted.
+
+---
+
+@column {
+  align: center
+}
+
+## Now: {.heading}
+
+Breathing surfaces.
+Generated, adaptive, contextual.
+Interfaces that understand.
+Thinking flows continuously.
+
+---
+
+@section {
+  flex: 2
+}
+
+@column {
+  align: center
+  flex: 3
+}
+
+## The future of computing doesn't interrupt thinking. {.heading}
+
+## It breathes with it. {.heading}
+
+@column
+
+---
+
+@section {
+  flex: 2
+}
+
+@column {
+  align: center
+  flex: 3
+}
+
+# Are you ready to build it? {.heading}
+
+@column
 
 ---
 
@@ -534,14 +961,16 @@ style: quote
   align: bottom_center
   flex: 2
 }
+
 # Thank you
 
 @section
+
 Leo Farias
-_@leoafarias
+_@leoafarias_
 (GitHub, Twitter/X)
 
-@column 
+@column
 
 #### Slides + Code
 https://github.com/leoafarias/gen-ui-talk
