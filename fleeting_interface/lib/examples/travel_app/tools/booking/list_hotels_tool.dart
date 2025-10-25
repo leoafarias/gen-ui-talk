@@ -12,18 +12,18 @@ class ListHotelsTool extends AiTool<Map<String, Object?>> {
   /// Creates a [ListHotelsTool].
   ListHotelsTool({required this.onListHotels})
     : super(
-        name: 'list_hotels',
+        name: 'listHotels',
         description: 'Lists hotels based on the provided criteria.',
         parameters: S.object(
           properties: {
             'query': S.string(
               description: 'The search query, e.g., "hotels in Paris".',
             ),
-            'check_in': S.string(
+            'checkIn': S.string(
               description: 'The check-in date in ISO 8601 format (YYYY-MM-DD).',
               format: 'date',
             ),
-            'check_out': S.string(
+            'checkOut': S.string(
               description:
                   'The check-out date in ISO 8601 format (YYYY-MM-DD).',
               format: 'date',
@@ -33,7 +33,7 @@ class ListHotelsTool extends AiTool<Map<String, Object?>> {
               minimum: 1,
             ),
           },
-          required: ['query', 'check_in', 'check_out', 'guests'],
+          required: ['query', 'checkIn', 'checkOut', 'guests'],
         ),
       );
 
