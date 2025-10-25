@@ -5,16 +5,9 @@
 }
 
 ---
+style: fullscreen
+---
 
-@section
-@column {
-  align: center_left
-}
-### Everyone Tax Demo
-
-@section {
-  flex: 2
-}
 @toolbar_demo {
   all: true
 }
@@ -75,6 +68,25 @@
 ---
 
 @column {
+  align: center_left
+}
+
+## Stop designing **screens**. {.heading}
+## Start composing **moments**. {.subheading}
+
+---
+
+## Stop building **navigation**. {.heading}
+## Start fulfilling **intent**. {.subheading}
+
+---
+
+## Stop making users **select**. {.heading}
+## Start making interfaces **think**. {.subheading}
+
+---
+
+@column {
   align: center_right
 }
 
@@ -95,6 +107,14 @@
 ## The Paradigm Shift {.heading}
 AI Makes Intent-Driven Interfaces Possible
 @column
+
+---
+
+@column {
+  align: center
+}
+## Generative UI + Ephemeral UI {.heading}
+Two concepts that change everything
 
 ---
 
@@ -123,7 +143,8 @@ AI Makes Intent-Driven Interfaces Possible
 @column {
   align: center
 }
-## How AI Understands Your Interface {.heading}
+## How Generative UI Works {.heading}
+AI Understands Capabilities Through Schemas
 
 @column {
   flex: 3
@@ -235,7 +256,9 @@ behaviors.where((b) => b.isRelevant(context))
   flex: 2
   align: center
 }
-## Ephemeral {.heading}
+## Ephemeral UI {.heading}
+**Purpose-driven lifecycle, not timer-based**
+
 Appears When Needed, Dissolves When Done
 
 @column
@@ -289,8 +312,8 @@ Same Interface, Different Context
 @column {
   align: center_left
 }
-## Flutter Gen UI Chat {.heading}
-Intent-driven conversation that renders Gen UI surfaces live.
+## Flutter Generative UI Chat {.heading}
+Intent-driven conversation that renders Generative UI surfaces live.
 
 @section {
   flex: 2
@@ -352,7 +375,8 @@ User: "Focus on 2020"
   flex: 2
   align: center
 }
-## Simple Code, Intelligent Results {.heading}
+## Generative UI in Practice {.heading}
+Simple Code, Intelligent Results
 
 @column
 
@@ -409,8 +433,8 @@ Widget build(context) {
   flex: 3
   align: center
 }
-## Your Intent Shapes What Appears {.heading}
-Schema Defines Capabilities, Context Determines Interface
+## Generative UI: Intent Shapes Interface {.heading}
+Schema Defines Capabilities, Context Determines What Appears
 @column
 
 
@@ -427,8 +451,8 @@ Schema Defines Capabilities, Context Determines Interface
 
 - Application-centric → Intent-centric
 - Navigation → Composition
-- Persistent UI → Ephemeral (understanding persists)
-- Static → Adaptive
+- Persistent UI → Ephemeral UI (understanding persists)
+- Static → Generative & Adaptive
 
 ---
 

@@ -43,14 +43,22 @@ void main() async {
                 'fullscreen': fullscreenStyle(),
               },
               widgets: {
-                'smart_oven': (params) =>
-                    SmartOven(chat: params['chat'] == true),
+                'smart_oven': (params) => SmartOven(
+                  chat: params['chat'] == true,
+                  suggestedPrompts: params['prompts'] != null
+                      ? List<String>.from(params['prompts'] as List)
+                      : const [
+                          'Crispy thin crust pizza',
+                          'Soft chocolate chip cookies',
+                          'Well-done chicken wings',
+                        ],
+                ),
                 'tool_bar_example': (_) => const ToolBarExampleWidget(),
                 'toolbar_demo': (params) => ToolbarDemo(
                   all: params['all'] == true,
                   chat: params['chat'] != false,
                 ),
-                'flutter_gen_ui_chat': (_) => const FlutterGenUiChatDemo(),
+                'flutter_gen_ui_chat': (_) => const FlutterGenUIChat(),
               },
               parts: const SlideParts(
                 header: HeaderPart(),

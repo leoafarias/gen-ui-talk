@@ -13,12 +13,14 @@ class OvenChatWidget extends StatefulWidget {
     this.width = 320,
     this.isThinking = false,
     this.onThinkingChanged,
+    this.suggestedPrompts = const [],
   });
 
   final ValueChanged<OvenSelection> onOvenSelectionChanged;
   final double width;
   final bool isThinking;
   final ValueChanged<bool>? onThinkingChanged;
+  final List<String> suggestedPrompts;
 
   @override
   State<OvenChatWidget> createState() => _OvenChatWidgetState();
@@ -55,23 +57,46 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
         ),
         'pizzaOptions': Schema.object(
           properties: {
-            'crust': Schema.enumString(enumValues: ['thin', 'regular', 'thick']),
-            'size': Schema.enumString(enumValues: ['personal', 'medium', 'large']),
-            'toppings': Schema.enumString(enumValues: ['light', 'regular', 'extra']),
+            'crust': Schema.enumString(
+              enumValues: ['thin', 'regular', 'thick'],
+            ),
+            'size': Schema.enumString(
+              enumValues: ['personal', 'medium', 'large'],
+            ),
+            'temperatureC': Schema.integer(
+              description: 'Cooking temperature in Celsius (230-260)',
+            ),
+            'minutes': Schema.integer(
+              description: 'Cooking time in minutes (8-16)',
+            ),
           },
         ),
         'cookieOptions': Schema.object(
           properties: {
-            'type': Schema.enumString(enumValues: ['chocolateChip', 'sugar', 'oatmeal']),
-            'texture': Schema.enumString(enumValues: ['soft', 'crispy']),
+            'type': Schema.enumString(
+              enumValues: ['chocolateChip', 'sugar', 'oatmeal'],
+            ),
             'batch': Schema.enumString(enumValues: ['b12', 'b24', 'b36']),
+            'temperatureC': Schema.integer(
+              description: 'Cooking temperature in Celsius (170-180)',
+            ),
+            'minutes': Schema.integer(
+              description: 'Cooking time in minutes (10-14)',
+            ),
           },
         ),
         'chickenOptions': Schema.object(
           properties: {
             'cut': Schema.enumString(enumValues: ['whole', 'pieces', 'wings']),
-            'weight': Schema.enumString(enumValues: ['w4to5', 'w6to7', 'w8plus']),
-            'style': Schema.enumString(enumValues: ['roasted', 'crispy', 'bbq']),
+            'weight': Schema.enumString(
+              enumValues: ['w4to5', 'w6to7', 'w8plus'],
+            ),
+            'temperatureC': Schema.integer(
+              description: 'Cooking temperature in Celsius (180-200)',
+            ),
+            'minutes': Schema.integer(
+              description: 'Cooking time in minutes (25-90)',
+            ),
           },
         ),
         'explanation': Schema.string(
@@ -87,9 +112,7 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
         responseMimeType: 'application/json',
         responseSchema: ovenSchema,
       ),
-      systemInstruction: Content.text(
-        OvenDefinitions.generateSystemPrompt(),
-      ),
+      systemInstruction: Content.text(OvenDefinitions.generateSystemPrompt()),
     );
   }
 
@@ -101,8 +124,8 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
     super.dispose();
   }
 
-  Future<void> _sendMessage() async {
-    final text = _controller.text.trim();
+  Future<void> _sendMessage([String? promptText]) async {
+    final text = promptText ?? _controller.text.trim();
     if (text.isEmpty) return;
 
     setState(() {
@@ -127,10 +150,9 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
       final ovenSelection = OvenSelection.fromJson(jsonData);
 
       setState(() {
-        _messages.add(ChatMessage(
-          text: ovenSelection.explanation,
-          isUser: false,
-        ));
+        _messages.add(
+          ChatMessage(text: ovenSelection.explanation, isUser: false),
+        );
         _isLoading = false;
       });
       widget.onThinkingChanged?.call(false);
@@ -208,16 +230,10 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
             controller: _controller,
             minLines: 1,
             maxLines: 4,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-            ),
+            style: const TextStyle(color: Colors.black, fontSize: 16),
             decoration: InputDecoration(
-              hintText: _isLoading ? '' : 'e.g., crispy chicken wings',
-              hintStyle: const TextStyle(
-                color: Colors.black54,
-                fontSize: 16,
-              ),
+              hintText: _isLoading ? '' : 'context',
+              hintStyle: const TextStyle(color: Colors.black54, fontSize: 16),
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(
@@ -228,6 +244,13 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
                 horizontal: 16,
                 vertical: 12,
               ),
+              prefixIcon: widget.suggestedPrompts.isNotEmpty
+                  ? _SuggestedPromptsMenu(
+                      prompts: widget.suggestedPrompts,
+                      onSelected: (prompt) => _sendMessage(prompt),
+                      enabled: !_isLoading,
+                    )
+                  : null,
               suffixIcon: _SubmitButton(
                 isLoading: _isLoading,
                 hasText: _hasText,
@@ -272,17 +295,10 @@ class _SubmitButton extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: isLoading
-                  ? const Icon(
-                      Icons.stop,
-                      color: Colors.white,
-                      size: 20,
-                    )
+                  ? const Icon(Icons.stop, color: Colors.white, size: 20)
                   : IconButton(
                       onPressed: onSubmit,
-                      icon: const Icon(
-                        Icons.play_arrow,
-                        color: Colors.white,
-                      ),
+                      icon: const Icon(Icons.play_arrow, color: Colors.white),
                       padding: EdgeInsets.zero,
                     ),
             ),
@@ -312,8 +328,9 @@ class _MessageBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
-        mainAxisAlignment:
-            message.isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: message.isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!message.isUser) ...[
@@ -321,7 +338,9 @@ class _MessageBubble extends StatelessWidget {
               width: 28,
               height: 28,
               decoration: BoxDecoration(
-                color: message.isError ? Colors.red.shade900 : Colors.grey.shade800,
+                color: message.isError
+                    ? Colors.red.shade900
+                    : Colors.grey.shade800,
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -339,8 +358,8 @@ class _MessageBubble extends StatelessWidget {
                 color: message.isUser
                     ? Colors.white
                     : message.isError
-                        ? Colors.red.shade900.withValues(alpha: 0.3)
-                        : Colors.grey.shade900,
+                    ? Colors.red.shade900.withValues(alpha: 0.3)
+                    : Colors.grey.shade900,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
@@ -361,11 +380,7 @@ class _MessageBubble extends StatelessWidget {
                 color: Colors.grey.shade800,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
-                Icons.person,
-                size: 16,
-                color: Colors.white,
-              ),
+              child: const Icon(Icons.person, size: 16, color: Colors.white),
             ),
           ],
         ],
@@ -379,9 +394,59 @@ class ChatMessage {
   final bool isUser;
   final bool isError;
 
-  ChatMessage({
-    required this.text,
-    required this.isUser,
-    this.isError = false,
+  ChatMessage({required this.text, required this.isUser, this.isError = false});
+}
+
+/// Menu button for suggested prompts
+class _SuggestedPromptsMenu extends StatelessWidget {
+  const _SuggestedPromptsMenu({
+    required this.prompts,
+    required this.onSelected,
+    required this.enabled,
   });
+
+  final List<String> prompts;
+  final ValueChanged<String> onSelected;
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      enabled: enabled,
+      icon: Icon(
+        Icons.list_alt,
+        color: enabled ? Colors.black54 : Colors.black26,
+        size: 20,
+      ),
+      tooltip: 'Suggested prompts',
+      offset: const Offset(0, 50),
+      color: const Color(0xFF2D2D2D), // Dark grey background
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Colors.white.withValues(alpha: 0.1),
+          width: 1,
+        ),
+      ),
+      itemBuilder: (context) => prompts
+          .map(
+            (prompt) => PopupMenuItem<String>(
+              value: prompt,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Text(
+                prompt,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.25,
+                ),
+              ),
+            ),
+          )
+          .toList(),
+      onSelected: onSelected,
+    );
+  }
 }

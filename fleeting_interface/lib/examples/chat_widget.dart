@@ -8,15 +8,6 @@ import 'tool_definitions.dart';
 /// A clean, reusable chat widget that appears on the right side of the screen.
 /// Demonstrates ephemeral, intent-driven interfaces.
 class ChatWidget extends StatefulWidget {
-  const ChatWidget({
-    super.key,
-    required this.onToolSelectionChanged,
-    this.width = 320,
-    this.initialSystemPrompt,
-    this.isThinking = false,
-    this.onThinkingChanged,
-  });
-
   /// Callback when the LLM returns tool selections based on user intent
   final ValueChanged<ToolSelection> onToolSelectionChanged;
 
@@ -31,6 +22,19 @@ class ChatWidget extends StatefulWidget {
 
   /// Callback when thinking state changes
   final ValueChanged<bool>? onThinkingChanged;
+
+  /// Suggested prompts to display at the bottom
+  final List<String> suggestedPrompts;
+
+  const ChatWidget({
+    super.key,
+    required this.onToolSelectionChanged,
+    this.width = 420,
+    this.initialSystemPrompt,
+    this.isThinking = false,
+    this.onThinkingChanged,
+    this.suggestedPrompts = const [],
+  });
 
   @override
   State<ChatWidget> createState() => _ChatWidgetState();
@@ -95,8 +99,8 @@ class _ChatWidgetState extends State<ChatWidget> {
     super.dispose();
   }
 
-  Future<void> _sendMessage() async {
-    final text = _controller.text.trim();
+  Future<void> _sendMessage([String? promptText]) async {
+    final text = promptText ?? _controller.text.trim();
     if (text.isEmpty) return;
 
     setState(() {
@@ -223,6 +227,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                 horizontal: 16,
                 vertical: 12,
               ),
+              prefixIcon: widget.suggestedPrompts.isNotEmpty
+                  ? _SuggestedPromptsMenu(
+                      prompts: widget.suggestedPrompts,
+                      onSelected: (prompt) => _sendMessage(prompt),
+                      enabled: !_isLoading,
+                    )
+                  : null,
               suffixIcon: _SubmitButton(
                 isLoading: _isLoading,
                 hasText: _hasText,
@@ -337,7 +348,8 @@ class _MessageBubble extends StatelessWidget {
               child: Text(
                 message.text,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 18,
+                  height: 1.5,
                   color: message.isUser ? Colors.black : Colors.white,
                 ),
               ),
@@ -376,4 +388,58 @@ class ToolSelection {
   final String explanation;
 
   ToolSelection({required this.selectedTools, required this.explanation});
+}
+
+/// Menu button for suggested prompts
+class _SuggestedPromptsMenu extends StatelessWidget {
+  const _SuggestedPromptsMenu({
+    required this.prompts,
+    required this.onSelected,
+    required this.enabled,
+  });
+
+  final List<String> prompts;
+  final ValueChanged<String> onSelected;
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      enabled: enabled,
+      icon: Icon(
+        Icons.list_alt,
+        color: enabled ? Colors.black54 : Colors.black26,
+        size: 20,
+      ),
+      tooltip: 'Suggested prompts',
+      offset: const Offset(0, 50),
+      color: const Color(0xFF2D2D2D), // Dark grey background
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Colors.white.withValues(alpha: 0.1),
+          width: 1,
+        ),
+      ),
+      itemBuilder: (context) => prompts
+          .map(
+            (prompt) => PopupMenuItem<String>(
+              value: prompt,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Text(
+                prompt,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.25,
+                ),
+              ),
+            ),
+          )
+          .toList(),
+      onSelected: onSelected,
+    );
+  }
 }

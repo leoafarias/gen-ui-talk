@@ -16,11 +16,7 @@ import 'tool_definitions.dart';
 /// - Context determines what's relevant
 /// - Appears when needed, dissolves when done
 class ToolbarDemo extends StatefulWidget {
-  const ToolbarDemo({
-    super.key,
-    this.all = false,
-    this.chat = true,
-  });
+  const ToolbarDemo({super.key, this.all = false, this.chat = true});
 
   /// If true, shows all toolbar groups (for demo/presentation purposes)
   final bool all;
@@ -43,11 +39,7 @@ class _ToolbarDemoState extends State<ToolbarDemo> {
     // If 'all' parameter is true, show all groups. Otherwise start with basic writing tools.
     _shownGroups = widget.all
         ? ToolbarGroup.values.toSet()
-        : {
-            ToolbarGroup.marks,
-            ToolbarGroup.alignment,
-            ToolbarGroup.history,
-          };
+        : {ToolbarGroup.marks, ToolbarGroup.alignment, ToolbarGroup.history};
   }
 
   void _handleToolSelection(ToolSelection selection) {
@@ -113,6 +105,13 @@ class _ToolbarDemoState extends State<ToolbarDemo> {
                 onThinkingChanged: (isThinking) {
                   setState(() => _isThinking = isThinking);
                 },
+                suggestedPrompts: const [
+                  'I need to format text',
+                  'Help me align content',
+                  'Show me list options',
+                  "Reading",
+                  "Writing Minimal",
+                ],
               ),
           ],
         ),
@@ -156,6 +155,8 @@ class _StyledToolbar extends StatelessWidget {
               _btn(Icons.format_italic, ToolbarCommand.italic),
               _btn(Icons.format_underline, ToolbarCommand.underline),
               _btn(Icons.strikethrough_s, ToolbarCommand.strikethrough),
+              _btn(Icons.subscript, ToolbarCommand.subscript),
+              _btn(Icons.superscript, ToolbarCommand.superscript),
               _colorPickerBtn(),
               _btn(Icons.highlight, ToolbarCommand.highlight),
             ],
@@ -166,6 +167,7 @@ class _StyledToolbar extends StatelessWidget {
               _btn(Icons.format_align_left, ToolbarCommand.alignLeft),
               _btn(Icons.format_align_center, ToolbarCommand.alignCenter),
               _btn(Icons.format_align_right, ToolbarCommand.alignRight),
+              _btn(Icons.format_align_justify, ToolbarCommand.alignJustify),
             ],
           ),
         if (groups.contains(ToolbarGroup.lists))
@@ -181,6 +183,8 @@ class _StyledToolbar extends StatelessWidget {
             children: [
               _btn(Icons.link, ToolbarCommand.link),
               _btn(Icons.image, ToolbarCommand.image),
+              _btn(Icons.table_chart, ToolbarCommand.table),
+              _btn(Icons.emoji_emotions, ToolbarCommand.emoji),
             ],
           ),
         if (groups.contains(ToolbarGroup.style))
@@ -241,7 +245,7 @@ class _StyledToolbar extends StatelessWidget {
               border: Border.all(color: Colors.white, width: 2),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.purple.shade400.withOpacity(0.4),
+                  color: Colors.purple.shade400.withValues(alpha: 0.4),
                   blurRadius: 4,
                   spreadRadius: 1,
                 ),
