@@ -85,8 +85,6 @@ style: fullscreen
 
 Every feature built for someone else is cognitive load you carry.
 
-<!-- talk about different types of cognitive load -->
-
 ---
 
 @section
@@ -149,6 +147,36 @@ style: quote
 - LLMs can respond in a structured format.
 - LLMs can now adapt based on context.
 
+---
+
+@column {
+  align: center
+}
+
+## Understanding Intent {.heading}
+#### LLMs translate natural language into function calls. {.subheading}
+
+@column
+
+![LLM Interaction](assets/llm_interaction.png)
+
+
+---
+
+@column {
+  align: center
+}
+
+## Structured Output {.heading}
+#### LLMs transform unstructured intent into structured UI. {.subheading}
+
+@column {
+  align: center
+  flex: 1
+}
+
+![Structured Output](assets/structured_output.png)
+
 
 ---
 
@@ -156,7 +184,7 @@ style: quote
   align: center
 }
 ## Generative + Ephemeral UI {.heading}
-The new paradign is now possible.
+The new paradigm is now possible.
 
 @column
 
@@ -196,28 +224,31 @@ final schema = Schema.object(properties: {
 @column {
   align: center
 }
-## Intent → Interface {.heading}
 
-@section
-
-```mermaid
-flowchart LR
-    A[User Intent] --> B[AI Understanding]
-    B --> C[Capability Selection]
-    C --> D[Interface Composition]
-```
+### Schema → UI Flow {.heading}
+Define schemas. AI selects. Flutter builds.
 
 @column {
-  align: center_left
+  align: center
   flex: 2
 }
 
-User expresses intent.
-AI understands context.
-AI selects relevant capabilities.
-Interface appears.
+![Widget Schema Flow](assets/widget_schema.png)
 
-Sub-300ms.
+
+---
+
+@column {
+  align: center
+}
+## Intent → Interface {.heading}
+
+@column {
+  align: center
+  flex: 2
+}
+
+![LLM Tools Selection](assets/llm_tools.png)
 
 ---
 
@@ -245,10 +276,6 @@ if (userNavigatedAway) dissolve();
   chat: true
 }
 
-
-
-
-
 ---
 
 @section
@@ -267,28 +294,21 @@ All Gen UI surfaces are rendered live from Firebase AI.
 
 ---
 
-## Conversation as State {.heading}
 
-User: "Show ocean temperatures"
-→ Temperature map appears
+@column {
+  align: center
+}
 
-User: "How does this connect to storms?"
-→ Map adds storm overlay
+## Conversation Loop {.heading}
 
-User: "Focus on 2020"
-→ Map zooms to 2020 data
+@column {
+  align: center
+  flex: 2
+}
 
-**Traditional:** Navigate predefined paths
-Menu → Submenu → Feature → Settings
+![Widget Response Flow](assets/widget_response.png)
 
-**Intent-Driven:** Evolve through conversation
-"I want..." → Interface adapts
-"Also show..." → Interface expands
-"Focus on..." → Interface refines
-
-No predetermined flow. Just conversation refinement.
-
-
+Shared state evolves through conversation.
 
 ---
 style: quote
