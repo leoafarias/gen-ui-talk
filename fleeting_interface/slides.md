@@ -1,17 +1,5 @@
 ---
-
-@smart_oven {
-  chat: true
-}
-
----
 style: fullscreen
----
-
-@toolbar_demo {
-  all: true
-}
-
 ---
 
 @section {
@@ -36,7 +24,7 @@ style: fullscreen
   align: center_left
 }
 - Bitwild @ Concepta
-- Open Source Contributor 
+- Open Source Contributor
 - Flutter & Dart GDE
 - Passionate about UI/UX/DX
 
@@ -56,109 +44,135 @@ style: fullscreen
 ---
 
 @column {
-  align: bottom_left
+  align: center
 }
 
-### I built something that felt like mine {.heading}
-
----
-
-## Then everyone wanted something {.heading}
-
----
+## Every interface you use today was designed the same way {.heading}
 
 @column {
   align: center_left
 }
 
-## Stop designing **screens**. {.heading}
-## Start composing **moments**. {.subheading}
+- Fixed. Static. One-size-fits-all.
+- You adapt to it. It doesn't adapt to you.
+- This has been true for 60 years.
 
 ---
-
-## Stop building **navigation**. {.heading}
-## Start fulfilling **intent**. {.subheading}
-
----
-
-## Stop making users **select**. {.heading}
-## Start making interfaces **think**. {.subheading}
-
----
-
-@column {
-  align: center_right
-}
-
-## The Everyone Tax {.heading}
-
----
-
-
-## Traditional 'one-size-fits-all' interfaces impose 'Everyone Tax' through cluttered features and options {.heading}
-
----
-
 @column
 @column {
-  flex: 3
-  align: center
-}
-## The Paradigm Shift {.heading}
-AI Makes Intent-Driven Interfaces Possible
-@column
-
----
-
-@column {
-  align: center
-}
-## Generative UI + Ephemeral UI {.heading}
-Two concepts that change everything
-
----
-
-
-### Intent-based outcome specification... the first new UI interaction paradigm since the invention of GUIs"
-#### IBM Research AI (2024)
-
----
-
-@column {
-  align: center
-}
-## Demo: The Toolbar Problem {.heading}
-
-@editorDemo {
-  name: editorDemo
-}
-
----
-
-
-## The best UI designs do more than work—they think for the user
-
----
-
-@column {
-  align: center
-}
-## How Generative UI Works {.heading}
-AI Understands Capabilities Through Schemas
-
-@column {
-  flex: 3
-}
-
-![Schema Foundation](assets/structured_output.png)
-
----
-
-@column {
+  align: center_left
   flex: 2
+}
+
+## The Shift {.heading}
+
+- Your intent shapes what appears
+- Compose around tasks, dissolve when done
+- Define all capabilities, show only relevant ones
+
+---
+
+@column {
+  align: center
+  flex: 2
+}
+
+# The Everyone Tax {.heading}
+
+@column {
+  align: center_left
+}
+
+Every feature built for someone else is cognitive load you carry.
+
+<!-- talk about different types of cognitive load -->
+
+---
+
+@section
+@column {
+  align: bottom_center
+}
+## The Toolbar Problem {.heading}
+
+@section
+
+@toolbar_demo {
+  all: true
+  align: top_center
+  chat: false
+}
+
+---
+
+@column {
   align: center
 }
-## Define Capabilities with Schemas {.heading}
+
+## Not so simple {.heading}
+
+@column {
+  align: center_left
+  flex: 2
+}
+
+
+- Show everything. Everyone drowns.
+- Hide everything. Everyone hits walls.
+- One size fits all. Nobody gets what they need.
+
+---
+style: quote
+---
+
+@column {
+  flex: 3
+}
+
+> "Intent-based outcome specification...the first new UI interaction paradigm since the invention of GUIs"
+>
+> — IBM Research AI
+
+@column
+
+---
+
+@column {
+  align: center
+}
+
+## What Changed? {.heading}
+
+@column
+
+- LLMs can now understand intent.
+- LLMs can respond in a structured format.
+- LLMs can now adapt based on context.
+
+
+---
+
+@column {
+  align: center
+}
+## Generative + Ephemeral UI {.heading}
+The new paradign is now possible.
+
+@column
+
+- **Generative UI:** AI composes interface from intent
+- **Ephemeral UI:** Interface exists only while relevant
+- **Together:** Interfaces materialize when needed, adapt to context, dissolve when done.
+
+---
+
+@column {
+  align: center
+}
+## Define Capabilities {.heading}
+
+You're not defining screens.
+You're defining what the system can do.
 
 @column
 
@@ -182,145 +196,59 @@ final schema = Schema.object(properties: {
 @column {
   align: center
 }
-## Intent → Interface Flow {.heading}
+## Intent → Interface {.heading}
 
 @section
 
 ```mermaid
 flowchart LR
-    A[User Intent] --> B[LLM]
-    B --> C[Schema Selection]
-    C --> D[Widget Composition]
+    A[User Intent] --> B[AI Understanding]
+    B --> C[Capability Selection]
+    C --> D[Interface Composition]
 ```
 
----
-
-@column {
-  align: center
-}
-## LLMs Orchestrate Capabilities {.heading}
-
-@column {
-  flex: 3
-}
-
-![LLM Tools Orchestration](assets/llm_tools.png)
-
----
-
-@column {
-  flex: 2
-  align: center
-}
-## Schema → Widget Mapping {.heading}
-
-@column {
-  flex: 3
-}
-
-![Widget Schema Mapping](assets/widget_schema.png)
-
----
-
-@column {
-  flex: 2
-  align: center
-}
-## Behaviors as Building Blocks {.heading}
-
-@column
-
-```dart
-abstract class Behavior {
-  Widget manifest(Intent intent);
-  bool isRelevant(Context context);
-}
-```
-
----
-
-## From States to Behaviors {.heading}
-
-```dart
-// Old: State-driven
-setState(() => showFeature = true);
-
-// New: Behavior-driven
-behaviors.where((b) => b.isRelevant(context))
-```
-
-
----
-
-@column {
-  flex: 2
-  align: center
-}
-## Ephemeral UI {.heading}
-**Purpose-driven lifecycle, not timer-based**
-
-Appears When Needed, Dissolves When Done
-
-@column
-
-```dart
-// ❌ WRONG: Timer-based
-if (minutesSinceInteraction > 5) vanish();
-
-// ✅ RIGHT: Purpose-driven
-if (taskCompleted) dissolve();
-if (!isRelevantAnymore(context)) fade();
-```
-
----
-
-## Purpose-Driven Lifecycle {.heading}
-Not Timer-Based
-
-**Temporary manifestation of permanent capabilities**
-
-- Interface exists while serving a purpose
-- Not for a duration, but for an intent
-- Capabilities persist, manifestation changes
-
----
-
-
-> *"Design isn't crafting a beautiful button. It's figuring out if there's a way to get rid of the button altogether."*
-> — Edward Tufte
-
----
-
-@column {
-  align: center
-}
-## Context-Aware Oven Demo {.heading}
-Same Interface, Different Context 
-
-@smartOven {
-  
-}
-
----
-
-@readingDemo{
-
-}
----
-
-@section
 @column {
   align: center_left
-}
-## Flutter Generative UI Chat {.heading}
-Intent-driven conversation that renders Generative UI surfaces live.
-
-@section {
   flex: 2
 }
-@flutter_gen_ui_chat {
 
+User expresses intent.
+AI understands context.
+AI selects relevant capabilities.
+Interface appears.
+
+Sub-300ms.
+
+---
+
+@column
+## Ephemeral Lifecycle {.heading}
+
+Appears when needed.
+Dissolves when done.
+
+@column
+
+```dart
+// ❌ Timer: "Disappear after 5 seconds"
+if (minutesSinceInteraction > 5) vanish();
+
+// ✅ Purpose: "Disappear when irrelevant"
+if (taskCompleted) dissolve();
+if (!isRelevantAnymore(context)) fade();
+if (userNavigatedAway) dissolve();
+```
+
+---
+
+@smart_oven {
+  chat: true
 }
+
+
+
+
+
 ---
 
 @section
@@ -336,24 +264,11 @@ All Gen UI surfaces are rendered live from Firebase AI.
 @travel_app {
 
 }
----
-
-@column {
-  align: center
-}
-## Natural Language Interaction {.heading}
-
-@column {
-  flex: 3
-}
-
-![LLM Interaction](assets/llm_interaction.png)
 
 ---
 
 ## Conversation as State {.heading}
 
-```dart
 User: "Show ocean temperatures"
 → Temperature map appears
 
@@ -362,101 +277,25 @@ User: "How does this connect to storms?"
 
 User: "Focus on 2020"
 → Map zooms to 2020 data
-```
 
-**No navigation. Just conversation refinement.**
-
----
-
-## State Emerges from Dialogue {.heading}
-
-**Traditional:** Navigate through predefined states
-- Menu → Submenu → Feature → Settings
+**Traditional:** Navigate predefined paths
+Menu → Submenu → Feature → Settings
 
 **Intent-Driven:** Evolve through conversation
-- "I want..." → Interface adapts
-- "Also show..." → Interface expands
-- "Focus on..." → Interface refines
+"I want..." → Interface adapts
+"Also show..." → Interface expands
+"Focus on..." → Interface refines
+
+No predetermined flow. Just conversation refinement.
+
+
 
 ---
-
-
-> "Ephemeral UIs—UI elements dynamically generated by LLMs"
-> — Apple Inc. Research Team (2024)
-
+style: quote
 ---
-
-@column {
-  flex: 2
-  align: center
-}
-## Generative UI in Practice {.heading}
-Simple Code, Intelligent Results
-
-@column
-
-```dart
-@override
-Widget build(context) {
-  return EphemeralUI(
-    intent: userIntent,
-    schema: behaviorSchema,
-  );
-}
-```
-
----
-
-@column {
-  align: center
-}
-## Widget Response {.heading}
-
-@column {
-  flex: 3
-}
-
-![Widget Response Example](assets/widget_response.png)
-
----
-
 
 > "Simple is hard. Easy is harder. Invisible is hardest."
 > — Jean-Louis Gassée
-
-
----
-
-@column {
-  flex: 2
-  align: center_right
-}
-## The Shift {.heading}
-
-
-@column {
-  flex: 2
-  align: center_left
-}
-## Intent-Driven, Not Application-Driven {.subheading}
-
-
----
-
-@column
-@column {
-  flex: 3
-  align: center
-}
-## Generative UI: Intent Shapes Interface {.heading}
-Schema Defines Capabilities, Context Determines What Appears
-@column
-
-
-
----
-
-> "The future of UI might be orchestrating user experiences rather than creating it."
 
 ---
 
@@ -464,10 +303,11 @@ Schema Defines Capabilities, Context Determines What Appears
 
 **From → To**
 
-- Application-centric → Intent-centric
-- Navigation → Composition
-- Persistent UI → Ephemeral UI (understanding persists)
-- Static → Generative & Adaptive
+Application-centric → Intent-centric
+Navigation → Composition
+Persistent UI → Ephemeral UI
+Static → Generative & Adaptive
+Manual learning → Automatic understanding
 
 ---
 
@@ -485,57 +325,24 @@ Schema Defines Capabilities, Context Determines What Appears
 ---
 
 @column {
-  flex: 2
-  align: center_right
+  align: center
 }
 ## Flutter + AI {.heading}
 
-@column
-
 @column {
-  flex: 2
   align: center_left
-}
-## Natural Fit for Intent-Driven Interfaces {.subheading}
-
-
----
-
-## Getting Started {.heading}
-
-**What's Real Today**
-
-- Schema-based tool selection ✓
-- Context-aware composition ✓
-- LLM-driven intent understanding ✓
-- Flutter's declarative widgets ✓
-
-**This isn't future tech—it's available now**
-
----
-
-## Start Small, Ship Fast {.heading}
-
-**First Step:**
-
-1. One screen
-2. One context signal (time, location, or user state)
-3. Two interface states
-4. Ship it.
-
-**Then iterate based on real user behavior**
-
----
-
-@column {
   flex: 2
-  align: center
 }
-## Intent-Driven Interfaces Aren't Coming {.heading}
 
-@column
+**What's real today:**
 
-**They're here. Ready to build?**
+Schema-based capability definition
+Context-aware composition
+LLM-driven intent understanding
+Flutter's declarative architecture
+
+This isn't future tech. It's available now.
+
 
 ---
 
@@ -543,4 +350,4 @@ Schema Defines Capabilities, Context Determines What Appears
   align: center
 }
 
-## Questions? {.heading}
+## Thank You? {.heading}
