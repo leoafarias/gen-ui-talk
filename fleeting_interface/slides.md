@@ -1,6 +1,8 @@
 ---
 
-@smart_oven
+@smart_oven {
+  chat: true
+}
 
 ---
 
@@ -13,7 +15,7 @@
 @section {
   flex: 2
 }
-@toolbar_with_chat {
+@toolbar_demo {
   all: true
 }
 

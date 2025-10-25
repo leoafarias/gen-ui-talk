@@ -42,7 +42,9 @@ void main() async {
                 'fullscreen': fullscreenStyle(),
               },
               widgets: {
-                'smart_oven': (_) => const SmartOven(),
+                'smart_oven': (params) => SmartOven(
+                      chat: params['chat'] == true,
+                    ),
                 'tool_bar_example': (_) => const ToolBarExampleWidget(),
                 'toolbar_demo': (params) => ToolbarDemo(
                       all: params['all'] == true,
