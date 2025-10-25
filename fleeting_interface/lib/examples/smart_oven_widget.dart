@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'oven_chat_widget.dart';
+import 'oven_definitions.dart';
+
 /// --------------------------------------
 /// DATA MODEL: Enums + Options + Program
 /// --------------------------------------
@@ -1016,23 +1019,20 @@ class _FoodButton extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-        splashColor: Colors.orange.shade400.withOpacity(0.3),
-        highlightColor: Colors.orange.shade400.withOpacity(0.1),
+        splashColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade200,
         child: Container(
           width: 90,
           height: 90,
           decoration: BoxDecoration(
-            color: isSelected ? Colors.black : Colors.grey.shade800,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(12),
+            border: isSelected
+                ? Border.all(color: Colors.black, width: 2)
+                : null,
             boxShadow: [
-              if (isSelected)
-                BoxShadow(
-                  color: Colors.orange.shade400.withOpacity(0.5),
-                  blurRadius: 12,
-                  spreadRadius: 1,
-                ),
               BoxShadow(
-                color: Colors.black.withOpacity(0.4),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 6,
                 offset: const Offset(0, 2),
               ),
@@ -1045,8 +1045,8 @@ class _FoodButton extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 preset.label.toUpperCase(),
-                style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.grey.shade400,
+                style: const TextStyle(
+                  color: Colors.black,
                   fontSize: 9,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
@@ -1062,7 +1062,15 @@ class _FoodButton extends StatelessWidget {
 
 class SmartOven extends StatefulWidget {
   final FoodPreset? preset;
-  const SmartOven({super.key, this.preset});
+
+  /// If true, shows the chat widget on the right side
+  final bool chat;
+
+  const SmartOven({
+    super.key,
+    this.preset,
+    this.chat = false,
+  });
 
   @override
   State<SmartOven> createState() => _SmartOvenState();
@@ -1072,6 +1080,7 @@ class _SmartOvenState extends State<SmartOven> {
   late bool _poweredOn;
   late FoodPreset _preset;
   late FoodOptions _options;
+  bool _isThinking = false;
 
   @override
   void initState() {
@@ -1112,54 +1121,174 @@ class _SmartOvenState extends State<SmartOven> {
     setState(() => _options = newOptions);
   }
 
+  void _handleOvenSelection(OvenSelection selection) {
+    setState(() {
+      _preset = selection.foodType;
+      _options = selection.options;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final showSelector = widget.preset == null;
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
       children: [
-        if (showSelector) ...[
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _FoodButton(
-                preset: FoodPreset.pizza,
-                isSelected: _preset == FoodPreset.pizza,
-                onTap: () => _changePreset(FoodPreset.pizza),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (showSelector) ...[
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _FoodButton(
+                    preset: FoodPreset.pizza,
+                    isSelected: _preset == FoodPreset.pizza,
+                    onTap: () => _changePreset(FoodPreset.pizza),
+                  ),
+                  const SizedBox(height: 12),
+                  _FoodButton(
+                    preset: FoodPreset.cookies,
+                    isSelected: _preset == FoodPreset.cookies,
+                    onTap: () => _changePreset(FoodPreset.cookies),
+                  ),
+                  const SizedBox(height: 12),
+                  _FoodButton(
+                    preset: FoodPreset.chicken,
+                    isSelected: _preset == FoodPreset.chicken,
+                    onTap: () => _changePreset(FoodPreset.chicken),
+                  ),
+                ],
               ),
-              const SizedBox(height: 12),
-              _FoodButton(
-                preset: FoodPreset.cookies,
-                isSelected: _preset == FoodPreset.cookies,
-                onTap: () => _changePreset(FoodPreset.cookies),
+              const SizedBox(width: 24),
+            ],
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade900,
+                borderRadius: BorderRadius.circular(12),
               ),
-              const SizedBox(height: 12),
-              _FoodButton(
-                preset: FoodPreset.chicken,
-                isSelected: _preset == FoodPreset.chicken,
-                onTap: () => _changePreset(FoodPreset.chicken),
+              child: ModernOvenPanel(
+                poweredOn: _poweredOn,
+                preset: _preset,
+                options: _options,
+                onTogglePower: _togglePower,
+                onOptionsChanged: _changeOptions,
+              ),
+            ),
+            if (widget.chat) ...[
+              const SizedBox(width: 16),
+              OvenChatWidget(
+                onOvenSelectionChanged: _handleOvenSelection,
+                width: 320,
+                isThinking: _isThinking,
+                onThinkingChanged: (thinking) {
+                  setState(() => _isThinking = thinking);
+                },
               ),
             ],
-          ),
-          const SizedBox(width: 24),
-        ],
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade900,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: ModernOvenPanel(
-            poweredOn: _poweredOn,
-            preset: _preset,
-            options: _options,
-            onTogglePower: _togglePower,
-            onOptionsChanged: _changeOptions,
-          ),
+          ],
         ),
+        if (_isThinking && widget.chat)
+          Positioned(
+            bottom: 16,
+            left: 24,
+            child: _ThinkingBubble(),
+          ),
       ],
+    );
+  }
+}
+
+/// Animated thinking bubble that appears while AI is processing
+class _ThinkingBubble extends StatefulWidget {
+  @override
+  State<_ThinkingBubble> createState() => _ThinkingBubbleState();
+}
+
+class _ThinkingBubbleState extends State<_ThinkingBubble>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade800,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _AnimatedDot(controller: _controller, delay: 0),
+          const SizedBox(width: 6),
+          _AnimatedDot(controller: _controller, delay: 0.2),
+          const SizedBox(width: 6),
+          _AnimatedDot(controller: _controller, delay: 0.4),
+        ],
+      ),
+    );
+  }
+}
+
+/// Single animated dot for the thinking bubble
+class _AnimatedDot extends StatelessWidget {
+  final AnimationController controller;
+  final double delay;
+
+  const _AnimatedDot({
+    required this.controller,
+    required this.delay,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = Tween<double>(begin: 0.4, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(delay, delay + 0.4, curve: Curves.easeInOut),
+      ),
+    );
+
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Opacity(
+          opacity: animation.value,
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+          ),
+        );
+      },
     );
   }
 }
