@@ -301,16 +301,6 @@ Context fusion: Multiple signals → Single understanding.
 
 ---
 
-@section
-@column {
-  align: center_left
-}
-## Agentic Travel Planner {.heading}
-All Gen UI surfaces are rendered live from Firebase AI.
-
-@section {
-  flex: 2
-}
 @travel_app
 
 ---
