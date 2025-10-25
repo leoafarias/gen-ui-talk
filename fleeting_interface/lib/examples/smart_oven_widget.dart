@@ -50,15 +50,7 @@ extension PizzaSizeX on PizzaSize {
   };
 }
 
-enum PizzaToppings { light, regular, extra }
-
-extension PizzaToppingsX on PizzaToppings {
-  String get label => switch (this) {
-    PizzaToppings.light => 'Light',
-    PizzaToppings.regular => 'Regular',
-    PizzaToppings.extra => 'Extra',
-  };
-}
+// Removed PizzaToppings - temperature/time now set by AI
 
 // ---------- Cookies ----------
 enum CookieType { chocolateChip, sugar, oatmeal }
@@ -71,14 +63,7 @@ extension CookieTypeX on CookieType {
   };
 }
 
-enum CookieTexture { soft, crispy }
-
-extension CookieTextureX on CookieTexture {
-  String get label => switch (this) {
-    CookieTexture.soft => 'Soft',
-    CookieTexture.crispy => 'Crispy',
-  };
-}
+// Removed CookieTexture - temperature/time now set by AI
 
 enum CookieBatch { b12, b24, b36 }
 
@@ -112,15 +97,7 @@ extension ChickenWeightX on ChickenWeight {
   };
 }
 
-enum ChickenStyle { roasted, crispy, bbq }
-
-extension ChickenStyleX on ChickenStyle {
-  String get label => switch (this) {
-    ChickenStyle.roasted => 'Roasted',
-    ChickenStyle.crispy => 'Crispy',
-    ChickenStyle.bbq => 'BBQ',
-  };
-}
+// Removed ChickenStyle - temperature/time now set by AI
 
 // ---------- Options (sealed) ----------
 sealed class FoodOptions {
@@ -130,123 +107,94 @@ sealed class FoodOptions {
 class PizzaOptions extends FoodOptions {
   final PizzaCrust crust;
   final PizzaSize size;
-  final PizzaToppings toppings;
+  final int temperatureC;
+  final int minutes;
+
   const PizzaOptions({
     this.crust = PizzaCrust.regular,
     this.size = PizzaSize.medium,
-    this.toppings = PizzaToppings.regular,
+    this.temperatureC = 245,
+    this.minutes = 12,
   });
 
   PizzaOptions copyWith({
     PizzaCrust? crust,
     PizzaSize? size,
-    PizzaToppings? toppings,
+    int? temperatureC,
+    int? minutes,
   }) => PizzaOptions(
     crust: crust ?? this.crust,
     size: size ?? this.size,
-    toppings: toppings ?? this.toppings,
+    temperatureC: temperatureC ?? this.temperatureC,
+    minutes: minutes ?? this.minutes,
   );
 }
 
 class CookieOptions extends FoodOptions {
   final CookieType type;
-  final CookieTexture texture;
   final CookieBatch batch;
+  final int temperatureC;
+  final int minutes;
+
   const CookieOptions({
     this.type = CookieType.chocolateChip,
-    this.texture = CookieTexture.soft,
     this.batch = CookieBatch.b24,
+    this.temperatureC = 175,
+    this.minutes = 10,
   });
 
   CookieOptions copyWith({
     CookieType? type,
-    CookieTexture? texture,
     CookieBatch? batch,
+    int? temperatureC,
+    int? minutes,
   }) => CookieOptions(
     type: type ?? this.type,
-    texture: texture ?? this.texture,
     batch: batch ?? this.batch,
+    temperatureC: temperatureC ?? this.temperatureC,
+    minutes: minutes ?? this.minutes,
   );
 }
 
 class ChickenOptions extends FoodOptions {
   final ChickenCut cut;
   final ChickenWeight weight;
-  final ChickenStyle style;
+  final int temperatureC;
+  final int minutes;
+
   const ChickenOptions({
     this.cut = ChickenCut.whole,
     this.weight = ChickenWeight.w4to5,
-    this.style = ChickenStyle.roasted,
+    this.temperatureC = 190,
+    this.minutes = 60,
   });
 
   ChickenOptions copyWith({
     ChickenCut? cut,
     ChickenWeight? weight,
-    ChickenStyle? style,
+    int? temperatureC,
+    int? minutes,
   }) => ChickenOptions(
     cut: cut ?? this.cut,
     weight: weight ?? this.weight,
-    style: style ?? this.style,
+    temperatureC: temperatureC ?? this.temperatureC,
+    minutes: minutes ?? this.minutes,
   );
 }
 
 typedef OvenProgram = ({int temperatureC, int minutes});
 
 OvenProgram computeProgram(FoodPreset preset, FoodOptions options) {
-  if (preset == FoodPreset.pizza && options is PizzaOptions) {
-    final crust = options.crust;
-    final size = options.size;
-    int temp = switch (crust) {
-      PizzaCrust.thin => 260,
-      PizzaCrust.regular => 245,
-      PizzaCrust.thick => 230,
-    };
-    int minutes = switch (crust) {
-      PizzaCrust.thin => 8,
-      PizzaCrust.regular => 12,
-      PizzaCrust.thick => 16,
-    };
-    switch (size) {
-      case PizzaSize.personal:
-        minutes -= 2;
-        break;
-      case PizzaSize.medium:
-        break;
-      case PizzaSize.large:
-        minutes += 2;
-        break;
-    }
-    return (temperatureC: temp, minutes: minutes);
+  // Temperature and time are now stored directly in the options
+  if (options is PizzaOptions) {
+    return (temperatureC: options.temperatureC, minutes: options.minutes);
   }
-
-  if (preset == FoodPreset.cookies && options is CookieOptions) {
-    final texture = options.texture;
-    final batch = options.batch;
-    final temp = texture == CookieTexture.crispy ? 180 : 175;
-    var minutes = texture == CookieTexture.crispy ? 12 : 10;
-    if (batch == CookieBatch.b36) {
-      minutes += 2;
-    }
-    return (temperatureC: temp, minutes: minutes);
+  if (options is CookieOptions) {
+    return (temperatureC: options.temperatureC, minutes: options.minutes);
   }
-
-  if (preset == FoodPreset.chicken && options is ChickenOptions) {
-    final style = options.style;
-    final cut = options.cut;
-    final weight = options.weight;
-    final temp = style == ChickenStyle.crispy ? 200 : 190;
-    final minutes = switch (cut) {
-      ChickenCut.whole => switch (weight) {
-        ChickenWeight.w4to5 => 60,
-        ChickenWeight.w6to7 => 75,
-        ChickenWeight.w8plus => 90,
-      },
-      ChickenCut.pieces => 35,
-      ChickenCut.wings => 25,
-    };
-    return (temperatureC: temp, minutes: minutes);
+  if (options is ChickenOptions) {
+    return (temperatureC: options.temperatureC, minutes: options.minutes);
   }
-
   return (temperatureC: 180, minutes: 25);
 }
 
@@ -302,15 +250,15 @@ class GlassDropdown<T> extends StatelessWidget {
         Container(
           height: 56,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.06),
+            color: Colors.white.withValues(alpha: 0.06),
             borderRadius: BorderRadius.circular(6),
-            border: Border.all(color: Colors.white.withOpacity(0.10)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.10)),
           ),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<T>(
               value: value,
               isExpanded: true,
-              dropdownColor: Colors.black.withOpacity(0.92),
+              dropdownColor: Colors.black.withValues(alpha: 0.92),
               icon: const Icon(Icons.arrow_drop_down, color: Colors.white54),
               style: _itemStyle,
               items: values
@@ -356,7 +304,7 @@ class DisplayContainer extends StatelessWidget {
         color: Colors.black,
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 8),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 8),
         ],
       ),
       child: child,
@@ -390,21 +338,21 @@ class TouchControlButton extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(6),
-        splashColor: glow.withOpacity(0.30),
-        highlightColor: glow.withOpacity(0.12),
+        splashColor: glow.withValues(alpha: 0.30),
+        highlightColor: glow.withValues(alpha: 0.12),
         child: Container(
           width: 86,
           height: 60,
           decoration: BoxDecoration(
             color: isActive
-                ? Colors.black.withOpacity(0.9)
-                : Colors.black.withOpacity(0.6),
+                ? Colors.black.withValues(alpha: 0.9)
+                : Colors.black.withValues(alpha: 0.6),
             borderRadius: BorderRadius.circular(6),
             boxShadow: [
               if (isActive)
-                BoxShadow(color: glow.withOpacity(0.45), blurRadius: 10),
+                BoxShadow(color: glow.withValues(alpha: 0.45), blurRadius: 10),
               BoxShadow(
-                color: Colors.black.withOpacity(0.45),
+                color: Colors.black.withValues(alpha: 0.45),
                 blurRadius: 6,
                 offset: const Offset(0, 2),
               ),
@@ -556,13 +504,6 @@ class _PizzaControls extends StatelessWidget {
               toLabel: (v) => v.label,
               onChanged: (v) => onChanged(options.copyWith(size: v)),
             ),
-            GlassDropdown<PizzaToppings>(
-              label: 'TOPPINGS',
-              value: options.toppings,
-              values: PizzaToppings.values,
-              toLabel: (v) => v.label,
-              onChanged: (v) => onChanged(options.copyWith(toppings: v)),
-            ),
           ],
         ),
       ],
@@ -588,13 +529,6 @@ class _CookieControls extends StatelessWidget {
               values: CookieType.values,
               toLabel: (v) => v.label,
               onChanged: (v) => onChanged(options.copyWith(type: v)),
-            ),
-            GlassDropdown<CookieTexture>(
-              label: 'TEXTURE',
-              value: options.texture,
-              values: CookieTexture.values,
-              toLabel: (v) => v.label,
-              onChanged: (v) => onChanged(options.copyWith(texture: v)),
             ),
             GlassDropdown<CookieBatch>(
               label: 'BATCH',
@@ -635,13 +569,6 @@ class _ChickenControls extends StatelessWidget {
               values: ChickenWeight.values,
               toLabel: (v) => v.label,
               onChanged: (v) => onChanged(options.copyWith(weight: v)),
-            ),
-            GlassDropdown<ChickenStyle>(
-              label: 'STYLE',
-              value: options.style,
-              values: ChickenStyle.values,
-              toLabel: (v) => v.label,
-              onChanged: (v) => onChanged(options.copyWith(style: v)),
             ),
           ],
         ),
@@ -788,8 +715,12 @@ class ModernOvenPanel extends StatelessWidget {
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter,
                                 colors: [
-                                  Colors.orange.shade900.withOpacity(0.30),
-                                  Colors.orange.shade800.withOpacity(0.10),
+                                  Colors.orange.shade900.withValues(
+                                    alpha: 0.30,
+                                  ),
+                                  Colors.orange.shade800.withValues(
+                                    alpha: 0.10,
+                                  ),
                                   Colors.transparent,
                                 ],
                               ),
@@ -806,12 +737,14 @@ class ModernOvenPanel extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.40),
+                      color: Colors.black.withValues(alpha: 0.40),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.white.withOpacity(0.10)),
+                      border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.10),
+                      ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.30),
+                          color: Colors.black.withValues(alpha: 0.30),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -944,8 +877,8 @@ class FoodSelectionBar extends StatelessWidget {
         child: InkWell(
           onTap: () => onChanged(p),
           borderRadius: BorderRadius.circular(8),
-          splashColor: Colors.orange.shade400.withOpacity(0.3),
-          highlightColor: Colors.orange.shade400.withOpacity(0.1),
+          splashColor: Colors.orange.shade400.withValues(alpha: 0.3),
+          highlightColor: Colors.orange.shade400.withValues(alpha: 0.1),
           child: Container(
             width: 110,
             height: 50,
@@ -955,12 +888,12 @@ class FoodSelectionBar extends StatelessWidget {
               boxShadow: [
                 if (active)
                   BoxShadow(
-                    color: Colors.orange.shade400.withOpacity(0.5),
+                    color: Colors.orange.shade400.withValues(alpha: 0.5),
                     blurRadius: 10,
                     spreadRadius: 1,
                   ),
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
+                  color: Colors.black.withValues(alpha: 0.4),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -1063,10 +996,18 @@ class SmartOven extends StatefulWidget {
   /// If true, shows the chat widget on the right side
   final bool chat;
 
+  /// Suggested prompts to show in the chat (if chat is enabled)
+  final List<String> suggestedPrompts;
+
   const SmartOven({
     super.key,
     this.preset,
     this.chat = false,
+    this.suggestedPrompts = const [
+      'Crispy thin crust pizza',
+      'Soft chocolate chip cookies',
+      'Well-done chicken wings',
+    ],
   });
 
   @override
@@ -1183,16 +1124,13 @@ class _SmartOvenState extends State<SmartOven> {
                 onThinkingChanged: (thinking) {
                   setState(() => _isThinking = thinking);
                 },
+                suggestedPrompts: widget.suggestedPrompts,
               ),
             ],
           ],
         ),
         if (_isThinking && widget.chat)
-          Positioned(
-            bottom: 16,
-            left: 24,
-            child: _ThinkingBubble(),
-          ),
+          Positioned(bottom: 16, left: 24, child: _ThinkingBubble()),
       ],
     );
   }
@@ -1257,10 +1195,7 @@ class _AnimatedDot extends StatelessWidget {
   final AnimationController controller;
   final double delay;
 
-  const _AnimatedDot({
-    required this.controller,
-    required this.delay,
-  });
+  const _AnimatedDot({required this.controller, required this.delay});
 
   @override
   Widget build(BuildContext context) {
