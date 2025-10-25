@@ -1,7 +1,7 @@
 {
   "slides": [
     {
-      "key": "Ifb71NWC",
+      "key": "LbQwBcuO",
       "options": {},
       "sections": [
         {
@@ -14,26 +14,7 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n# EPHEMERAL INTERFACES\n# The End of Static UI\n"
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n#### Leo Farias\n#### @leoafarias\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 1,
-              "scrollable": false,
-              "content": "- Founder/CEO/CTO\n- Open Source Contributor (fvm, mix, superdeck, others..)\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX"
+              "content": "# EPHEMERAL INTERFACES\n# The End of Static UI"
             }
           ]
         }
@@ -41,7 +22,35 @@
       "comments": []
     },
     {
-      "key": "htxk5yfv",
+      "key": "ye8lVNKu",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "align": "centerLeft",
+              "flex": 1,
+              "scrollable": false,
+              "content": "\n#### Leo Farias\n#### @leoafarias\n"
+            },
+            {
+              "type": "column",
+              "align": "centerLeft",
+              "flex": 1,
+              "scrollable": false,
+              "content": "- Founder/CEO/CTO\n- Open Source Contributor (fvm, mix, superdeck)\n- Flutter & Dart GDE\n- Passionate about UI/UX/DX"
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "OlVkELgN",
       "options": {},
       "sections": [
         {
@@ -52,73 +61,16 @@
             {
               "type": "column",
               "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### The First New UI Paradigm in 60 Years\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "\n\n> *\"Intent-based outcome specification...the first new UI interaction paradigm in 60 years\"*\n>\n> **— IBM Research, 2024**\n"
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "N7csvfl4",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "## For 60 years, we fought for screen real estate.\n\n## Now we fight for **cognitive real estate**."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "7lhvts2R",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
+              "content": "\n\n### For 60 years, one paradigm.\n\nYou click. You navigate. You learn where features hide.\n\n**The interface is fixed. You adapt to it.**\n"
             },
             {
               "type": "column",
               "align": "center",
               "flex": 3,
               "scrollable": false,
-              "content": "\n\n### The Everyone Tax\n\nComplex apps burden everyone with features built for others.\n"
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
+              "content": "> *\"Intent-based outcome specification...the first new UI interaction paradigm in 60 years\"*\n>\n> **— IBM Research AI, 2024**"
             }
           ]
         }
@@ -126,7 +78,7 @@
       "comments": []
     },
     {
-      "key": "AixWdVT7",
+      "key": "TToraBdg",
       "options": {},
       "sections": [
         {
@@ -146,7 +98,7 @@
               "align": "center",
               "flex": 3,
               "scrollable": false,
-              "content": "### 500 - 20 = 480\n\n**Everyone Tax**\n\nYou pay cognitive load for 480 features you'll never use."
+              "content": "### 500 - 20 = 480\n\n## **Everyone Tax**\n\nYou pay cognitive load for 480 features you'll never use.\n\nEvery feature built for someone else is a burden you carry."
             }
           ]
         }
@@ -154,7 +106,7 @@
       "comments": []
     },
     {
-      "key": "pPQ7AshW",
+      "key": "QuqqQGRh",
       "options": {},
       "sections": [
         {
@@ -167,14 +119,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Problem #2: Application Boundaries\n\nYour thought doesn't stop at app edges. But your tools do.\n"
+              "content": "\n\n### Your Last Research Session\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**Traditional workflow:**\n- Research in browser\n- Switch to spreadsheet (context breaks)\n- Switch to doc (another restart)\n\nThree apps. Three cognitive restarts.\n\n**Your thinking breaks at application boundaries.**"
+              "content": "You needed to understand something.\n\n**Browser** → Read articles (focus)\n\n**Switch to Excel** → Build dataset (context restart)\n\n**Switch to Python** → Run analysis (rebuild mental model)\n\n**Switch to Keynote** → Create visualization (start fresh)\n\n**4 apps. 4 cognitive restarts.**\n\nYour understanding fractured at every boundary."
             }
           ]
         }
@@ -182,56 +134,7 @@
       "comments": []
     },
     {
-      "key": "gTjEdy1v",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "## What if interfaces moved with your thinking instead of interrupting it?"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "6YYNAHvr",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### Three Transformations\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": "**From Static to Breathing**\nNot fixed artifacts — surfaces that materialize and dissolve\n\n**From Application-Centric to Intent-Centric**\nNot \"which app?\" — \"what am I trying to understand?\"\n\n**From Interruption to Flow**\nYour thought doesn't break at boundaries"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "wvJYtRHZ",
+      "key": "QEyFfbgD",
       "options": {},
       "sections": [
         {
@@ -244,7 +147,7 @@
               "align": "center",
               "flex": 3,
               "scrollable": false,
-              "content": "\n\n# Your intent is the layout\n"
+              "content": "\n\n## What if interfaces moved with your thinking\n\n## instead of interrupting it?\n"
             },
             {
               "type": "column",
@@ -257,28 +160,7 @@
       "comments": []
     },
     {
-      "key": "WDYCuWV7",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": "### Ephemeral Interfaces\n\nTransient cognitive surfaces—materializing around intent, adapting as understanding deepens, dissolving once their purpose is fulfilled."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "0YY03e41",
+      "key": "QreH51Zr",
       "options": {},
       "sections": [
         {
@@ -291,14 +173,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Characteristic 1: Purpose-Driven Lifecycle\n"
+              "content": "\n\n### Ephemeral Interfaces\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**Traditional:**\n- You pay a bill\n- Form stays open\n- You close it manually\n\n**Ephemeral:**\n- You pay a bill\n- Payment form appears (pre-filled)\n- You confirm\n- Payment processes\n- **Interface dissolves**\n\nNot because 60 seconds passed.\nBecause the purpose was fulfilled."
+              "content": "Transient cognitive surfaces that:\n\n**Materialize** around your intent\n\n**Adapt** as context changes\n\n**Dissolve** when purpose is fulfilled\n\nNot fixed artifacts designed and shipped.\n\nLiving compositions generated on-demand."
             }
           ]
         }
@@ -306,38 +188,7 @@
       "comments": []
     },
     {
-      "key": "WyP7mSZm",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 3,
-              "scrollable": false,
-              "content": "\n\n### Purpose-Driven, Not Timer-Based\n\n```dart\n// ❌ WRONG: Timer-based\nif (minutesSinceInteraction > 5) {\n  vanish();\n}\n\n// ✅ RIGHT: Purpose-driven\nif (taskCompleted) {\n  dissolve();\n}\nif (contextChanged && !relevantAnymore) {\n  fade();\n}\n```\n"
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "GFOmJddT",
+      "key": "WWVt0OWP",
       "options": {},
       "sections": [
         {
@@ -350,14 +201,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Characteristic 2: Contextual Awareness\n"
+              "content": "\n\n### Purpose-Driven, Not Timer-Based\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**Multi-dimensional understanding:**\n- **Who** you are (skills, goals, expertise)\n- **Where** you are (environment, device)\n- **What** you're doing (task, progress)\n- **When** it's happening (time, urgency)\n\nSame capability. Different context. Different interface."
+              "content": "**Traditional:**\n- You pay a bill\n- Form stays open\n- You manually close it\n\n**Ephemeral:**\n- You pay a bill\n- Payment form appears (pre-filled)\n- You confirm\n- Payment processes\n- **Interface dissolves**\n\nNot because 60 seconds passed.\n\nBecause the purpose was fulfilled."
             }
           ]
         }
@@ -365,7 +216,7 @@
       "comments": []
     },
     {
-      "key": "PiB5mMDY",
+      "key": "xywt13Im",
       "options": {},
       "sections": [
         {
@@ -378,14 +229,70 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Characteristic 3: Persistent Underpinnings\n"
+              "content": "\n\n### Morning\n**Commute**\n\nNext 3 events\n\nLarge text\n\nTransit times\n"
+            },
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": "\n\n### Midday\n**At Desk**\n\nFull day view\n\nDense info\n\nDocuments linked\n"
+            },
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": "### Evening\n**Home**\n\nTomorrow preview\n\nRelaxed layout\n\nSocial context"
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "SOCANkUQ",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "align": "center",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "flex": 1,
+              "scrollable": false,
+              "content": "Same intent: \"Show my schedule\"\n\nDifferent contexts → Different interfaces"
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "iZroVxIl",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": "\n\n### Multi-Dimensional Understanding\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "The interface dissolves.\nThe understanding persists.\n\n**What persists:**\n- Trails of inquiry (paths explored)\n- Webs of connection (ideas linked)\n- Latent understanding (context built)"
+              "content": "The system understands:\n\n**Who** you are (expert vs beginner)\n\n**Where** you are (desk vs commute)\n\n**What** you're doing (focused vs scanning)\n\n**When** it's happening (morning vs evening)\n\nSame capability. Different context. Different interface.\n\n**No configuration. Just understanding.**"
             }
           ]
         }
@@ -393,7 +300,7 @@
       "comments": []
     },
     {
-      "key": "pxRy8pPD",
+      "key": "tTEo5D2y",
       "options": {},
       "sections": [
         {
@@ -406,35 +313,21 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "## Why Now?\n\nThe generative AI evolution makes this possible."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "hkPM4ZDr",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
+              "content": "\n\n## Why Now?\n"
+            },
             {
               "type": "column",
               "align": "center",
-              "flex": 1,
+              "flex": 2,
               "scrollable": false,
-              "content": "\n\n### The Generative Leap\n"
+              "content": "\n\n> *\"Ephemeral UIs—UI elements that are dynamically generated by LLMs and contextually integrated.\"*\n>\n> **— Apple Research, 2024**\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**First Wave:** Content Generation\n- AI generates text, code, images\n- Output: Static artifacts\n\n**The Problem:**\n- Comprehensive reports\n- We receive mass but lose momentum\n- Static answers don't support dynamic asking\n\n**The Leap:**\nWhat if AI generated the structures of interaction themselves?"
+              "content": "Generative AI doesn't just create content anymore.\n\n**It generates the structures of interaction themselves.**\n\nApple is already doing this. This isn't future research."
             }
           ]
         }
@@ -442,35 +335,7 @@
       "comments": []
     },
     {
-      "key": "65cIWUa2",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": "\n\n### From Static Answers to Dynamic Asking\n\nNot: \"Here's a 10-page report on ocean temperatures\"\n\nBut: \"Here's an explorable environment for understanding ocean temperatures\"\n"
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 3,
-              "scrollable": false,
-              "content": "> *\"Ephemeral UIs—UI elements that are dynamically generated by LLMs and contextually integrated.\"*\n>\n> **— Apple Research, 2024**"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "KfYyEksP",
+      "key": "q223JA4g",
       "options": {},
       "sections": [
         {
@@ -483,126 +348,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Conversation as State\n"
+              "content": "\n\n## Live Demo: Travel Planner\n### (Flutter + Gemini)\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**Traditional Mental Model:**\n- \"I'm on the home screen\"\n- \"Now I'm in settings\"\n- \"Let me go back\"\n\nSpatial navigation through predetermined rooms.\n\n**Ephemeral Mental Model:**\n- \"Show ocean temperatures\" → map appears\n- \"How does this connect to storms?\" → storm overlay added\n- \"Focus on 2020\" → map zooms to 2020\n\nNo navigation. Just continuous refinement.\n\n**The conversation history becomes the state machine.**"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "1leOKCCL",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "### Context-Driven Adaptation\n\nSame intent: \"Show my schedule\"\n\nThree different contexts. Three different interfaces."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "XZeYDvcI",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### Morning\n**Commute**\n\n- Next 3 events\n- Large text\n- Transit times\n- Minimal layout\n"
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### Midday\n**At Desk**\n\n- Full day visible\n- Detailed info\n- Documents linked\n- Dense, efficient\n"
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "### Evening\n**Home**\n\n- Tomorrow preview\n- Relaxed layout\n- Social context\n- Preparation mode"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "sg6qsdC5",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n## What Adapts?\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": "- **Content selection** — which information matters\n- **Layout composition** — how elements arrange\n- **Feature prioritization** — which 3-5 capabilities appear\n- **Information density** — detailed vs summary\n- **Visual styling** — colors, typography for environment\n\nAll driven by context. All composed on-demand."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "IkF0mHYI",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n## Live Demo\n\n### Travel Planner\n(Built with Flutter + Gemini)\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": "**Watch for:**\n- Intent-driven composition\n- Context awareness\n- Conversation as state\n- Ephemeral lifecycle"
+              "content": "**Watch for these characteristics:**\n\n✓ **Intent-driven**\n\n\"Beach vacation in July\" shapes what appears\n\n✓ **Context-aware**\n\nBudget + dates determine options\n\n✓ **Ephemeral lifecycle**\n\nBooking surface dissolves after completion\n\n✓ **Conversation as state**\n\nEach response builds on previous"
             }
           ]
         }
@@ -630,7 +383,7 @@
       "comments": []
     },
     {
-      "key": "jmWi7w1M",
+      "key": "xZ05FH4a",
       "options": {},
       "sections": [
         {
@@ -650,7 +403,7 @@
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "✓ **Intent-driven composition**\n\"Beach vacation\" shaped what appeared\n\n✓ **Context awareness**\nBudget, dates, preferences determined options\n\n✓ **Conversation as state**\nEach interaction built on previous\n\n✓ **Ephemeral**\nTemporary manifestation of booking capability\n\n**This is working today. Flutter + Gemini + Schema-driven architecture.**"
+              "content": "✓ **Intent-driven composition**\n\n\"Beach vacation\" shaped what appeared\n\n✓ **Context awareness**\n\nBudget, dates, preferences determined options\n\n✓ **Conversation as state**\n\nEach interaction built on previous\n\n✓ **Ephemeral lifecycle**\n\nTemporary manifestation of booking capability"
             }
           ]
         }
@@ -658,7 +411,7 @@
       "comments": []
     },
     {
-      "key": "tW7ZHM7U",
+      "key": "xEpNMdQt",
       "options": {},
       "sections": [
         {
@@ -668,10 +421,9 @@
           "blocks": [
             {
               "type": "column",
-              "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "# The Shift"
+              "content": "**This is working today.**\n\n**Flutter + Gemini + Schema-driven architecture.**"
             }
           ]
         }
@@ -679,7 +431,7 @@
       "comments": []
     },
     {
-      "key": "vFJU6ouu",
+      "key": "BPN6cz4v",
       "options": {},
       "sections": [
         {
@@ -692,7 +444,7 @@
               "align": "centerRight",
               "flex": 2,
               "scrollable": false,
-              "content": "\n\n### Application-Centric\n60 years\n\nChoose app → Work within constraints\n"
+              "content": "\n\n### 60 Years\n**Application-Centric**\n\nChoose app\n\nWork within constraints\n\nNavigate to features\n"
             },
             {
               "type": "column",
@@ -705,7 +457,7 @@
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "### Intent-Centric\nNow\n\nExpress intent → Environment materializes"
+              "content": "### Now\n**Intent-Centric**\n\nExpress intent\n\nEnvironment materializes\n\nFeatures appear around you"
             }
           ]
         }
@@ -713,7 +465,7 @@
       "comments": []
     },
     {
-      "key": "ibAjtRBS",
+      "key": "HSokAAJU",
       "options": {},
       "sections": [
         {
@@ -726,138 +478,28 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "## Don't navigate to features.\n\n## Features materialize around you."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "8QIQ5GRt",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": "\n\n### Traditional (Application-Centric)\n\n1. Open browser → search\n2. Switch to spreadsheet → analyze\n3. Switch to charts → visualize\n4. Switch to presentation → create\n5. Switch to doc → write\n\n**5 apps. 5 context switches. 5 cognitive restarts.**\n"
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": "### Intent-Centric (Ephemeral)\n\n\"Explore ocean temperature and storm intensity relationships\"\n\n→ Research environment materializes\n→ As inquiry shifts: Environment reconfigures\n→ Question answered: Surface dissolves\n\n**0 context switches. Continuous cognitive flow.**"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "MmDhWpWy",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "## \"If the interface dissolves, what's left?\""
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "KGDTgnfk",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### Transience in Form, Persistence in Substance\n"
+              "content": "\n\n### Traditional (Application-Centric)\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**What Dissolves:**\n- The UI arrangement\n- The temporary surface\n- The scaffolding\n\n**What Persists:**\n- Trails of inquiry\n- Webs of connection\n- Latent understanding\n- Cognitive trails you blazed"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "6ENlBDq8",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 2,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 3,
-              "scrollable": false,
-              "content": "\n\n## Dissolution isn't erasure.\n\n## It's integration.\n"
+              "content": "\n\n1. Open browser → search\n2. Switch to spreadsheet → analyze\n3. Switch to charts → visualize\n4. Switch to presentation → create\n\n**4 apps. 4 context switches. 4 cognitive restarts.**\n"
             },
             {
               "type": "column",
-              "flex": 1,
-              "scrollable": false
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "OEB7UyQG",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Example: Climate Research Session\n"
+              "content": "\n\n### Intent-Centric (Ephemeral)\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "You explore climate data for 30 minutes.\nInterface shows maps, graphs, annotations.\nSession ends → Surface dissolves.\n\n**What remains:**\n- Insights discovered (in your notes, in system memory)\n- Connections made (in knowledge graph)\n- Questions identified (in next-actions)\n- Cognitive trail blazed (in session history)\n\n**Next time:** System knows what you've explored.\nMaterializes new surface informed by that history."
+              "content": "\"Explore ocean temperature trends\"\n\n→ Research environment materializes\n\n→ As inquiry shifts, environment reconfigures\n\n→ Question answered, surface dissolves\n\n**0 context switches. Continuous cognitive flow.**"
             }
           ]
         }
@@ -865,7 +507,7 @@
       "comments": []
     },
     {
-      "key": "UOyQQzqH",
+      "key": "xQqrVTKC",
       "options": {},
       "sections": [
         {
@@ -878,35 +520,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "### Design Principles\n\nHow do we build these responsibly?"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "SPUvX3Yz",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### Transparency Imperative\n"
+              "content": "\n\n## \"If the interface dissolves, what's left?\"\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "Fluidity without transparency = disorienting black box.\n\n**Three Key Principles:**\n\n1. **Make reasoning visible**\n   \"Showing simplified view because you're scanning quickly\"\n\n2. **Provide override mechanisms**\n   \"Show me everything\" always available\n\n3. **Explainability on demand**\n   \"Why am I seeing this?\" button\n\nUsers must understand and control what the system understands and controls."
+              "content": "**The interface dissolves.**\n\n**The understanding persists.**\n\nWhat remains:\n- Notes and insights you created\n- Connections you discovered\n- Questions you identified\n- Paths you explored\n\nNext session: System knows your history.\n\nMaterializes new surface informed by what you learned.\n\n**Dissolution isn't erasure. It's integration.**"
             }
           ]
         }
@@ -914,7 +535,7 @@
       "comments": []
     },
     {
-      "key": "ExKnXXRa",
+      "key": "3b4IGXc7",
       "options": {},
       "sections": [
         {
@@ -925,176 +546,16 @@
             {
               "type": "column",
               "align": "center",
-              "flex": 1,
+              "flex": 2,
               "scrollable": false,
-              "content": "\n\n## Design for movement, not monuments.\n"
+              "content": "\n\n> *\"Users will soon expect this individual support. Predefined and non-individualized menus will feel old-fashioned.\"*\n>\n> **— Dr. Michael Voit, Fraunhofer IOSB, 2024**\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "**Current aesthetic:**\nPixel-perfect precision. Static consistency.\nDesigners trained to create monuments.\n\n**Required shift:**\nFrom designing artifacts → to designing grammars\nFrom pixel-perfect screens → to fluid compositions\n\n**We're designing conversations, not publications.**"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "a84Q1FHv",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "# The Path Forward"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "rKhxSfJM",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### What Exists Today\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": "**Mature Capabilities:**\n- Generative UI code (LLMs write React/Flutter)\n- Composable component architectures\n- Secure execution environments\n- Tool calling and structured data\n- Context APIs (time, location, device state)\n\n**We have the building blocks.**\n\nYou just saw it: Flutter + Gemini + Schemas = Working demo"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "nCe9tRWt",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n### Timeline\n"
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": "**TODAY:**\nSimple context-aware interfaces\n\n**1-2 YEARS:**\nSophisticated adaptation\n\n**3-5 YEARS:**\nFull paradigm maturity\n\n**Honest assessment:**\nWe can build simple ephemeral interfaces today.\nFull \"breathing surfaces\" paradigm — still evolving.\n\nBut the primitives exist. The path is clear."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "PcIMEyx4",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n## Why Act Now?\n"
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": "> *\"Users will soon expect this individual support. Predefined and non-individualized menus will feel old-fashioned.\"*\n>\n> **— Dr. Michael Voit, Fraunhofer IOSB, 2024**"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "FYzQonLX",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": "\n\n### Lead Now\n\n- Learn in practice\n- Shape user expectations\n- Lead category\n"
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false,
-              "content": "\n\n## OR\n"
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": "### Play Catch-Up\n\n- Competitors define patterns\n- Users expect it from them\n- Harder to differentiate"
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "35nljy4G",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "## Question isn't \"will this happen?\"\n\n## It's \"when do you start?\""
+              "content": "**Lead now:**\n- Shape user expectations\n- Learn in practice\n- Define category\n\n**OR play catch-up:**\n- Competitors set standards\n- Users expect it from them\n- Harder to differentiate"
             }
           ]
         }
@@ -1128,7 +589,7 @@
       "comments": []
     },
     {
-      "key": "pKpso9XF",
+      "key": "si3IdzD3",
       "options": {},
       "sections": [
         {
@@ -1141,14 +602,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### Morning\n7-11 AM\n\n- Minimal layout\n- Next 3 actions\n- High contrast\n- \"What's urgent?\"\n"
+              "content": "\n\n### Morning\n7-11 AM\n\nMinimal layout\n\nNext 3 actions\n\nHigh contrast\n"
             },
             {
               "type": "column",
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "### Evening\n6-10 PM\n\n- Rich detail\n- Tomorrow preview\n- Relaxed colors\n- \"What to plan?\""
+              "content": "### Evening\n6-10 PM\n\nRich detail\n\nTomorrow preview\n\nRelaxed colors"
             }
           ]
         }
@@ -1156,7 +617,7 @@
       "comments": []
     },
     {
-      "key": "aZucW29E",
+      "key": "tE4bTGnQ",
       "options": {},
       "sections": [
         {
@@ -1169,14 +630,14 @@
               "align": "center",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\n### The First Sprint\n"
+              "content": "\n\n### The First Sprint (2 Weeks)\n"
             },
             {
               "type": "column",
               "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
-              "content": "1. Choose one high-traffic screen\n2. Implement time-of-day adaptation\n3. A/B test with 50% of users\n4. Measure task completion, satisfaction\n5. **Duration: 2 weeks**\n\nThen expand:\n- Add location awareness\n- Apply to more screens\n- Increase sophistication\n\n**Start simple. Prove value. Build momentum.**"
+              "content": "1. Choose one high-traffic screen\n2. Implement time-of-day adaptation\n3. A/B test with 50% of users\n4. Measure task completion + satisfaction\n5. Expand based on results\n\n**Start simple. Prove value. Build momentum.**"
             }
           ]
         }
@@ -1184,49 +645,7 @@
       "comments": []
     },
     {
-      "key": "J7RV5513",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "## For 60 years:\n\nStatic interfaces.\nDesigned, shipped, unchanging.\nUsers forced to adapt.\nThinking interrupted."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "jzGbqmdQ",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": "## Now:\n\nBreathing surfaces.\nGenerated, adaptive, contextual.\nInterfaces that understand.\nThinking flows continuously."
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "ho1AXq41",
+      "key": "LaB5iN6y",
       "options": {},
       "sections": [
         {
@@ -1239,7 +658,7 @@
               "align": "center",
               "flex": 3,
               "scrollable": false,
-              "content": "\n\n## The future of computing doesn't interrupt thinking.\n\n## It breathes with it.\n"
+              "content": "\n\n## Question isn't \"will this happen?\"\n\n## It's \"when do you start?\"\n\n## And: \"Will you lead or follow?\"\n"
             },
             {
               "type": "column",
@@ -1252,7 +671,28 @@
       "comments": []
     },
     {
-      "key": "aQJcbIcg",
+      "key": "nrM2lymj",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": "## For 60 years:\n\nStatic interfaces. Designed, shipped, unchanging.\n\nUsers forced to adapt. Thinking interrupted.\n\n## Now:\n\nBreathing surfaces. Generated, adaptive, contextual.\n\nInterfaces that understand. Thinking flows continuously."
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "yjCf6gos",
       "options": {},
       "sections": [
         {
@@ -1265,7 +705,7 @@
               "align": "center",
               "flex": 3,
               "scrollable": false,
-              "content": "\n\n# Are you ready to build it?\n"
+              "content": "\n\n# The future of computing doesn't interrupt thinking.\n\n# It breathes with it.\n\n# Are you building it?\n"
             },
             {
               "type": "column",
@@ -1278,7 +718,7 @@
       "comments": []
     },
     {
-      "key": "JaDet6pY",
+      "key": "ebJo8dOX",
       "options": {},
       "sections": [
         {
@@ -1304,7 +744,7 @@
               "type": "column",
               "flex": 1,
               "scrollable": false,
-              "content": "\n\nLeo Farias\n@leoafarias_\n(GitHub, Twitter/X)\n\n"
+              "content": "\n\nLeo Farias\n\n@leoafarias_\n\n(GitHub, Twitter/X)\n\n"
             },
             {
               "type": "column",
