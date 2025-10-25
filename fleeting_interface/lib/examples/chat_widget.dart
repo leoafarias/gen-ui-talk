@@ -13,6 +13,8 @@ class ChatWidget extends StatefulWidget {
     required this.onToolSelectionChanged,
     this.width = 320,
     this.initialSystemPrompt,
+    this.isThinking = false,
+    this.onThinkingChanged,
   });
 
   /// Callback when the LLM returns tool selections based on user intent
@@ -23,6 +25,12 @@ class ChatWidget extends StatefulWidget {
 
   /// Optional system prompt to guide the LLM
   final String? initialSystemPrompt;
+
+  /// Whether the AI is currently thinking
+  final bool isThinking;
+
+  /// Callback when thinking state changes
+  final ValueChanged<bool>? onThinkingChanged;
 
   @override
   State<ChatWidget> createState() => _ChatWidgetState();
@@ -95,6 +103,7 @@ class _ChatWidgetState extends State<ChatWidget> {
       _messages.add(ChatMessage(text: text, isUser: true));
       _isLoading = true;
     });
+    widget.onThinkingChanged?.call(true);
     _controller.clear();
     _scrollToBottom();
 
@@ -125,6 +134,7 @@ class _ChatWidgetState extends State<ChatWidget> {
         _messages.add(ChatMessage(text: explanation, isUser: false));
         _isLoading = false;
       });
+      widget.onThinkingChanged?.call(false);
 
       // Notify parent of tool selection
       widget.onToolSelectionChanged(toolSelection);
@@ -140,6 +150,7 @@ class _ChatWidgetState extends State<ChatWidget> {
         );
         _isLoading = false;
       });
+      widget.onThinkingChanged?.call(false);
     }
   }
 
@@ -159,7 +170,7 @@ class _ChatWidgetState extends State<ChatWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.width,
-      color: Colors.black,
+      color: Colors.transparent,
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [

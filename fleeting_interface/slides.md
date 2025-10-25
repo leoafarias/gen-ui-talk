@@ -1,8 +1,21 @@
 ---
-style: fullscreen
+
+@smart_oven
+
 ---
 
-@toolbar_with_chat {}
+@section
+@column {
+  align: center_left
+}
+### Everyone Tax Demo
+
+@section {
+  flex: 2
+}
+@toolbar_with_chat {
+  all: true
+}
 
 ---
 
