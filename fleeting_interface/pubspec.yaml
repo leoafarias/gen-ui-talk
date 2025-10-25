@@ -29,7 +29,10 @@ dependencies:
   mesh: ^0.5.0
   mix: ^2.0.0-dev.5
   superdeck:
-    path: ../../superdeck/packages/superdeck
+    git:
+      url: https://github.com/btwld/superdeck.git
+      path: packages/superdeck
+      ref: main
   remix:
     git:
       url: https://github.com/btwld/remix.git
@@ -39,15 +42,18 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
   superdeck_cli:
-    path: ../../superdeck/packages/cli
+    git:
+      url: https://github.com/btwld/superdeck.git
+      path: packages/cli
+      ref: main
   integration_test:
     sdk: flutter
 flutter:
   uses-material-design: true
   assets:
     - assets/
-    - lib/examples/travel_app/assets/travel_images/
-    - lib/examples/travel_app/assets/booking_service/
-    - lib/examples/travel_app/assets/prompt_images/
+    - assets/travel_images/
+    - assets/booking_service/
+    - assets/prompt_images/
     - .superdeck/
     - .superdeck/assets/

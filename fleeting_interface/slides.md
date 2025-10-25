@@ -1,5 +1,5 @@
 ---
-style: fullscreen
+style: cover
 ---
 
 @section {
