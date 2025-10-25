@@ -99,8 +99,8 @@ class HotelSearch {
   static HotelSearch fromJson(JsonMap json) {
     return HotelSearch(
       query: json['query'] as String,
-      checkIn: DateTime.parse(json['checkIn'] as String),
-      checkOut: DateTime.parse(json['checkOut'] as String),
+      checkIn: DateTime.parse(json['check_in'] as String),
+      checkOut: DateTime.parse(json['check_out'] as String),
       guests: json['guests'] as int,
     );
   }
@@ -108,8 +108,8 @@ class HotelSearch {
   JsonMap toJson() {
     return {
       'query': query,
-      'checkIn': checkIn.toIso8601String(),
-      'checkOut': checkOut.toIso8601String(),
+      'check_in': checkIn.toIso8601String(),
+      'check_out': checkOut.toIso8601String(),
       'guests': guests,
     };
   }

@@ -54,7 +54,7 @@ style: fullscreen
 
 - Fixed. Static. One-size-fits-all.
 - You adapt to it. It doesn't adapt to you.
-- This has been true for 60 years.
+- This has been true for 50 years.
 
 ---
 @column
@@ -299,6 +299,13 @@ Context fusion: Multiple signals → Single understanding.
 }
 
 ---
+style: fullscreen
+---
+
+@column {
+  align: center
+}
+## Agentic Interfaces {.heading}
 
 @travel_app
 
