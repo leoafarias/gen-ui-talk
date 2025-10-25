@@ -123,6 +123,21 @@ class _TravelPlannerPageState extends State<TravelPlannerPage>
           _scrollToBottom();
         }
       },
+      onError: (error) {
+        genUiLogger.severe(
+          'Error from content generator',
+          error.error,
+          error.stackTrace,
+        );
+        if (!mounted) return;
+        setState(() {
+          _conversation.add(AiTextMessage.text(
+            'I encountered an issue processing that request. '
+            'Please try rephrasing or simplifying your prompt.',
+          ));
+        });
+        _scrollToBottom();
+      },
     );
   }
 
@@ -331,7 +346,7 @@ to the user.
     updating the relevant `itineraryEntry` to have the status `chosen` and
     including the booking details in the `bodyText`.
 
-    When booking a hotel, use inputGroup, providing initial values for check-in and check-out dates (nearest weekend). Then use the `listHotels` tool to search for hotels and pass the values listingSelectionId to `travelCarousel` to show the user different options. When user selects a hotel, pass the listingSelectionId of the selected hotel the parameter listingSelectionIds of `listingsBooker`.
+    When booking a hotel, use inputGroup, providing initial values for check-in and check-out dates (nearest weekend). Then use the `list_hotels` tool to search for hotels and pass the values listingSelectionId to `travelCarousel` to show the user different options. When user selects a hotel, pass the listingSelectionId of the selected hotel the parameter listingSelectionIds of `listingsBooker`.
 
 IMPORTANT: The user may start from different steps in the flow, and it is your job to
 understand which step of the flow the user is at, and when they are ready to
