@@ -124,16 +124,41 @@ class _TravelPlannerPageState extends State<TravelPlannerPage>
         }
       },
       onError: (error) {
+        // Enhanced logging with full error details
         genUiLogger.severe(
-          'Error from content generator',
+          '=== GENUI ERROR CAPTURED ===\n'
+          'Error Type: ${error.error.runtimeType}\n'
+          'Error Message: ${error.error}\n'
+          'Stack Trace:\n${error.stackTrace}\n'
+          '===========================',
           error.error,
           error.stackTrace,
         );
+
+        // Additional detailed logging for debugging
+        if (error.error is FormatException) {
+          genUiLogger.severe(
+            'FormatException details:\n'
+            'Source: ${(error.error as FormatException).source}\n'
+            'Offset: ${(error.error as FormatException).offset}',
+          );
+        }
+
+        // Try to extract and log any available response data
+        try {
+          genUiLogger.info(
+            'Error context - Last conversation length: ${_conversation.length}',
+          );
+        } catch (e) {
+          // Ignore if unable to access conversation state
+        }
+
         if (!mounted) return;
         setState(() {
           _conversation.add(AiTextMessage.text(
             'I encountered an issue processing that request. '
-            'Please try rephrasing or simplifying your prompt.',
+            'Please try rephrasing or simplifying your prompt.\n\n'
+            '(Error details logged to console)',
           ));
         });
         _scrollToBottom();

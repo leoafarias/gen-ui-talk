@@ -19,11 +19,11 @@ class ListHotelsTool extends AiTool<Map<String, Object?>> {
             'query': S.string(
               description: 'The search query, e.g., "hotels in Paris".',
             ),
-            'checkIn': S.string(
+            'check_in': S.string(
               description: 'The check-in date in ISO 8601 format (YYYY-MM-DD).',
               format: 'date',
             ),
-            'checkOut': S.string(
+            'check_out': S.string(
               description:
                   'The check-out date in ISO 8601 format (YYYY-MM-DD).',
               format: 'date',
@@ -33,7 +33,7 @@ class ListHotelsTool extends AiTool<Map<String, Object?>> {
               minimum: 1,
             ),
           },
-          required: ['query', 'checkIn', 'checkOut', 'guests'],
+          required: ['query', 'check_in', 'check_out', 'guests'],
         ),
       );
 
