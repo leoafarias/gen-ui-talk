@@ -84,12 +84,12 @@ class _AnimatedSwitcherOMeshState extends State<_AnimatedSwitcherOMesh>
   }
 }
 
-// Color palette for radial gradient
-const _yellow = Color(0xff99601D);
-const _green = Color(0xff1c452b);
-const _darkGreen = Color(0xff11281b);
-const _darkGrey = Color(0xff181818);
-const _almostBlack = Color(0xff0a0a0a);
+// Color palette for radial gradient (purple/magenta to orange/yellow)
+const _yellow = Color(0xffFFB347); // Orange-yellow
+const _orange = Color(0xffFF6B6B); // Red-orange
+const _magenta = Color(0xffE91E63); // Magenta
+const _purple = Color(0xff9C27B0); // Purple
+const _deepPurple = Color(0xff673AB7); // Deep purple
 
 // Calculate Manhattan distance between two positions in 4x4 grid
 int _manhattanDistance(int pos1, int pos2) {
@@ -115,13 +115,13 @@ List<Color> _determiniscOrderBasedOnIndex(int index) {
   for (int i = 0; i < 16; i++) {
     final distance = _manhattanDistance(i, yellowPos);
 
-    // Assign color based on distance from yellow
+    // Assign color based on distance from yellow (radial gradient)
     final color = switch (distance) {
-      0 => _yellow, // Yellow origin
-      1 => _green, // Adjacent positions
-      2 => _darkGreen, // 2 steps away
-      3 => _darkGrey, // 3 steps away
-      _ => _almostBlack, // 4+ steps away (farthest/extreme)
+      0 => _yellow, // Yellow/orange origin
+      1 => _orange, // Adjacent positions
+      2 => _magenta, // 2 steps away
+      3 => _purple, // 3 steps away
+      _ => _deepPurple, // 4+ steps away (farthest/extreme)
     };
 
     meshColors.add(color);
