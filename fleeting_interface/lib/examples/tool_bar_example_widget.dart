@@ -104,7 +104,7 @@ class _TogglePill extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final Color background = enabled
         ? scheme.primaryContainer
-        : scheme.surfaceVariant;
+        : scheme.surfaceContainerHighest;
     final Color foreground = enabled
         ? scheme.onPrimaryContainer
         : scheme.onSurfaceVariant;

@@ -10,4 +10,15 @@ Checking for npm/bin/npm-cli install at /Users/leofarias/.cache/firebase/tools/l
 Checking for npm/bin/npm-cli install at /Users/leofarias/.cache/firebase/tools/node_modules/npm/bin/npm-cli
 Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
 Found npm/bin/npm-cli install.
-ShellJSInternalError: ENOENT: no such file or directory, stat '/Users/leofarias/.cache/firebase/runtime/npmrc'
+Runtime binaries created.
+/Users/leofarias/.local/bin/firebase
+/Users/leofarias/.local/bin/firebase,/snapshot/firepit/firepit.js,apps:sdkconfig,ios,1:735051654931:ios:2d16e960a494d3a942dce6,--json
+Checking for npm/bin/npm-cli install at /Users/leofarias/.cache/firebase/tools/lib/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /Users/leofarias/.cache/firebase/tools/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
+Found npm/bin/npm-cli install.
+Checking for npm/bin/npm-cli install at /Users/leofarias/.cache/firebase/tools/lib/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /Users/leofarias/.cache/firebase/tools/node_modules/npm/bin/npm-cli
+Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
+Found npm/bin/npm-cli install.
+ShellJSInternalError: ENOENT: no such file or directory, chmod '/Users/leofarias/.cache/firebase/runtime/npm.bat'
