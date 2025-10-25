@@ -50,8 +50,8 @@ final _schema = S.object(
           ),
           'entries': S.list(
             description:
-                'A list of itinerary entries (inline objects) for this day, '
-                'each representing accommodation, transport, or activities.',
+                'A list of widget IDs for the ItineraryEntry '
+                'children for this day.',
             items: S.object(
               properties: {
                 'title': A2uiSchemas.stringReference(

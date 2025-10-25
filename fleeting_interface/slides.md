@@ -18,6 +18,7 @@ style: fullscreen
 
 #### Leo Farias {.heading}
 #### @leoafarias {.subheading}
+https://github.com/btwld
 
 @column {
   align: center_left
@@ -366,5 +367,5 @@ https://github.com/flutter/genui
   align: center
 }
 
-## Thank You? {.heading}
+## Thank You {.heading}
 https://github.com/leoafarias/gen-ui-talk
