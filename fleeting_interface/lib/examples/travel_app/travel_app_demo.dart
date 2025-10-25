@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_genui/flutter_genui.dart';
-import 'package:flutter_genui_firebase_ai/flutter_genui_firebase_ai.dart';
 import 'package:logging/logging.dart';
 
 import 'catalog.dart';
@@ -91,10 +90,7 @@ class _TravelAppBody extends StatelessWidget {
               Text(_title),
             ],
           ),
-          actions: const [
-            Icon(Icons.person_outline),
-            SizedBox(width: 8.0),
-          ],
+          actions: const [Icon(Icons.person_outline), SizedBox(width: 8.0)],
           bottom: TabBar(
             tabs: tabs.entries.map((entry) => Tab(text: entry.key)).toList(),
           ),
