@@ -155,7 +155,8 @@ class _StyledToolbar extends StatelessWidget {
               _btn(Icons.format_bold, ToolbarCommand.bold),
               _btn(Icons.format_italic, ToolbarCommand.italic),
               _btn(Icons.format_underline, ToolbarCommand.underline),
-              _btn(Icons.format_color_text, ToolbarCommand.textColor),
+              _btn(Icons.strikethrough_s, ToolbarCommand.strikethrough),
+              _colorPickerBtn(),
               _btn(Icons.highlight, ToolbarCommand.highlight),
             ],
           ),
@@ -220,6 +221,35 @@ class _StyledToolbar extends StatelessWidget {
       tooltip: command.name,
       padding: const EdgeInsets.all(10),
       constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+    );
+  }
+
+  Widget _colorPickerBtn() {
+    return Tooltip(
+      message: 'Text color',
+      child: InkWell(
+        onTap: () => onCommand(ToolbarCommand.textColor, null),
+        borderRadius: BorderRadius.circular(22),
+        child: Container(
+          width: 44,
+          height: 44,
+          padding: const EdgeInsets.all(10),
+          child: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.purple.shade400,
+              border: Border.all(color: Colors.white, width: 2),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.purple.shade400.withOpacity(0.4),
+                  blurRadius: 4,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 

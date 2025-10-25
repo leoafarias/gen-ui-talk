@@ -1025,11 +1025,8 @@ class _FoodButton extends StatelessWidget {
           width: 90,
           height: 90,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isSelected ? Colors.black : Colors.white,
             borderRadius: BorderRadius.circular(12),
-            border: isSelected
-                ? Border.all(color: Colors.black, width: 2)
-                : null,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.1),
@@ -1045,8 +1042,8 @@ class _FoodButton extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 preset.label.toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.black,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black,
                   fontSize: 9,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
