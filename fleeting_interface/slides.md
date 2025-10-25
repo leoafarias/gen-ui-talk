@@ -76,13 +76,34 @@ style: fullscreen
   flex: 2
 }
 
-# The Everyone Tax {.heading}
+## The Everyone Tax {.heading}
 
 @column {
   align: center_left
 }
 
 Every feature built for someone else is cognitive load you carry.
+
+---
+
+@column {
+  align: center
+}
+
+## Cognitive Load {.heading}
+
+@column {
+  align: center_left
+  flex: 2
+}
+
+Not all mental effort is equal:
+
+- **Intrinsic:** The inherent difficulty of your task
+- **Germane:** Productive learning that makes you better
+- **Extraneous:** Wasted effort from poor design
+
+**Everyone Tax is pure Extraneous Load.**
 
 ---
 
@@ -131,6 +152,14 @@ style: quote
 > — IBM Research AI
 
 @column
+
+---
+
+@toolbar_demo {
+  all: true
+  align: top_center
+  chat: true
+}
 
 ---
 
@@ -217,6 +246,19 @@ final schema = Schema.object(properties: {
   ),
 });
 ```
+---
+
+@column {
+  align: center
+}
+## Tool Calling Workflow{.heading}
+
+@column {
+  align: center
+  flex: 2
+}
+
+![LLM Tools Selection](assets/llm_tools.png)
 
 ---
 
@@ -240,57 +282,25 @@ Define schemas. AI selects. Flutter builds.
 @column {
   align: center
 }
-## Intent → Interface {.heading}
 
-@column {
-  align: center
-  flex: 2
-}
-
-![LLM Tools Selection](assets/llm_tools.png)
-
----
-
-@column
-## Ephemeral Lifecycle {.heading}
-
-Appears when needed.
-Dissolves when done.
-
-@column
-
-```dart
-// ❌ Timer: "Disappear after 5 seconds"
-if (minutesSinceInteraction > 5) vanish();
-
-// ✅ Purpose: "Disappear when irrelevant"
-if (taskCompleted) dissolve();
-if (!isRelevantAnymore(context)) fade();
-if (userNavigatedAway) dissolve();
-```
-
----
-
-@column {
-  align: center
-}
-
-## Context-Driven Adaptation {.heading}
-
-@column {
-  align: center_left
-  flex: 2
-}
-
+### Context-Driven Adaptation {.heading}
 Same capability, different contexts = different interfaces.
+
+@column
+
 
 - **Who:** User preferences and history
 - **What:** Current task and intent
 - **When:** Time of day, urgency
 - **Where:** Location, device
 
-Context fusion: Multiple signals → Single understanding.
+---
 
+#### Context fusion
+### Multiple signals → Single understanding.
+
+---
+style: fullscreen
 ---
 
 
