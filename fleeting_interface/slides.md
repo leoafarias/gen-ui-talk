@@ -1,5 +1,3 @@
----
-
 @section {
   flex: 2
 }
@@ -9,12 +7,11 @@
 # EPHEMERAL INTERFACES
 # The End of Static UI
 
-@column
+---
 
 @column {
-  align: center
+  align: center_left
 }
-
 #### Leo Farias
 #### @leoafarias
 
@@ -22,7 +19,7 @@
   align: center_left
 }
 - Founder/CEO/CTO
-- Open Source Contributor (fvm, mix, superdeck, others..)
+- Open Source Contributor (fvm, mix, superdeck)
 - Flutter & Dart GDE
 - Passionate about UI/UX/DX
 
@@ -30,45 +27,23 @@
 
 @column {
   align: center
-}
-
-### The First New UI Paradigm in 60 Years
-
-@column {
   flex: 2
-  align: center_left
 }
 
-> *"Intent-based outcome specification...the first new UI interaction paradigm in 60 years"*
->
-> **— IBM Research, 2024**
+### For 60 years, one paradigm.
 
-@column
+You click. You navigate. You learn where features hide.
 
----
-
-@column {
-  align: center
-}
-
-## For 60 years, we fought for screen real estate.
-
-## Now we fight for **cognitive real estate**.
-
----
-
-@column
+**The interface is fixed. You adapt to it.**
 
 @column {
   flex: 3
   align: center
 }
 
-### The Everyone Tax
-
-Complex apps burden everyone with features built for others.
-
-@column
+> *"Intent-based outcome specification...the first new UI interaction paradigm in 60 years"*
+>
+> **— IBM Research AI, 2024**
 
 ---
 
@@ -92,63 +67,38 @@ You use about 20
 
 ### 500 - 20 = 480
 
-**Everyone Tax**
+## **Everyone Tax**
 
 You pay cognitive load for 480 features you'll never use.
 
+Every feature built for someone else is a burden you carry.
+
 ---
 
 @column {
   align: center
 }
 
-### Problem #2: Application Boundaries
-
-Your thought doesn't stop at app edges. But your tools do.
+### Your Last Research Session
 
 @column {
   flex: 2
   align: center_left
 }
 
-**Traditional workflow:**
-- Research in browser
-- Switch to spreadsheet (context breaks)
-- Switch to doc (another restart)
+You needed to understand something.
 
-Three apps. Three cognitive restarts.
+**Browser** → Read articles (focus)
 
-**Your thinking breaks at application boundaries.**
+**Switch to Excel** → Build dataset (context restart)
 
----
+**Switch to Python** → Run analysis (rebuild mental model)
 
-@column {
-  align: center
-}
+**Switch to Keynote** → Create visualization (start fresh)
 
-## What if interfaces moved with your thinking instead of interrupting it?
+**4 apps. 4 cognitive restarts.**
 
----
-
-@column {
-  align: center
-}
-
-### Three Transformations
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**From Static to Breathing**
-Not fixed artifacts — surfaces that materialize and dissolve
-
-**From Application-Centric to Intent-Centric**
-Not "which app?" — "what am I trying to understand?"
-
-**From Interruption to Flow**
-Your thought doesn't break at boundaries
+Your understanding fractured at every boundary.
 
 ---
 
@@ -161,7 +111,9 @@ Your thought doesn't break at boundaries
   flex: 3
 }
 
-# Your intent is the layout
+## What if interfaces moved with your thinking
+
+## instead of interrupting it?
 
 @column
 
@@ -169,12 +121,26 @@ Your thought doesn't break at boundaries
 
 @column {
   align: center
-  flex: 2
 }
 
 ### Ephemeral Interfaces
 
-Transient cognitive surfaces—materializing around intent, adapting as understanding deepens, dissolving once their purpose is fulfilled.
+@column {
+  flex: 2
+  align: center_left
+}
+
+Transient cognitive surfaces that:
+
+**Materialize** around your intent
+
+**Adapt** as context changes
+
+**Dissolve** when purpose is fulfilled
+
+Not fixed artifacts designed and shipped.
+
+Living compositions generated on-demand.
 
 ---
 
@@ -182,7 +148,7 @@ Transient cognitive surfaces—materializing around intent, adapting as understa
   align: center
 }
 
-### Characteristic 1: Purpose-Driven Lifecycle
+### Purpose-Driven, Not Timer-Based
 
 @column {
   flex: 2
@@ -192,7 +158,7 @@ Transient cognitive surfaces—materializing around intent, adapting as understa
 **Traditional:**
 - You pay a bill
 - Form stays open
-- You close it manually
+- You manually close it
 
 **Ephemeral:**
 - You pay a bill
@@ -202,177 +168,8 @@ Transient cognitive surfaces—materializing around intent, adapting as understa
 - **Interface dissolves**
 
 Not because 60 seconds passed.
+
 Because the purpose was fulfilled.
-
----
-
-@column
-
-@column {
-  flex: 3
-  align: center_left
-}
-
-### Purpose-Driven, Not Timer-Based
-
-```dart
-// ❌ WRONG: Timer-based
-if (minutesSinceInteraction > 5) {
-  vanish();
-}
-
-// ✅ RIGHT: Purpose-driven
-if (taskCompleted) {
-  dissolve();
-}
-if (contextChanged && !relevantAnymore) {
-  fade();
-}
-```
-
-@column
-
----
-
-@column {
-  align: center
-}
-
-### Characteristic 2: Contextual Awareness
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**Multi-dimensional understanding:**
-- **Who** you are (skills, goals, expertise)
-- **Where** you are (environment, device)
-- **What** you're doing (task, progress)
-- **When** it's happening (time, urgency)
-
-Same capability. Different context. Different interface.
-
----
-
-@column {
-  align: center
-}
-
-### Characteristic 3: Persistent Underpinnings
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-The interface dissolves.
-The understanding persists.
-
-**What persists:**
-- Trails of inquiry (paths explored)
-- Webs of connection (ideas linked)
-- Latent understanding (context built)
-
----
-
-@column {
-  align: center
-}
-
-## Why Now?
-
-The generative AI evolution makes this possible.
-
----
-
-@column {
-  align: center
-}
-
-### The Generative Leap
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**First Wave:** Content Generation
-- AI generates text, code, images
-- Output: Static artifacts
-
-**The Problem:**
-- Comprehensive reports
-- We receive mass but lose momentum
-- Static answers don't support dynamic asking
-
-**The Leap:**
-What if AI generated the structures of interaction themselves?
-
----
-
-@section
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-### From Static Answers to Dynamic Asking
-
-Not: "Here's a 10-page report on ocean temperatures"
-
-But: "Here's an explorable environment for understanding ocean temperatures"
-
-@column {
-  flex: 3
-  align: center
-}
-
-> *"Ephemeral UIs—UI elements that are dynamically generated by LLMs and contextually integrated."*
->
-> **— Apple Research, 2024**
-
----
-
-@column {
-  align: center
-}
-
-### Conversation as State
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**Traditional Mental Model:**
-- "I'm on the home screen"
-- "Now I'm in settings"
-- "Let me go back"
-
-Spatial navigation through predetermined rooms.
-
-**Ephemeral Mental Model:**
-- "Show ocean temperatures" → map appears
-- "How does this connect to storms?" → storm overlay added
-- "Focus on 2020" → map zooms to 2020
-
-No navigation. Just continuous refinement.
-
-**The conversation history becomes the state machine.**
-
----
-
-@column {
-  align: center
-}
-
-### Context-Driven Adaptation
-
-Same intent: "Show my schedule"
-
-Three different contexts. Three different interfaces.
 
 ---
 
@@ -386,10 +183,11 @@ Three different contexts. Three different interfaces.
 ### Morning
 **Commute**
 
-- Next 3 events
-- Large text
-- Transit times
-- Minimal layout
+Next 3 events
+
+Large text
+
+Transit times
 
 @column {
   flex: 1
@@ -399,10 +197,11 @@ Three different contexts. Three different interfaces.
 ### Midday
 **At Desk**
 
-- Full day visible
-- Detailed info
-- Documents linked
-- Dense, efficient
+Full day view
+
+Dense info
+
+Documents linked
 
 @column {
   flex: 1
@@ -412,10 +211,21 @@ Three different contexts. Three different interfaces.
 ### Evening
 **Home**
 
-- Tomorrow preview
-- Relaxed layout
-- Social context
-- Preparation mode
+Tomorrow preview
+
+Relaxed layout
+
+Social context
+
+---
+
+@section {
+  align: center
+}
+
+Same intent: "Show my schedule"
+
+Different contexts → Different interfaces
 
 ---
 
@@ -423,20 +233,26 @@ Three different contexts. Three different interfaces.
   align: center
 }
 
-## What Adapts?
+### Multi-Dimensional Understanding
 
 @column {
   flex: 2
   align: center_left
 }
 
-- **Content selection** — which information matters
-- **Layout composition** — how elements arrange
-- **Feature prioritization** — which 3-5 capabilities appear
-- **Information density** — detailed vs summary
-- **Visual styling** — colors, typography for environment
+The system understands:
 
-All driven by context. All composed on-demand.
+**Who** you are (expert vs beginner)
+
+**Where** you are (desk vs commute)
+
+**What** you're doing (focused vs scanning)
+
+**When** it's happening (morning vs evening)
+
+Same capability. Different context. Different interface.
+
+**No configuration. Just understanding.**
 
 ---
 
@@ -444,21 +260,59 @@ All driven by context. All composed on-demand.
   align: center
 }
 
-## Live Demo
+## Why Now?
 
-### Travel Planner
-(Built with Flutter + Gemini)
+@column {
+  flex: 2
+  align: center
+}
+
+> *"Ephemeral UIs—UI elements that are dynamically generated by LLMs and contextually integrated."*
+>
+> **— Apple Research, 2024**
 
 @column {
   flex: 2
   align: center_left
 }
 
-**Watch for:**
-- Intent-driven composition
-- Context awareness
-- Conversation as state
-- Ephemeral lifecycle
+Generative AI doesn't just create content anymore.
+
+**It generates the structures of interaction themselves.**
+
+Apple is already doing this. This isn't future research.
+
+---
+
+@column {
+  align: center
+}
+
+## Live Demo: Travel Planner
+### (Flutter + Gemini)
+
+@column {
+  flex: 2
+  align: center_left
+}
+
+**Watch for these characteristics:**
+
+✓ **Intent-driven**
+
+"Beach vacation in July" shapes what appears
+
+✓ **Context-aware**
+
+Budget + dates determine options
+
+✓ **Ephemeral lifecycle**
+
+Booking surface dissolves after completion
+
+✓ **Conversation as state**
+
+Each response builds on previous
 
 ---
 
@@ -478,26 +332,26 @@ All driven by context. All composed on-demand.
 }
 
 ✓ **Intent-driven composition**
+
 "Beach vacation" shaped what appeared
 
 ✓ **Context awareness**
+
 Budget, dates, preferences determined options
 
 ✓ **Conversation as state**
+
 Each interaction built on previous
 
-✓ **Ephemeral**
-Temporary manifestation of booking capability
+✓ **Ephemeral lifecycle**
 
-**This is working today. Flutter + Gemini + Schema-driven architecture.**
+Temporary manifestation of booking capability
 
 ---
 
-@column {
-  align: center
-}
+**This is working today.**
 
-# The Shift
+**Flutter + Gemini + Schema-driven architecture.**
 
 ---
 
@@ -508,10 +362,14 @@ Temporary manifestation of booking capability
   align: center_right
 }
 
-### Application-Centric
-60 years
+### 60 Years
+**Application-Centric**
 
-Choose app → Work within constraints
+Choose app
+
+Work within constraints
+
+Navigate to features
 
 @column
 
@@ -522,52 +380,53 @@ Choose app → Work within constraints
   align: center_left
 }
 
-### Intent-Centric
-Now
+### Now
+**Intent-Centric**
 
-Express intent → Environment materializes
+Express intent
+
+Environment materializes
+
+Features appear around you
 
 ---
 
 @column {
-  align: center
-}
-
-## Don't navigate to features.
-
-## Features materialize around you.
-
----
-
-@section
-
-@column {
-  flex: 2
   align: center
 }
 
 ### Traditional (Application-Centric)
 
+@column {
+  flex: 2
+  align: center_left
+}
+
 1. Open browser → search
 2. Switch to spreadsheet → analyze
 3. Switch to charts → visualize
 4. Switch to presentation → create
-5. Switch to doc → write
 
-**5 apps. 5 context switches. 5 cognitive restarts.**
+**4 apps. 4 context switches. 4 cognitive restarts.**
 
 @column {
-  flex: 2
   align: center
 }
 
 ### Intent-Centric (Ephemeral)
 
-"Explore ocean temperature and storm intensity relationships"
+@column {
+  flex: 2
+  align: center_left
+}
+
+"Explore ocean temperature trends"
 
 → Research environment materializes
-→ As inquiry shifts: Environment reconfigures
-→ Question answered: Surface dissolves
+
+→ As inquiry shifts, environment reconfigures
+
+→ Question answered, surface dissolves
 
 **0 context switches. Continuous cognitive flow.**
 
@@ -579,250 +438,52 @@ Express intent → Environment materializes
 
 ## "If the interface dissolves, what's left?"
 
----
-
-@column {
-  align: center
-}
-
-### Transience in Form, Persistence in Substance
-
 @column {
   flex: 2
   align: center_left
 }
 
-**What Dissolves:**
-- The UI arrangement
-- The temporary surface
-- The scaffolding
+**The interface dissolves.**
 
-**What Persists:**
-- Trails of inquiry
-- Webs of connection
-- Latent understanding
-- Cognitive trails you blazed
+**The understanding persists.**
+
+What remains:
+- Notes and insights you created
+- Connections you discovered
+- Questions you identified
+- Paths you explored
+
+Next session: System knows your history.
+
+Materializes new surface informed by what you learned.
+
+**Dissolution isn't erasure. It's integration.**
 
 ---
 
-@section {
+@column {
+  align: center
   flex: 2
-}
-
-@column {
-  align: center
-  flex: 3
-}
-
-## Dissolution isn't erasure.
-
-## It's integration.
-
-@column
-
----
-
-@column {
-  align: center
-}
-
-### Example: Climate Research Session
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-You explore climate data for 30 minutes.
-Interface shows maps, graphs, annotations.
-Session ends → Surface dissolves.
-
-**What remains:**
-- Insights discovered (in your notes, in system memory)
-- Connections made (in knowledge graph)
-- Questions identified (in next-actions)
-- Cognitive trail blazed (in session history)
-
-**Next time:** System knows what you've explored.
-Materializes new surface informed by that history.
-
----
-
-@column {
-  align: center
-}
-
-### Design Principles
-
-How do we build these responsibly?
-
----
-
-@column {
-  align: center
-}
-
-### Transparency Imperative
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-Fluidity without transparency = disorienting black box.
-
-**Three Key Principles:**
-
-1. **Make reasoning visible**
-   "Showing simplified view because you're scanning quickly"
-
-2. **Provide override mechanisms**
-   "Show me everything" always available
-
-3. **Explainability on demand**
-   "Why am I seeing this?" button
-
-Users must understand and control what the system understands and controls.
-
----
-
-@column {
-  align: center
-}
-
-## Design for movement, not monuments.
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**Current aesthetic:**
-Pixel-perfect precision. Static consistency.
-Designers trained to create monuments.
-
-**Required shift:**
-From designing artifacts → to designing grammars
-From pixel-perfect screens → to fluid compositions
-
-**We're designing conversations, not publications.**
-
----
-
-@column {
-  align: center
-}
-
-# The Path Forward
-
----
-
-@column {
-  align: center
-}
-
-### What Exists Today
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**Mature Capabilities:**
-- Generative UI code (LLMs write React/Flutter)
-- Composable component architectures
-- Secure execution environments
-- Tool calling and structured data
-- Context APIs (time, location, device state)
-
-**We have the building blocks.**
-
-You just saw it: Flutter + Gemini + Schemas = Working demo
-
----
-
-@column {
-  align: center
-}
-
-### Timeline
-
-@column {
-  flex: 2
-  align: center_left
-}
-
-**TODAY:**
-Simple context-aware interfaces
-
-**1-2 YEARS:**
-Sophisticated adaptation
-
-**3-5 YEARS:**
-Full paradigm maturity
-
-**Honest assessment:**
-We can build simple ephemeral interfaces today.
-Full "breathing surfaces" paradigm — still evolving.
-
-But the primitives exist. The path is clear.
-
----
-
-@column {
-  align: center
-}
-
-## Why Act Now?
-
-@column {
-  flex: 2
-  align: center
 }
 
 > *"Users will soon expect this individual support. Predefined and non-individualized menus will feel old-fashioned."*
 >
 > **— Dr. Michael Voit, Fraunhofer IOSB, 2024**
 
----
-
-@section
-
 @column {
   flex: 2
-  align: center
+  align: center_left
 }
 
-### Lead Now
-
-- Learn in practice
+**Lead now:**
 - Shape user expectations
-- Lead category
+- Learn in practice
+- Define category
 
-@column
-
-## OR
-
-@column {
-  flex: 2
-  align: center
-}
-
-### Play Catch-Up
-
-- Competitors define patterns
+**OR play catch-up:**
+- Competitors set standards
 - Users expect it from them
 - Harder to differentiate
-
----
-
-@column {
-  align: center
-}
-
-## Question isn't "will this happen?"
-
-## It's "when do you start?"
 
 ---
 
@@ -853,10 +514,11 @@ But the primitives exist. The path is clear.
 ### Morning
 7-11 AM
 
-- Minimal layout
-- Next 3 actions
-- High contrast
-- "What's urgent?"
+Minimal layout
+
+Next 3 actions
+
+High contrast
 
 @column {
   flex: 1
@@ -866,10 +528,11 @@ But the primitives exist. The path is clear.
 ### Evening
 6-10 PM
 
-- Rich detail
-- Tomorrow preview
-- Relaxed colors
-- "What to plan?"
+Rich detail
+
+Tomorrow preview
+
+Relaxed colors
 
 ---
 
@@ -877,7 +540,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-### The First Sprint
+### The First Sprint (2 Weeks)
 
 @column {
   flex: 2
@@ -887,15 +550,29 @@ But the primitives exist. The path is clear.
 1. Choose one high-traffic screen
 2. Implement time-of-day adaptation
 3. A/B test with 50% of users
-4. Measure task completion, satisfaction
-5. **Duration: 2 weeks**
-
-Then expand:
-- Add location awareness
-- Apply to more screens
-- Increase sophistication
+4. Measure task completion + satisfaction
+5. Expand based on results
 
 **Start simple. Prove value. Build momentum.**
+
+---
+
+@section {
+  flex: 2
+}
+
+@column {
+  align: center
+  flex: 3
+}
+
+## Question isn't "will this happen?"
+
+## It's "when do you start?"
+
+## And: "Will you lead or follow?"
+
+@column
 
 ---
 
@@ -905,23 +582,15 @@ Then expand:
 
 ## For 60 years:
 
-Static interfaces.
-Designed, shipped, unchanging.
-Users forced to adapt.
-Thinking interrupted.
+Static interfaces. Designed, shipped, unchanging.
 
----
-
-@column {
-  align: center
-}
+Users forced to adapt. Thinking interrupted.
 
 ## Now:
 
-Breathing surfaces.
-Generated, adaptive, contextual.
-Interfaces that understand.
-Thinking flows continuously.
+Breathing surfaces. Generated, adaptive, contextual.
+
+Interfaces that understand. Thinking flows continuously.
 
 ---
 
@@ -934,24 +603,11 @@ Thinking flows continuously.
   flex: 3
 }
 
-## The future of computing doesn't interrupt thinking.
+# The future of computing doesn't interrupt thinking.
 
-## It breathes with it.
+# It breathes with it.
 
-@column
-
----
-
-@section {
-  flex: 2
-}
-
-@column {
-  align: center
-  flex: 3
-}
-
-# Are you ready to build it?
+# Are you building it?
 
 @column
 
@@ -967,7 +623,9 @@ Thinking flows continuously.
 @section
 
 Leo Farias
+
 _@leoafarias_
+
 (GitHub, Twitter/X)
 
 @column

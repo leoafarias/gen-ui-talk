@@ -1,7 +1,7 @@
 {
   "slides": [
     {
-      "key": "Ifb71NWC",
+      "key": "LbQwBcuO",
       "options": {},
       "sections": [
         {
@@ -44,15 +44,24 @@
                 "footnoteLabels": [],
                 "footnoteReferences": {}
               }
-            },
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "ye8lVNKu",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
             {
               "type": "column",
-              "flex": 1,
-              "scrollable": false
-            },
-            {
-              "type": "column",
-              "align": "center",
+              "align": "centerLeft",
               "flex": 1,
               "scrollable": false,
               "content": {
@@ -114,7 +123,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Open Source Contributor (fvm, mix, superdeck, others..)"
+                            "text": "Open Source Contributor (fvm, mix, superdeck)"
                           }
                         ]
                       },
@@ -152,7 +161,7 @@
       "comments": []
     },
     {
-      "key": "htxk5yfv",
+      "key": "OlVkELgN",
       "options": {},
       "sections": [
         {
@@ -163,7 +172,7 @@
             {
               "type": "column",
               "align": "center",
-              "flex": 1,
+              "flex": 2,
               "scrollable": false,
               "content": {
                 "type": "document",
@@ -174,10 +183,56 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "The First New UI Paradigm in 60 Years"
+                        "text": "For 60 years, one paradigm."
                       }
                     ],
-                    "generatedId": "the-first-new-ui-paradigm-in-60-years"
+                    "generatedId": "for-60-years-one-paradigm"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "You click. You navigate. You learn where features hide."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "The "
+                          },
+                          {
+                            "type": "text",
+                            "text": "interface "
+                          },
+                          {
+                            "type": "text",
+                            "text": "is fixed. "
+                          },
+                          {
+                            "type": "text",
+                            "text": "You "
+                          },
+                          {
+                            "type": "text",
+                            "text": "adapt "
+                          },
+                          {
+                            "type": "text",
+                            "text": "to it."
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ],
                 "linkReferences": {},
@@ -187,8 +242,8 @@
             },
             {
               "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
+              "align": "center",
+              "flex": 3,
               "scrollable": false,
               "content": {
                 "type": "document",
@@ -275,7 +330,11 @@
                               },
                               {
                                 "type": "text",
-                                "text": "IBM Research, 2024"
+                                "text": "IBM "
+                              },
+                              {
+                                "type": "text",
+                                "text": "Research AI, 2024"
                               }
                             ]
                           }
@@ -288,11 +347,6 @@
                 "footnoteLabels": [],
                 "footnoteReferences": {}
               }
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
             }
           ]
         }
@@ -300,130 +354,7 @@
       "comments": []
     },
     {
-      "key": "N7csvfl4",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "For 60 years, we fought for screen real estate."
-                      }
-                    ],
-                    "generatedId": "for-60-years-we-fought-for-screen-real-estate"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Now we fight for "
-                      },
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "cognitive real estate"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "."
-                      }
-                    ],
-                    "generatedId": "now-we-fight-for-cognitive-real-estate"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "7lhvts2R",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 3,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The Everyone Tax"
-                      }
-                    ],
-                    "generatedId": "the-everyone-tax"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Complex apps burden everyone with features built for others."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "AixWdVT7",
+      "key": "TToraBdg",
       "options": {},
       "sections": [
         {
@@ -497,7 +428,7 @@
                   },
                   {
                     "type": "element",
-                    "tag": "p",
+                    "tag": "h2",
                     "children": [
                       {
                         "type": "element",
@@ -509,7 +440,8 @@
                           }
                         ]
                       }
-                    ]
+                    ],
+                    "generatedId": "everyone-tax"
                   },
                   {
                     "type": "element",
@@ -520,6 +452,16 @@
                         "text": "You pay cognitive load for 480 features you'll never use."
                       }
                     ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Every feature built for someone else is a burden you carry."
+                      }
+                    ]
                   }
                 ],
                 "linkReferences": {},
@@ -533,7 +475,7 @@
       "comments": []
     },
     {
-      "key": "pPQ7AshW",
+      "key": "QuqqQGRh",
       "options": {},
       "sections": [
         {
@@ -555,20 +497,10 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Problem #2: Application Boundaries"
+                        "text": "Your Last Research Session"
                       }
                     ],
-                    "generatedId": "problem-2-application-boundaries"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Your thought doesn't stop at app edges. But your tools do."
-                      }
-                    ]
+                    "generatedId": "your-last-research-session"
                   }
                 ],
                 "linkReferences": {},
@@ -589,48 +521,110 @@
                     "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Traditional workflow:"
-                          }
-                        ]
+                        "type": "text",
+                        "text": "You needed to understand something."
                       }
                     ]
                   },
                   {
                     "type": "element",
-                    "tag": "ul",
+                    "tag": "p",
                     "children": [
                       {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
                             "type": "text",
-                            "text": "Research in browser"
+                            "text": "Browser"
                           }
                         ]
                       },
                       {
+                        "type": "text",
+                        "text": " → Read articles (focus)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
                             "type": "text",
-                            "text": "Switch to spreadsheet (context breaks)"
+                            "text": "Switch to Excel"
                           }
                         ]
                       },
                       {
+                        "type": "text",
+                        "text": " → Build dataset (context restart)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
                             "type": "text",
-                            "text": "Switch to doc (another restart)"
+                            "text": "Switch to Python"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " → Run analysis (rebuild mental model)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Switch to Keynote"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " → Create visualization (start fresh)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "4 apps. "
+                          },
+                          {
+                            "type": "text",
+                            "text": "4 "
+                          },
+                          {
+                            "type": "text",
+                            "text": "cognitive restarts."
                           }
                         ]
                       }
@@ -642,39 +636,7 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Three apps. Three cognitive restarts."
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Your "
-                          },
-                          {
-                            "type": "text",
-                            "text": "thinking "
-                          },
-                          {
-                            "type": "text",
-                            "text": "breaks "
-                          },
-                          {
-                            "type": "text",
-                            "text": "at "
-                          },
-                          {
-                            "type": "text",
-                            "text": "application boundaries."
-                          }
-                        ]
+                        "text": "Your understanding fractured at every boundary."
                       }
                     ]
                   }
@@ -690,159 +652,7 @@
       "comments": []
     },
     {
-      "key": "gTjEdy1v",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "What if interfaces moved with your thinking instead of interrupting it?"
-                      }
-                    ],
-                    "generatedId": "what-if-interfaces-moved-with-your-thinking-instead-of-interrupting-it"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "6YYNAHvr",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Three Transformations"
-                      }
-                    ],
-                    "generatedId": "three-transformations"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "From Static to Breathing"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nNot fixed artifacts — surfaces that materialize and dissolve"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "From Application-Centric to Intent-Centric"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nNot &quot;which app?&quot; — &quot;what am I trying to understand?&quot;"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "From Interruption to Flow"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nYour thought doesn't break at boundaries"
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "wvJYtRHZ",
+      "key": "QEyFfbgD",
       "options": {},
       "sections": [
         {
@@ -860,14 +670,25 @@
                 "children": [
                   {
                     "type": "element",
-                    "tag": "h1",
+                    "tag": "h2",
                     "children": [
                       {
                         "type": "text",
-                        "text": "Your intent is the layout"
+                        "text": "What if interfaces moved with your thinking"
                       }
                     ],
-                    "generatedId": "your-intent-is-the-layout"
+                    "generatedId": "what-if-interfaces-moved-with-your-thinking"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "h2",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "instead of interrupting it?"
+                      }
+                    ],
+                    "generatedId": "instead-of-interrupting-it"
                   }
                 ],
                 "linkReferences": {},
@@ -886,56 +707,7 @@
       "comments": []
     },
     {
-      "key": "WDYCuWV7",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Ephemeral Interfaces"
-                      }
-                    ],
-                    "generatedId": "ephemeral-interfaces"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Transient cognitive surfaces—materializing around intent, adapting as understanding deepens, dissolving once their purpose is fulfilled."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "0YY03e41",
+      "key": "QreH51Zr",
       "options": {},
       "sections": [
         {
@@ -957,10 +729,153 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Characteristic 1: Purpose-Driven Lifecycle"
+                        "text": "Ephemeral Interfaces"
                       }
                     ],
-                    "generatedId": "characteristic-1-purpose-driven-lifecycle"
+                    "generatedId": "ephemeral-interfaces"
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            },
+            {
+              "type": "column",
+              "align": "centerLeft",
+              "flex": 2,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Transient cognitive surfaces that:"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Materialize"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " around your intent"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Adapt"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " as context changes"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Dissolve"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " when purpose is fulfilled"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Not fixed artifacts designed and shipped."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Living compositions generated on-demand."
+                      }
+                    ]
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "WWVt0OWP",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "h3",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Purpose-Driven, Not Timer-Based"
+                      }
+                    ],
+                    "generatedId": "purpose-driven-not-timer-based"
                   }
                 ],
                 "linkReferences": {},
@@ -1022,7 +937,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "You close it manually"
+                            "text": "You manually close it"
                           }
                         ]
                       }
@@ -1112,70 +1027,17 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Not because 60 seconds passed.\nBecause the purpose was fulfilled."
+                        "text": "Not because 60 seconds passed."
                       }
                     ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "WyP7mSZm",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 3,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Purpose-Driven, Not Timer-Based"
-                      }
-                    ],
-                    "generatedId": "purpose-driven-not-timer-based"
                   },
                   {
                     "type": "element",
-                    "tag": "pre",
+                    "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "code",
-                        "attributes": {
-                          "class": "language-dart"
-                        },
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "// ❌ WRONG: Timer-based\nif (minutesSinceInteraction &gt; 5) {\n  vanish();\n}\n\n// ✅ RIGHT: Purpose-driven\nif (taskCompleted) {\n  dissolve();\n}\nif (contextChanged &amp;&amp; !relevantAnymore) {\n  fade();\n}\n"
-                          }
-                        ]
+                        "type": "text",
+                        "text": "Because the purpose was fulfilled."
                       }
                     ]
                   }
@@ -1184,11 +1046,6 @@
                 "footnoteLabels": [],
                 "footnoteReferences": {}
               }
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
             }
           ]
         }
@@ -1196,7 +1053,7 @@
       "comments": []
     },
     {
-      "key": "GFOmJddT",
+      "key": "xywt13Im",
       "options": {},
       "sections": [
         {
@@ -1218,10 +1075,285 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Characteristic 2: Contextual Awareness"
+                        "text": "Morning"
                       }
                     ],
-                    "generatedId": "characteristic-2-contextual-awareness"
+                    "generatedId": "morning"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Commute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Next 3 events"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Large text"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Transit times"
+                      }
+                    ]
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            },
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "h3",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Midday"
+                      }
+                    ],
+                    "generatedId": "midday"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "At Desk"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Full day view"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Dense info"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Documents linked"
+                      }
+                    ]
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            },
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "h3",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Evening"
+                      }
+                    ],
+                    "generatedId": "evening"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Home"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Tomorrow preview"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Relaxed layout"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Social context"
+                      }
+                    ]
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "SOCANkUQ",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "align": "center",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "flex": 1,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Same intent: &quot;Show my schedule&quot;"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Different contexts → Different interfaces"
+                      }
+                    ]
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "iZroVxIl",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 1,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "h3",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Multi-Dimensional Understanding"
+                      }
+                    ],
+                    "generatedId": "multi-dimensional-understanding"
                   }
                 ],
                 "linkReferences": {},
@@ -1242,104 +1374,88 @@
                     "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Multi-"
-                          },
-                          {
-                            "type": "text",
-                            "text": "dimensional understanding:"
-                          }
-                        ]
+                        "type": "text",
+                        "text": "The system understands:"
                       }
                     ]
                   },
                   {
                     "type": "element",
-                    "tag": "ul",
+                    "tag": "p",
                     "children": [
                       {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Who"
-                              }
-                            ]
-                          },
-                          {
                             "type": "text",
-                            "text": " you are (skills, goals, expertise)"
+                            "text": "Who"
                           }
                         ]
                       },
                       {
+                        "type": "text",
+                        "text": " you are (expert vs beginner)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Where"
-                              }
-                            ]
-                          },
-                          {
                             "type": "text",
-                            "text": " you are (environment, device)"
+                            "text": "Where"
                           }
                         ]
                       },
                       {
+                        "type": "text",
+                        "text": " you are (desk vs commute)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "What"
-                              }
-                            ]
-                          },
-                          {
                             "type": "text",
-                            "text": " you're doing (task, progress)"
+                            "text": "What"
                           }
                         ]
                       },
                       {
+                        "type": "text",
+                        "text": " you're doing (focused vs scanning)"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "When"
-                              }
-                            ]
-                          },
-                          {
                             "type": "text",
-                            "text": " it's happening (time, urgency)"
+                            "text": "When"
                           }
                         ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " it's happening (morning vs evening)"
                       }
                     ]
                   },
@@ -1352,69 +1468,6 @@
                         "text": "Same capability. Different context. Different interface."
                       }
                     ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "PiB5mMDY",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Characteristic 3: Persistent Underpinnings"
-                      }
-                    ],
-                    "generatedId": "characteristic-3-persistent-underpinnings"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The interface dissolves.\nThe understanding persists."
-                      }
-                    ]
                   },
                   {
                     "type": "element",
@@ -1426,43 +1479,11 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "What persists:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
+                            "text": "No configuration. "
+                          },
                           {
                             "type": "text",
-                            "text": "Trails of inquiry (paths explored)"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Webs of connection (ideas linked)"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Latent understanding (context built)"
+                            "text": "Just understanding."
                           }
                         ]
                       }
@@ -1480,7 +1501,7 @@
       "comments": []
     },
     {
-      "key": "pxRy8pPD",
+      "key": "tTEo5D2y",
       "options": {},
       "sections": [
         {
@@ -1506,246 +1527,6 @@
                       }
                     ],
                     "generatedId": "why-now"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The generative AI evolution makes this possible."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "hkPM4ZDr",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The Generative Leap"
-                      }
-                    ],
-                    "generatedId": "the-generative-leap"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "First Wave:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " Content Generation"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "AI generates text, code, images"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Output: Static artifacts"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "The Problem:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Comprehensive reports"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "We receive mass but lose momentum"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Static answers don't support dynamic asking"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "The Leap:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nWhat if AI generated the structures of interaction themselves?"
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "65cIWUa2",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "From Static Answers to Dynamic Asking"
-                      }
-                    ],
-                    "generatedId": "from-static-answers-to-dynamic-asking"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Not: &quot;Here's a 10-page report on ocean temperatures&quot;"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "But: &quot;Here's an explorable environment for understanding ocean temperatures&quot;"
-                      }
-                    ]
                   }
                 ],
                 "linkReferences": {},
@@ -1756,7 +1537,7 @@
             {
               "type": "column",
               "align": "center",
-              "flex": 3,
+              "flex": 2,
               "scrollable": false,
               "content": {
                 "type": "document",
@@ -1856,45 +1637,6 @@
                 "footnoteLabels": [],
                 "footnoteReferences": {}
               }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "KfYyEksP",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Conversation as State"
-                      }
-                    ],
-                    "generatedId": "conversation-as-state"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
             },
             {
               "type": "column",
@@ -1909,64 +1651,8 @@
                     "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Traditional "
-                          },
-                          {
-                            "type": "text",
-                            "text": "Mental Model:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;I'm on the home screen&quot;"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;Now I'm in settings&quot;"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;Let me go back&quot;"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
                         "type": "text",
-                        "text": "Spatial navigation through predetermined rooms."
+                        "text": "Generative AI doesn't just create content anymore."
                       }
                     ]
                   },
@@ -1980,85 +1666,11 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Ephemeral "
+                            "text": "It "
                           },
                           {
                             "type": "text",
-                            "text": "Mental Model:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;Show ocean temperatures&quot; → map appears"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;How does this connect to storms?&quot; → storm overlay added"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;Focus on 2020&quot; → map zooms to 2020"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "No navigation. Just continuous refinement."
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "The "
-                          },
-                          {
-                            "type": "text",
-                            "text": "conversation "
-                          },
-                          {
-                            "type": "text",
-                            "text": "history "
-                          },
-                          {
-                            "type": "text",
-                            "text": "becomes "
+                            "text": "generates "
                           },
                           {
                             "type": "text",
@@ -2066,9 +1678,27 @@
                           },
                           {
                             "type": "text",
-                            "text": "state machine."
+                            "text": "structures "
+                          },
+                          {
+                            "type": "text",
+                            "text": "of "
+                          },
+                          {
+                            "type": "text",
+                            "text": "interaction themselves."
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Apple is already doing this. This isn't future research."
                       }
                     ]
                   }
@@ -2084,341 +1714,7 @@
       "comments": []
     },
     {
-      "key": "1leOKCCL",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Context-Driven Adaptation"
-                      }
-                    ],
-                    "generatedId": "context-driven-adaptation"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Same intent: &quot;Show my schedule&quot;"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Three different contexts. Three different interfaces."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "XZeYDvcI",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Morning"
-                      }
-                    ],
-                    "generatedId": "morning"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Commute"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Next 3 events"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Large text"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Transit times"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Minimal layout"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Midday"
-                      }
-                    ],
-                    "generatedId": "midday"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "At Desk"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Full day visible"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Detailed info"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Documents linked"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Dense, efficient"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Evening"
-                      }
-                    ],
-                    "generatedId": "evening"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Home"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Tomorrow preview"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Relaxed layout"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Social context"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Preparation mode"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "sg6qsdC5",
+      "key": "q223JA4g",
       "options": {},
       "sections": [
         {
@@ -2440,179 +1736,10 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "What Adapts?"
+                        "text": "Live Demo: Travel Planner"
                       }
                     ],
-                    "generatedId": "what-adapts"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Content selection"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "text",
-                            "text": " — which information matters"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Layout composition"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "text",
-                            "text": " — how elements arrange"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Feature prioritization"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "text",
-                            "text": " — which 3-5 capabilities appear"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Information density"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "text",
-                            "text": " — detailed vs summary"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Visual styling"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "text",
-                            "text": " — colors, typography for environment"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "All driven by context. All composed on-demand."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "IkF0mHYI",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Live Demo"
-                      }
-                    ],
-                    "generatedId": "live-demo"
+                    "generatedId": "live-demo-travel-planner"
                   },
                   {
                     "type": "element",
@@ -2620,20 +1747,10 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Travel Planner"
+                        "text": "(Flutter + Gemini)"
                       }
                     ],
-                    "generatedId": "travel-planner"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "(Built with Flutter + Gemini)"
-                      }
-                    ]
+                    "generatedId": "flutter--gemini"
                   }
                 ],
                 "linkReferences": {},
@@ -2659,7 +1776,15 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Watch for:"
+                            "text": "Watch "
+                          },
+                          {
+                            "type": "text",
+                            "text": "for "
+                          },
+                          {
+                            "type": "text",
+                            "text": "these characteristics:"
                           }
                         ]
                       }
@@ -2667,47 +1792,125 @@
                   },
                   {
                     "type": "element",
-                    "tag": "ul",
+                    "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Intent-driven composition"
-                          }
-                        ]
+                        "type": "text",
+                        "text": "✓ "
                       },
                       {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
                             "type": "text",
-                            "text": "Context awareness"
+                            "text": "Intent-driven"
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "&quot;Beach vacation in July&quot; shapes what appears"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "✓ "
                       },
                       {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
                             "type": "text",
-                            "text": "Conversation as state"
+                            "text": "Context-aware"
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Budget + dates determine options"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "✓ "
                       },
                       {
                         "type": "element",
-                        "tag": "li",
+                        "tag": "strong",
                         "children": [
                           {
                             "type": "text",
                             "text": "Ephemeral lifecycle"
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Booking surface dissolves after completion"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "✓ "
+                      },
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Conversation "
+                          },
+                          {
+                            "type": "text",
+                            "text": "as state"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Each response builds on previous"
                       }
                     ]
                   }
@@ -2743,7 +1946,7 @@
       "comments": []
     },
     {
-      "key": "jmWi7w1M",
+      "key": "xZ05FH4a",
       "options": {},
       "sections": [
         {
@@ -2798,13 +2001,23 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Intent-driven composition"
+                            "text": "Intent-"
+                          },
+                          {
+                            "type": "text",
+                            "text": "driven composition"
                           }
                         ]
-                      },
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
                         "type": "text",
-                        "text": "\n&quot;Beach vacation&quot; shaped what appeared"
+                        "text": "&quot;Beach vacation&quot; shaped what appeared"
                       }
                     ]
                   },
@@ -2825,10 +2038,16 @@
                             "text": "Context awareness"
                           }
                         ]
-                      },
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
                         "type": "text",
-                        "text": "\nBudget, dates, preferences determined options"
+                        "text": "Budget, dates, preferences determined options"
                       }
                     ]
                   },
@@ -2846,13 +2065,23 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Conversation as state"
+                            "text": "Conversation "
+                          },
+                          {
+                            "type": "text",
+                            "text": "as state"
                           }
                         ]
-                      },
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
                         "type": "text",
-                        "text": "\nEach interaction built on previous"
+                        "text": "Each interaction built on previous"
                       }
                     ]
                   },
@@ -2870,16 +2099,49 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Ephemeral"
+                            "text": "Ephemeral lifecycle"
                           }
                         ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nTemporary manifestation of booking capability"
                       }
                     ]
                   },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Temporary manifestation of booking capability"
+                      }
+                    ]
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "xEpNMdQt",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 1,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "flex": 1,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
                   {
                     "type": "element",
                     "tag": "p",
@@ -2898,8 +2160,20 @@
                           },
                           {
                             "type": "text",
-                            "text": "working today. "
-                          },
+                            "text": "working today."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
                           {
                             "type": "text",
                             "text": "Flutter + "
@@ -2928,46 +2202,7 @@
       "comments": []
     },
     {
-      "key": "tW7ZHM7U",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h1",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The Shift"
-                      }
-                    ],
-                    "generatedId": "the-shift"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "vFJU6ouu",
+      "key": "BPN6cz4v",
       "options": {},
       "sections": [
         {
@@ -2989,18 +2224,24 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Application-Centric"
+                        "text": "60 Years"
                       }
                     ],
-                    "generatedId": "application-centric"
+                    "generatedId": "60-years"
                   },
                   {
                     "type": "element",
                     "tag": "p",
                     "children": [
                       {
-                        "type": "text",
-                        "text": "60 years"
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Application-Centric"
+                          }
+                        ]
                       }
                     ]
                   },
@@ -3010,7 +2251,27 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Choose app → Work within constraints"
+                        "text": "Choose app"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Work within constraints"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Navigate to features"
                       }
                     ]
                   }
@@ -3058,18 +2319,24 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Intent-Centric"
+                        "text": "Now"
                       }
                     ],
-                    "generatedId": "intent-centric"
+                    "generatedId": "now"
                   },
                   {
                     "type": "element",
                     "tag": "p",
                     "children": [
                       {
-                        "type": "text",
-                        "text": "Now"
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Intent-Centric"
+                          }
+                        ]
                       }
                     ]
                   },
@@ -3079,7 +2346,27 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Express intent → Environment materializes"
+                        "text": "Express intent"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Environment materializes"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Features appear around you"
                       }
                     ]
                   }
@@ -3095,7 +2382,7 @@
       "comments": []
     },
     {
-      "key": "ibAjtRBS",
+      "key": "HSokAAJU",
       "options": {},
       "sections": [
         {
@@ -3113,56 +2400,6 @@
                 "children": [
                   {
                     "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Don't navigate to features."
-                      }
-                    ],
-                    "generatedId": "dont-navigate-to-features"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Features materialize around you."
-                      }
-                    ],
-                    "generatedId": "features-materialize-around-you"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "8QIQ5GRt",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
                     "tag": "h3",
                     "children": [
                       {
@@ -3171,7 +2408,21 @@
                       }
                     ],
                     "generatedId": "traditional-application-centric"
-                  },
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            },
+            {
+              "type": "column",
+              "align": "centerLeft",
+              "flex": 2,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
                   {
                     "type": "element",
                     "tag": "ol",
@@ -3215,16 +2466,6 @@
                             "text": "Switch to presentation → create"
                           }
                         ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Switch to doc → write"
-                          }
-                        ]
                       }
                     ]
                   },
@@ -3238,11 +2479,11 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "5 apps. "
+                            "text": "4 apps. "
                           },
                           {
                             "type": "text",
-                            "text": "5 "
+                            "text": "4 "
                           },
                           {
                             "type": "text",
@@ -3250,7 +2491,7 @@
                           },
                           {
                             "type": "text",
-                            "text": "5 "
+                            "text": "4 "
                           },
                           {
                             "type": "text",
@@ -3269,7 +2510,7 @@
             {
               "type": "column",
               "align": "center",
-              "flex": 2,
+              "flex": 1,
               "scrollable": false,
               "content": {
                 "type": "document",
@@ -3284,14 +2525,28 @@
                       }
                     ],
                     "generatedId": "intent-centric-ephemeral"
-                  },
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            },
+            {
+              "type": "column",
+              "align": "centerLeft",
+              "flex": 2,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
                   {
                     "type": "element",
                     "tag": "p",
                     "children": [
                       {
                         "type": "text",
-                        "text": "&quot;Explore ocean temperature and storm intensity relationships&quot;"
+                        "text": "&quot;Explore ocean temperature trends&quot;"
                       }
                     ]
                   },
@@ -3301,7 +2556,27 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "→ Research environment materializes\n→ As inquiry shifts: Environment reconfigures\n→ Question answered: Surface dissolves"
+                        "text": "→ Research environment materializes"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "→ As inquiry shifts, environment reconfigures"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "→ Question answered, surface dissolves"
                       }
                     ]
                   },
@@ -3345,7 +2620,7 @@
       "comments": []
     },
     {
-      "key": "MmDhWpWy",
+      "key": "xQqrVTKC",
       "options": {},
       "sections": [
         {
@@ -3377,45 +2652,6 @@
                 "footnoteLabels": [],
                 "footnoteReferences": {}
               }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "KGDTgnfk",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Transience in Form, Persistence in Substance"
-                      }
-                    ],
-                    "generatedId": "transience-in-form-persistence-in-substance"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
             },
             {
               "type": "column",
@@ -3435,9 +2671,43 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "What Dissolves:"
+                            "text": "The "
+                          },
+                          {
+                            "type": "text",
+                            "text": "interface dissolves."
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "The "
+                          },
+                          {
+                            "type": "text",
+                            "text": "understanding persists."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "What remains:"
                       }
                     ]
                   },
@@ -3451,7 +2721,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "The UI arrangement"
+                            "text": "Notes and insights you created"
                           }
                         ]
                       },
@@ -3461,7 +2731,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "The temporary surface"
+                            "text": "Connections you discovered"
                           }
                         ]
                       },
@@ -3471,9 +2741,39 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "The scaffolding"
+                            "text": "Questions you identified"
                           }
                         ]
+                      },
+                      {
+                        "type": "element",
+                        "tag": "li",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Paths you explored"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Next session: System knows your history."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Materializes new surface informed by what you learned."
                       }
                     ]
                   },
@@ -3487,600 +2787,15 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "What Persists:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Trails of inquiry"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Webs of connection"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Latent understanding"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Cognitive trails you blazed"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "6ENlBDq8",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 2,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 3,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Dissolution isn't erasure."
-                      }
-                    ],
-                    "generatedId": "dissolution-isnt-erasure"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "It's integration."
-                      }
-                    ],
-                    "generatedId": "its-integration"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "OEB7UyQG",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Example: Climate Research Session"
-                      }
-                    ],
-                    "generatedId": "example-climate-research-session"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "You explore climate data for 30 minutes.\nInterface shows maps, graphs, annotations.\nSession ends → Surface dissolves."
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "What remains:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Insights discovered (in your notes, in system memory)"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Connections made (in knowledge graph)"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Questions identified (in next-actions)"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Cognitive trail blazed (in session history)"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Next time:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": " System knows what you've explored.\nMaterializes new surface informed by that history."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "UOyQQzqH",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Design Principles"
-                      }
-                    ],
-                    "generatedId": "design-principles"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "How do we build these responsibly?"
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "SPUvX3Yz",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Transparency Imperative"
-                      }
-                    ],
-                    "generatedId": "transparency-imperative"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Fluidity without transparency = disorienting black box."
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Three "
+                            "text": "Dissolution isn'"
                           },
                           {
                             "type": "text",
-                            "text": "Key Principles:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ol",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "p",
-                            "children": [
-                              {
-                                "type": "element",
-                                "tag": "strong",
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "text": "Make reasoning visible"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "text",
-                                "text": "\n&quot;Showing simplified view because you're scanning quickly&quot;"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "p",
-                            "children": [
-                              {
-                                "type": "element",
-                                "tag": "strong",
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "text": "Provide override mechanisms"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "text",
-                                "text": "\n&quot;Show me everything&quot; always available"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "p",
-                            "children": [
-                              {
-                                "type": "element",
-                                "tag": "strong",
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "text": "Explainability on demand"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "text",
-                                "text": "\n&quot;Why am I seeing this?&quot; button"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Users must understand and control what the system understands and controls."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "ExKnXXRa",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Design for movement, not monuments."
-                      }
-                    ],
-                    "generatedId": "design-for-movement-not-monuments"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Current aesthetic:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nPixel-perfect precision. Static consistency.\nDesigners trained to create monuments."
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Required shift:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nFrom designing artifacts → to designing grammars\nFrom pixel-perfect screens → to fluid compositions"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "We'"
+                            "text": "t erasure. It'"
                           },
                           {
                             "type": "text",
-                            "text": "re "
-                          },
-                          {
-                            "type": "text",
-                            "text": "designing conversations, "
-                          },
-                          {
-                            "type": "text",
-                            "text": "not publications."
+                            "text": "s integration."
                           }
                         ]
                       }
@@ -4098,7 +2813,7 @@
       "comments": []
     },
     {
-      "key": "a84Q1FHv",
+      "key": "3b4IGXc7",
       "options": {},
       "sections": [
         {
@@ -4106,376 +2821,6 @@
           "flex": 1,
           "scrollable": false,
           "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h1",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The Path Forward"
-                      }
-                    ],
-                    "generatedId": "the-path-forward"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "rKhxSfJM",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "What Exists Today"
-                      }
-                    ],
-                    "generatedId": "what-exists-today"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Mature Capabilities:"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Generative UI code (LLMs write React/Flutter)"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Composable component architectures"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Secure execution environments"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Tool calling and structured data"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Context APIs (time, location, device state)"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "We "
-                          },
-                          {
-                            "type": "text",
-                            "text": "have "
-                          },
-                          {
-                            "type": "text",
-                            "text": "the "
-                          },
-                          {
-                            "type": "text",
-                            "text": "building blocks."
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "You just saw it: Flutter + Gemini + Schemas = Working demo"
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "nCe9tRWt",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Timeline"
-                      }
-                    ],
-                    "generatedId": "timeline"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "centerLeft",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "TODAY:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nSimple context-aware interfaces"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "1-2 YEARS:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nSophisticated adaptation"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "3-5 YEARS:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nFull paradigm maturity"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "strong",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Honest assessment:"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "text",
-                        "text": "\nWe can build simple ephemeral interfaces today.\nFull &quot;breathing surfaces&quot; paradigm — still evolving."
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "But the primitives exist. The path is clear."
-                      }
-                    ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "PcIMEyx4",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Why Act Now?"
-                      }
-                    ],
-                    "generatedId": "why-act-now"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
             {
               "type": "column",
               "align": "center",
@@ -4587,24 +2932,10 @@
                 "footnoteLabels": [],
                 "footnoteReferences": {}
               }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "FYzQonLX",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
+            },
             {
               "type": "column",
-              "align": "center",
+              "align": "centerLeft",
               "flex": 2,
               "scrollable": false,
               "content": {
@@ -4612,29 +2943,24 @@
                 "children": [
                   {
                     "type": "element",
-                    "tag": "h3",
+                    "tag": "p",
                     "children": [
                       {
-                        "type": "text",
-                        "text": "Lead Now"
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Lead now:"
+                          }
+                        ]
                       }
-                    ],
-                    "generatedId": "lead-now"
+                    ]
                   },
                   {
                     "type": "element",
                     "tag": "ul",
                     "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Learn in practice"
-                          }
-                        ]
-                      },
                       {
                         "type": "element",
                         "tag": "li",
@@ -4651,60 +2977,41 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Lead category"
+                            "text": "Learn in practice"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "element",
+                        "tag": "li",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "Define category"
                           }
                         ]
                       }
                     ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
+                  },
                   {
                     "type": "element",
-                    "tag": "h2",
+                    "tag": "p",
                     "children": [
                       {
-                        "type": "text",
-                        "text": "OR"
+                        "type": "element",
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "type": "text",
+                            "text": "OR "
+                          },
+                          {
+                            "type": "text",
+                            "text": "play catch-up:"
+                          }
+                        ]
                       }
-                    ],
-                    "generatedId": "or"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 2,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h3",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Play Catch-Up"
-                      }
-                    ],
-                    "generatedId": "play-catch-up"
+                    ]
                   },
                   {
                     "type": "element",
@@ -4716,7 +3023,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Competitors define patterns"
+                            "text": "Competitors set standards"
                           }
                         ]
                       },
@@ -4741,56 +3048,6 @@
                         ]
                       }
                     ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "35nljy4G",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Question isn't &quot;will this happen?&quot;"
-                      }
-                    ],
-                    "generatedId": "question-isnt-will-this-happen"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "It's &quot;when do you start?&quot;"
-                      }
-                    ],
-                    "generatedId": "its-when-do-you-start"
                   }
                 ],
                 "linkReferences": {},
@@ -4870,7 +3127,7 @@
       "comments": []
     },
     {
-      "key": "pKpso9XF",
+      "key": "si3IdzD3",
       "options": {},
       "sections": [
         {
@@ -4909,47 +3166,31 @@
                   },
                   {
                     "type": "element",
-                    "tag": "ul",
+                    "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Minimal layout"
-                          }
-                        ]
-                      },
+                        "type": "text",
+                        "text": "Minimal layout"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Next 3 actions"
-                          }
-                        ]
-                      },
+                        "type": "text",
+                        "text": "Next 3 actions"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "High contrast"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;What's urgent?&quot;"
-                          }
-                        ]
+                        "type": "text",
+                        "text": "High contrast"
                       }
                     ]
                   }
@@ -4990,47 +3231,31 @@
                   },
                   {
                     "type": "element",
-                    "tag": "ul",
+                    "tag": "p",
                     "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Rich detail"
-                          }
-                        ]
-                      },
+                        "type": "text",
+                        "text": "Rich detail"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Tomorrow preview"
-                          }
-                        ]
-                      },
+                        "type": "text",
+                        "text": "Tomorrow preview"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
                       {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Relaxed colors"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "&quot;What to plan?&quot;"
-                          }
-                        ]
+                        "type": "text",
+                        "text": "Relaxed colors"
                       }
                     ]
                   }
@@ -5046,7 +3271,7 @@
       "comments": []
     },
     {
-      "key": "aZucW29E",
+      "key": "tE4bTGnQ",
       "options": {},
       "sections": [
         {
@@ -5068,10 +3293,10 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "The First Sprint"
+                        "text": "The First Sprint (2 Weeks)"
                       }
                     ],
-                    "generatedId": "the-first-sprint"
+                    "generatedId": "the-first-sprint-2-weeks"
                   }
                 ],
                 "linkReferences": {},
@@ -5127,53 +3352,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Measure task completion, satisfaction"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "element",
-                            "tag": "strong",
-                            "children": [
-                              {
-                                "type": "text",
-                                "text": "Duration: "
-                              },
-                              {
-                                "type": "text",
-                                "text": "2 weeks"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "p",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "Then expand:"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "element",
-                    "tag": "ul",
-                    "children": [
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Add location awareness"
+                            "text": "Measure task completion + satisfaction"
                           }
                         ]
                       },
@@ -5183,17 +3362,7 @@
                         "children": [
                           {
                             "type": "text",
-                            "text": "Apply to more screens"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "element",
-                        "tag": "li",
-                        "children": [
-                          {
-                            "type": "text",
-                            "text": "Increase sophistication"
+                            "text": "Expand based on results"
                           }
                         ]
                       }
@@ -5235,7 +3404,73 @@
       "comments": []
     },
     {
-      "key": "J7RV5513",
+      "key": "LaB5iN6y",
+      "options": {},
+      "sections": [
+        {
+          "type": "section",
+          "flex": 2,
+          "scrollable": false,
+          "blocks": [
+            {
+              "type": "column",
+              "align": "center",
+              "flex": 3,
+              "scrollable": false,
+              "content": {
+                "type": "document",
+                "children": [
+                  {
+                    "type": "element",
+                    "tag": "h2",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Question isn't &quot;will this happen?&quot;"
+                      }
+                    ],
+                    "generatedId": "question-isnt-will-this-happen"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "h2",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "It's &quot;when do you start?&quot;"
+                      }
+                    ],
+                    "generatedId": "its-when-do-you-start"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "h2",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "And: &quot;Will you lead or follow?&quot;"
+                      }
+                    ],
+                    "generatedId": "and-will-you-lead-or-follow"
+                  }
+                ],
+                "linkReferences": {},
+                "footnoteLabels": [],
+                "footnoteReferences": {}
+              }
+            },
+            {
+              "type": "column",
+              "flex": 1,
+              "scrollable": false
+            }
+          ]
+        }
+      ],
+      "comments": []
+    },
+    {
+      "key": "nrM2lymj",
       "options": {},
       "sections": [
         {
@@ -5268,38 +3503,20 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Static interfaces.\nDesigned, shipped, unchanging.\nUsers forced to adapt.\nThinking interrupted."
+                        "text": "Static interfaces. Designed, shipped, unchanging."
                       }
                     ]
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "jzGbqmdQ",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 1,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 1,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Users forced to adapt. Thinking interrupted."
+                      }
+                    ]
+                  },
                   {
                     "type": "element",
                     "tag": "h2",
@@ -5317,7 +3534,17 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Breathing surfaces.\nGenerated, adaptive, contextual.\nInterfaces that understand.\nThinking flows continuously."
+                        "text": "Breathing surfaces. Generated, adaptive, contextual."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Interfaces that understand. Thinking flows continuously."
                       }
                     ]
                   }
@@ -5333,62 +3560,7 @@
       "comments": []
     },
     {
-      "key": "ho1AXq41",
-      "options": {},
-      "sections": [
-        {
-          "type": "section",
-          "flex": 2,
-          "scrollable": false,
-          "blocks": [
-            {
-              "type": "column",
-              "align": "center",
-              "flex": 3,
-              "scrollable": false,
-              "content": {
-                "type": "document",
-                "children": [
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "The future of computing doesn't interrupt thinking."
-                      }
-                    ],
-                    "generatedId": "the-future-of-computing-doesnt-interrupt-thinking"
-                  },
-                  {
-                    "type": "element",
-                    "tag": "h2",
-                    "children": [
-                      {
-                        "type": "text",
-                        "text": "It breathes with it."
-                      }
-                    ],
-                    "generatedId": "it-breathes-with-it"
-                  }
-                ],
-                "linkReferences": {},
-                "footnoteLabels": [],
-                "footnoteReferences": {}
-              }
-            },
-            {
-              "type": "column",
-              "flex": 1,
-              "scrollable": false
-            }
-          ]
-        }
-      ],
-      "comments": []
-    },
-    {
-      "key": "aQJcbIcg",
+      "key": "yjCf6gos",
       "options": {},
       "sections": [
         {
@@ -5410,10 +3582,32 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Are you ready to build it?"
+                        "text": "The future of computing doesn't interrupt thinking."
                       }
                     ],
-                    "generatedId": "are-you-ready-to-build-it"
+                    "generatedId": "the-future-of-computing-doesnt-interrupt-thinking"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "h1",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "It breathes with it."
+                      }
+                    ],
+                    "generatedId": "it-breathes-with-it"
+                  },
+                  {
+                    "type": "element",
+                    "tag": "h1",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Are you building it?"
+                      }
+                    ],
+                    "generatedId": "are-you-building-it"
                   }
                 ],
                 "linkReferences": {},
@@ -5432,7 +3626,7 @@
       "comments": []
     },
     {
-      "key": "JaDet6pY",
+      "key": "ebJo8dOX",
       "options": {},
       "sections": [
         {
@@ -5485,7 +3679,27 @@
                     "children": [
                       {
                         "type": "text",
-                        "text": "Leo Farias\n@leoafarias_\n(GitHub, Twitter/X)"
+                        "text": "Leo Farias"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "@leoafarias_"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "element",
+                    "tag": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "(GitHub, Twitter/X)"
                       }
                     ]
                   }
