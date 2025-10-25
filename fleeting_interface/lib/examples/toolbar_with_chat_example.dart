@@ -63,24 +63,22 @@ class _ToolbarWithChatExampleState extends State<ToolbarWithChatExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Intent-Driven Toolbar'),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Chip(
-                  avatar: const Icon(Icons.psychology, size: 16),
-                  label: Text(
-                    _currentIntent,
-                    style: const TextStyle(fontSize: 12),
-                  ),
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Intent-Driven Toolbar'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Chip(
+              avatar: const Icon(Icons.psychology, size: 16),
+              label: Text(
+                _currentIntent,
+                style: const TextStyle(fontSize: 12),
               ),
-            ],
+            ),
           ),
+        ],
+      ),
       body: Row(
         children: [
           // Main content area with toolbar
@@ -112,12 +110,11 @@ class _ToolbarWithChatExampleState extends State<ToolbarWithChatExample> {
                         '→ Describe your intent in the chat\n'
                         '→ Toolbar shows only relevant tools\n'
                         '→ Same capabilities, different manifestation',
-                        style:
-                            Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer,
-                                ),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
+                            ),
                       ),
                     ],
                   ),
@@ -187,8 +184,6 @@ class _ToolbarWithChatExampleState extends State<ToolbarWithChatExample> {
           ),
         ],
       ),
-        );
-      },
     );
   }
 
