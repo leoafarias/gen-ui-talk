@@ -6,8 +6,8 @@
 @column {
   align: center
 }
-# EPHEMERAL INTERFACES {.heading}
-# The End of Static UI {.subheading}
+# EPHEMERAL INTERFACES
+# The End of Static UI
 
 @column
 
@@ -15,8 +15,8 @@
   align: center
 }
 
-#### Leo Farias {.heading}
-#### @leoafarias {.subheading}
+#### Leo Farias
+#### @leoafarias
 
 @column {
   align: center_left
@@ -32,7 +32,7 @@
   align: center
 }
 
-### The First New UI Paradigm in 60 Years {.heading}
+### The First New UI Paradigm in 60 Years
 
 @column {
   flex: 2
@@ -64,7 +64,7 @@
   align: center
 }
 
-### The Everyone Tax {.heading}
+### The Everyone Tax
 
 Complex apps burden everyone with features built for others.
 
@@ -79,7 +79,7 @@ Complex apps burden everyone with features built for others.
   flex: 2
 }
 
-### Photoshop {.heading}
+### Photoshop
 
 500 menu items and buttons
 
@@ -90,7 +90,7 @@ You use about 20
   align: center
 }
 
-### 500 - 20 = 480 {.heading}
+### 500 - 20 = 480
 
 **Everyone Tax**
 
@@ -102,7 +102,7 @@ You pay cognitive load for 480 features you'll never use.
   align: center
 }
 
-### Problem #2: Application Boundaries {.heading}
+### Problem #2: Application Boundaries
 
 Your thought doesn't stop at app edges. But your tools do.
 
@@ -134,7 +134,7 @@ Three apps. Three cognitive restarts.
   align: center
 }
 
-### Three Transformations {.heading}
+### Three Transformations
 
 @column {
   flex: 2
@@ -161,7 +161,7 @@ Your thought doesn't break at boundaries
   flex: 3
 }
 
-# Your intent is the layout {.heading}
+# Your intent is the layout
 
 @column
 
@@ -172,7 +172,7 @@ Your thought doesn't break at boundaries
   flex: 2
 }
 
-### Ephemeral Interfaces {.heading}
+### Ephemeral Interfaces
 
 Transient cognitive surfaces—materializing around intent, adapting as understanding deepens, dissolving once their purpose is fulfilled.
 
@@ -182,7 +182,7 @@ Transient cognitive surfaces—materializing around intent, adapting as understa
   align: center
 }
 
-### Characteristic 1: Purpose-Driven Lifecycle {.heading}
+### Characteristic 1: Purpose-Driven Lifecycle
 
 @column {
   flex: 2
@@ -213,7 +213,7 @@ Because the purpose was fulfilled.
   align: center_left
 }
 
-### Purpose-Driven, Not Timer-Based {.heading}
+### Purpose-Driven, Not Timer-Based
 
 ```dart
 // ❌ WRONG: Timer-based
@@ -228,7 +228,7 @@ if (taskCompleted) {
 if (contextChanged && !relevantAnymore) {
   fade();
 }
-```{.code}
+```
 
 @column
 
@@ -238,7 +238,7 @@ if (contextChanged && !relevantAnymore) {
   align: center
 }
 
-### Characteristic 2: Contextual Awareness {.heading}
+### Characteristic 2: Contextual Awareness
 
 @column {
   flex: 2
@@ -259,7 +259,7 @@ Same capability. Different context. Different interface.
   align: center
 }
 
-### Characteristic 3: Persistent Underpinnings {.heading}
+### Characteristic 3: Persistent Underpinnings
 
 @column {
   flex: 2
@@ -280,7 +280,7 @@ The understanding persists.
   align: center
 }
 
-## Why Now? {.heading}
+## Why Now?
 
 The generative AI evolution makes this possible.
 
@@ -290,7 +290,7 @@ The generative AI evolution makes this possible.
   align: center
 }
 
-### The Generative Leap {.heading}
+### The Generative Leap
 
 @column {
   flex: 2
@@ -318,7 +318,7 @@ What if AI generated the structures of interaction themselves?
   align: center_left
 }
 
-### From Static Answers to Dynamic Asking {.heading}
+### From Static Answers to Dynamic Asking
 
 Not: "Here's a 10-page report on ocean temperatures"
 
@@ -339,7 +339,7 @@ But: "Here's an explorable environment for understanding ocean temperatures"
   align: center
 }
 
-### Conversation as State {.heading}
+### Conversation as State
 
 @column {
   flex: 2
@@ -368,7 +368,7 @@ No navigation. Just continuous refinement.
   align: center
 }
 
-### Context-Driven Adaptation {.heading}
+### Context-Driven Adaptation
 
 Same intent: "Show my schedule"
 
@@ -383,7 +383,7 @@ Three different contexts. Three different interfaces.
   align: center
 }
 
-### Morning {.heading}
+### Morning
 **Commute**
 
 - Next 3 events
@@ -396,7 +396,7 @@ Three different contexts. Three different interfaces.
   align: center
 }
 
-### Midday {.heading}
+### Midday
 **At Desk**
 
 - Full day visible
@@ -409,7 +409,7 @@ Three different contexts. Three different interfaces.
   align: center
 }
 
-### Evening {.heading}
+### Evening
 **Home**
 
 - Tomorrow preview
@@ -423,7 +423,7 @@ Three different contexts. Three different interfaces.
   align: center
 }
 
-## What Adapts? {.heading}
+## What Adapts?
 
 @column {
   flex: 2
@@ -444,7 +444,7 @@ All driven by context. All composed on-demand.
   align: center
 }
 
-## Live Demo {.heading}
+## Live Demo
 
 ### Travel Planner
 (Built with Flutter + Gemini)
@@ -470,7 +470,7 @@ All driven by context. All composed on-demand.
   align: center
 }
 
-### What You Just Saw {.heading}
+### What You Just Saw
 
 @column {
   flex: 2
@@ -497,7 +497,7 @@ Temporary manifestation of booking capability
   align: center
 }
 
-# The Shift {.heading}
+# The Shift
 
 ---
 
@@ -508,7 +508,7 @@ Temporary manifestation of booking capability
   align: center_right
 }
 
-### Application-Centric {.heading}
+### Application-Centric
 60 years
 
 Choose app → Work within constraints
@@ -522,7 +522,7 @@ Choose app → Work within constraints
   align: center_left
 }
 
-### Intent-Centric {.heading}
+### Intent-Centric
 Now
 
 Express intent → Environment materializes
@@ -533,9 +533,9 @@ Express intent → Environment materializes
   align: center
 }
 
-## Don't navigate to features. {.heading}
+## Don't navigate to features.
 
-## Features materialize around you. {.heading}
+## Features materialize around you.
 
 ---
 
@@ -546,7 +546,7 @@ Express intent → Environment materializes
   align: center
 }
 
-### Traditional (Application-Centric) {.heading}
+### Traditional (Application-Centric)
 
 1. Open browser → search
 2. Switch to spreadsheet → analyze
@@ -561,7 +561,7 @@ Express intent → Environment materializes
   align: center
 }
 
-### Intent-Centric (Ephemeral) {.heading}
+### Intent-Centric (Ephemeral)
 
 "Explore ocean temperature and storm intensity relationships"
 
@@ -577,7 +577,7 @@ Express intent → Environment materializes
   align: center
 }
 
-## "If the interface dissolves, what's left?" {.heading}
+## "If the interface dissolves, what's left?"
 
 ---
 
@@ -585,7 +585,7 @@ Express intent → Environment materializes
   align: center
 }
 
-### Transience in Form, Persistence in Substance {.heading}
+### Transience in Form, Persistence in Substance
 
 @column {
   flex: 2
@@ -614,9 +614,9 @@ Express intent → Environment materializes
   flex: 3
 }
 
-## Dissolution isn't erasure. {.heading}
+## Dissolution isn't erasure.
 
-## It's integration. {.heading}
+## It's integration.
 
 @column
 
@@ -626,7 +626,7 @@ Express intent → Environment materializes
   align: center
 }
 
-### Example: Climate Research Session {.heading}
+### Example: Climate Research Session
 
 @column {
   flex: 2
@@ -652,7 +652,7 @@ Materializes new surface informed by that history.
   align: center
 }
 
-### Design Principles {.heading}
+### Design Principles
 
 How do we build these responsibly?
 
@@ -662,7 +662,7 @@ How do we build these responsibly?
   align: center
 }
 
-### Transparency Imperative {.heading}
+### Transparency Imperative
 
 @column {
   flex: 2
@@ -690,7 +690,7 @@ Users must understand and control what the system understands and controls.
   align: center
 }
 
-## Design for movement, not monuments. {.heading}
+## Design for movement, not monuments.
 
 @column {
   flex: 2
@@ -713,7 +713,7 @@ From pixel-perfect screens → to fluid compositions
   align: center
 }
 
-# The Path Forward {.heading}
+# The Path Forward
 
 ---
 
@@ -721,7 +721,7 @@ From pixel-perfect screens → to fluid compositions
   align: center
 }
 
-### What Exists Today {.heading}
+### What Exists Today
 
 @column {
   flex: 2
@@ -745,7 +745,7 @@ You just saw it: Flutter + Gemini + Schemas = Working demo
   align: center
 }
 
-### Timeline {.heading}
+### Timeline
 
 @column {
   flex: 2
@@ -773,7 +773,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-## Why Act Now? {.heading}
+## Why Act Now?
 
 @column {
   flex: 2
@@ -793,7 +793,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-### Lead Now {.heading}
+### Lead Now
 
 - Learn in practice
 - Shape user expectations
@@ -808,7 +808,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-### Play Catch-Up {.heading}
+### Play Catch-Up
 
 - Competitors define patterns
 - Users expect it from them
@@ -820,9 +820,9 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-## Question isn't "will this happen?" {.heading}
+## Question isn't "will this happen?"
 
-## It's "when do you start?" {.heading}
+## It's "when do you start?"
 
 ---
 
@@ -835,9 +835,9 @@ But the primitives exist. The path is clear.
   flex: 3
 }
 
-# One screen. {.heading}
-# One context signal. {.heading}
-# Two states. {.heading}
+# One screen.
+# One context signal.
+# Two states.
 
 @column
 
@@ -850,7 +850,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-### Morning {.heading}
+### Morning
 7-11 AM
 
 - Minimal layout
@@ -863,7 +863,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-### Evening {.heading}
+### Evening
 6-10 PM
 
 - Rich detail
@@ -877,7 +877,7 @@ But the primitives exist. The path is clear.
   align: center
 }
 
-### The First Sprint {.heading}
+### The First Sprint
 
 @column {
   flex: 2
@@ -903,7 +903,7 @@ Then expand:
   align: center
 }
 
-## For 60 years: {.heading}
+## For 60 years:
 
 Static interfaces.
 Designed, shipped, unchanging.
@@ -916,7 +916,7 @@ Thinking interrupted.
   align: center
 }
 
-## Now: {.heading}
+## Now:
 
 Breathing surfaces.
 Generated, adaptive, contextual.
@@ -934,9 +934,9 @@ Thinking flows continuously.
   flex: 3
 }
 
-## The future of computing doesn't interrupt thinking. {.heading}
+## The future of computing doesn't interrupt thinking.
 
-## It breathes with it. {.heading}
+## It breathes with it.
 
 @column
 
@@ -951,7 +951,7 @@ Thinking flows continuously.
   flex: 3
 }
 
-# Are you ready to build it? {.heading}
+# Are you ready to build it?
 
 @column
 
