@@ -285,6 +285,21 @@ Same Interface, Different Context
 }
 ---
 
+@section
+@column {
+  align: center_left
+}
+## Flutter Gen UI Chat {.heading}
+Intent-driven conversation that renders Gen UI surfaces live.
+
+@section {
+  flex: 2
+}
+@flutter_gen_ui_chat {
+
+}
+---
+
 @column {
   align: center
 }
@@ -490,4 +505,3 @@ Schema Defines Capabilities, Context Determines Interface
 }
 
 ## Questions? {.heading}
-

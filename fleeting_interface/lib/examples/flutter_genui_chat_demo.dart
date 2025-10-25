@@ -86,13 +86,10 @@ class _FlutterGenUiChatDemoState extends State<FlutterGenUiChatDemo> {
       builder: (context, constraints) {
         return Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 900,
-              maxHeight: 640,
-            ),
+            constraints: const BoxConstraints(maxWidth: 900, maxHeight: 640),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.55),
+                color: Colors.black.withValues(alpha: 0.55),
                 borderRadius: BorderRadius.circular(28),
                 border: Border.all(color: Colors.white24, width: 1.5),
                 boxShadow: const [
@@ -136,8 +133,9 @@ class _FlutterGenUiChatDemoState extends State<FlutterGenUiChatDemo> {
                                 itemBuilder: (context, index) {
                                   final message = _messages[index];
                                   return Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 6),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 6,
+                                    ),
                                     child: _GenUiMessageBubble(
                                       message: message,
                                       host: _conversation.host,
@@ -236,7 +234,7 @@ class _Composer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.08),
+        color: Colors.white.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.white24),
       ),
@@ -280,7 +278,7 @@ class _GenUiMessageBubble extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           border: Border.all(color: Colors.white24),
-          color: Colors.white.withOpacity(0.02),
+          color: Colors.white.withValues(alpha: 0.02),
         ),
         padding: const EdgeInsets.all(12),
         child: GenUiSurface(host: host, surfaceId: message.surfaceId!),
@@ -292,7 +290,7 @@ class _GenUiMessageBubble extends StatelessWidget {
         : Alignment.centerLeft;
     final bubbleColor = message.isUser
         ? const Color(0xFF2563EB)
-        : Colors.white.withOpacity(0.08);
+        : Colors.white.withValues(alpha: 0.08);
     final textColor = message.isUser ? Colors.white : Colors.white70;
 
     return Align(
@@ -370,10 +368,10 @@ const String _emptyStateMessage =
     'Ask for UI. Gen UI converts your intent into widgets.';
 
 String _buildSystemInstruction() {
-  return 'You are a helpful assistant who chats with a user, '
-      'giving exactly one response for each user message. '
-      'Your responses should contain acknowledgment '
-      'of the user message.'
-      '\n\n'
-      '${GenUiPromptFragments.basicChat}';
+  return '''
+You are a helpful assistant who chats with a user, giving exactly one response
+for each user message. Your responses should acknowledge what the user said.
+
+${GenUiPromptFragments.basicChat}
+''';
 }

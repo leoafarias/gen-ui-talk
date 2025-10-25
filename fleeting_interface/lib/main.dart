@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:superdeck/superdeck.dart';
 
+import 'examples/flutter_genui_chat_demo.dart';
 import 'examples/smart_oven_widget.dart';
 import 'examples/tool_bar_example_widget.dart';
 import 'examples/toolbar_demo.dart';
@@ -42,14 +43,14 @@ void main() async {
                 'fullscreen': fullscreenStyle(),
               },
               widgets: {
-                'smart_oven': (params) => SmartOven(
-                      chat: params['chat'] == true,
-                    ),
+                'smart_oven': (params) =>
+                    SmartOven(chat: params['chat'] == true),
                 'tool_bar_example': (_) => const ToolBarExampleWidget(),
                 'toolbar_demo': (params) => ToolbarDemo(
-                      all: params['all'] == true,
-                      chat: params['chat'] != false,
-                    ),
+                  all: params['all'] == true,
+                  chat: params['chat'] != false,
+                ),
+                'flutter_gen_ui_chat': (_) => const FlutterGenUiChatDemo(),
               },
               parts: const SlideParts(
                 header: HeaderPart(),
