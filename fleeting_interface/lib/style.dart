@@ -7,12 +7,11 @@ SlideStyle coverStyle() {
   return SlideStyle(
     h1: TextStyler().style(
       TextStyleMix(
-        fontFamily: GoogleFonts.poppins().fontFamily,
+        fontFamily: GoogleFonts.bungeeShade().fontFamily,
         fontSize: 100,
         color: Colors.black,
       ),
     ),
-    // blockContainer: BoxStyler().borderAll(color: Colors.black, width: 2),
     slideContainer: BoxStyler(
       decoration: BoxDecorationMix(
         gradient: LinearGradientMix(
