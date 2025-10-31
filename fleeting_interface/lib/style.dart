@@ -8,25 +8,36 @@ SlideStyle coverStyle() {
     h1: TextStyler().style(
       TextStyleMix(
         fontFamily: GoogleFonts.bungeeShade().fontFamily,
-        fontSize: 100,
-        color: Colors.black,
+        fontSize: 70,
+        height: 0,
+        color: const Color.fromARGB(255, 255, 255, 255),
       ),
     ),
-    slideContainer: BoxStyler(
-      decoration: BoxDecorationMix(
-        gradient: LinearGradientMix(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: [0.0, 0.6, 0.9, 1.0],
-          colors: [
-            const Color.fromARGB(255, 255, 255, 255),
-            const Color.fromARGB(255, 222, 222, 222),
-            const Color.fromARGB(255, 53, 126, 253),
-            const Color.fromARGB(255, 25, 74, 233),
-          ],
-        ),
-      ),
-    ),
+    h2: TextStyler()
+        .style(
+          TextStyleMix(
+            fontFamily: GoogleFonts.bungeeShade().fontFamily,
+            fontSize: 60,
+            height: 0,
+            color: const Color.fromARGB(255, 255, 255, 255),
+          ),
+        )
+        .animate(AnimationConfig.bounceIn(500.ms)),
+    // slideContainer: BoxStyler(
+    //   decoration: BoxDecorationMix(
+    //     gradient: LinearGradientMix(
+    //       begin: Alignment.topCenter,
+    //       end: Alignment.bottomCenter,
+    //       stops: [0.0, 0.6, 0.9, 1.0],
+    //       colors: [
+    //         const Color.fromARGB(255, 153, 109, 255),
+    //         const Color.fromARGB(255, 61, 0, 132),
+    //         const Color.fromARGB(255, 33, 10, 87),
+    //         const Color.fromARGB(255, 29, 3, 68),
+    //       ],
+    //     ),
+    //   ),
+    // ),
   );
 }
 
