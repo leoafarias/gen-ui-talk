@@ -8,7 +8,9 @@ style: cover
 @column {
   align: center
 }
-# Ephemeral UI {.heading}
+
+# The Fleeting Interface
+## Gen + Ephemeral UI
 
 ---
 

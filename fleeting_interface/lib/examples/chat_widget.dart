@@ -80,7 +80,7 @@ class _ChatWidgetState extends State<ChatWidget> {
 
     // Create model with JSON response configuration
     _model = FirebaseAI.googleAI().generativeModel(
-      model: 'gemini-2.5-flash',
+      model: 'gemini-2.5-flash-lite',
       generationConfig: GenerationConfig(
         responseMimeType: 'application/json',
         responseSchema: toolSchema,
@@ -417,10 +417,7 @@ class _SuggestedPromptsMenu extends StatelessWidget {
       elevation: 8,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: Colors.white.withValues(alpha: 0.1),
-          width: 1,
-        ),
+        side: BorderSide(color: Colors.white.withValues(alpha: 0.1), width: 1),
       ),
       itemBuilder: (context) => prompts
           .map(
