@@ -1,7 +1,81 @@
 import 'package:flutter/material.dart';
 
 import 'oven_chat_widget.dart';
-import 'oven_definitions.dart';
+
+/// Oven configuration result from LLM
+class OvenSelection {
+  final FoodPreset foodType;
+  final FoodOptions options;
+  final String explanation;
+
+  OvenSelection({
+    required this.foodType,
+    required this.options,
+    required this.explanation,
+  });
+
+  factory OvenSelection.fromJson(Map<String, dynamic> json) {
+    final foodType = FoodPreset.values.firstWhere(
+      (e) => e.name == json['foodType'],
+      orElse: () => FoodPreset.pizza,
+    );
+
+    FoodOptions options;
+    switch (foodType) {
+      case FoodPreset.pizza:
+        final pizza = json['pizzaOptions'] as Map<String, dynamic>?;
+        options = PizzaOptions(
+          crust: PizzaCrust.values.firstWhere(
+            (e) => e.name == pizza?['crust'],
+            orElse: () => PizzaCrust.regular,
+          ),
+          size: PizzaSize.values.firstWhere(
+            (e) => e.name == pizza?['size'],
+            orElse: () => PizzaSize.medium,
+          ),
+          temperatureC: pizza?['temperatureC'] as int? ?? 245,
+          minutes: pizza?['minutes'] as int? ?? 12,
+        );
+        break;
+      case FoodPreset.cookies:
+        final cookie = json['cookieOptions'] as Map<String, dynamic>?;
+        options = CookieOptions(
+          type: CookieType.values.firstWhere(
+            (e) => e.name == cookie?['type'],
+            orElse: () => CookieType.chocolateChip,
+          ),
+          batch: CookieBatch.values.firstWhere(
+            (e) => e.name == cookie?['batch'],
+            orElse: () => CookieBatch.b24,
+          ),
+          temperatureC: cookie?['temperatureC'] as int? ?? 175,
+          minutes: cookie?['minutes'] as int? ?? 10,
+        );
+        break;
+      case FoodPreset.chicken:
+        final chicken = json['chickenOptions'] as Map<String, dynamic>?;
+        options = ChickenOptions(
+          cut: ChickenCut.values.firstWhere(
+            (e) => e.name == chicken?['cut'],
+            orElse: () => ChickenCut.whole,
+          ),
+          weight: ChickenWeight.values.firstWhere(
+            (e) => e.name == chicken?['weight'],
+            orElse: () => ChickenWeight.w4to5,
+          ),
+          temperatureC: chicken?['temperatureC'] as int? ?? 190,
+          minutes: chicken?['minutes'] as int? ?? 60,
+        );
+        break;
+    }
+
+    return OvenSelection(
+      foodType: foodType,
+      options: options,
+      explanation: json['explanation'] as String? ?? '',
+    );
+  }
+}
 
 /// --------------------------------------
 /// DATA MODEL: Enums + Options + Program
@@ -856,81 +930,6 @@ class ModernOvenPanel extends StatelessWidget {
       ],
     ),
   );
-}
-
-class FoodSelectionBar extends StatelessWidget {
-  final FoodPreset selected;
-  final ValueChanged<FoodPreset> onChanged;
-  const FoodSelectionBar({
-    super.key,
-    required this.selected,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    Widget item(FoodPreset p) {
-      final active = p == selected;
-      return Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(8),
-        child: InkWell(
-          onTap: () => onChanged(p),
-          borderRadius: BorderRadius.circular(8),
-          splashColor: Colors.orange.shade400.withValues(alpha: 0.3),
-          highlightColor: Colors.orange.shade400.withValues(alpha: 0.1),
-          child: Container(
-            width: 110,
-            height: 50,
-            decoration: BoxDecoration(
-              color: active ? Colors.orange.shade800 : Colors.grey.shade800,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                if (active)
-                  BoxShadow(
-                    color: Colors.orange.shade400.withValues(alpha: 0.5),
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                  ),
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.4),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(p.emoji, style: const TextStyle(fontSize: 28)),
-                const SizedBox(height: 4),
-                Text(
-                  p.label.toUpperCase(),
-                  style: TextStyle(
-                    color: active ? Colors.white : Colors.grey.shade400,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
-                  ).merge(_mono),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        item(FoodPreset.pizza),
-        const SizedBox(width: 8),
-        item(FoodPreset.cookies),
-        const SizedBox(width: 8),
-        item(FoodPreset.chicken),
-      ],
-    );
-  }
 }
 
 class _FoodButton extends StatelessWidget {

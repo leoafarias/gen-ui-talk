@@ -4,6 +4,7 @@ import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter/material.dart';
 
 import 'oven_definitions.dart';
+import 'smart_oven_widget.dart';
 
 /// Chat widget for smart oven - lets user describe what they want to cook
 class OvenChatWidget extends StatefulWidget {

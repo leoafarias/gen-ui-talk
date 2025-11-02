@@ -50,21 +50,14 @@ class _ToolbarDemoState extends State<ToolbarDemo> {
   }
 
   Set<ToolbarGroup> _convertToToolbarGroups(List<String> toolIds) {
-    final groupMap = {
-      'file': ToolbarGroup.file,
-      'history': ToolbarGroup.history,
-      'zoom': ToolbarGroup.zoom,
-      'style': ToolbarGroup.style,
-      'font': ToolbarGroup.font,
-      'marks': ToolbarGroup.marks,
-      'insert': ToolbarGroup.insert,
-      'alignment': ToolbarGroup.alignment,
-      'lists': ToolbarGroup.lists,
-      'indent': ToolbarGroup.indent,
-      'misc': ToolbarGroup.misc,
+    // Use enum.name for automatic mapping - no manual sync needed
+    final groupsByName = {
+      for (var g in ToolbarGroup.values) g.name: g
     };
-
-    return toolIds.map((id) => groupMap[id]).whereType<ToolbarGroup>().toSet();
+    return toolIds
+        .map((id) => groupsByName[id])
+        .whereType<ToolbarGroup>()
+        .toSet();
   }
 
   @override
@@ -120,7 +113,7 @@ class _ToolbarDemoState extends State<ToolbarDemo> {
   }
 }
 
-/// Styled toolbar where each group has its own black rounded background
+/// Styled toolbar with black rounded group containers for presentation
 class _StyledToolbar extends StatelessWidget {
   const _StyledToolbar({required this.groups, required this.onCommand});
 

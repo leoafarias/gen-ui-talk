@@ -62,7 +62,7 @@ class _ToolBarExampleWidgetState extends State<ToolBarExampleWidget> {
             const Divider(height: 1),
 
             // The actual toolbar (stateless; purely driven by [shown]).
-            SimpleToolbar(
+            ExampleToolbar(
               groups: shown,
               onCommand: (cmd, payload) {
                 // In a real app, route this to your editor; for demo, print it.
@@ -132,14 +132,14 @@ class _TogglePill extends StatelessWidget {
   }
 }
 
-/// SUPER-SIMPLE, CONFIG-DRIVEN TOOLBAR DEMO
+/// Example toolbar demonstrating config-driven toolbar composition.
 /// - No editor state, no selection tracking.
 /// - You pass a set of [ToolbarGroup]s to show.
 /// - Buttons call [onCommand] with a command (+ optional payload).
 /// - Wrap layout naturally forms ~two rows; if it ever needs more, it
 ///   becomes vertically scrollable to avoid overflow in DartPad.
-class SimpleToolbar extends StatelessWidget {
-  const SimpleToolbar({
+class ExampleToolbar extends StatelessWidget {
+  const ExampleToolbar({
     super.key,
     required this.groups,
     required this.onCommand,
