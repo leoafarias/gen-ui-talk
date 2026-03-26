@@ -5,7 +5,7 @@ style: cover
 @section {
   flex: 2
 }
-@column {
+@block {
   align: center
 }
 
@@ -13,8 +13,9 @@ style: cover
 ## Gen + Ephemeral UI
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
@@ -22,8 +23,8 @@ style: cover
 #### @leoafarias {.subheading}
 https://github.com/btwld
 
-@column {
-  align: center_left
+@block {
+  align: centerLeft
 }
 - Bitwild @ Concepta
 - Open Source Contributor
@@ -31,28 +32,30 @@ https://github.com/btwld
 - Passionate about UI/UX/DX
 
 ---
+---
 
-@column
+@block
 
-@column {
-  align: center_left
+@block {
+  align: centerLeft
   flex: 2
 }
 > [!WARNING]
 > This presentation contains live AI-generated content. Unexpected things may occur during the demonstration.
 
-@column
+@block
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ## Every interface you use today was designed the same way {.heading}
 
-@column {
-  align: center_left
+@block {
+  align: centerLeft
 }
 
 - Fixed. Static. One-size-fits-all.
@@ -60,9 +63,10 @@ https://github.com/btwld
 - This has been true for 50 years.
 
 ---
-@column
-@column {
-  align: center_left
+---
+@block
+@block {
+  align: centerLeft
   flex: 2
 }
 
@@ -73,30 +77,32 @@ https://github.com/btwld
 - Define all capabilities, show only relevant ones
 
 ---
+---
 
-@column {
+@block {
   align: center
   flex: 2
 }
 
 ## The Everyone Tax {.heading}
 
-@column {
-  align: center_left
+@block {
+  align: centerLeft
 }
 
 Every feature built for someone else is cognitive load you carry.
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ## Cognitive Load {.heading}
 Not all mental effort is equal:
 
-@column
+@block
 
 
 - **Intrinsic:** The inherent difficulty of your task
@@ -104,10 +110,11 @@ Not all mental effort is equal:
 - **Extraneous:** Wasted effort from poor design
 
 ---
+---
 
 @section
-@column {
-  align: bottom_center
+@block {
+  align: bottomCenter
 }
 ## The Toolbar Problem {.heading}
 
@@ -115,24 +122,26 @@ Not all mental effort is equal:
 
 @toolbar_demo {
   all: true
-  align: top_center
+  align: topCenter
   chat: false
 }
 
+---
 ---
 
 ### Everyone Tax is pure Extraneous Load
 
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ## The Impossible Trade-off {.heading}
 
-@column
+@block
 
 - Show everything. Everyone drowns.
 - Hide everything. Everyone hits walls.
@@ -142,7 +151,7 @@ Not all mental effort is equal:
 style: quote
 ---
 
-@column {
+@block {
   flex: 3
 }
 
@@ -150,54 +159,58 @@ style: quote
 >
 > — IBM Research AI
 
-@column
+@block
 
+---
 ---
 
 @toolbar_demo {
   all: true
-  align: top_center
+  align: topCenter
   chat: true
 }
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ## What Changed? {.heading}
 
-@column
+@block
 
 - LLMs can now understand intent.
 - LLMs can respond in a structured format.
 - LLMs can now adapt based on context.
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ## Understanding Intent {.heading}
 #### LLMs translate natural language into function calls. {.subheading}
 
-@column
+@block
 
 ![LLM Interaction](assets/llm_interaction.png)
 
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ## Structured Output {.heading}
 #### LLMs transform unstructured intent into structured UI. {.subheading}
 
-@column {
+@block {
   align: center
   flex: 1
 }
@@ -206,22 +219,24 @@ style: quote
 
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 ## Generative + Ephemeral UI {.heading}
 The new paradigm is now possible.
 
-@column
+@block
 
 - **Generative UI:** Composes from intent
 - **Ephemeral UI:** Appears while relevant
 - **Together:** Appears when needed, dissolves when done
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 ## Define Capabilities {.heading}
@@ -229,7 +244,7 @@ The new paradigm is now possible.
 You're not defining screens.
 You're defining what the system can do.
 
-@column
+@block
 
 ```dart
 final schema = Schema.object(properties: {
@@ -246,13 +261,14 @@ final schema = Schema.object(properties: {
 });
 ```
 ---
+---
 
-@column {
+@block {
   align: center
 }
 ## Tool Calling Workflow {.heading}
 
-@column {
+@block {
   align: center
   flex: 2
 }
@@ -260,15 +276,16 @@ final schema = Schema.object(properties: {
 ![LLM Tools Selection](assets/llm_tools.png)
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ### Schema → UI Flow {.heading}
 Define schemas. AI selects. Flutter builds.
 
-@column {
+@block {
   align: center
   flex: 2
 }
@@ -277,15 +294,16 @@ Define schemas. AI selects. Flutter builds.
 
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ### Context-Driven Adaptation {.heading}
 Same capability, different contexts = different interfaces.
 
-@column
+@block
 
 
 - **Who:** User preferences and history
@@ -293,6 +311,7 @@ Same capability, different contexts = different interfaces.
 - **When:** Time of day, urgency
 - **Where:** Location, device
 
+---
 ---
 
 #### Context fusion
@@ -307,15 +326,16 @@ style: fullscreen
 }
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
 ### Conversation Loop {.heading}
 Shared state evolves through conversation.
 
-@column {
+@block {
   align: center
   flex: 2
 }
@@ -327,14 +347,15 @@ Shared state evolves through conversation.
 style: quote
 ---
 
-@column {
+@block {
   flex: 2
 }
 > # "Simple is hard. Easy is harder. Invisible is hardest."
 > — Jean-Louis Gassée
 
-@column
+@block
 
+---
 ---
 
 ## What Changes {.heading}
@@ -348,14 +369,15 @@ style: quote
 
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 ## Flutter + AI {.heading}
 https://github.com/flutter/genui
 
-@column
+@block
 
 - Schema-based capability definition
 - Context-aware composition
@@ -364,8 +386,9 @@ https://github.com/flutter/genui
 
 
 ---
+---
 
-@column {
+@block {
   align: center
 }
 
