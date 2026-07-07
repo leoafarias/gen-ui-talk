@@ -51,9 +51,7 @@ class _ToolbarDemoState extends State<ToolbarDemo> {
 
   Set<ToolbarGroup> _convertToToolbarGroups(List<String> toolIds) {
     // Use enum.name for automatic mapping - no manual sync needed
-    final groupsByName = {
-      for (var g in ToolbarGroup.values) g.name: g
-    };
+    final groupsByName = {for (var g in ToolbarGroup.values) g.name: g};
     return toolIds
         .map((id) => groupsByName[id])
         .whereType<ToolbarGroup>()
