@@ -1,0 +1,23 @@
+{
+  "flutter": {
+    "platforms": {
+      "macos": {
+        "default": {
+          "projectId": "superdeck-dev",
+          "appId": "1:707852212779:ios:49990cab66e8dc4f36a86e",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "superdeck-dev",
+          "configurations": {
+            "macos": "1:707852212779:ios:49990cab66e8dc4f36a86e",
+            "web": "1:707852212779:web:5e20b55f98005b0736a86e"
+          }
+        }
+      }
+    }
+  }
+}

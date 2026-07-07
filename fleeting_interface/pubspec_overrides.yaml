@@ -1,0 +1,9 @@
+dependency_overrides:
+  superdeck:
+    path: /Users/leofarias/Projects/superdeck/packages/superdeck
+  superdeck_builder:
+    path: /Users/leofarias/Projects/superdeck/packages/builder
+  superdeck_cli:
+    path: /Users/leofarias/Projects/superdeck/packages/cli
+  superdeck_core:
+    path: /Users/leofarias/Projects/superdeck/packages/core

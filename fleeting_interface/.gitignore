@@ -1,0 +1,11 @@
+
+# FVM Version Cache
+.fvm/
+
+# Firebase config files (contain secrets, regenerated locally)
+lib/firebase_options.dart
+macos/Runner/GoogleService-Info.plist
+
+# Superdeck build output (thumbnails, generated assets)
+.superdeck/*
+!.superdeck/.gitkeep

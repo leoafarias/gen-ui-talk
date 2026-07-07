@@ -1,0 +1,48 @@
+name: fleeting_interface
+description: An example presentation for SuperDeck
+publish_to: none
+version: 1.0.0+1
+environment:
+  sdk: ">=3.10.0 <4.0.0"
+  flutter: ">=3.38.1"
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_app_check: ^0.4.1
+  firebase_core: ^4.2.0
+  firebase_ai: ^3.4.0
+  flutter_genui:
+    git:
+      url: https://github.com/flutter/genui.git
+      path: packages/flutter_genui
+      ref: 469fb0c0717d85547bdbb8a0b37c4ddbd963aae4
+  flutter_genui_firebase_ai:
+    git:
+      url: https://github.com/flutter/genui.git
+      path: packages/flutter_genui_firebase_ai
+      ref: 469fb0c0717d85547bdbb8a0b37c4ddbd963aae4
+  gpt_markdown: ^1.1.4
+  google_fonts: ^6.3.2
+  intl: ^0.20.2
+  json_schema_builder: ^0.1.3
+  logging: ^1.3.0
+  mesh: ^0.5.0
+  mix: ^2.0.0-rc.0
+  remix: ^0.2.0
+  superdeck:
+    path: /Users/leofarias/Projects/superdeck/packages/superdeck
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  superdeck_cli:
+    path: /Users/leofarias/Projects/superdeck/packages/cli
+  superdeck_core:
+    path: /Users/leofarias/Projects/superdeck/packages/core
+  integration_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - .superdeck/
