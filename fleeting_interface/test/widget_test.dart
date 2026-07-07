@@ -1,33 +1,42 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:superdeck/superdeck.dart';
+import 'package:superdeck_core/superdeck_core.dart';
 
 void main() {
   testWidgets('SuperDeck app smoke test', (WidgetTester tester) async {
-    // Initialize SuperDeck
-    await SuperDeckApp.initialize();
-
-    // Build our app and trigger a frame.
     await tester.pumpWidget(
-      MaterialApp(
-        title: 'Generative UI Presentation',
-        debugShowCheckedModeBanner: false,
-        home: SuperDeckApp(
-          options: DeckOptions(
-            debug: false,
-          ),
-        ),
+      SuperDeckApp(
+        options: DeckOptions(debug: false),
+        deckLoader: _FakeDeckLoader(),
+        workspace: DeckWorkspace(),
       ),
     );
+    await tester.pump();
 
-    // Verify that the app builds without errors.
     expect(find.byType(SuperDeckApp), findsOneWidget);
   });
+}
+
+final class _FakeDeckLoader extends DeckLoader {
+  const _FakeDeckLoader();
+
+  @override
+  Stream<SlidesEvent> load() {
+    return Stream.value(
+      SlidesLoadedEvent([
+        Slide(
+          key: 'smoke-test',
+          sections: [SectionBlock.text('Smoke test slide')],
+        ),
+      ]),
+    );
+  }
+
+  @override
+  Future<void> reload() async {}
+
+  @override
+  Future<void> dispose() async {}
 }

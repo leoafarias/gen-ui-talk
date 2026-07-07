@@ -7,4 +7,5 @@ lib/firebase_options.dart
 macos/Runner/GoogleService-Info.plist
 
 # Superdeck build output (thumbnails, generated assets)
-.superdeck/
+.superdeck/*
+!.superdeck/.gitkeep

@@ -389,7 +389,8 @@ class ExampleToolbar extends StatelessWidget {
                 ),
               ],
             ),
-            icon: const SizedBox.shrink(), // Hide default icon since we show it in hint
+            icon:
+                const SizedBox.shrink(), // Hide default icon since we show it in hint
             items: [
               for (final opt in options)
                 DropdownMenuItem<T>(

@@ -14,10 +14,10 @@ class ToolGroupDefinition {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'label': label,
-        'description': description,
-      };
+    'id': id,
+    'label': label,
+    'description': description,
+  };
 }
 
 /// All available toolbar groups and what they do
@@ -94,7 +94,9 @@ class ToolbarDefinitions {
     buffer.writeln();
 
     for (final group in allGroups) {
-      buffer.writeln('- **${group.id}** (${group.label}): ${group.description}');
+      buffer.writeln(
+        '- **${group.id}** (${group.label}): ${group.description}',
+      );
     }
 
     buffer.writeln();
@@ -106,14 +108,18 @@ class ToolbarDefinitions {
     );
     buffer.writeln('- For reading/viewing, show minimal tools (zoom, file)');
     buffer.writeln('- For writing, show formatting tools (marks, alignment)');
-    buffer.writeln(
-      '- For advanced formatting, add style and font options',
-    );
+    buffer.writeln('- For advanced formatting, add style and font options');
     buffer.writeln();
     buffer.writeln('IMPORTANT:');
-    buffer.writeln('- Provide a clear explanation of WHY you selected these specific tools');
-    buffer.writeln('- Explain the reasoning behind including or excluding each group');
-    buffer.writeln('- Connect your choices directly to the user\'s stated intent');
+    buffer.writeln(
+      '- Provide a clear explanation of WHY you selected these specific tools',
+    );
+    buffer.writeln(
+      '- Explain the reasoning behind including or excluding each group',
+    );
+    buffer.writeln(
+      '- Connect your choices directly to the user\'s stated intent',
+    );
     buffer.writeln('- Make your thought process transparent and educational');
 
     return buffer.toString();
@@ -134,7 +140,8 @@ class ToolbarDefinitions {
         },
         'explanation': {
           'type': 'string',
-          'description': 'Clear, detailed explanation of WHY these specific tools were selected based on the user\'s intent. Explain the reasoning behind including or excluding groups and connect choices directly to what the user wants to accomplish.',
+          'description':
+              'Clear, detailed explanation of WHY these specific tools were selected based on the user\'s intent. Explain the reasoning behind including or excluding groups and connect choices directly to what the user wants to accomplish.',
         },
       },
       'required': ['selectedToolGroups', 'explanation'],
