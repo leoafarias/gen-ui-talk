@@ -3,10 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:superdeck/superdeck.dart';
 
+import 'deck_runtime_config.dart'
+    if (dart.library.io) 'deck_runtime_config_io.dart';
 import 'examples/flutter_genui_chat_demo.dart';
 import 'examples/smart_oven_widget.dart';
 import 'examples/tool_bar_example_widget.dart';
 import 'examples/toolbar_demo.dart';
+import 'examples/webview_demo.dart';
 import 'firebase_options.dart';
 import 'parts/background.dart';
 import 'parts/footer.dart';
@@ -28,30 +31,30 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await _activateFirebaseAppCheck();
   await SuperDeckApp.initialize();
-  runApp(
-    SuperDeckApp(
-      options: DeckOptions(
-        baseStyle: borderedStyle(),
-        styles: {
-          'announcement': announcementStyle(),
-          'quote': quoteStyle(),
-          'cover': coverStyle(),
-          'fullscreen': fullscreenStyle(),
-        },
-        widgets: {
-          'smart_oven': _smartOvenFactory,
-          'tool_bar_example': (_) => const ToolBarExampleWidget(),
-          'toolbar_demo': _toolbarDemoFactory,
-          'flutter_gen_ui_chat': (_) => const FlutterGenUiChatDemo(),
-        },
-        parts: const SlideParts(
-          header: HeaderPart(),
-          footer: FooterPart(),
-          background: BackgroundPart(),
-        ),
-      ),
+
+  final deckOptions = DeckOptions(
+    baseStyle: borderedStyle(),
+    styles: {
+      'announcement': announcementStyle(),
+      'quote': quoteStyle(),
+      'cover': coverStyle(),
+      'fullscreen': fullscreenStyle(),
+    },
+    widgets: {
+      'smart_oven': _smartOvenFactory,
+      'tool_bar_example': (_) => const ToolBarExampleWidget(),
+      'toolbar_demo': _toolbarDemoFactory,
+      'flutter_gen_ui_chat': (_) => const FlutterGenUiChatDemo(),
+      'webview': _webViewFactory,
+    },
+    parts: const SlideParts(
+      header: HeaderPart(),
+      footer: FooterPart(),
+      background: BackgroundPart(),
     ),
   );
+
+  runApp(buildSuperDeckApp(deckOptions));
   scheduleHideWebLoader();
 }
 
@@ -78,4 +81,13 @@ Widget _smartOvenFactory(Map<String, Object?> args) {
 
 Widget _toolbarDemoFactory(Map<String, Object?> args) {
   return ToolbarDemo(all: args['all'] == true, chat: args['chat'] != false);
+}
+
+Widget _webViewFactory(Map<String, Object?> args) {
+  final url = args['url'];
+  if (url is! String || url.trim().isEmpty) {
+    throw ArgumentError('webview requires a non-empty url argument.');
+  }
+
+  return WebViewDemo(url: url.trim());
 }

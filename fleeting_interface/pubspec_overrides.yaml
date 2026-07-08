@@ -1,9 +1,21 @@
 dependency_overrides:
   superdeck:
-    path: /Users/leofarias/Projects/superdeck/packages/superdeck
+    git:
+      url: https://github.com/btwld/superdeck.git
+      path: packages/superdeck
+      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
   superdeck_builder:
-    path: /Users/leofarias/Projects/superdeck/packages/builder
+    git:
+      url: https://github.com/btwld/superdeck.git
+      path: packages/builder
+      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
   superdeck_cli:
-    path: /Users/leofarias/Projects/superdeck/packages/cli
+    git:
+      url: https://github.com/btwld/superdeck.git
+      path: packages/cli
+      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
   superdeck_core:
-    path: /Users/leofarias/Projects/superdeck/packages/core
+    git:
+      url: https://github.com/btwld/superdeck.git
+      path: packages/core
+      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a

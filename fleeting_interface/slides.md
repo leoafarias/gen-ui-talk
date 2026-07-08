@@ -13,6 +13,14 @@ style: cover
 ## Gen + Ephemeral UI
 
 ---
+style: fullscreen
+---
+
+@webview {
+  url: "https://mix-docs-git-redesign-remix-landing-page-fluttertools.vercel.app/"
+}
+
+---
 ---
 
 @block {

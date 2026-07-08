@@ -2,8 +2,10 @@
 # FVM Version Cache
 .fvm/
 
-# Firebase config files (contain secrets, regenerated locally)
-lib/firebase_options.dart
+# Keep this app's resolved package graph reproducible.
+!pubspec.lock
+
+# Firebase native config files (contain secrets, regenerated locally)
 macos/Runner/GoogleService-Info.plist
 
 # Superdeck build output (thumbnails, generated assets)
