@@ -9,7 +9,6 @@ import 'examples/flutter_genui_chat_demo.dart';
 import 'examples/smart_oven_widget.dart';
 import 'examples/tool_bar_example_widget.dart';
 import 'examples/toolbar_demo.dart';
-import 'examples/webview_demo.dart';
 import 'firebase_options.dart';
 import 'parts/background.dart';
 import 'parts/footer.dart';
@@ -45,7 +44,6 @@ void main() async {
       'tool_bar_example': (_) => const ToolBarExampleWidget(),
       'toolbar_demo': _toolbarDemoFactory,
       'flutter_gen_ui_chat': (_) => const FlutterGenUiChatDemo(),
-      'webview': _webViewFactory,
     },
     parts: const SlideParts(
       header: HeaderPart(),
@@ -81,13 +79,4 @@ Widget _smartOvenFactory(Map<String, Object?> args) {
 
 Widget _toolbarDemoFactory(Map<String, Object?> args) {
   return ToolbarDemo(all: args['all'] == true, chat: args['chat'] != false);
-}
-
-Widget _webViewFactory(Map<String, Object?> args) {
-  final url = args['url'];
-  if (url is! String || url.trim().isEmpty) {
-    throw ArgumentError('webview requires a non-empty url argument.');
-  }
-
-  return WebViewDemo(url: url.trim());
 }
