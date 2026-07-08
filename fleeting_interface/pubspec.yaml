@@ -39,6 +39,7 @@ dependencies:
       url: https://github.com/btwld/superdeck.git
       path: packages/core
       ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
+  webview_flutter: ^4.14.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
