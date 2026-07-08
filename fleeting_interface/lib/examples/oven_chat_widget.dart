@@ -112,7 +112,7 @@ class _OvenChatWidgetState extends State<OvenChatWidget> {
       generationConfig: GenerationConfig(
         responseMimeType: 'application/json',
         responseSchema: ovenSchema,
-        thinkingConfig: ThinkingConfig(thinkingBudget: 0),
+        thinkingConfig: ThinkingConfig.withThinkingBudget(0),
       ),
       systemInstruction: Content.text(OvenDefinitions.generateSystemPrompt()),
     );

@@ -1,16 +1,28 @@
-# fleeting_interface
+# Fleeting Interface
 
-A new Flutter project.
+SuperDeck presentation app for "The Fleeting Interface".
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Use the FVM-pinned Flutter SDK when working in this app:
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+fvm flutter pub get
+fvm dart run superdeck_cli:main build
+fvm flutter run -d chrome \
+  --dart-define=FIREBASE_WEB_API_KEY=<web-api-key> \
+  --dart-define=FIREBASE_APP_CHECK_SITE_KEY=<app-check-site-key>
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+For macOS runs, pass `FIREBASE_APPLE_API_KEY` instead of
+`FIREBASE_WEB_API_KEY`. Non-sensitive Firebase IDs default to the
+`superdeck-dev` project from `firebase.json` and can be overridden with
+additional `--dart-define` values in `lib/firebase_options.dart`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`superdeck build` writes generated runtime output into `.superdeck/`, which is
+intentionally ignored except for `.superdeck/.gitkeep`.
+
+For active deck development, run `fvm dart run superdeck_cli:main build --watch`
+in one terminal and `fvm flutter run` in another. Direct `.app` launches load
+the bundled `.superdeck` output from the last `superdeck build`, so rebuild
+before launching the app outside the project tree.
