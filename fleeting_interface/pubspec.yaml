@@ -33,13 +33,12 @@ dependencies:
     git:
       url: https://github.com/btwld/superdeck.git
       path: packages/superdeck
-      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
+      ref: 350569426a6e7534d22a6c4c936632a81242897b
   superdeck_core:
     git:
       url: https://github.com/btwld/superdeck.git
       path: packages/core
-      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
-  webview_flutter: ^4.14.0
+      ref: 350569426a6e7534d22a6c4c936632a81242897b
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -48,7 +47,7 @@ dev_dependencies:
     git:
       url: https://github.com/btwld/superdeck.git
       path: packages/cli
-      ref: 21cd7fe58fdd3f8de131c2c110ec887203da805a
+      ref: 350569426a6e7534d22a6c4c936632a81242897b
   integration_test:
     sdk: flutter
 flutter:

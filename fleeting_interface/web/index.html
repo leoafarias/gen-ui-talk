@@ -91,29 +91,31 @@
     </div>
   </div>
   <script>
-    const isLocalFlutterHost = ['127.0.0.1', 'localhost', '[::1]'].includes(window.location.hostname);
-    if (isLocalFlutterHost && self.FIREBASE_APPCHECK_DEBUG_TOKEN == null) {
-      self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
-    }
-
-    const loader = document.getElementById('flutter-loader');
-    const loaderCopy = document.getElementById('flutter-loader-copy');
-    const loaderErrorTimeout = window.setTimeout(() => {
-      if (!loader || !loaderCopy || loader.classList.contains('is-hidden')) {
-        return;
+    (() => {
+      const isLocalFlutterHost = ['127.0.0.1', 'localhost', '[::1]'].includes(window.location.hostname);
+      if (isLocalFlutterHost && self.FIREBASE_APPCHECK_DEBUG_TOKEN == null) {
+        self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
       }
 
-      loaderCopy.classList.add('is-error');
-      loaderCopy.textContent = 'Startup is taking longer than expected. Refresh the page or check the browser console.';
-    }, 15000);
+      const loader = document.getElementById('flutter-loader');
+      const loaderCopy = document.getElementById('flutter-loader-copy');
+      const loaderErrorTimeout = window.setTimeout(() => {
+        if (!loader || !loaderCopy || loader.classList.contains('is-hidden')) {
+          return;
+        }
 
-    window.hideFlutterLoader = function () {
-      if (!loader) return;
+        loaderCopy.classList.add('is-error');
+        loaderCopy.textContent = 'Startup is taking longer than expected. Refresh the page or check the browser console.';
+      }, 15000);
 
-      window.clearTimeout(loaderErrorTimeout);
-      loader.classList.add('is-hidden');
-      window.setTimeout(() => loader.remove(), 220);
-    };
+      window.hideFlutterLoader = function () {
+        if (!loader) return;
+
+        window.clearTimeout(loaderErrorTimeout);
+        loader.classList.add('is-hidden');
+        window.setTimeout(() => loader.remove(), 220);
+      };
+    })();
   </script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
